@@ -1,71 +1,36 @@
-# OriginHunter README
+# OriginHunter 
 
-This is the README for your extension "OriginHunter". After writing up a brief description, we recommend including the following sections.
+This is a vscode extension for discovering origins of code changes.
 
-## Features
+## Motivation
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+In open source collaboration platforms such as GitHub, developers record the thinking, trade-offs and decision-making process behind the changes in detail in the discussion of Issues and Pull Requests. For example, the review feedback in the PR may include optimization suggestions for the implementation method, and the comments in the Issue often reveal the motivation for adding new features or the deep reasons for fixing bugs. However, these discussion information is scattered and not easy to be directly associated with specific code. Traditional version control tools often cannot effectively integrate this information, resulting in developers spending a lot of time manually retrieving these contents to fully understand the background of code changes.
 
-For example if there is an image subfolder under your extension project workspace:
+The goal of this project is to develop an automated code traceability and change motivation analysis system to help developers systematically track the complete change history of specific code snippets, and mine the discussion content in PRs and Issues to reveal the deep-seated reasons and technical decisions behind code changes.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Roadmap
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+1. Mining the complete history (associated with commits) of the selected code snippet (may include methods, classes or/and blocks).
+2. Mining the PRs and Issues behind the corresponding commits.
+3. Analysing the discussions in PRs and Issues (probably via LLMs).
+4. Drawing a timeline to display the changes and the underlying deep-seated reasons and technical decisions.
 
-## Requirements
+## Todo List
+(for now)
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- [x] Integrating Git Extension of vscode
+- [ ] Integrating Tree-Sitter for parsing codes
+- [ ] Implementing CodeShovel(ICSE'21) for method-level history mining.
+- [ ] Implementing crawlers for mining related PRs and Issues and discussions.
+- [ ] Leveraging LLMs for analyzing discussions.
+- [ ] Drawing a timeline to display the results.
 
-## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
 
-For example:
+## References
+[1] F. Grund, S. A. Chowdhury, N. C. Bradley, B. Hall and R. Holmes, "CodeShovel: Constructing Method-Level Source Code Histories," 2021 IEEE/ACM 43rd International Conference on Software Engineering (ICSE), Madrid, ES, 2021, pp. 1510-1522, doi: 10.1109/ICSE43902.2021.00135.
 
-This extension contributes the following settings:
+[2] N. Tsantalis, A. Ketkar and D. Dig, "RefactoringMiner 2.0," in IEEE Transactions on Software Engineering, vol. 48, no. 3, pp. 930-950, 1 March 2022, doi: 10.1109/TSE.2020.3007722.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+[3] Emre Sülün, Metehan Saçakçı, and Eray Tüzün. 2024. An Empirical Analysis of Issue Templates Usage in Large-Scale Projects on GitHub. ACM Trans. Softw. Eng. Methodol. 33, 5, Article 117 (June 2024), 28 pages. https://doi.org/10.1145/3643673
 
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
