@@ -19,7 +19,7 @@ The goal of this project is to develop an automated code traceability and change
 (for now)
 
 - [x] Integrating Git Extension of vscode
-- [ ] Integrating Tree-Sitter for parsing codes
+- [x] Integrating Tree-Sitter for parsing codes (supports Java for now)
 - [ ] Implementing CodeShovel(ICSE'21) for method-level history mining.
 - [ ] Implementing crawlers for mining related PRs and Issues and discussions.
 - [ ] Leveraging LLMs for analyzing discussions.
