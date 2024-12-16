@@ -35,14 +35,19 @@ export class JavaMethod extends Method {
     }
 }
 
+export class JavaGenericTypeParameter extends Parameter {
+    bound: string;
+    constructor(type: string, name: string, bound: string) {
+        super(type, name);
+        this.bound = bound;
+    }
+    public equals(rhs: Parameter): boolean {
+        return super.equals(rhs) && rhs instanceof JavaGenericTypeParameter && this.bound === rhs.bound;
+    }
+}
+
 export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
     let cursor = root.walk();
-    while(cursor.currentNode.type !== 'method_declaration') {
-        console.log(cursor.currentNode.type);
-        if(!cursor.gotoFirstChild()) {
-            break;
-        }
-    }
     if(cursor.currentNode.type !== 'method_declaration') {
         throw new Error('Not a Java Method Declaration, but a ' + cursor.currentNode.type);
     }
@@ -55,7 +60,8 @@ export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
     let body: string = '';
     let params: Parameter[] = [];
 
-    
+
+    // handles children of "method_declaration"
     let handler = () => {
         if(cursor.currentNode.type.endsWith('modifiers')) {
             cursor.gotoFirstChild();
@@ -66,9 +72,15 @@ export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
             cursor.gotoParent();
         } else if(cursor.currentNode.type.endsWith('type_identifier')) {
             type = cursor.currentNode.text;
+        } else if(cursor.currentNode.type.endsWith('generic_type')) {
+            cursor.gotoFirstChild();
+            type = cursor.currentNode.text;
+            cursor.gotoNextSibling();
+            type += cursor.currentNode.text;
+            cursor.gotoParent();
         } else if(cursor.currentNode.type.endsWith('identifier')) {
             name = cursor.currentNode.text;
-        } else if(cursor.currentNode.type.endsWith('parameters')) {
+        } else if(cursor.currentNode.type.endsWith('formal_parameters')) {
             if(cursor.gotoFirstChild()) {
                 while(cursor.gotoNextSibling()) {
                     if(!cursor.currentNode.isNamed) {
@@ -80,6 +92,30 @@ export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
                 }
                 cursor.gotoParent();
             }
+        } else if(cursor.currentNode.type.endsWith('type_parameters')) {
+            let handleTypeParameter = () => {
+                cursor.gotoFirstChild();
+                // cursor @type_identifier
+                let paramName = cursor.currentNode.text;
+                cursor.gotoNextSibling();
+                // cursor @type_bound
+                cursor.gotoFirstChild();
+                let bound = cursor.currentNode.text;
+                cursor.gotoNextSibling();
+                let paramType = cursor.currentNode.text;
+                cursor.gotoParent();
+                cursor.gotoParent();
+                // cursor @type_parameter
+                params.push(new JavaGenericTypeParameter(paramType, paramName, bound));
+            };
+            cursor.gotoFirstChild();
+            while(cursor.gotoNextSibling()) {
+                if(!cursor.currentNode.isNamed) { // skip '<'
+                    continue;
+                }
+                handleTypeParameter();
+            }
+            cursor.gotoParent();
         } else if(cursor.currentNode.type.endsWith('block')) {
             body = cursor.currentNode.text;
         } else {
@@ -88,11 +124,26 @@ export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
         }
     };
     
+    // cursor @first child of method_declaration
     handler();
-    // cursor @method_declaration
     while(cursor.gotoNextSibling()) {
         handler();
     }
     let sig = new JavaMethodSignature(modifiers, type, name, params);
     return new JavaMethod(sig, body);
+}
+
+export function getAllMethods(current: Parser.SyntaxNode): JavaMethod[] {
+    let ret: JavaMethod[] = [];
+    if(current.type.endsWith('method_declaration')) {
+        ret.push(getSingleMethod(current));
+    } else {
+        if(current.firstNamedChild) {
+            ret.push(...getAllMethods(current.firstNamedChild));
+        }
+    }
+    if(current.nextNamedSibling) {
+        ret.push(...getAllMethods(current.nextNamedSibling));
+    }
+    return ret;
 }

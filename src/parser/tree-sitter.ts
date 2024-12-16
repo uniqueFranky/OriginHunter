@@ -36,6 +36,8 @@ export function parseSelectedCode(fileName: string, code: string): string {
 
     const tree = parser.parse(code);
     const language = utils.getSupportedLanguageForFile(fileName);
-    const method = dispatch.getSingleMethod(language, tree.rootNode);
-    return JSON.stringify(method, null, '\t');
+    // const method = dispatch.getSingleMethod(language, tree.rootNode);
+    const methods = dispatch.getAllMethods(language, tree.rootNode);
+    return JSON.stringify(methods, null, '\t').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // in case of injection, when displaying the json on webview, we have to replace "<>"
 }
