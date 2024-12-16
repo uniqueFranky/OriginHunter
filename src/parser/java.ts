@@ -37,6 +37,9 @@ export class JavaMethod extends Method {
 
 export class JavaGenericTypeParameter extends Parameter {
     bound: string;
+
+    // name bound   type
+    // T    extends SomeType
     constructor(type: string, name: string, bound: string) {
         super(type, name);
         this.bound = bound;
