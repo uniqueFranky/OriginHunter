@@ -1,5 +1,7 @@
 import Parser from 'tree-sitter';
 import Java from 'tree-sitter-java';
+import * as dispatch from './dispatch';
+import * as utils from './utils';
 
 export function testParser() {
     const parser = new Parser();
@@ -17,7 +19,7 @@ export function testParser() {
     console.log(tree.rootNode.toString());
 }
 
-function getLanguageForFile(fileName: string) {
+function getTSLanguageForFile(fileName: string) {
     const parts = fileName.split('.');
     const ext = parts[parts.length - 1];
     switch(ext.toLowerCase()) {
@@ -28,10 +30,12 @@ function getLanguageForFile(fileName: string) {
     }
 }
 
-export function parseSelectedCode(fileName: string, code: string) {
+export function parseSelectedCode(fileName: string, code: string): string {
     const parser = new Parser();
-    parser.setLanguage(getLanguageForFile(fileName));
+    parser.setLanguage(getTSLanguageForFile(fileName));
 
     const tree = parser.parse(code);
-    console.log(tree.rootNode.toString());
+    const language = utils.getSupportedLanguageForFile(fileName);
+    const method = dispatch.getSingleMethod(language, tree.rootNode);
+    return JSON.stringify(method, null, '\t');
 }
