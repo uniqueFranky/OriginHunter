@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import * as git from './gitAPI';
 
 var selectionTimeOut: NodeJS.Timeout;
 var historyPanel: vscode.WebviewPanel;
@@ -20,6 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from OriginHunter!');
+		testGitAPI();
 	});
 
 	context.subscriptions.push(disposable);
@@ -71,6 +73,19 @@ function getHistoryViewContent(selectedText: string): string {
         </body>
         </html>
     `;
+}
+
+function testGitAPI() {
+	const repo = git.getGitRepo();
+	git.getCommitsIn(repo).then(commits => {
+		git.getDiffBetween(repo, git.getParentCommitOf(commits[0]), commits[0].hash).then(changes => {
+			console.log(changes);
+			git.getFileContent(repo, commits[0].hash, changes[0].uri.path).then(res => {
+				console.log(res);
+			});
+		});
+	});
+	
 }
 
 // This method is called when your extension is deactivated
