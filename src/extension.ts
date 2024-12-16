@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as git from './git/gitAPI';
+import * as parser from './parser/tree-sitter';
 
 var selectionTimeOut: NodeJS.Timeout;
 var historyPanel: vscode.WebviewPanel;
@@ -21,33 +22,42 @@ export function activate(context: vscode.ExtensionContext) {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from OriginHunter!');
-		testGitAPI();
 	});
 
 	context.subscriptions.push(disposable);
 	
 	// listen on selection
-	const selectionChangeDisposable = vscode.window.onDidChangeTextEditorSelection((e) => {
-		const selection = e.selections[0];
-		if (selection.isEmpty) {
-			return;
-		}
-
-		// in case of unstable selection
-		if(selectionTimeOut) {
-			clearTimeout(selectionTimeOut);
-		}
-
-		selectionTimeOut = setTimeout(() => {
-			const selectedText = e.textEditor.document.getText(selection);
-			updateHistoryPanel(selectedText);
-		}, 1000);
-
-	});
+	const selectionChangeDisposable = vscode.window.onDidChangeTextEditorSelection(didChangeSelection);
 	context.subscriptions.push(selectionChangeDisposable);
 
 }
 
+
+function didChangeSelection(e: vscode.TextEditorSelectionChangeEvent) {
+	const selection = e.selections[0];
+	if (selection.isEmpty) {
+		return;
+	}
+
+	// in case of unstable selection
+	if(selectionTimeOut) {
+		clearTimeout(selectionTimeOut);
+	}
+
+	selectionTimeOut = setTimeout(() => {
+		const selectedText = e.textEditor.document.getText(selection);
+		const fileName = e.textEditor.document.fileName;
+		updateHistoryPanel(selectedText);
+		try {
+			parser.parseSelectedCode(fileName, selectedText);
+		} catch(error) {
+			const msg = error instanceof Error ? error.message : 'Unknown error occured';
+			vscode.window.showErrorMessage(msg);
+		}
+	}, 1000);
+
+	
+}
 
 function updateHistoryPanel(selectedText: string) {
 	if(!historyPanel) {
