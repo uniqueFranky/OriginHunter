@@ -1,5 +1,5 @@
 import Parser from 'tree-sitter';
-import {Parameter, MethodSignature, SupportedLanguage, Method} from './utils';
+import { Parameter, MethodSignature, SupportedLanguage, Method, MethodContainer } from './utils';
 
 export class JavaMethodSignature extends MethodSignature {
     modifiers: string[];
@@ -29,9 +29,49 @@ export class JavaMethodSignature extends MethodSignature {
     }
 }
 
+export class JavaClass {
+    modifiers: string[];
+    name: string;
+    params: JavaGenericTypeParameter[];
+    constructor(modifiers: string[] = [], name: string = 'Unknown', params: JavaGenericTypeParameter[] = []) {
+        this.modifiers = modifiers;
+        this.name = name;
+        this.params = params;
+    }
+
+    public equals(rhs: JavaClass): boolean {
+        if(this.name !== rhs.name || this.modifiers.length !== rhs.modifiers.length || this.params.length !== rhs.params.length) {
+            return false;
+        }
+        for(let i = 0; i < this.modifiers.length; i++) {
+            if(this.modifiers[i] !== rhs.modifiers[i]) {
+                return false;
+            }
+        }
+        for(let i = 0; i < this.params.length; i++) {
+            if(!this.params[i].equals(rhs.params[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+export class JavaMethodContainer extends MethodContainer {
+    klass: JavaClass;
+    constructor(file: string, klass: JavaClass) {
+        super(file);
+        this.klass = klass;
+    }
+
+    public equals(rhs: MethodContainer) {
+        return super.equals(rhs) && rhs instanceof JavaMethodContainer && this.klass.equals(rhs.klass);
+    }
+}
+
 export class JavaMethod extends Method {
-    constructor(sig: JavaMethodSignature, body: string) {
-        super(sig, body);
+    constructor(container: JavaMethodContainer, sig: JavaMethodSignature, body: string) {
+        super(container, sig, body);
     }
 }
 
@@ -49,7 +89,22 @@ export class JavaGenericTypeParameter extends Parameter {
     }
 }
 
-export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
+function parseTypeParameter(typeParameter: Parser.SyntaxNode): JavaGenericTypeParameter {
+    let cursor = typeParameter.walk();
+    cursor.gotoFirstChild();
+    // cursor @type_identifier
+    let paramName = cursor.currentNode.text;
+    cursor.gotoNextSibling();
+    // cursor @type_bound
+    cursor.gotoFirstChild();
+    let bound = cursor.currentNode.text;
+    cursor.gotoNextSibling();
+    let paramType = cursor.currentNode.text;
+    // cursor @type_parameter
+    return new JavaGenericTypeParameter(paramType, paramName, bound);
+}
+
+function getSingleMethod(root: Parser.SyntaxNode, container: JavaMethodContainer): JavaMethod {
     let cursor = root.walk();
     if(cursor.currentNode.type !== 'method_declaration') {
         throw new Error('Not a Java Method Declaration, but a ' + cursor.currentNode.type);
@@ -73,14 +128,14 @@ export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
                 modifiers.push(cursor.currentNode.text);
             }
             cursor.gotoParent();
-        } else if(cursor.currentNode.type.endsWith('type_identifier')) {
-            type = cursor.currentNode.text;
         } else if(cursor.currentNode.type.endsWith('generic_type')) {
             cursor.gotoFirstChild();
             type = cursor.currentNode.text;
             cursor.gotoNextSibling();
             type += cursor.currentNode.text;
             cursor.gotoParent();
+        } else if(cursor.currentNode.type.endsWith('type_identifier') || cursor.currentNode.type.endsWith('_type')) { // 'void' 'int' are 'void_type' 'int_type' respectively
+            type = cursor.currentNode.text;
         } else if(cursor.currentNode.type.endsWith('identifier')) {
             name = cursor.currentNode.text;
         } else if(cursor.currentNode.type.endsWith('formal_parameters')) {
@@ -96,27 +151,12 @@ export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
                 cursor.gotoParent();
             }
         } else if(cursor.currentNode.type.endsWith('type_parameters')) {
-            let handleTypeParameter = () => {
-                cursor.gotoFirstChild();
-                // cursor @type_identifier
-                let paramName = cursor.currentNode.text;
-                cursor.gotoNextSibling();
-                // cursor @type_bound
-                cursor.gotoFirstChild();
-                let bound = cursor.currentNode.text;
-                cursor.gotoNextSibling();
-                let paramType = cursor.currentNode.text;
-                cursor.gotoParent();
-                cursor.gotoParent();
-                // cursor @type_parameter
-                params.push(new JavaGenericTypeParameter(paramType, paramName, bound));
-            };
             cursor.gotoFirstChild();
             while(cursor.gotoNextSibling()) {
                 if(!cursor.currentNode.isNamed) { // skip '<'
                     continue;
                 }
-                handleTypeParameter();
+                params.push(parseTypeParameter(cursor.currentNode));
             }
             cursor.gotoParent();
         } else if(cursor.currentNode.type.endsWith('block')) {
@@ -133,20 +173,55 @@ export function getSingleMethod(root: Parser.SyntaxNode): JavaMethod {
         handler();
     }
     let sig = new JavaMethodSignature(modifiers, type, name, params);
-    return new JavaMethod(sig, body);
+    return new JavaMethod(container, sig, body);
 }
 
-export function getAllMethods(current: Parser.SyntaxNode): JavaMethod[] {
+export function getAllMethods(file: string, current: Parser.SyntaxNode, klass: JavaClass): JavaMethod[] {
     let ret: JavaMethod[] = [];
     if(current.type.endsWith('method_declaration')) {
-        ret.push(getSingleMethod(current));
+        ret.push(getSingleMethod(current, new JavaMethodContainer(file, klass)));
     } else {
+        if(current.type.endsWith('class_declaration')) {
+            let modifiers: string[] = [];
+            let name = '';
+            let params: JavaGenericTypeParameter[] = [];
+            let cursor = current.walk();
+            cursor.gotoFirstChild();
+            let klassHandler = () => {
+                if(cursor.currentNode.type.endsWith('modifiers')) {
+                    cursor.gotoFirstChild();
+                    modifiers.push(cursor.currentNode.text);
+                    while(cursor.gotoNextSibling()) {
+                        modifiers.push(cursor.currentNode.text);
+                    }
+                    cursor.gotoParent();
+                } else if(cursor.currentNode.type.endsWith('identifier')) {
+                    name = cursor.currentNode.text;
+                } else if(cursor.currentNode.type.endsWith('type_parameters')) {
+                    cursor.gotoFirstChild();
+                    while(cursor.gotoNextSibling()) {
+                        if(!cursor.currentNode.isNamed) { // skip '<'
+                            continue;
+                        }
+                        params.push(parseTypeParameter(cursor.currentNode));
+                    }
+                    cursor.gotoParent();
+                } else {
+                    console.log(cursor.currentNode.type, cursor.currentNode.text);
+                }
+            };
+            klassHandler();
+            while(cursor.gotoNextSibling()) {
+                klassHandler();
+            }
+            klass = new JavaClass(modifiers, name, params);
+        }
         if(current.firstNamedChild) {
-            ret.push(...getAllMethods(current.firstNamedChild));
+            ret.push(...getAllMethods(file, current.firstNamedChild, klass));
         }
     }
     if(current.nextNamedSibling) {
-        ret.push(...getAllMethods(current.nextNamedSibling));
+        ret.push(...getAllMethods(file, current.nextNamedSibling, klass));
     }
     return ret;
 }

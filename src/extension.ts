@@ -48,7 +48,7 @@ function didChangeSelection(e: vscode.TextEditorSelectionChangeEvent) {
 		const selectedText = e.textEditor.document.getText(selection);
 		const fileName = e.textEditor.document.fileName;
 		try {
-			updateHistoryPanel(parser.parseSelectedCode(fileName, selectedText));
+			updateHistoryPanel(parser.parseCode(fileName, selectedText));
 		} catch(error) {
 			const msg = error instanceof Error ? error.message : 'Unknown error occured';
 			vscode.window.showErrorMessage(msg);

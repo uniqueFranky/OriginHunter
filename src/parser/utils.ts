@@ -43,17 +43,30 @@ export abstract class MethodSignature {
     }
 }
 
+export abstract class MethodContainer {
+    filePath: string;
+    constructor(filePath: string) {
+        this.filePath = filePath;
+    }
+    
+    public equals(rhs: MethodContainer): boolean {
+        return this.filePath === rhs.filePath;
+    }
+}
+
 export abstract class Method {
+    container: MethodContainer;
     signature: MethodSignature;
     body: string;
 
-    constructor(signature: MethodSignature, body: string) {
+    constructor(container: MethodContainer, signature: MethodSignature, body: string) {
+        this.container = container;
         this.signature = signature;
         this.body = body;
     }
 
     public equals(rhs: Method) {
-        return this.signature.equals(rhs.signature) && this.body === rhs.body;
+        return this.container.equals(rhs.container) && this.signature.equals(rhs.signature) && this.body === rhs.body;
     }
 
     public toString(): string {
