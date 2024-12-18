@@ -67,11 +67,19 @@ export class JavaMethodContainer extends MethodContainer {
     public equals(rhs: MethodContainer) {
         return super.equals(rhs) && rhs instanceof JavaMethodContainer && this.klass.equals(rhs.klass);
     }
+
+    public copy(): JavaMethodContainer {
+        return new JavaMethodContainer(this.filePath, this.klass);
+    }
 }
 
 export class JavaMethod extends Method {
     constructor(container: JavaMethodContainer, sig: JavaMethodSignature, body: string) {
         super(container, sig, body);
+    }
+
+    public copy(): JavaMethod {
+        return new JavaMethod(this.container.copy() as JavaMethodContainer, this.signature as JavaMethodSignature, this.body);
     }
 }
 
@@ -207,7 +215,7 @@ export function getAllMethods(file: string, current: Parser.SyntaxNode, klass: J
                     }
                     cursor.gotoParent();
                 } else {
-                    console.log(cursor.currentNode.type, cursor.currentNode.text);
+                    ;
                 }
             };
             klassHandler();

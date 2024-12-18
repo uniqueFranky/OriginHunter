@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 import * as git from './git/gitAPI';
 import * as parser from './parser/tree-sitter';
+import { getHistoryFor } from './history/codeshovel';
 
 var selectionTimeOut: NodeJS.Timeout;
 var historyPanel: vscode.WebviewPanel;
@@ -48,7 +49,11 @@ function didChangeSelection(e: vscode.TextEditorSelectionChangeEvent) {
 		const selectedText = e.textEditor.document.getText(selection);
 		const fileName = e.textEditor.document.fileName;
 		try {
-			updateHistoryPanel(parser.parseCode(fileName, selectedText));
+			let methods = parser.parseCode(fileName, selectedText);
+			getHistoryFor(methods[0], git.getGitRepo()).then(histories => {
+				console.log(histories);
+			});
+			updateHistoryPanel(JSON.stringify(methods, null, '\t'));
 		} catch(error) {
 			const msg = error instanceof Error ? error.message : 'Unknown error occured';
 			vscode.window.showErrorMessage(msg);

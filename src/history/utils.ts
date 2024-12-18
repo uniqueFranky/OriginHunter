@@ -3,7 +3,7 @@ import * as parser from '../parser/tree-sitter';
 import { Method } from '../parser/utils';
 import { Commit, Repository } from '../git/git';
 
-class CommitManager {
+export class CommitManager {
     commits: Commit[];
     commitMap: Map<string, Commit>;
     current: Commit;
@@ -12,6 +12,7 @@ class CommitManager {
         this.commitMap = new Map();
         this.current = commits[0];
         this.commits.forEach(commit => { this.commitMap.set(commit.hash, commit); });
+        console.log(commits.length);
     }
 
     public getCommitWithHash(hash: string): Commit {
@@ -22,24 +23,15 @@ class CommitManager {
         return ret;
     }
 
-    private moveToParent() {
+    public moveToParent() {
         this.current = this.getCommitWithHash(git.getParentCommitOf(this.current));
-    }
-
-    public moveToPrevious(filter?: (arg0: Commit) => boolean): Commit {
-        this.moveToParent();
-        while(filter && !filter(this.current)) {
-            this.moveToParent();
-        }
-        return this.current;
     }
     
 }
 
-export function getHistoryForMethod(repo: Repository, method: Method) {
-    git.getCommitsIn(repo).then(commits => {
-        let cm = new CommitManager(commits);
-    }).catch(error => {
-        throw error;
-    });
+export abstract class History {
+    commit: Commit;
+    constructor(commit: Commit) {
+        this.commit = commit;
+    }
 }

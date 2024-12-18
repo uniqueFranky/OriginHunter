@@ -52,6 +52,8 @@ export abstract class MethodContainer {
     public equals(rhs: MethodContainer): boolean {
         return this.filePath === rhs.filePath;
     }
+
+    public abstract copy(): MethodContainer;
 }
 
 export abstract class Method {
@@ -72,6 +74,8 @@ export abstract class Method {
     public toString(): string {
         return this.signature.toString() + ' ' + this.body;
     }
+
+    public abstract copy(): Method;
 }
 
 export function getSupportedLanguageForFile(fileName: string): SupportedLanguage {

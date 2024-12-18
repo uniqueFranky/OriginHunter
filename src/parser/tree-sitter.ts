@@ -30,7 +30,7 @@ function getTSLanguageForFile(fileName: string) {
     }
 }
 
-export function parseCode(fileName: string, code: string): string {
+export function parseCode(fileName: string, code: string): utils.Method[] {
     const parser = new Parser();
     parser.setLanguage(getTSLanguageForFile(fileName));
 
@@ -38,6 +38,6 @@ export function parseCode(fileName: string, code: string): string {
     const language = utils.getSupportedLanguageForFile(fileName);
     // const method = dispatch.getSingleMethod(language, tree.rootNode);
     const methods = dispatch.getAllMethodsInFile(fileName, language, tree.rootNode);
-    return JSON.stringify(methods, null, '\t').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return methods;
     // in case of injection, when displaying the json on webview, we have to replace "<>"
 }

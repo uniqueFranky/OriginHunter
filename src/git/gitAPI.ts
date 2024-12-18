@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import {Commit, Repository, Change} from './git';
+import { Commit, Repository, Change, LogOptions } from './git';
 
 export function getGitRepo(): Repository {
     const gitExtention = vscode.extensions.getExtension('vscode.git');
@@ -18,7 +18,10 @@ export function getGitRepo(): Repository {
 
 export function getCommitsIn(repo: Repository): Promise<Commit[]> {
     try {
-        return repo.log();
+        const option: LogOptions = {
+            maxEntries: 5000
+        };
+        return repo.log(option);
     } catch(error) {
         throw error;
     }
