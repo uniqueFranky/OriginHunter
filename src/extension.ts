@@ -94,9 +94,7 @@ function testGitAPI() {
 	git.getCommitsIn(repo).then(commits => {
 		git.getDiffBetween(repo, git.getParentCommitOf(commits[0]), commits[0].hash).then(changes => {
 			console.log(changes);
-			git.getFileContent(repo, commits[0].hash, changes[0].uri.path).then(res => {
-				console.log(res);
-			});
+			git.getFileContent(repo, commits[0].hash, changes[0].uri.path);
 		});
 	});
 	

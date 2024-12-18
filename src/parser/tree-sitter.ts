@@ -41,3 +41,12 @@ export function parseCode(fileName: string, code: string): utils.Method[] {
     return methods;
     // in case of injection, when displaying the json on webview, we have to replace "<>"
 }
+
+export function doSupportsFile(fileName: string): boolean {
+    try {
+        utils.getSupportedLanguageForFile(fileName);
+    } catch(error) {
+        return false;
+    }
+    return true;
+}

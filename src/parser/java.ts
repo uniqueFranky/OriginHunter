@@ -3,16 +3,18 @@ import { Parameter, MethodSignature, SupportedLanguage, Method, MethodContainer 
 
 export class JavaMethodSignature extends MethodSignature {
     modifiers: string[];
-    constructor(modifiers: string[], type: string, name: string, params: Parameter[]) {
+    throws: string;
+    constructor(modifiers: string[], type: string, name: string, params: Parameter[], throws: string) {
         super(SupportedLanguage.Java, type, name, params);
         this.modifiers = modifiers;
+        this.throws = throws;
     }
 
     public equals(rhs: MethodSignature): boolean {
         if(!super.equals(rhs) || !(rhs instanceof JavaMethodSignature)) {
             return false;
         }
-        if(rhs.modifiers.length !== this.modifiers.length) {
+        if(rhs.modifiers.length !== this.modifiers.length || rhs.throws !== this.throws) {
             return false;
         }
         for(let i = 0; i < this.modifiers.length; i++) {
@@ -25,7 +27,7 @@ export class JavaMethodSignature extends MethodSignature {
 
     public toString(): string {
         let s = super.toString();
-        return `${this.modifiers.join(' ')}` + ' ' + s;
+        return `${this.modifiers.join(' ')}` + ' ' + s + ' ' + this.throws;
     }
 }
 
@@ -65,7 +67,8 @@ export class JavaMethodContainer extends MethodContainer {
     }
 
     public equals(rhs: MethodContainer) {
-        return super.equals(rhs) && rhs instanceof JavaMethodContainer && this.klass.equals(rhs.klass);
+        // return super.equals(rhs) && rhs instanceof JavaMethodContainer && this.klass.equals(rhs.klass);
+        return super.equals(rhs);
     }
 
     public copy(): JavaMethodContainer {
@@ -124,6 +127,7 @@ function getSingleMethod(root: Parser.SyntaxNode, container: JavaMethodContainer
     let type: string = '';
     let name: string = '';
     let body: string = '';
+    let throws: string = '';
     let params: Parameter[] = [];
 
 
@@ -169,6 +173,10 @@ function getSingleMethod(root: Parser.SyntaxNode, container: JavaMethodContainer
             cursor.gotoParent();
         } else if(cursor.currentNode.type.endsWith('block')) {
             body = cursor.currentNode.text;
+        } else if(cursor.currentNode.type.endsWith('throws')) {
+            throws = cursor.currentNode.text;
+        } else if(cursor.currentNode.type === ';') {
+            ;
         } else {
             console.log(cursor.currentNode.type, cursor.currentNode.text);
             throw new Error('Unexpected Java Syntax Node');
@@ -180,7 +188,7 @@ function getSingleMethod(root: Parser.SyntaxNode, container: JavaMethodContainer
     while(cursor.gotoNextSibling()) {
         handler();
     }
-    let sig = new JavaMethodSignature(modifiers, type, name, params);
+    let sig = new JavaMethodSignature(modifiers, type, name, params, throws);
     return new JavaMethod(container, sig, body);
 }
 
