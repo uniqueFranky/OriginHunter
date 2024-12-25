@@ -20,10 +20,20 @@ The goal of this project is to develop an automated code traceability and change
 
 - [x] Integrating Git Extension of vscode
 - [x] Integrating Tree-Sitter for parsing codes (supports Java for now)
-- [ ] Implementing CodeShovel(ICSE'21) for method-level history mining.
+- [x] Implementing CodeShovel(ICSE'21) for method-level history mining.
+- [ ] Integrating LLMs for deciding the histories of methods.
+- [ ] Implementing GumTree(ASE'14, ICSE'24) for syntax-aware source code differencing.
+- [ ] Filtering method histories by leveraging AST node mappings provided by GumTree.
 - [ ] Implementing crawlers for mining related PRs and Issues and discussions.
 - [ ] Leveraging LLMs for analyzing discussions.
 - [ ] Drawing a timeline to display the results.
+
+## Tothink List
+
+- CodeShovel depends on thresholds to mine histories, but it's impractical to apply the same thresholds for different programming languages and projects.
+    - By leveraging low thresholds and the power of LLMs to determine whether two methods belong to the same evolution process of a method.
+- How to filter out the commits which don't modify the code snippet under user interest?
+    - Maybe the mappings provided by GumTree can be used for filtering.
 
 
 
@@ -34,3 +44,6 @@ The goal of this project is to develop an automated code traceability and change
 
 [3] Emre Sülün, Metehan Saçakçı, and Eray Tüzün. 2024. An Empirical Analysis of Issue Templates Usage in Large-Scale Projects on GitHub. ACM Trans. Softw. Eng. Methodol. 33, 5, Article 117 (June 2024), 28 pages. https://doi.org/10.1145/3643673
 
+[4] Jean-Remy Falleri and Matias Martinez. 2024. Fine-grained, accurate and scalable source differencing. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE '24). Association for Computing Machinery, New York, NY, USA, Article 231, 1–12. https://doi.org/10.1145/3597503.3639148
+
+[5] Jean-Rémy Falleri, Floréal Morandat, Xavier Blanc, Matias Martinez, and Martin Monperrus. 2014. Fine-grained and accurate source code differencing. In Proceedings of the 29th ACM/IEEE International Conference on Automated Software Engineering (ASE '14). Association for Computing Machinery, New York, NY, USA, 313–324. https://doi.org/10.1145/2642937.2642982
