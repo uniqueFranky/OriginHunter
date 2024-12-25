@@ -19,7 +19,7 @@ export function getGitRepo(): Repository {
 export function getCommitsIn(repo: Repository): Promise<Commit[]> {
     try {
         const option: LogOptions = {
-            maxEntries: 5000
+            maxEntries: 8000
         };
         return repo.log(option);
     } catch(error) {
