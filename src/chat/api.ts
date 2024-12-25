@@ -22,12 +22,12 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
         model: modelName as string,
         messages: [prompt]
     });
-    if(response.message.content.startsWith("yes")) {
+    if(response.message.content.toLowerCase().startsWith("yes")) {
         return true;
-    } else if(response.message.content.startsWith("no")) {
+    } else if(response.message.content.toLowerCase().startsWith("no")) {
         return false;
     } else {
-        throw new Error('unexpected response from LLM');
+        throw new Error(`unexpected response from LLM: ${response.message.content}`);
     }
 }
 
