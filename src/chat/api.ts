@@ -61,18 +61,25 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
     if(!modelName) {
         throw new Error('No LLM name was found.');
     }
-    const response = await ollama.chat({
-        model: modelName as string,
-        messages: [prompt]
-    });
-    // console.log(prompt.content);
-    // console.log(response.message.content);
-    if(response.message.content.toLowerCase().startsWith("yes")) {
-        return true;
-    } else if(response.message.content.toLowerCase().startsWith("no")) {
+    try {
+        const response = await ollama.chat({
+            model: modelName as string,
+            messages: [prompt]
+        });
+        // console.log(prompt.content);
+        // console.log(response.message.content);
+        if(response.message.content.toLowerCase().startsWith("yes")) {
+            return true;
+        } else if(response.message.content.toLowerCase().startsWith("no")) {
+            return false;
+        } else {
+            throw new Error(`unexpected response from LLM: ${response.message.content}`);
+        }
+    } catch(err) {
+        console.log(err);
+    } finally {
         return false;
-    } else {
-        throw new Error(`unexpected response from LLM: ${response.message.content}`);
     }
+    
 }
 
