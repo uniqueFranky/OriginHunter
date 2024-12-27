@@ -18,8 +18,11 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
         
         Function2:
         private Mono<RememberMeToken> getTokenExtensionForSeries(String seriesId) {
-            var listOptions = new ListOptions();
-            listOptions.setFieldSelector(FieldSelector.of(equal("spec.series", seriesId)));
+            var listOptions = ListOptions.builder()
+                .fieldQuery(and(equal("spec.series", seriesId),
+                    isNull("metadata.deletionTimestamp")
+                ))
+                .build();
             return client.listBy(RememberMeToken.class, listOptions, PageRequestImpl.ofSize(1))
                 .flatMap(result -> Mono.justOrEmpty(ListResult.first(result)));
         }
