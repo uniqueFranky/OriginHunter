@@ -7,6 +7,8 @@ import { getHistoryFor } from './history/codeshovel';
 
 var selectionTimeOut: NodeJS.Timeout;
 var historyPanel: vscode.WebviewPanel;
+var scriptUri: vscode.Uri;
+var vsCodeContext: vscode.ExtensionContext;
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -26,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(disposable);
-	
+	vsCodeContext = context;
 	// listen on selection
 	const selectionChangeDisposable = vscode.window.onDidChangeTextEditorSelection(didChangeSelection);
 	context.subscriptions.push(selectionChangeDisposable);
@@ -65,13 +67,16 @@ function didChangeSelection(e: vscode.TextEditorSelectionChangeEvent) {
 
 function updateHistoryPanel(selectedText: string) {
 	if(!historyPanel) {
-		historyPanel = vscode.window.createWebviewPanel('HistoryPanel', 'HistoryView', vscode.ViewColumn.Beside);
+		historyPanel = vscode.window.createWebviewPanel('HistoryPanel', 'HistoryView', vscode.ViewColumn.Beside, {
+			enableScripts: true, // 允许 Webview 中的 JavaScript 执行
+		});
 	}
-	historyPanel.webview.html = getHistoryViewContent(selectedText);
+	scriptUri = historyPanel.webview.asWebviewUri(vscode.Uri.joinPath(vsCodeContext.extensionUri, 'dist', 'bundle.js'));
+	historyPanel.webview.html = getHistoryViewContent(selectedText, scriptUri);
 }
 
 
-function getHistoryViewContent(selectedText: string): string {
+function getHistoryViewContent(selectedText: string, scriptUri: vscode.Uri): string {
     return `
         <!DOCTYPE html>
         <html lang="en">
@@ -81,13 +86,17 @@ function getHistoryViewContent(selectedText: string): string {
             <title>Code Viewer</title>
         </head>
         <body>
-            <h2>Selected Code:</h2>
-            <pre>${selectedText}</pre>
-            <p>This is your selected code in the editor.</p>
+            <div id="root">nihao</div>
+            <script src="${scriptUri}"></script>
+			<script>
+				console.log('This is a log from Webview!');
+				alert('Check the Developer Tools console!');
+			</script>
         </body>
         </html>
     `;
 }
+
 
 function testGitAPI() {
 	const repo = git.getGitRepo();

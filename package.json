@@ -31,29 +31,42 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
+    "compile": "tsc -p ./ && npx webpack --config webpack.config.js",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
     "@types/mocha": "^10.0.3",
     "@types/node": "18.x",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@types/vscode": "^1.96.0",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
     "@vscode/test-electron": "^2.3.6",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
     "eslint": "^8.52.0",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
-    "typescript": "^5.2.2"
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.2.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   },
   "extensionDependencies": [
     "vscode.git"
   ],
   "dependencies": {
     "ollama": "^0.5.11",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "tree-sitter": "^0.22.1",
     "tree-sitter-java": "^0.23.4",
     "tree-sitter-javascript": "^0.23.1",

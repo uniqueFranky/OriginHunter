@@ -1,0 +1,7 @@
+{
+    "presets": [
+      "@babel/preset-env",       // 转译为浏览器兼容的 JavaScript
+      "@babel/preset-react"      // 处理 JSX
+    ]
+  }
+  
