@@ -47,3 +47,9 @@ The goal of this project is to develop an automated code traceability and change
 [4] Jean-Remy Falleri and Matias Martinez. 2024. Fine-grained, accurate and scalable source differencing. In Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE '24). Association for Computing Machinery, New York, NY, USA, Article 231, 1–12. https://doi.org/10.1145/3597503.3639148
 
 [5] Jean-Rémy Falleri, Floréal Morandat, Xavier Blanc, Matias Martinez, and Martin Monperrus. 2014. Fine-grained and accurate source code differencing. In Proceedings of the 29th ACM/IEEE International Conference on Automated Software Engineering (ASE '14). Association for Computing Machinery, New York, NY, USA, 313–324. https://doi.org/10.1145/2642937.2642982
+
+[6] M. Pawlik and N. Augsten. *Tree edit distance: Robust and memory-efficient*. Information Systems 56. 2016.
+
+[7] M. Pawlik and N. Augsten. *Efficient Computation of the Tree Edit Distance*. ACM Transactions on Database Systems (TODS) 40(1). 2015.
+
+[8] M. Pawlik and N. Augsten. *RTED: A Robust Algorithm for the Tree Edit Distance*. PVLDB 5(4). 2011.
