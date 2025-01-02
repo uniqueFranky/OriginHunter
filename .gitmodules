@@ -1,0 +1,3 @@
+[submodule "src/history/ted"]
+	path = src/history/ted
+	url = https://github.com/JoaoFelipe/apted
