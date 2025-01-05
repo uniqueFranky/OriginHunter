@@ -5,7 +5,7 @@ import * as git from './git/gitAPI';
 import * as parser from './parser/tree-sitter';
 import { getHistoryFor, MethodLevelHistory } from './history/codeshovel';
 
-var historyPanel: vscode.WebviewPanel;
+var historyPanel: vscode.WebviewPanel | null;
 var scriptUri: vscode.Uri;
 var vsCodeContext: vscode.ExtensionContext;
 
@@ -65,18 +65,19 @@ function createWebviewPanelIfNotExists() {
             enableScripts: true, // 允许 Webview 中的 JavaScript 执行
         });
     }
+    historyPanel.onDidDispose(() => { historyPanel = null; });
     scriptUri = historyPanel.webview.asWebviewUri(vscode.Uri.joinPath(vsCodeContext.extensionUri, 'dist', 'bundle.js'));
     historyPanel.webview.html = getHistoryViewContent(scriptUri);
 }
 
 function updateHistoryPanel(history: MethodLevelHistory[]) {
     createWebviewPanelIfNotExists();
-    historyPanel.webview.postMessage({type: "setCodeHistory", codeHistory: history.map(h => ({commit: h.commit, code: h.method.toString(), container: h.method.container.filePath}))});
+    historyPanel!.webview.postMessage({type: "setCodeHistory", codeHistory: history.map(h => ({commit: h.commit, code: h.method.toString(), container: h.method.container.filePath}))});
 }
 
 function setHistoryPanelWaiting() {
     createWebviewPanelIfNotExists();
-    historyPanel.webview.postMessage({type: "setWaiting"});
+    historyPanel!.webview.postMessage({type: "setWaiting"});
 }
 
 
