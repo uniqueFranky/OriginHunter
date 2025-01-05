@@ -5,11 +5,9 @@ import * as git from './git/gitAPI';
 import * as parser from './parser/tree-sitter';
 import { getHistoryFor, MethodLevelHistory } from './history/codeshovel';
 
-var selectionTimeOut: NodeJS.Timeout;
 var historyPanel: vscode.WebviewPanel;
 var scriptUri: vscode.Uri;
 var vsCodeContext: vscode.ExtensionContext;
-var currentSelection: vscode.Selection;
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -30,27 +28,20 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(helloWorldDisposable);
     vsCodeContext = context;
-    // listen on selection
-    const selectionChangeDisposable = vscode.window.onDidChangeTextEditorSelection(didChangeSelection);
-    context.subscriptions.push(selectionChangeDisposable);
-
     const mineHistoryByMethodNameDisposable = vscode.commands.registerCommand('OriginHunter.mineHistoryByMethodSignature', mineHistoryByMethodSignature);
     context.subscriptions.push(mineHistoryByMethodNameDisposable);
 }
 
 function mineHistoryByMethodSignature() {
-    if(!currentSelection) {
-        console.log('no selection');
-        return;
-    }
     let editor = vscode.window.activeTextEditor;
     if(!editor) {
         console.log('no active editor');
         return;
     }
+    let selection = editor.selection;
     setHistoryPanelWaiting();
     let fileName = editor.document.fileName;
-    let selectedText = editor.document.getText(currentSelection).replaceAll(/\s+/g, ' ').trim();
+    let selectedText = editor.document.getText(selection).replaceAll(/\s+/g, ' ').trim();
     try {
         let methods = parser.parseCode(fileName, editor.document.getText());
         // methods.forEach(met => {console.log(met.signature.toString()); console.log(selectedText);});
@@ -66,15 +57,6 @@ function mineHistoryByMethodSignature() {
         const msg = error instanceof Error ? error.message : 'Unknown error occured';
         vscode.window.showErrorMessage(msg);
     }
-}
-
-
-function didChangeSelection(e: vscode.TextEditorSelectionChangeEvent) {
-    const selection = e.selections[0];
-    if (selection.isEmpty) {
-        return;
-    }
-    currentSelection = selection;
 }
 
 function createWebviewPanelIfNotExists() {
