@@ -9,6 +9,7 @@ var selectionTimeOut: NodeJS.Timeout;
 var historyPanel: vscode.WebviewPanel;
 var scriptUri: vscode.Uri;
 var vsCodeContext: vscode.ExtensionContext;
+var currentSelection: vscode.Selection;
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -21,18 +22,50 @@ export function activate(context: vscode.ExtensionContext) {
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with registerCommand
     // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('OriginHunter.helloWorld', () => {
+    let helloWorldDisposable = vscode.commands.registerCommand('OriginHunter.helloWorld', () => {
         // The code you place here will be executed every time your command is executed
         // Display a message box to the user
         vscode.window.showInformationMessage('Hello World from OriginHunter!');
     });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(helloWorldDisposable);
     vsCodeContext = context;
     // listen on selection
     const selectionChangeDisposable = vscode.window.onDidChangeTextEditorSelection(didChangeSelection);
     context.subscriptions.push(selectionChangeDisposable);
 
+    const mineHistoryByMethodNameDisposable = vscode.commands.registerCommand('OriginHunter.mineHistoryByMethodSignature', mineHistoryByMethodSignature);
+    context.subscriptions.push(mineHistoryByMethodNameDisposable);
+}
+
+function mineHistoryByMethodSignature() {
+    if(!currentSelection) {
+        console.log('no selection');
+        return;
+    }
+    let editor = vscode.window.activeTextEditor;
+    if(!editor) {
+        console.log('no active editor');
+        return;
+    }
+    setHistoryPanelWaiting();
+    let fileName = editor.document.fileName;
+    let selectedText = editor.document.getText(currentSelection).replaceAll(/\s+/g, ' ').trim();
+    try {
+        let methods = parser.parseCode(fileName, editor.document.getText());
+        // methods.forEach(met => {console.log(met.signature.toString()); console.log(selectedText);});
+        methods = methods.filter(met => met.signature.toString().trim() === selectedText);
+        if(methods.length !== 1) {
+            throw new Error(`multiple or no (${methods.length}) corresponding method found`);
+        }
+        let method = methods[0];
+        getHistoryFor(method, git.getGitRepo()).then(histories => {
+            updateHistoryPanel(histories as MethodLevelHistory[]);
+        });
+    } catch(error) {
+        const msg = error instanceof Error ? error.message : 'Unknown error occured';
+        vscode.window.showErrorMessage(msg);
+    }
 }
 
 
@@ -41,30 +74,10 @@ function didChangeSelection(e: vscode.TextEditorSelectionChangeEvent) {
     if (selection.isEmpty) {
         return;
     }
-
-    // in case of unstable selection
-    if(selectionTimeOut) {
-        clearTimeout(selectionTimeOut);
-    }
-
-    selectionTimeOut = setTimeout(() => {
-        const selectedText = e.textEditor.document.getText(selection);
-        const fileName = e.textEditor.document.fileName;
-        try {
-            let methods = parser.parseCode(fileName, selectedText);
-            getHistoryFor(methods[0], git.getGitRepo()).then(histories => {
-                updateHistoryPanel(histories as MethodLevelHistory[]);
-            });
-        } catch(error) {
-            const msg = error instanceof Error ? error.message : 'Unknown error occured';
-            vscode.window.showErrorMessage(msg);
-        }
-    }, 1000);
-
-    
+    currentSelection = selection;
 }
 
-function updateHistoryPanel(history: MethodLevelHistory[]) {
+function createWebviewPanelIfNotExists() {
     if(!historyPanel) {
         historyPanel = vscode.window.createWebviewPanel('HistoryPanel', 'HistoryView', vscode.ViewColumn.Beside, {
             enableScripts: true, // 允许 Webview 中的 JavaScript 执行
@@ -72,7 +85,16 @@ function updateHistoryPanel(history: MethodLevelHistory[]) {
     }
     scriptUri = historyPanel.webview.asWebviewUri(vscode.Uri.joinPath(vsCodeContext.extensionUri, 'dist', 'bundle.js'));
     historyPanel.webview.html = getHistoryViewContent(scriptUri);
+}
+
+function updateHistoryPanel(history: MethodLevelHistory[]) {
+    createWebviewPanelIfNotExists();
     historyPanel.webview.postMessage({type: "setCodeHistory", codeHistory: history.map(h => ({commit: h.commit, code: h.method.toString(), container: h.method.container.filePath}))});
+}
+
+function setHistoryPanelWaiting() {
+    createWebviewPanelIfNotExists();
+    historyPanel.webview.postMessage({type: "setWaiting"});
 }
 
 

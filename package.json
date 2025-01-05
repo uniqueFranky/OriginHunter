@@ -16,6 +16,10 @@
       {
         "command": "OriginHunter.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "OriginHunter.mineHistoryByMethodSignature",
+        "title": "Mine History By Method Signature"
       }
     ],
     "configuration": {
