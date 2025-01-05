@@ -25,7 +25,6 @@ const HistoryDetail: React.FC<HistoryDetailProps> = ({ history }) => {
             borderRadius: '4px',
             whiteSpace: 'pre-wrap', // Ensure new lines are preserved
             wordBreak: 'break-word', // Avoid words overflowing the container
-            backgroundColor: 'background.paper',
           }}
         >
           <Typography variant="body2" sx={{ fontSize: '14px' }}>
@@ -34,13 +33,16 @@ const HistoryDetail: React.FC<HistoryDetailProps> = ({ history }) => {
         </Box>
       </Box>
 
-      {/* Commit Hash and Author */}
+      {/* Commit Hash and Author and Path */}
       <Box sx={{ flex: 'none', marginBottom: '16px' }}>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Typography variant="body2" sx={{ color: 'white' }}>
           <strong>Commit Hash:</strong> {history.commit.hash}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Typography variant="body2" sx={{ color: 'white' }}>
           <strong>Author:</strong> {history.commit.authorName}
+        </Typography>
+        <Typography variant="body2" sx={{ color: 'white' }}>
+          <strong>File:</strong> {history.container}
         </Typography>
       </Box>
 

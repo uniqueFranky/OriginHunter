@@ -72,7 +72,7 @@ function updateHistoryPanel(history: MethodLevelHistory[]) {
     }
     scriptUri = historyPanel.webview.asWebviewUri(vscode.Uri.joinPath(vsCodeContext.extensionUri, 'dist', 'bundle.js'));
     historyPanel.webview.html = getHistoryViewContent(scriptUri);
-    historyPanel.webview.postMessage({type: "setCodeHistory", codeHistory: history.map(h => ({commit: h.commit, code: h.method.toString()}))});
+    historyPanel.webview.postMessage({type: "setCodeHistory", codeHistory: history.map(h => ({commit: h.commit, code: h.method.toString(), container: h.method.container.filePath}))});
 }
 
 

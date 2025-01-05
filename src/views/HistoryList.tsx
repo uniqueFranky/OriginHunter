@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 import { MethodHistory } from './Models';
+import { useState } from 'react';
 
 interface HistoryListProps {
     history: MethodHistory[];
@@ -14,6 +15,8 @@ interface HistoryListProps {
 }
 
 export default function HistoryList({ history, clickHandler }: HistoryListProps) {
+  const [selectedIndex, setSelectedIndex] = useState<number>();
+
   return (
     <Box sx={{ width: '100%', maxWidth: 400, bgcolor: 'background.paper', borderRadius: 2, boxShadow: 1 }}>
       <nav aria-label="commit history">
@@ -21,7 +24,13 @@ export default function HistoryList({ history, clickHandler }: HistoryListProps)
           {history.map((h, index) => (
             <React.Fragment key={h.commit.hash}>
               <ListItem disablePadding>
-                <ListItemButton sx={{ display: 'block', width: '100%' }} onClick={() => clickHandler(h, index)}>
+                <ListItemButton sx={{ display: 'block', width: '100%', backgroundColor: selectedIndex === index ? 'rgba(0, 123, 255, 0.1)' : 'transparent',
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    },}} onClick={() => {
+                  setSelectedIndex(index);
+                  clickHandler(h, index);
+                }}>
                   <Box sx={{ padding: 2, width: '100%' }}>
                     {/* Commit Message: 大字体、加粗，超出一行时显示省略号 */}
                     <Typography

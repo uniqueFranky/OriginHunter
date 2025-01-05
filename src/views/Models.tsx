@@ -1,9 +1,11 @@
 export class MethodHistory {
     commit: Commit;
     code: string;
-    constructor(commit: Object, code: string) {
+    container: string;
+    constructor(commit: Object, code: string, container: string) {
       this.commit = new Commit(commit);
       this.code = code;
+      this.container = container;
     }
   }
   

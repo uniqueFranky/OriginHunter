@@ -13,7 +13,7 @@ const App: React.FC = () => {
   window.addEventListener('message', event => {
     let message = event.data;
     if(message.type === 'setCodeHistory') {
-      setCodeHistory(message.codeHistory.map((obj: { commit: Object; code: string; }) => new MethodHistory(obj.commit, obj.code)));
+      setCodeHistory(message.codeHistory.map((obj: { commit: Object; code: string; container: string}) => new MethodHistory(obj.commit, obj.code, obj.container)));
     } else {
       console.log(message);
     }
