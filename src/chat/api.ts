@@ -27,6 +27,8 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
                 .flatMap(result -> Mono.justOrEmpty(ListResult.first(result)));
         }
         
+        Thinking: The two functions implements the same funcionality, only that they create list options in different ways.
+
         Answer: yes
 
         [Negative Example]
@@ -44,6 +46,8 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
             watchers.remove(watcher);
         }
         
+        Thinking: Although the two functions look very similar, they are actually doing the opposite funcionality, i.e., registering an unregistering, thus can never be the same function under evolution.
+
         Answer: no
 
         [Your Task]
