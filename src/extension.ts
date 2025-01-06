@@ -5,10 +5,12 @@ import * as git from './git/gitAPI';
 import * as parser from './parser/tree-sitter';
 import { getHistoryFor, MethodLevelHistory } from './history/codeshovel';
 import { getMappingsBetweenMethods } from './history/mapping';
+import * as filter from './history/filter';
 
 var historyPanel: vscode.WebviewPanel | null;
 var scriptUri: vscode.Uri;
 var vsCodeContext: vscode.ExtensionContext;
+var currentMethodHistories: MethodLevelHistory[];
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -29,8 +31,22 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(helloWorldDisposable);
     vsCodeContext = context;
+
+    // mine history command
     const mineHistoryByMethodNameDisposable = vscode.commands.registerCommand('OriginHunter.mineHistoryByMethodSignature', mineHistoryByMethodSignature);
     context.subscriptions.push(mineHistoryByMethodNameDisposable);
+
+    // filter history command
+    const filterHistoryByRangeDisposable = vscode.commands.registerCommand('OriginHunter.filterHistoryByRange', filterHistoryByRange);
+}
+
+async function filterHistoryByRange() {
+    let range = vscode.window.activeTextEditor?.selection;
+    if(!range) {
+        vscode.window.showErrorMessage('no method history was mined');
+        return;
+    }
+    filter.filterMethodsByRange(currentMethodHistories, range);
 }
 
 async function mineHistoryByMethodSignature() {
@@ -53,6 +69,7 @@ async function mineHistoryByMethodSignature() {
         let method = methods[0];
         let histories = await getHistoryFor(method, git.getGitRepo());
         updateHistoryPanel(histories as MethodLevelHistory[]);
+        currentMethodHistories = histories as MethodLevelHistory[];
         let mappings = await getMappingsBetweenMethods((histories[0] as MethodLevelHistory).method, (histories[1] as MethodLevelHistory).method);
         console.log(mappings);
     } catch(error) {

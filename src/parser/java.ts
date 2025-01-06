@@ -77,12 +77,12 @@ export class JavaMethodContainer extends MethodContainer {
 }
 
 export class JavaMethod extends Method {
-    constructor(container: JavaMethodContainer, sig: JavaMethodSignature, body: string) {
-        super(container, sig, body);
+    constructor(container: JavaMethodContainer, sig: JavaMethodSignature, body: string, syntaxNode: Parser.SyntaxNode) {
+        super(container, sig, body, syntaxNode);
     }
 
     public copy(): JavaMethod {
-        return new JavaMethod(this.container.copy() as JavaMethodContainer, this.signature as JavaMethodSignature, this.body);
+        return new JavaMethod(this.container.copy() as JavaMethodContainer, this.signature as JavaMethodSignature, this.body, this.syntaxNode);
     }
 }
 
@@ -189,7 +189,7 @@ function getSingleMethod(root: Parser.SyntaxNode, container: JavaMethodContainer
         handler();
     }
     let sig = new JavaMethodSignature(modifiers, type, name, params, throws);
-    return new JavaMethod(container, sig, body);
+    return new JavaMethod(container, sig, body, root);
 }
 
 export function getAllMethods(file: string, current: Parser.SyntaxNode, klass: JavaClass): JavaMethod[] {

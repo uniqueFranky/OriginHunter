@@ -20,6 +20,10 @@
       {
         "command": "OriginHunter.mineHistoryByMethodSignature",
         "title": "Mine History By Method Signature"
+      },
+      {
+        "command": "OriginHunter.filterHistoryByRange",
+        "title": "Filter History By Range"
       }
     ],
     "configuration": {

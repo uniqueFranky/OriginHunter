@@ -1,3 +1,5 @@
+import { SyntaxNode } from "tree-sitter";
+
 export class Parameter {
     type: string;
     name: string;
@@ -60,11 +62,13 @@ export abstract class Method {
     container: MethodContainer;
     signature: MethodSignature;
     body: string;
+    syntaxNode: SyntaxNode;
 
-    constructor(container: MethodContainer, signature: MethodSignature, body: string) {
+    constructor(container: MethodContainer, signature: MethodSignature, body: string, syntaxNode: SyntaxNode) {
         this.container = container;
         this.signature = signature;
         this.body = body;
+        this.syntaxNode = syntaxNode;
     }
 
     public equals(rhs: Method) {
