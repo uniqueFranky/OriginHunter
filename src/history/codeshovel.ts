@@ -15,18 +15,25 @@ function findIdenticalMethodInFile(methods: Method[], target: Method): boolean {
 }
 
 
-function findModifiedWithinFile(methods: Method[], target: Method): Method | undefined {
-    let ret: Method | undefined = undefined;
-    let max = 0;
+async function findModifiedWithinFile(methods: Method[], target: Method): Promise<Method | undefined> {
+    // find identical signature
+    for(let i = 0; i < methods.length; i++) {
+        if(methods[i].signature.equals(target.signature)) {
+            return methods[i];
+        }
+    }
+
     for(let i = 0; i < methods.length; i++) {
         let bodySim = jaroWinklerDistance(target.body, methods[i].body);
         let sigSim = jaroWinklerDistance(target.signature.toString(), methods[i].signature.toString());
-        if(bodySim >= 0.75 && bodySim > max && sigSim >= 0.8) {
-            max = bodySim;
-            ret = methods[i];
+        if(bodySim >= 0.75 && sigSim >= 0.8) {
+            const ok = await chat.isSameEvolution(target, methods[i]);
+            if(ok) {
+                return methods[i];
+            }
         }
     }
-    return ret;
+    return undefined;
 }
 
 async function findModifiedInOtherFile(methods: Method[], target: Method): Promise<Method | undefined> {
@@ -124,7 +131,7 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                                 histories[histories.length - 1] = new MethodLevelHistory(cm.current, method.copy());
                                 break;
                             }
-                            let modifiedWithinFile = findModifiedWithinFile(methods, method);
+                            let modifiedWithinFile = await findModifiedWithinFile(methods, method);
                             if(modifiedWithinFile) {
                                 console.log('modified within file');
                                 method = modifiedWithinFile.copy();

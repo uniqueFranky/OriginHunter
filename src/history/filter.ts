@@ -260,6 +260,8 @@ export async function filterMethodsByRange(histories: MethodLevelHistory[], rang
         guardians = filterTrees[i].calcGuardiansWhichGuards(newGuardians);
         if(shouldAddToHistory || guardians.length !== newGuardians.length) {
             result.push(histories[i]);
+        } else {
+            result[result.length - 1] = histories[i];
         }
     }
     return result;
