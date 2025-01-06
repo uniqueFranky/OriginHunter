@@ -1,6 +1,7 @@
 import { SyntaxNode } from "tree-sitter";
 import { MethodLevelHistory } from "./codeshovel";
 import * as vscode from 'vscode';
+import { getMappingsBetweenMethods } from "./mapping";
 
 class FilterTreeNode {
     id: number;
@@ -8,6 +9,8 @@ class FilterTreeNode {
     depth: number;
     children: FilterTreeNode[];
     parents: Map<number, number>;
+    dfin: number;
+    dfout: number;
 
     constructor(node: SyntaxNode) {
         this.id = node.id;
@@ -15,6 +18,8 @@ class FilterTreeNode {
         this.depth = -1;
         this.children = [];
         this.parents = new Map<number, number>();
+        this.dfin = 0;
+        this.dfout = 0;
     }
 
     public addChild(child: FilterTreeNode) {
@@ -49,6 +54,15 @@ class FilterTreeNode {
 
     public getAncestor4Level(level: number, id2NodeMapping: Map<number, FilterTreeNode>): FilterTreeNode {
         return id2NodeMapping.get(this.parents.get(level)!)!;
+    }
+
+    public calcDfn(stamp: number): number {
+        this.dfin = stamp;
+        this.children.forEach(child => {
+            stamp = child.calcDfn(stamp + 1);
+        })
+        this.dfout = stamp + 1;
+        return this.dfout;
     }
 }
 
@@ -116,7 +130,7 @@ class FilterTree {
         return n1.getAncestor4Level(0, this.id2NodeMapping); 
     }
 
-    public getLCA4Nodes(nodes: SyntaxNode[]): FilterTreeNode {
+    public getLCA4TSNodes(nodes: SyntaxNode[]): FilterTreeNode {
         if(nodes.length === 1) {
             return this.id2NodeMapping.get(nodes[0].id)!;
         } else {
@@ -126,6 +140,50 @@ class FilterTree {
             }
             return ret;
         }
+    }
+
+    public getLCA4Nodes(nodes: FilterTreeNode[]): FilterTreeNode {
+        if(nodes.length === 1) {
+            return nodes[0];
+        } else {
+            let ret = this.getLCA(nodes[0].tsNode, nodes[1].tsNode);
+            for(let i = 2; i < nodes.length; i++) {
+                ret = this.getLCA(ret.tsNode, nodes[i].tsNode);
+            }
+            return ret;
+        }
+    }
+
+    public calcDfn() {
+        this.root.calcDfn(1);
+    }
+
+    public calcGuardiansWhichGuards(nodes: FilterTreeNode[]): FilterTreeNode[] {
+        let lca = this.getLCA4Nodes(nodes);
+        this.calcDfn();
+        let guardians: FilterTreeNode[] = [];
+        let minDfin = 100000000;
+        let maxDfin = 0;
+        lca.children.forEach(child => {
+            for(let i = 0; i < nodes.length; i++) {
+                let node = this.id2NodeMapping.get(nodes[i].id)!;
+                if(node.dfin >= child.dfin && node.dfout <= child.dfout) {
+                    // child guards one of nodes
+                    minDfin = minDfin < child.dfin ? minDfin : child.dfin;
+                    maxDfin = maxDfin > child.dfin ? maxDfin : child.dfin;
+                    break;
+                }
+            }
+        });
+
+        // all children of lca with dfin between (min, max) are considered guardians.
+        // because some insertion can be present
+        lca.children.forEach(child => {
+            if(child.dfin >= minDfin && child.dfin <= maxDfin) {
+                guardians.push(child);
+            }
+        })
+        return guardians;
     }
 }
 
@@ -161,8 +219,7 @@ function getId2NodeMapping4FilterTreeNode(current: FilterTreeNode): Map<number, 
     return ret;
 }
 
-
-export function filterMethodsByRange(histories: MethodLevelHistory[], range: vscode.Range): MethodLevelHistory[] {
+export async function filterMethodsByRange(histories: MethodLevelHistory[], range: vscode.Range): Promise<MethodLevelHistory[]> {
     let syntaxes = histories.map(h => h.method.syntaxNode);
     let filterTrees = syntaxes.map(node => FilterTree.fromTSNode(node));
     filterTrees.forEach(tree => {
@@ -170,8 +227,40 @@ export function filterMethodsByRange(histories: MethodLevelHistory[], range: vsc
         tree.setId2NodeMapping(mapping);
     });
 
+    // get guardians for 0-th tree
     let nodes = getSyntaxRange(syntaxes[0], range);
-    let LCA = filterTrees[0].getLCA4Nodes(nodes);
-    console.log(LCA.tsNode.text);
-    return [];
+    let guardians = filterTrees[0].calcGuardiansWhichGuards(nodes.map(node => filterTrees[0].id2NodeMapping.get(node.id)!));
+    
+    // iterate all versions
+    let result = [histories[0]];
+    for(let i = 1; i < histories.length && guardians.length > 0; i++) {
+        console.log(guardians);
+        let mappings = await getMappingsBetweenMethods(histories[i - 1].method, histories[i].method);
+        let map = new Map<number, number>(); // map of ids from i-1 to i
+        mappings.forEach(unit => {
+            if(unit[0] && unit[1]) {
+                map.set(unit[0].id, unit[1].id);
+            }
+        });
+        let newGuardians: FilterTreeNode[] = [];
+        let shouldAddToHistory = false;
+        guardians.forEach(guardian => {
+            let cor = map.get(guardian.id);
+            if(!cor) {
+                shouldAddToHistory = true;
+                return;
+            }
+            let node1 = filterTrees[i - 1].id2NodeMapping.get(guardian.id)!;
+            let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
+            newGuardians.push(node2);
+            if(!shouldAddToHistory && node1.tsNode.text !== node2.tsNode.text) {
+                shouldAddToHistory = true;
+            }
+        });
+        guardians = filterTrees[i].calcGuardiansWhichGuards(newGuardians);
+        if(shouldAddToHistory || guardians.length !== newGuardians.length) {
+            result.push(histories[i]);
+        }
+    }
+    return result;
 }

@@ -44,8 +44,8 @@ function callPythonCLI(aptNode1: AptedNode, aptNode2: AptedNode): Promise<string
 
 
 export async function getMappingsBetweenMethods(m1: Method, m2: Method): Promise<({id: number, value: string}[])[]> {
-    let root1 = parseCodeIntoSyntaxNode(m1.container.filePath, m1.toString());
-    let root2 = parseCodeIntoSyntaxNode(m2.container.filePath, m2.toString());
+    let root1 = m1.syntaxNode;
+    let root2 = m2.syntaxNode;
     let aptNode1 = convertTreeSitterNode2AptedNode(root1);
     let aptNode2 = convertTreeSitterNode2AptedNode(root2);
     try {

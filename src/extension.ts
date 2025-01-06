@@ -46,7 +46,9 @@ async function filterHistoryByRange() {
         vscode.window.showErrorMessage('no method history was mined');
         return;
     }
-    filter.filterMethodsByRange(currentMethodHistories, range);
+    setHistoryPanelWaiting();
+    let filtered = await filter.filterMethodsByRange(currentMethodHistories, range);
+    updateHistoryPanel(filtered);
 }
 
 async function mineHistoryByMethodSignature() {
@@ -61,7 +63,6 @@ async function mineHistoryByMethodSignature() {
     let selectedText = editor.document.getText(selection).replaceAll(/\s+/g, ' ').trim();
     try {
         let methods = parser.parseCodeIntoMethods(fileName, editor.document.getText());
-        // methods.forEach(met => {console.log(met.signature.toString()); console.log(selectedText);});
         methods = methods.filter(met => met.signature.toString().trim() === selectedText);
         if(methods.length !== 1) {
             throw new Error(`multiple or no (${methods.length}) corresponding method found`);
@@ -70,8 +71,6 @@ async function mineHistoryByMethodSignature() {
         let histories = await getHistoryFor(method, git.getGitRepo());
         updateHistoryPanel(histories as MethodLevelHistory[]);
         currentMethodHistories = histories as MethodLevelHistory[];
-        let mappings = await getMappingsBetweenMethods((histories[0] as MethodLevelHistory).method, (histories[1] as MethodLevelHistory).method);
-        console.log(mappings);
     } catch(error) {
         const msg = error instanceof Error ? error.message : 'Unknown error occured';
         vscode.window.showErrorMessage(msg);
