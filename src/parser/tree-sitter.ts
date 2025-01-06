@@ -1,4 +1,4 @@
-import Parser from 'tree-sitter';
+import Parser, { SyntaxNode } from 'tree-sitter';
 import Java from 'tree-sitter-java';
 import * as dispatch from './dispatch';
 import * as utils from './utils';
@@ -30,16 +30,18 @@ function getTSLanguageForFile(fileName: string) {
     }
 }
 
-export function parseCode(fileName: string, code: string): utils.Method[] {
+export function parseCodeIntoMethods(fileName: string, code: string): utils.Method[] {
+    const root = parseCodeIntoSyntaxNode(fileName, code);
+    const language = utils.getSupportedLanguageForFile(fileName);
+    const methods = dispatch.getAllMethodsInFile(fileName, language, root);
+    return methods;
+}
+
+export function parseCodeIntoSyntaxNode(fileName: string, code: string): SyntaxNode {
     const parser = new Parser();
     parser.setLanguage(getTSLanguageForFile(fileName));
-
     const tree = parser.parse(code);
-    const language = utils.getSupportedLanguageForFile(fileName);
-    // const method = dispatch.getSingleMethod(language, tree.rootNode);
-    const methods = dispatch.getAllMethodsInFile(fileName, language, tree.rootNode);
-    return methods;
-    // in case of injection, when displaying the json on webview, we have to replace "<>"
+    return tree.rootNode;
 }
 
 export function doSupportsFile(fileName: string): boolean {

@@ -79,7 +79,7 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                             }
                             try {
                                 let otherCode = await git.getFileContent(repo, cm.current.hash, otherFile);
-                                let otherMethods = parser.parseCode(otherFile, otherCode);
+                                let otherMethods = parser.parseCodeIntoMethods(otherFile, otherCode);
                                 let modifiedInOtherFile = await findModifiedInOtherFile(otherMethods, method);
                                 if(modifiedInOtherFile) {
                                     found = true;
@@ -117,7 +117,7 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                         let foundInOtherFile = false;
                         try {
                             let code = await git.getFileContent(repo, cm.current.hash, method.container.filePath);
-                            let methods: Method[] = parser.parseCode(method.container.filePath, code);
+                            let methods: Method[] = parser.parseCodeIntoMethods(method.container.filePath, code);
                             if(findIdenticalMethodInFile(methods, method)) {
                                 // unchanged
                                 console.log('but method unchanged');
@@ -143,7 +143,7 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                             }
                             try {
                                 let otherCode = await git.getFileContent(repo, cm.current.hash, otherFile);
-                                let otherMethods = parser.parseCode(otherFile, otherCode);
+                                let otherMethods = parser.parseCodeIntoMethods(otherFile, otherCode);
                                 allMethodsInOtherFiles.push(...otherMethods);
                             } catch(error) {
                                 // console.log(error);

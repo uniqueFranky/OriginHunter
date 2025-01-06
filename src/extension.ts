@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import * as git from './git/gitAPI';
 import * as parser from './parser/tree-sitter';
 import { getHistoryFor, MethodLevelHistory } from './history/codeshovel';
+import { getMappingsBetweenMethods } from './history/mapping';
 
 var historyPanel: vscode.WebviewPanel | null;
 var scriptUri: vscode.Uri;
@@ -32,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(mineHistoryByMethodNameDisposable);
 }
 
-function mineHistoryByMethodSignature() {
+async function mineHistoryByMethodSignature() {
     let editor = vscode.window.activeTextEditor;
     if(!editor) {
         console.log('no active editor');
@@ -43,16 +44,17 @@ function mineHistoryByMethodSignature() {
     let fileName = editor.document.fileName;
     let selectedText = editor.document.getText(selection).replaceAll(/\s+/g, ' ').trim();
     try {
-        let methods = parser.parseCode(fileName, editor.document.getText());
+        let methods = parser.parseCodeIntoMethods(fileName, editor.document.getText());
         // methods.forEach(met => {console.log(met.signature.toString()); console.log(selectedText);});
         methods = methods.filter(met => met.signature.toString().trim() === selectedText);
         if(methods.length !== 1) {
             throw new Error(`multiple or no (${methods.length}) corresponding method found`);
         }
         let method = methods[0];
-        getHistoryFor(method, git.getGitRepo()).then(histories => {
-            updateHistoryPanel(histories as MethodLevelHistory[]);
-        });
+        let histories = await getHistoryFor(method, git.getGitRepo());
+        updateHistoryPanel(histories as MethodLevelHistory[]);
+        let mappings = await getMappingsBetweenMethods((histories[0] as MethodLevelHistory).method, (histories[1] as MethodLevelHistory).method);
+        console.log(mappings);
     } catch(error) {
         const msg = error instanceof Error ? error.message : 'Unknown error occured';
         vscode.window.showErrorMessage(msg);

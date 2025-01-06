@@ -115,3 +115,19 @@ export function jaroWinklerDistance(s1: string, s2: string, scalingFactor: numbe
     // 计算 Winkler 距离
     return jaroDist + scalingFactor * prefix * (1 - jaroDist);
 }
+
+export class AptedNode {
+    value: string;
+    id: number;
+    children: AptedNode[];
+
+    constructor(value: string, id: number, children: AptedNode[] = []) {
+        this.value = value;
+        this.id = id;
+        this.children = children;
+    }
+
+    public addChild(child: AptedNode) {
+        this.children.push(child);
+    }
+}
