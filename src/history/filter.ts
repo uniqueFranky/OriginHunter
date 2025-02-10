@@ -238,9 +238,7 @@ export async function filterMethodsByRange(histories: MethodLevelHistory[], rang
         let mappings = await getMappingsBetweenMethods(histories[i - 1].method, histories[i].method);
         let map = new Map<number, number>(); // map of ids from i-1 to i
         mappings.forEach(unit => {
-            if(unit[0] && unit[1]) {
-                map.set(unit[0].id, unit[1].id);
-            }
+            map.set(unit[0], unit[1]);
         });
         let newGuardians: FilterTreeNode[] = [];
         let shouldAddToHistory = false;

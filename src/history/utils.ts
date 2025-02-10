@@ -131,3 +131,21 @@ export class AptedNode {
         this.children.push(child);
     }
 }
+
+export class GumtreeNode {
+  label: string;
+  type: string;
+  id: number;
+  children: GumtreeNode[];
+
+  constructor(label: string, type: string, id: number, children: GumtreeNode[] = []) {
+    this.label = label;
+    this.type = type;
+    this.id = id;
+    this.children = children;
+  }
+
+  public addChild(child: GumtreeNode) {
+    this.children.push(child);
+  }
+}
