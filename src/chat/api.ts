@@ -6,6 +6,7 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
     const prompt = {
         role: 'user',
         content: `You are a skilled programmer, please tell if the following two functions belong to the same evolution process of a certain function. Answer only "yes" or "no".
+        The same evolution process means the function may go through rename, parameter change, body change, etc, but the overall funcionality stays stable.
         You will be given one positive example and one negative example, followed by your task.
         [Positive Example]
         Function1:
@@ -81,9 +82,8 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
         }
     } catch(err) {
         console.log(err);
-    } finally {
-        return false;
     }
+    return false;
     
 }
 
