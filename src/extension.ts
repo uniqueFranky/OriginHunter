@@ -6,6 +6,7 @@ import * as parser from './parser/tree-sitter';
 import { getHistoryFor, MethodLevelHistory } from './history/codeshovel';
 import { getMappingsBetweenMethods } from './history/mapping';
 import * as filter from './history/filter';
+import { doTest } from './test/codeshovel';
 
 var historyPanel: vscode.WebviewPanel | null;
 var scriptUri: vscode.Uri;
@@ -38,6 +39,11 @@ export function activate(context: vscode.ExtensionContext) {
 
     // filter history command
     const filterHistoryByRangeDisposable = vscode.commands.registerCommand('OriginHunter.filterHistoryByRange', filterHistoryByRange);
+    context.subscriptions.push(filterHistoryByRangeDisposable);
+
+    // test codeshovel command
+    const codeshovelTestDisposable = vscode.commands.registerCommand('OriginHunter.testCodeshovel', doTest);
+    context.subscriptions.push(codeshovelTestDisposable);
 }
 
 async function filterHistoryByRange() {

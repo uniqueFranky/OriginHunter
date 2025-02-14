@@ -24,6 +24,10 @@
       {
         "command": "OriginHunter.filterHistoryByRange",
         "title": "Filter History By Range"
+      },
+      {
+        "command": "OriginHunter.testCodeshovel",
+        "title": "Do Codeshovel Tests"
       }
     ],
     "configuration": {

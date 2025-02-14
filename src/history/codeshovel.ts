@@ -23,16 +23,16 @@ async function findModifiedWithinFile(methods: Method[], target: Method): Promis
         }
     }
 
-    let candidate = undefined;
-    let candidateSim = 0;
     for(let i = 0; i < methods.length; i++) {
         let bodySim = jaroWinklerDistance(target.body, methods[i].body);
-        if(bodySim >= 0.75 && bodySim > candidateSim) {
-            candidate = methods[i];
-            candidateSim = bodySim;
+        if(bodySim >= 0.75) {
+            const ok = await chat.isSameEvolution(target, methods[i]);
+            if(ok) {
+                return methods[i];
+            }
         }
     }
-    return candidate;
+    return undefined;
 }
 
 async function findModifiedInOtherFile(methods: Method[], target: Method): Promise<Method | undefined> {
