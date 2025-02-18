@@ -69,13 +69,13 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
     try {
         const response = await ollama.chat({
             model: modelName as string,
-            messages: [prompt]
+            messages: [prompt],
         });
         // console.log(prompt.content);
         // console.log(response.message.content);
-        if(response.message.content.toLowerCase().startsWith("yes")) {
+        if(response.message.content.trim().toLowerCase().startsWith("yes")) {
             return true;
-        } else if(response.message.content.toLowerCase().startsWith("no")) {
+        } else if(response.message.content.trim().toLowerCase().startsWith("no")) {
             return false;
         } else {
             throw new Error(`unexpected response from LLM: ${response.message.content}`);

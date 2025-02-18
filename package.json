@@ -35,7 +35,7 @@
       "properties": {
         "originhunter.nameLLM": {
           "type": "string",
-          "default": "qwen2.5-coder:7b",
+          "default": "deepseek-coder-v2",
           "description": "The name of the LLM to use"
         }
       }

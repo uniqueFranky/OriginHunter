@@ -23,13 +23,18 @@ async function findModifiedWithinFile(methods: Method[], target: Method): Promis
         }
     }
 
+    let candidate = undefined;
+    let candidateSim = 0;
     for(let i = 0; i < methods.length; i++) {
         let bodySim = jaroWinklerDistance(target.body, methods[i].body);
-        if(bodySim >= 0.75) {
-            const ok = await chat.isSameEvolution(target, methods[i]);
-            if(ok) {
-                return methods[i];
-            }
+        if(bodySim > candidateSim) {
+            candidate = methods[i];
+            candidateSim = bodySim;
+        }
+    }
+    if(candidate) {
+        if(await chat.isSameEvolution(target, candidate)) {
+            return candidate;
         }
     }
     return undefined;
@@ -96,7 +101,8 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                                     console.log(otherFile === method.container.filePath);
                                     console.log(modifiedInOtherFile);
                                     histories.push(new MethodLevelHistory(cm.current, modifiedInOtherFile));
-                                    console.log('push' + histories[histories.length - 1].commit.hash);                                    method = modifiedInOtherFile.copy();
+                                    console.log('push');                                    
+                                    method = modifiedInOtherFile.copy();
                                     break;
                                 }
                             } catch(error) {
@@ -116,11 +122,11 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                         method = method.copy();
                         method.container.filePath = change.originalUri.fsPath;
                         histories.push(new MethodLevelHistory(cm.current, method));
-                        console.log('push' + histories[histories.length - 1].commit.hash);                        break;
+                        console.log('push');                        
+                        break;
 
                     case Status.MODIFIED:
                         console.log('modified');
-                        let foundInOtherFile = false;
                         try {
                             let code = await git.getFileContent(repo, cm.current.hash, method.container.filePath);
                             let methods: Method[] = parser.parseCodeIntoMethods(method.container.filePath, code);
@@ -135,13 +141,15 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                                 console.log('modified within file');
                                 method = modifiedWithinFile.copy();
                                 histories.push(new MethodLevelHistory(cm.current, modifiedWithinFile.copy()));
-                                console.log('push' + histories[histories.length - 1].commit.hash);
+                                console.log('push');
                                 break;
                             }
                         } catch(error) {
                             // console.log(error);
                         }
-                        
+                        // no break
+                    case Status.DELETED:
+                        let foundInOtherFile = false;
                         let allMethodsInOtherFiles = [];
                         for(const otherFile of allFiles) {
                             if(otherFile === method.container.filePath || !parser.doSupportsFile(otherFile)) {
@@ -159,7 +167,8 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                         if(modifiedInOtherFile) {
                             console.log('modified in other file');
                             histories.push(new MethodLevelHistory(cm.current, modifiedInOtherFile));
-                            console.log('push' + histories[histories.length - 1].commit.hash);                            method = modifiedInOtherFile.copy();
+                            console.log('push');                            
+                            method = modifiedInOtherFile.copy();
                             foundInOtherFile = true;
                             break;
                         }
@@ -168,6 +177,7 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                             shoudStop = true;
                         }
                         break;
+                        
                     default:
                         console.log('unknown status: ', change.status);
                         throw new Error('unknown status');
