@@ -2,7 +2,7 @@ import os
 import json
 
 dir = '../../out/test/oracles/java'
-out_dir = '../../out/test/oracles/out/java/ds-coder-v2'
+out_dir = '../../out/test/oracles/out/java/new-qw'
 
 out_file_names = os.listdir(out_dir)
 
@@ -10,6 +10,8 @@ out_commits = []
 ans_commits = []
 
 for file_name in out_file_names:
+    # if not file_name.startswith('out_Z'):
+    #     continue
     file_path = os.path.join(out_dir, file_name)
     with open(file_path, 'r') as file:
         content = file.read()

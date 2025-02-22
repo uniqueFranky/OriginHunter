@@ -23,36 +23,33 @@ async function findModifiedWithinFile(methods: Method[], target: Method): Promis
         }
     }
 
-    let candidate = undefined;
-    let candidateSim = 0;
-    for(let i = 0; i < methods.length; i++) {
-        let bodySim = jaroWinklerDistance(target.body, methods[i].body);
-        if(bodySim > candidateSim) {
-            candidate = methods[i];
-            candidateSim = bodySim;
-        }
-    }
-    if(candidate) {
-        if(await chat.isSameEvolution(target, candidate)) {
-            return candidate;
+    methods.sort((a, b) => {
+        const similarityA = jaroWinklerDistance(target.body, a.body);
+        const similarityB = jaroWinklerDistance(target.body, b.body);
+        return similarityB - similarityA;// 降序排序（从高到低）
+    });
+    const candidateNum = 3;
+    for(let i = 0; i < candidateNum; i++) {
+        if(await chat.isSameEvolution(target, methods[i])) {
+            return methods[i];
         }
     }
     return undefined;
 }
 
 async function findModifiedInOtherFile(methods: Method[], target: Method): Promise<Method | undefined> {
-    for(let i = 0; i < methods.length; i++) {
-        let sigSim = jaroWinklerDistance(methods[i].signature.toString(), target.signature.toString());
-        let bodySim = jaroWinklerDistance(methods[i].body, target.body);
-        if(sigSim >= 0.8 && bodySim >= 0.8) {
-            const ok = await chat.isSameEvolution(target, methods[i]);
-            console.log(ok);
-            if(ok) {
-                return methods[i];
-            }
+    methods.sort((a, b) => {
+        const similarityA = jaroWinklerDistance(target.body, a.body);
+        const similarityB = jaroWinklerDistance(target.body, b.body);
+        return similarityB - similarityA;// 降序排序（从高到低）
+    });
+    const candidateNum = 5;
+    for(let i = 0; i < candidateNum; i++) {
+        if(await chat.isSameEvolution(target, methods[i])) {
+            return methods[i];
         }
     }
-  return undefined;
+    return undefined;
 }
 
 export class MethodLevelHistory extends History {
@@ -72,7 +69,7 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
     let shoudStop = false;
     let nextParentId = 1;
     while(!shoudStop) {
-        try {
+        try {   
             let changes = await git.getDiffBetween(repo, cm.current.hash, current.hash);
             // console.log(cm.current.hash, current.hash);
             let handler = async (change: Change) => {
@@ -141,7 +138,6 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                                 console.log('modified within file');
                                 method = modifiedWithinFile.copy();
                                 histories.push(new MethodLevelHistory(cm.current, modifiedWithinFile.copy()));
-                                console.log('push');
                                 break;
                             }
                         } catch(error) {
@@ -189,6 +185,18 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
             for(let i = 0; i < changes.length; i++) {
                 if(changes[i].uri.fsPath === method.container.filePath) {
                     hasMatch = true;
+                }
+            }
+
+            if(hasMatch && nextParentId < current.parents.length) {
+                console.log('try other parent ' + nextParentId);
+                cm.current = cm.getCommitWithHash(current.parents[nextParentId]);
+                nextParentId++;
+                continue;
+            }
+
+            for(let i = 0; i < changes.length; i++) {
+                if(changes[i].uri.fsPath === method.container.filePath) {
                     await handler(changes[i]);
                 }
             }
@@ -197,16 +205,11 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                 histories[histories.length - 1] = new MethodLevelHistory(cm.current, method.copy());
             }
 
-            if(!shoudStop) {
-                nextParentId = 1;
-                current = cm.current;
-                cm.moveToParent();
-            } else if(shoudStop && nextParentId < current.parents.length) {
-                console.log('more parent');
-                cm.current = cm.getCommitWithHash(current.parents[nextParentId]);
-                nextParentId++;
-                shoudStop = false;
-            }
+            // next iteration``
+            nextParentId = 1;
+            current = cm.current;
+            cm.moveToParent();
+            
         } catch(error) {
             console.log(error);
             break;

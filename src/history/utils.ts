@@ -18,7 +18,7 @@ export class CommitManager {
     public getCommitWithHash(hash: string): Commit {
         let ret = this.commitMap.get(hash);
         if(!ret) {
-            throw new Error('No such commit.');
+            throw new Error('No such commit: ' + hash);
         }
         return ret;
     }
