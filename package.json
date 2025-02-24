@@ -35,8 +35,13 @@
       "properties": {
         "originhunter.nameLLM": {
           "type": "string",
-          "default": "deepseek-coder-v2",
+          "default": "deepseek-coder-v3",
           "description": "The name of the LLM to use"
+        },
+        "originhunter.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API Key for DeekSeek"
         }
       }
     }

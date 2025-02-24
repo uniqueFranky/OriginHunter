@@ -29,7 +29,7 @@ export async function doTest() {
         const relativePath = oracle['filePath'];
         const filePath = path.join(workspaceFolder, relativePath);
         let outName = 'out_' + oracleName;
-        const outOraclePath = path.join(__dirname, 'oracles/out/java/new-qw');
+        const outOraclePath = path.join(__dirname, 'oracles/out/java/new-ds');
         let outPath = path.join(outOraclePath, outName);
         console.log(outPath);
         try {

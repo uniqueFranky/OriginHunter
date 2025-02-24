@@ -1,11 +1,16 @@
 import ollama from 'ollama';
 import * as vscode from 'vscode';
 import * as parser from '../parser/utils';
+import { setTimeout } from 'timers';
 
+function sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+
+}
 export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Promise<boolean> {
     const prompt = {
         role: 'user',
-        content: `You are a skilled programmer. Please determine if the following two functions are part of the same evolution process of a function. Answer with "yes" or "no".
+        content: `You are a skilled programmer. Please determine if the following two functions are part of the same evolution process of a function.  Answer with "yes" or "no" only. Do not include any additional explanation or reasoning.
 
         The "same evolution process" means that the functions may have undergone changes like renaming, parameter modifications, or internal body changes, but their overall behavior and functionality remain the same.
 
@@ -61,8 +66,8 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
         Function2 (from commit B):
         ${m2.toString()}
 
-        Answer:
-        (ONLY yes or no)
+        Answer (Only ouput a single token: yes or no):
+        
 
         `
     };
@@ -71,23 +76,60 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
     if(!modelName) {
         throw new Error('No LLM name was found.');
     }
-    try {
-        const response = await ollama.chat({
-            model: modelName as string,
-            messages: [prompt],
-        });
-        // console.log(prompt.content);
-        // console.log(response.message.content);
-        if(response.message.content.trim().toLowerCase().startsWith("yes")) {
-            return true;
-        } else if(response.message.content.trim().toLowerCase().startsWith("no")) {
-            return false;
-        } else {
-            throw new Error(`unexpected response from LLM: ${response.message.content}`);
-        }
-    } catch(err) {
-        console.log(err);
+    const apiKey = vscode.workspace.getConfiguration('originhunter').get<string>('apiKey');
+    if(!apiKey) {
+        throw new Error('No API Key was found.');
     }
+    if(modelName === 'deepseek-coder-v3') {
+        const options = {
+            method: 'POST',
+            headers: {
+              Authorization: apiKey,
+              'Content-Type': 'application/json'
+            },
+            body: `{"model":"Pro/deepseek-ai/DeepSeek-V3","messages":[${JSON.stringify(prompt)}],"max_tokens":20}`
+          };
+          try {
+            let response = await fetch('https://api.siliconflow.cn/v1/chat/completions', options);
+            let data = await response.json();
+            console.log(data);
+            while(data.message) {
+                console.log('exceed limit: ' + data.message);
+                await sleep(61000);
+                response = await fetch('https://api.siliconflow.cn/v1/chat/completions', options);
+                data = await response.json();
+            }
+            const txt = data.choices[0].message.content;
+            if(txt.trim().toLowerCase().startsWith("yes")) {
+                return true;
+            } else if(txt.trim().toLowerCase().startsWith("no")) {
+                return false;
+            } else {
+                throw new Error(`unexpected response from LLM: ${txt}`);
+            }
+          } catch(err) {
+            console.log(err);
+          }
+    } else {
+        try {
+            const response = await ollama.chat({
+                model: modelName as string,
+                messages: [prompt],
+            });
+            // console.log(prompt.content);
+            // console.log(response.message.content);
+            if(response.message.content.trim().toLowerCase().startsWith("yes")) {
+                return true;
+            } else if(response.message.content.trim().toLowerCase().startsWith("no")) {
+                return false;
+            } else {
+                throw new Error(`unexpected response from LLM: ${response.message.content}`);
+            }
+        } catch(err) {
+            console.log(err);
+        }
+    }
+    
     return false;
     
 }

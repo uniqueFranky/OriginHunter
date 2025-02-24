@@ -29,7 +29,7 @@ async function findModifiedWithinFile(methods: Method[], target: Method): Promis
         return similarityB - similarityA;// 降序排序（从高到低）
     });
     const candidateNum = 3;
-    for(let i = 0; i < candidateNum; i++) {
+    for(let i = 0; i < candidateNum && i < methods.length; i++) {
         if(await chat.isSameEvolution(target, methods[i])) {
             return methods[i];
         }
@@ -44,7 +44,7 @@ async function findModifiedInOtherFile(methods: Method[], target: Method): Promi
         return similarityB - similarityA;// 降序排序（从高到低）
     });
     const candidateNum = 5;
-    for(let i = 0; i < candidateNum; i++) {
+    for(let i = 0; i < candidateNum && i < methods.length; i++) {
         if(await chat.isSameEvolution(target, methods[i])) {
             return methods[i];
         }
@@ -76,43 +76,6 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                 let allFiles = new Set<string>;
                 changes.forEach((value, _index, _array) => { allFiles.add(value.originalUri.fsPath); });
                 switch(change.status) {
-                    case Status.INDEX_ADDED:
-                        // new file added
-                        console.log('index_add');
-
-                        // check if moved from other files
-                        // duplicated with "modified" case
-                        let found = false;
-                        for(const otherFile of allFiles) {
-                            if(otherFile === method.container.filePath || !parser.doSupportsFile(otherFile)) {
-                                continue;
-                            }
-                            try {
-                                let otherCode = await git.getFileContent(repo, cm.current.hash, otherFile);
-                                let otherMethods = parser.parseCodeIntoMethods(otherFile, otherCode);
-                                let modifiedInOtherFile = await findModifiedInOtherFile(otherMethods, method);
-                                if(modifiedInOtherFile) {
-                                    found = true;
-                                    console.log('moved from other file');
-                                    console.log(otherFile, method.container.filePath);
-                                    console.log(otherFile === method.container.filePath);
-                                    console.log(modifiedInOtherFile);
-                                    histories.push(new MethodLevelHistory(cm.current, modifiedInOtherFile));
-                                    console.log('push');                                    
-                                    method = modifiedInOtherFile.copy();
-                                    break;
-                                }
-                            } catch(error) {
-                                // console.log(error);
-                            }
-                            
-                        }
-                        if(!found) {
-                            console.log('introduce');
-                            shoudStop = true;
-                        }
-                        break;
-
                     case Status.INDEX_RENAMED:
                         // file renamed
                         console.log('index_rename');
@@ -145,6 +108,7 @@ export async function getHistoryFor(method: Method, repo: Repository): Promise<H
                         }
                         // no break
                     case Status.DELETED:
+                    case Status.INDEX_ADDED:
                         let foundInOtherFile = false;
                         let allMethodsInOtherFiles = [];
                         for(const otherFile of allFiles) {
