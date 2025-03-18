@@ -42,3 +42,7 @@ export async function getDiffBetween(repo: Repository, parent: string, child: st
 export function getFileContent(repo: Repository, commit: string, path: string) {
     return repo.show(commit, path);
 }
+
+export function getRemoteOrigin(repo: Repository): string {
+    return repo.state.remotes[0].fetchUrl ?? '';
+}

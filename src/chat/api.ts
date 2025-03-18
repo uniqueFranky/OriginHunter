@@ -2,6 +2,7 @@ import ollama from 'ollama';
 import * as vscode from 'vscode';
 import * as parser from '../parser/utils';
 import { setTimeout } from 'timers';
+import { Post } from '../github/utils';
 
 function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -134,3 +135,73 @@ export async function isSameEvolution(m1: parser.Method, m2: parser.Method): Pro
     
 }
 
+export async function summarizeConversation(m1: parser.Method, m2: parser.Method, posts: Post[]): Promise<string> {
+    const prompt = {
+        role: 'user',
+        content: `
+        You are provided with two versions of the same function, one from an earlier commit and the other from a later commit. Additionally, you have access to the related Issue and Pull Request discussions, which may include other code changes not directly related to the provided function.
+        Your task is to focus on analyzing the discussions and extracting the following information specifically related to the provided function. If other code changes are mentioned in the discussion and are closely tied to the function, include them in your analysis; if the relationship is weak or unclear, do not include those changes in your output. Pay particular attention to the motivation behind the code changes.
+        1. Reason for the change: What is the core motivation for modifying the provided function? Why was this change necessary or requested? This is the most important aspect of the analysis. Look for any issues, bugs, or performance concerns that the function change is intended to address.
+        2. Developer suggestions or feedback: What suggestions, concerns, or feedback were provided by the developers regarding the function? Were alternative approaches considered or discussed for implementing the change?
+        3. Technical decisions: What technical decisions were made in the discussions related to the function? This could include decisions about the function’s logic, design, or performance considerations.
+        4. Challenges or issues addressed by the function change: Were any challenges specific to the function mentioned during the discussion? How were these challenges resolved or mitigated in the code change?
+        5. Outcome and conclusions: What were the key takeaways regarding the function change from the discussion? Were there any conclusions on how the function should be modified, or were there any unresolved issues?
+        Remember to focus your analysis only on the function provided and its related context. If the discussion includes other code changes, include them only if they are directly relevant to the function or if they significantly affect its behavior or purpose.
+
+        Function in the earlier version:
+        ${m1.toString()}
+
+        Function in the later version:
+        ${m2.toString()}
+
+
+        Conversations in Issues and Pull Requests:
+
+        ${JSON.stringify(posts, null, '\t')};
+        `
+    };
+    const modelName = vscode.workspace.getConfiguration('originhunter').get('nameLLM');
+    if(!modelName) {
+        throw new Error('No LLM name was found.');
+    }
+    const apiKey = vscode.workspace.getConfiguration('originhunter').get<string>('apiKey');
+    if(!apiKey) {
+        throw new Error('No API Key was found.');
+    }
+    if(modelName === 'deepseek-coder-v3') {
+        const options = {
+            method: 'POST',
+            headers: {
+              Authorization: apiKey,
+              'Content-Type': 'application/json'
+            },
+            body: `{"model":"Pro/deepseek-ai/DeepSeek-V3","messages":[${JSON.stringify(prompt)}],"max_tokens":4096}`
+          };
+          try {
+            let response = await fetch('https://api.siliconflow.cn/v1/chat/completions', options);
+            let data = await response.json();
+            console.log(data);
+            while(data.message) {
+                console.log('exceed limit: ' + data.message);
+                await sleep(61000);
+                response = await fetch('https://api.siliconflow.cn/v1/chat/completions', options);
+                data = await response.json();
+            }
+            const txt = data.choices[0].message.content;
+            return txt;
+          } catch(err) {
+            console.log(err);
+          }
+    } else {
+        try {
+            const response = await ollama.chat({
+                model: modelName as string,
+                messages: [prompt],
+            });
+            return response.message.content;
+        } catch(err) {
+            console.log(err);
+        }
+    }
+    return "";
+}

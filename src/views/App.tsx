@@ -32,7 +32,10 @@ const App: React.FC = () => {
         <div style={{ width: '300px', marginRight: '20px', overflowY: 'auto' }}>
           <HistoryList 
             history={codeHistory} 
-            clickHandler={(h: MethodHistory) => { setCurrentHistory(h); }} 
+            clickHandler={(h: MethodHistory, i: number) => { 
+              setCurrentHistory(h); 
+              window.postMessage({type: 'setCurrentIndex', value: i});
+            }} 
           />
         </div>
 

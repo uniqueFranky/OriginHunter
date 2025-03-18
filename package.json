@@ -26,6 +26,10 @@
         "title": "Filter History By Range"
       },
       {
+        "command": "OriginHunter.queryReason",
+        "title": "Query For Code Change Reason"
+      },
+      {
         "command": "OriginHunter.testCodeshovel",
         "title": "Do Codeshovel Tests"
       }
@@ -42,6 +46,11 @@
           "type": "string",
           "default": "",
           "description": "API Key for DeekSeek"
+        },
+        "originhunter.githubToken": {
+          "type": "string",
+          "default": "",
+          "description": "GitHub fine-grained personal access token"
         }
       }
     }
@@ -85,6 +94,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.3.0",
+    "octokit": "^4.1.2",
     "ollama": "^0.5.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
