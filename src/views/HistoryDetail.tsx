@@ -3,12 +3,15 @@ import { Box, Typography, Divider, ListItem, ListItemText, ListItemButton } from
 import { MethodHistory, Commit } from './Models';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import DiffViewer from 'react-diff-viewer';
+
 
 interface HistoryDetailProps {
   history: MethodHistory;
+  previous: MethodHistory | undefined;
 }
 
-const HistoryDetail: React.FC<HistoryDetailProps> = ({ history }) => {
+const HistoryDetail: React.FC<HistoryDetailProps> = ({ history, previous }) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '16px' }}>
       {/* Commit Message Section */}
@@ -65,9 +68,17 @@ const HistoryDetail: React.FC<HistoryDetailProps> = ({ history }) => {
             fontSize: '14px',
           }}
         >
+              {
+              !previous &&
               <SyntaxHighlighter language="java" style={dark}>
               {history.code}
               </SyntaxHighlighter>
+              }
+
+              {
+              previous &&
+              <DiffViewer oldValue={previous!.code} newValue={history.code} splitView={true} />
+              }
         </Box>
       </Box>
     </Box>

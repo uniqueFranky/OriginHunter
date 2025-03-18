@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const [waitingForHistory, setWaitingForHistory] = useState<boolean>(true);
   const [codeHistory, setCodeHistory] = useState<MethodHistory[]>([]);
   const [currentHistory, setCurrentHistory] = useState<MethodHistory>();
+  const [currentPrevious, setCurrentPrevious] = useState<MethodHistory>();
 
   window.addEventListener('message', event => {
     let message = event.data;
@@ -38,24 +39,18 @@ const App: React.FC = () => {
           <HistoryList 
             history={codeHistory} 
             clickHandler={(h: MethodHistory, i: number) => {
-              setCurrentHistory(h); 
-              console.log(i, codeHistory.length);
-              if(vscode === undefined) {
-                vscode = acquireVsCodeApi();
+              setCurrentHistory(h);
+              if(i < codeHistory.length - 1) {
+                setCurrentPrevious(codeHistory[i + 1]);
+              } else {
+                setCurrentPrevious(undefined);
               }
-              vscode.postMessage({
-                type: 'getHighLight',  // Message type
-                code2: h.code,
-                file2: h.container,
-                code1: codeHistory[i + 1].code,
-                file1: codeHistory[i + 1].container
-              });
             }} 
           />
         </div>
 
         <div style={{ flex: 1, padding: '20px', borderLeft: '1px solid #ddd', overflowY: 'auto' }}>
-          {currentHistory && <HistoryDetail history={currentHistory} />}
+          {currentHistory && <HistoryDetail history={currentHistory} previous={currentPrevious} />}
         </div>
       </div>
       }

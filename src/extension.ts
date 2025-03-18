@@ -109,7 +109,10 @@ function createWebviewPanelIfNotExists() {
             }
         });
     }
-    historyPanel.onDidDispose(() => { historyPanel = null; });
+    historyPanel.onDidDispose(() => { 
+        console.log('dispose');
+        historyPanel = null;
+    });
     scriptUri = historyPanel.webview.asWebviewUri(vscode.Uri.joinPath(vsCodeContext.extensionUri, 'dist', 'bundle.js'));
     historyPanel.webview.html = getHistoryViewContent(scriptUri);
 }

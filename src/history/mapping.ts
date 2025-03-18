@@ -3,7 +3,7 @@ import { Method } from "../parser/utils";
 import { AptedNode, GumtreeNode } from "./utils";
 import { spawn } from "child_process";
 import path from 'path';
-import Parser, { SyntaxNode } from "tree-sitter";
+import Parser, { SyntaxNode, Point } from "tree-sitter";
 
 export function convertTreeSitterNode2AptedNode(tsNode: Parser.SyntaxNode): AptedNode {
     let root = new AptedNode(tsNode.type, tsNode.id);
@@ -122,21 +122,14 @@ export class CodeEditScript {
     }
 }
 
-export class CodeDiff {
+export class CodeDisplay {
     type: string;
-    content: string;
-    constructor(type: string, content: string) {
+    start: Point;
+    end: Point;
+    constructor(type: string, node: SyntaxNode) {
         this.type = type;
-        this.content = content;
-    }
-}
-
-class EditHook {
-    type: string;
-    content: string;
-    constructor(type: string, content: string) {
-        this.type = type;
-        this.content = content;
+        this.start = node.startPosition;
+        this.end = node.endPosition;
     }
 }
 
@@ -150,75 +143,47 @@ function getId2NodeMapping4SyntaxNode(current: SyntaxNode): Map<number, SyntaxNo
     return ret;
 }
 
-function insertOrCreate(map: Map<number, EditHook[]>, key: number, hook: EditHook) {
-    if(!map.get(key)) {
-        map.set(key, []);
-    }
-    map.get(key)!.push(hook);
-}
-
-export async function getHighLight(code1: string, file1: string, code2: string, file2: string): Promise<CodeDiff[]> {
+// TODO: fix me
+export async function getHighLight(code1: string, file1: string, code2: string, file2: string): Promise<CodeDisplay[][]> {
     let n1 = parseCodeIntoSyntaxNode(file1, code1);
     let n2 = parseCodeIntoSyntaxNode(file2, code2);
     let id2node1 = getId2NodeMapping4SyntaxNode(n1);
     let id2node2 = getId2NodeMapping4SyntaxNode(n2);
+    let nodeMappings = await getMappingsBetweenSyntaxNodes(n1, n2);
+    let ret: CodeDisplay[][] = [];
+    ret.push([]);
+    ret.push([]);
     try {
         let editString = await callEditScriptJavaCLI(convertTreeSitterNode2GumtreeNode(n1), convertTreeSitterNode2GumtreeNode(n2));
         let edits = JSON.parse(editString) as CodeEditScript[];
-        let hookMapping = new Map<number, EditHook[]>();
         edits.forEach(edit => {
             if(edit.type === 'insert') {
-                let hook = new EditHook('insert', id2node2.get(edit.src)!.text);
-                insertOrCreate(hookMapping, id2node1.get(edit.dst)!.child(edit.pos)!.id, hook);
+                ret[1].push(new CodeDisplay('insert', id2node2.get(edit.src)!));
             } else if(edit.type === 'delete') {
-                let hook = new EditHook('delete', '');
-                insertOrCreate(hookMapping, edit.src, hook);
+                ret[0].push(new CodeDisplay('delete', id2node1.get(edit.src)!));
             } else if(edit.type === 'move') {
-                let hook1 = new EditHook('delete', '');
-                insertOrCreate(hookMapping, edit.src, hook1);
-                let hook2 = new EditHook('insert', id2node1.get(edit.src)!.text);
-                insertOrCreate(hookMapping, id2node1.get(edit.dst)!.child(edit.pos)!.id, hook2);
+                ret[0].push(new CodeDisplay('move-out', id2node1.get(edit.src)!));
+                ret[1].push(new CodeDisplay('move-in', id2node2.get(edit.dst)!.child(edit.pos)!));
             } else if(edit.type === 'update') {
-                let hook1 = new EditHook('delete', '');
-                insertOrCreate(hookMapping, edit.src, hook1);
-                let hook2 = new EditHook('insert', edit.val);
-                insertOrCreate(hookMapping, edit.src, hook2);
+                ret[0].push(new CodeDisplay('update', id2node1.get(edit.src)!));
+                for(let unit of nodeMappings) {
+                    if(unit[0] === edit.src) {
+                        ret[1].push(new CodeDisplay('update', id2node2.get(unit[1])!));
+                        break;
+                    }
+                }
             } else {
                 throw new Error('unknown edit type: ' + edit.type);
             }
         });
-        let diffs = traverseSyntaxNode4CodeDiff(n1, hookMapping);
-        console.log(diffs);
-        return diffs;
+        
+        return [];
     } catch(err) {
         console.log(err);
         return [];
     }
 }
 
-function traverseSyntaxNode4CodeDiff(current: SyntaxNode, hooks: Map<number, EditHook[]>): CodeDiff[] {
-    let shouldDisplay = true;
-    let ret = [];
-    hooks.get(current.id)?.forEach(hook => {
-        if(hook.type === 'delete') {
-            shouldDisplay = false;
-            ret.push(new CodeDiff('delete', current.text));
-        } else if(hook.type === 'insert') {
-            ret.push('insert', hook.content);
-        }
-    });
-    if(shouldDisplay) {
-        if(current.childCount === 0) {
-            ret.push(new CodeDiff('plain', current.text));
-        } else {
-            current.children.forEach(child => {
-                let childDiff = traverseSyntaxNode4CodeDiff(child, hooks);
-                ret.push(...childDiff);
-            });
-        }
-    }
-    return ret;
-}
 
 async function callEditScriptJavaCLI(gumtreeNode1: GumtreeNode, gumtreeNode2: GumtreeNode): Promise<string> {
     return new Promise((resolve, reject) => {

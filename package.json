@@ -101,6 +101,7 @@
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "react": "^19.0.0",
+    "react-diff-viewer": "^3.1.1",
     "react-dom": "^19.0.0",
     "react-syntax-highlighter": "^15.6.1",
     "tree-sitter": "^0.22.1",
