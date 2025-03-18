@@ -5,6 +5,12 @@ import { MethodHistory } from './Models';
 import HistoryDetail from './HistoryDetail';
 import LoadingScreen from './LoadingScreen';
 
+declare const acquireVsCodeApi: () => {
+  postMessage(message: any, transfer?: Transferable[]): void;
+};
+
+var vscode: any = undefined;
+
 // App 组件
 const App: React.FC = () => {
 
@@ -23,7 +29,6 @@ const App: React.FC = () => {
       console.log(message);
     }
   });
-
   return (
     <div>
       {
@@ -32,9 +37,19 @@ const App: React.FC = () => {
         <div style={{ width: '300px', marginRight: '20px', overflowY: 'auto' }}>
           <HistoryList 
             history={codeHistory} 
-            clickHandler={(h: MethodHistory, i: number) => { 
+            clickHandler={(h: MethodHistory, i: number) => {
               setCurrentHistory(h); 
-              window.postMessage({type: 'setCurrentIndex', value: i});
+              console.log(i, codeHistory.length);
+              if(vscode === undefined) {
+                vscode = acquireVsCodeApi();
+              }
+              vscode.postMessage({
+                type: 'getHighLight',  // Message type
+                code2: h.code,
+                file2: h.container,
+                code1: codeHistory[i + 1].code,
+                file1: codeHistory[i + 1].container
+              });
             }} 
           />
         </div>

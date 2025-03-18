@@ -94,14 +94,19 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.3.0",
+    "node-loader": "^2.1.0",
     "octokit": "^4.1.2",
     "ollama": "^0.5.11",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-syntax-highlighter": "^15.6.1",
     "tree-sitter": "^0.22.1",
     "tree-sitter-java": "^0.23.4",
     "tree-sitter-javascript": "^0.23.1",
-    "tree-sitter-python": "^0.23.5"
+    "tree-sitter-python": "^0.23.5",
+    "util": "^0.12.5"
   }
 }

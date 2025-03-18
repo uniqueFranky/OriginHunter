@@ -159,6 +159,9 @@ class FilterTree {
     }
 
     public calcGuardiansWhichGuards(nodes: FilterTreeNode[]): FilterTreeNode[] {
+        if(nodes.length === 1) {
+            return nodes;
+        }
         let lca = this.getLCA4Nodes(nodes);
         this.calcDfn();
         let guardians: FilterTreeNode[] = [];
@@ -175,14 +178,13 @@ class FilterTree {
                 }
             }
         });
-
         // all children of lca with dfin between (min, max) are considered guardians.
         // because some insertion can be present
         lca.children.forEach(child => {
             if(child.dfin >= minDfin && child.dfin <= maxDfin) {
                 guardians.push(child);
             }
-        })
+        });
         return guardians;
     }
 }
@@ -230,7 +232,6 @@ export async function filterMethodsByRange(histories: MethodLevelHistory[], rang
     // get guardians for 0-th tree
     let nodes = getSyntaxRange(syntaxes[0], range);
     let guardians = filterTrees[0].calcGuardiansWhichGuards(nodes.map(node => filterTrees[0].id2NodeMapping.get(node.id)!));
-    
     // iterate all versions
     let result = [histories[0]];
     for(let i = 1; i < histories.length && guardians.length > 0; i++) {

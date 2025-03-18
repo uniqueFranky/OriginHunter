@@ -4,7 +4,7 @@ import * as vscode from 'vscode';
 import * as git from './git/gitAPI';
 import * as parser from './parser/tree-sitter';
 import { getHistoryFor, MethodLevelHistory } from './history/codeshovel';
-import { getMappingsBetweenMethods } from './history/mapping';
+import { getHighLight, getMappingsBetweenMethods } from './history/mapping';
 import * as filter from './history/filter';
 import { doTest } from './test/codeshovel';
 import * as reason from './reason/summarize';
@@ -97,6 +97,17 @@ function createWebviewPanelIfNotExists() {
         historyPanel = vscode.window.createWebviewPanel('HistoryPanel', 'HistoryView', vscode.ViewColumn.Beside, {
             enableScripts: true, // 允许 Webview 中的 JavaScript 执行
         });
+        historyPanel.webview.onDidReceiveMessage((message) => {
+            if(message.type === 'getHighLight') {
+                getHighLight(message.code1, message.file1, message.code2, message.file2).then(diffs => {
+                    console.log('got diffs:');
+                    console.log(diffs);
+                });
+            } else {
+                console.log('unknown message');
+                console.log(message);
+            }
+        });
     }
     historyPanel.onDidDispose(() => { historyPanel = null; });
     scriptUri = historyPanel.webview.asWebviewUri(vscode.Uri.joinPath(vsCodeContext.extensionUri, 'dist', 'bundle.js'));
@@ -105,7 +116,7 @@ function createWebviewPanelIfNotExists() {
 
 function updateHistoryPanel(history: MethodLevelHistory[]) {
     createWebviewPanelIfNotExists();
-    historyPanel!.webview.postMessage({type: "setCodeHistory", codeHistory: history.map(h => ({commit: h.commit, code: h.method.toString(), container: h.method.container.filePath}))});
+    historyPanel!.webview.postMessage({type: "setCodeHistory", codeHistory: history.map(h => ({commit: h.commit, code: h.method.toString(), container: h.method.container.filePath, syntaxNode: JSON.stringify(h.method.syntaxNode)}))});
 }
 
 function setHistoryPanelWaiting() {
