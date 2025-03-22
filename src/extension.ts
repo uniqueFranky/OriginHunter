@@ -42,18 +42,11 @@ export function activate(context: vscode.ExtensionContext) {
     const filterHistoryByRangeDisposable = vscode.commands.registerCommand('OriginHunter.filterHistoryByRange', filterHistoryByRange);
     context.subscriptions.push(filterHistoryByRangeDisposable);
 
-    // query reason command
-    const queryReasonDisposable = vscode.commands.registerCommand('OriginHunter.queryReason', queryReason);
-    context.subscriptions.push(queryReasonDisposable);
-
     // test codeshovel command
     const codeshovelTestDisposable = vscode.commands.registerCommand('OriginHunter.testCodeshovel', doTest);
     context.subscriptions.push(codeshovelTestDisposable);
 }
 
-async function queryReason() {
-    reason.queryReason(currentMethodHistories[1], currentMethodHistories[0]);
-}
 
 async function filterHistoryByRange() {
     let range = vscode.window.activeTextEditor?.selection;
@@ -94,15 +87,35 @@ async function mineHistoryByMethodSignature() {
 
 function createWebviewPanelIfNotExists() {
     if(!historyPanel) {
-        historyPanel = vscode.window.createWebviewPanel('HistoryPanel', 'HistoryView', vscode.ViewColumn.Beside, {
+        historyPanel = vscode.window.createWebviewPanel('HistoryPanel', 'HistoryView', vscode.ViewColumn.One, {
             enableScripts: true, // 允许 Webview 中的 JavaScript 执行
+            retainContextWhenHidden: true
         });
+
+        const token = vscode.workspace.getConfiguration('originhunter').get<string>('githubToken');
+        if(!token) {
+            throw new Error('no github token found');
+        }
+        const url = git.getRemoteOrigin(git.getGitRepo());
+        const parts = url.split('/');
+        const repoOwner = parts[parts.length - 2];
+        const repoName = parts[parts.length - 1];
+        historyPanel.webview.postMessage({'type': 'setGithub', 'token': token, 'repoOwner': repoOwner, 'repoName': repoName});
+
+        const modelName = vscode.workspace.getConfiguration('originhunter').get<string>('nameLLM');
+        if(!modelName) {
+            throw new Error('No LLM name was found.');
+        }
+        const apiKey = vscode.workspace.getConfiguration('originhunter').get<string>('apiKey');
+        if(!apiKey) {
+            throw new Error('No API Key was found.');
+        }
+        historyPanel.webview.postMessage({'type': 'setLLM', 'name': modelName, 'key': apiKey});
+
         historyPanel.webview.onDidReceiveMessage((message) => {
-            if(message.type === 'getHighLight') {
-                getHighLight(message.code1, message.file1, message.code2, message.file2).then(diffs => {
-                    console.log('got diffs:');
-                    console.log(diffs);
-                });
+            if(message.type === 'summarize') {
+                console.log(message.ver1);
+                console.log(message.ver2);
             } else {
                 console.log('unknown message');
                 console.log(message);

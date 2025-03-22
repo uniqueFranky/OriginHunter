@@ -2,7 +2,7 @@ import ollama from 'ollama';
 import * as vscode from 'vscode';
 import * as parser from '../parser/utils';
 import { setTimeout } from 'timers';
-import { Post } from '../github/utils';
+import { Post } from '../views/github/utils';
 
 function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));

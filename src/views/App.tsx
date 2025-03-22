@@ -5,12 +5,6 @@ import { MethodHistory } from './Models';
 import HistoryDetail from './HistoryDetail';
 import LoadingScreen from './LoadingScreen';
 
-declare const acquireVsCodeApi: () => {
-  postMessage(message: any, transfer?: Transferable[]): void;
-};
-
-var vscode: any = undefined;
-
 // App 组件
 const App: React.FC = () => {
 
@@ -18,18 +12,37 @@ const App: React.FC = () => {
   const [codeHistory, setCodeHistory] = useState<MethodHistory[]>([]);
   const [currentHistory, setCurrentHistory] = useState<MethodHistory>();
   const [currentPrevious, setCurrentPrevious] = useState<MethodHistory>();
+  const [githubToken, setGithubToken] = useState<string>();
+  const [repoOwner, setRepoOwner] = useState<string>();
+  const [repoName, setRepoName] = useState<string>();
+  const [nameLLM, setNameLLM] = useState<string>();
+  const [keyLLM, setKeyLLM] = useState<string>();
 
-  window.addEventListener('message', event => {
-    let message = event.data;
-    if(message.type === 'setCodeHistory') {
-      setCodeHistory(message.codeHistory.map((obj: { commit: Object; code: string; container: string}) => new MethodHistory(obj.commit, obj.code, obj.container)));
-      setWaitingForHistory(false);
-    } else if(message.type === 'setWaiting') {
-      setWaitingForHistory(true);
-    } else {
-      console.log(message);
-    }
-  });
+  useEffect(() => {
+    const handler = (event: MessageEvent) => {
+        let message = event.data;
+        if(message.type === 'setCodeHistory') {
+          setCodeHistory(message.codeHistory.map((obj: { commit: Object; code: string; container: string}) => new MethodHistory(obj.commit, obj.code, obj.container)));
+          setWaitingForHistory(false);
+        } else if(message.type === 'setWaiting' && !waitingForHistory) {
+          setWaitingForHistory(true);
+        } else if(message.type === 'setGithub') {
+          setGithubToken(message.token);
+          setRepoOwner(message.repoOwner);
+          setRepoName(message.repoName);
+        } else if(message.type === 'setLLM') {
+          setNameLLM(message.name);
+          setKeyLLM(message.key);
+        } else {
+          console.log(message);
+        }
+      };
+      
+    window.addEventListener('message', handler);
+    return () => {
+      window.removeEventListener('message', handler);
+    };
+  }, []);
   return (
     <div>
       {
@@ -50,7 +63,9 @@ const App: React.FC = () => {
         </div>
 
         <div style={{ flex: 1, padding: '20px', borderLeft: '1px solid #ddd', overflowY: 'auto' }}>
-          {currentHistory && <HistoryDetail history={currentHistory} previous={currentPrevious} />}
+          {currentHistory && <HistoryDetail history={currentHistory} previous={currentPrevious} 
+          githubToken={githubToken ?? ''} repoName={repoName ?? ''} repoOwner={repoOwner ?? ''}
+          nameLLM={nameLLM ?? ''} keyLLM={keyLLM ?? ''}/>}
         </div>
       </div>
       }
