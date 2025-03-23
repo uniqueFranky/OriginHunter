@@ -1,0 +1,26 @@
+{
+  "repositoryName": "commons-lang",
+  "repositoryWebURL": "https://github.com/apache/commons-lang.git",
+  "filePath": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+  "functionName": "reflectionAppend",
+  "functionKey": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
+  "functionStartLine": 464,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)$if(512-515)",
+  "blockStartLine": 512,
+  "blockEndLine": 515,
+  "startCommitId": "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "expectedChanges": [
+    {
+      "parentCommitId": "9247caa92e300a8797f086c0191939bfb3b42240",
+      "commitId": "5c40090fecdacd9366bba7e3e29d94f213cf2633",
+      "commitTime": 1042997721,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/commons/lang/builder/EqualsBuilder.java",
+      "elementNameBefore": "src/java/org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class)$if(214-217)",
+      "elementFileAfter": "src/java/org/apache/commons/lang/builder/EqualsBuilder.java",
+      "elementNameAfter": "src/java/org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class)$if(214-217)",
+      "comment": "new block"
+    }
+  ]
+}

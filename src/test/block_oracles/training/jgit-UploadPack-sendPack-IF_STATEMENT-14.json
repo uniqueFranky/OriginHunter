@@ -1,0 +1,26 @@
+{
+  "repositoryName": "jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+  "functionName": "sendPack",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)",
+  "functionStartLine": 1965,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)$if(2088-2089)",
+  "blockStartLine": 2088,
+  "blockEndLine": 2089,
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "expectedChanges": [
+    {
+      "parentCommitId": "f9c9fe52266c7a64a6a72eb90287b6e872c142e9",
+      "commitId": "3271bcee2bc37b45da048cbd64c29c3cba1ea16b",
+      "commitTime": 1297632743,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack()$if(678-679)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack()$if(678-679)",
+      "comment": "new block"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "repositoryName": "commons-lang",
+  "repositoryWebURL": "https://github.com/apache/commons-lang.git",
+  "filePath": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+  "functionName": "isCreatable",
+  "functionKey": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)",
+  "functionStartLine": 1376,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1474-1505)",
+  "blockStartLine": 1474,
+  "blockEndLine": 1505,
+  "startCommitId": "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "expectedChanges": [
+    {
+      "parentCommitId": "f50ec5e608286b0c48d6b9b4c792352de8353804",
+      "commitId": "c3b1fefbad0c67c8556ba6b4573f135197f87598",
+      "commitTime": 1518346184,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1476-1510)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1474-1505)"
+    },
+    {
+      "parentCommitId": "a2660687980b36003a612eb89b40d6fdecb4b153",
+      "commitId": "b3c31a379e9ad7cd22cb7f0669b82361ced84992",
+      "commitTime": 1473605699,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1482-1516)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1481-1515)"
+    },
+    {
+      "parentCommitId": "1a1fc65b04bcbe2e95d0fa300fce110e1224906e",
+      "commitId": "c503d742f094dc2048b72c3f78f5e2e6070a44e1",
+      "commitTime": 1473555668,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1446-1477)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1479-1513)"
+    },
+    {
+      "parentCommitId": "7df70a8c6b14452767ac932a14640e32a1dc16da",
+      "commitId": "8e2f4ddb9a1ecd7a1bf7d752c2c891d630287036",
+      "commitTime": 1293865019,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1386-1417)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1386-1417)"
+    },
+    {
+      "parentCommitId": "506bd018b3ca638cd0c9d1bdad627f6468a05bee",
+      "commitId": "26bc3fe010d5154d3ccac526ec22c429fc3af499",
+      "commitTime": 1261464762,
+      "changeType": "body change",
+      "elementFileBefore": "src/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1379-1402)",
+      "elementFileAfter": "src/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1379-1410)"
+    },
+    {
+      "parentCommitId": "9949f090897b042dce8fa86830f40d11ac7701df",
+      "commitId": "2d06a7ce861432fc702168fd4c94bc00ddfc39eb",
+      "commitTime": 1056489291,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$if(870-893)",
+      "elementFileAfter": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$if(870-893)",
+      "comment": "added with method"
+    }
+  ]
+}

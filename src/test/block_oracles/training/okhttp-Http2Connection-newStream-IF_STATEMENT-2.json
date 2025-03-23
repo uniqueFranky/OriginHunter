@@ -1,0 +1,46 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionName": "newStream",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)",
+  "functionStartLine": 233,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$if(253-255)",
+  "blockStartLine": 253,
+  "blockEndLine": 255,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "16aed96a358f7cf8639a305fcce1d890002e2bbc",
+      "commitId": "a18d4e184b224d1567ffc1faa5502a5eeaf5445c",
+      "commitTime": 1464686106,
+      "changeType": "body change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(int, List, boolean, boolean)$if(265-268)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(int, List, boolean, boolean)$if(244-246)"
+    },
+    {
+      "parentCommitId": "83de4eb552994d30451f8a3481b5a00d6b457a2e",
+      "commitId": "6f6d959fdae64065521990413f86bc7ab038d7c1",
+      "commitTime": 1359670986,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(170-172)",
+      "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(193-196)"
+    },
+    {
+      "parentCommitId": "a52eaa4ee650728e4fb59f48c59a3572ef4ddb5a",
+      "commitId": "7f4249625960b7f10dc61aae4d1896c2e126f538",
+      "commitTime": 1357005343,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java",
+      "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(164-166)",
+      "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java",
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(164-166)",
+      "comment": "new block"
+    }
+  ]
+}

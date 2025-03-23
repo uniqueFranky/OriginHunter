@@ -1,0 +1,36 @@
+{
+  "repositoryName": "commons-lang",
+  "repositoryWebURL": "https://github.com/apache/commons-lang.git",
+  "filePath": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+  "functionName": "isCreatable",
+  "functionKey": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)",
+  "functionStartLine": 1376,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1498-1502)",
+  "blockStartLine": 1498,
+  "blockEndLine": 1502,
+  "startCommitId": "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "expectedChanges": [
+    {
+      "parentCommitId": "7df70a8c6b14452767ac932a14640e32a1dc16da",
+      "commitId": "8e2f4ddb9a1ecd7a1bf7d752c2c891d630287036",
+      "commitTime": 1293865019,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1410-1414)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1410-1414)"
+    },
+    {
+      "parentCommitId": "9949f090897b042dce8fa86830f40d11ac7701df",
+      "commitId": "2d06a7ce861432fc702168fd4c94bc00ddfc39eb",
+      "commitTime": 1056489291,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$if(886-890)",
+      "elementFileAfter": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$if(886-890)",
+      "comment": "added with method"
+    }
+  ]
+}

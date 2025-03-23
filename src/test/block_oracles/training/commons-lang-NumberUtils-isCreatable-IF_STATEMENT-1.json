@@ -1,0 +1,26 @@
+{
+  "repositoryName": "commons-lang",
+  "repositoryWebURL": "https://github.com/apache/commons-lang.git",
+  "filePath": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+  "functionName": "isCreatable",
+  "functionKey": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)",
+  "functionStartLine": 1376,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1413-1415)",
+  "blockStartLine": 1413,
+  "blockEndLine": 1415,
+  "startCommitId": "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "expectedChanges": [
+    {
+      "parentCommitId": "9949f090897b042dce8fa86830f40d11ac7701df",
+      "commitId": "2d06a7ce861432fc702168fd4c94bc00ddfc39eb",
+      "commitTime": 1056489291,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$if(818-820)",
+      "elementFileAfter": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$if(818-820)",
+      "comment": "added with method"
+    }
+  ]
+}

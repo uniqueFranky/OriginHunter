@@ -1,0 +1,26 @@
+{
+  "repositoryName": "junit4",
+  "repositoryWebURL": "https://github.com/junit-team/junit4.git",
+  "filePath": "src/main/java/org/junit/runners/Parameterized.java",
+  "functionName": "createRunnersForParameters",
+  "functionKey": "src/main/java/org.junit.runners.Parameterized.RunnersFactory#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
+  "functionStartLine": 439,
+  "blockType": "ENHANCED_FOR_STATEMENT",
+  "blockKey": "src/main/java/org.junit.runners.Parameterized.RunnersFactory#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)$for(446-449)",
+  "blockStartLine": 446,
+  "blockEndLine": 449,
+  "startCommitId": "02c328028b4d32c15bbf0becc9838e54ecbafcbf",
+  "expectedChanges": [
+    {
+      "parentCommitId": "dca4a949f93bb85cc8ee0eb8789979a18aa3ffc7",
+      "commitId": "cb6abf6fc729f07c5d60b0756e91af444400b4b5",
+      "commitTime": 1393441109,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
+      "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)$for(310-313)",
+      "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)$for(310-313)",
+      "comment": "new block"
+    }
+  ]
+}

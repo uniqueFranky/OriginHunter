@@ -60,7 +60,7 @@ class FilterTreeNode {
         this.dfin = stamp;
         this.children.forEach(child => {
             stamp = child.calcDfn(stamp + 1);
-        })
+        });
         this.dfout = stamp + 1;
         return this.dfout;
     }

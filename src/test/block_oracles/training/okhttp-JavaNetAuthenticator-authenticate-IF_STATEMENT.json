@@ -1,0 +1,37 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp-urlconnection/src/main/java/okhttp3/JavaNetAuthenticator.java",
+  "functionName": "authenticate",
+  "functionKey": "okhttp-urlconnection/src/main/java/okhttp3.JavaNetAuthenticator#authenticate(Route, Response)",
+  "functionStartLine": 32,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "okhttp-urlconnection/src/main/java/okhttp3.JavaNetAuthenticator#authenticate(Route, Response)$if(41-41)",
+  "blockStartLine": 41,
+  "blockEndLine": 41,
+  "startCommitId": "8e2116fddcc1f9ad2b15d03fbc8918e30831d6a2",
+  "expectedChanges": [
+    {
+      "parentCommitId": "9ecff8f961c321098c2598097fb5289e968ef1ac",
+      "commitId": "0bfd6048574d61c138fd417051ae2a1bcb44638f",
+      "commitTime": 1450450613,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/http/AuthenticatorAdapter.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.http.AuthenticatorAdapter#authenticate(Proxy, Response)$if(43-43)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http/AuthenticatorAdapter.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http.AuthenticatorAdapter#authenticate(Route, Response)$if(47-47)",
+      "comment": "Merge Method [public authenticate(proxy Proxy, response Response) : Request, public authenticateProxy(proxy Proxy, response Response) : Request] to public authenticate(route Route, response Response) : Request in class okhttp3.internal.http.AuthenticatorAdapter"
+    },
+    {
+      "parentCommitId": "9ecff8f961c321098c2598097fb5289e968ef1ac",
+      "commitId": "0bfd6048574d61c138fd417051ae2a1bcb44638f",
+      "commitTime": 1450450613,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/http/AuthenticatorAdapter.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.http.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$if(65-65)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http/AuthenticatorAdapter.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http.AuthenticatorAdapter#authenticate(Route, Response)$if(47-47)",
+      "comment": "Merge Method [public authenticate(proxy Proxy, response Response) : Request, public authenticateProxy(proxy Proxy, response Response) : Request] to public authenticate(route Route, response Response) : Request in class okhttp3.internal.http.AuthenticatorAdapter"
+    }
+  ]
+}

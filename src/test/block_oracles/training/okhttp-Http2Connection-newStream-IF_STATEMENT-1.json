@@ -1,0 +1,36 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionName": "newStream",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)",
+  "functionStartLine": 233,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$if(246-248)",
+  "blockStartLine": 246,
+  "blockEndLine": 248,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "14521ebe5f85654f3955e1d14bc62a9c45f5a591",
+      "commitId": "86be1c3acdf3c7b26c57cae17612b74ada5ce1a1",
+      "commitTime": 1479646498,
+      "changeType": "body change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$if(218-220)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$if(218-220)"
+    },
+    {
+      "parentCommitId": "bc342a42c84b660ef8296498af88780cc1c152bd",
+      "commitId": "60d5852c6676ece85b0e3d0c6e45fb0186303f83",
+      "commitTime": 1356939327,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java",
+      "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(150-152)",
+      "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java",
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(150-152)",
+      "comment": "new block"
+    }
+  ]
+}

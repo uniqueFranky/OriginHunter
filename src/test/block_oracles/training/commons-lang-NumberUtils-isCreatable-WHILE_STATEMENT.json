@@ -1,0 +1,36 @@
+{
+  "repositoryName": "commons-lang",
+  "repositoryWebURL": "https://github.com/apache/commons-lang.git",
+  "filePath": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+  "functionName": "isCreatable",
+  "functionKey": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)",
+  "functionStartLine": 1376,
+  "blockType": "WHILE_STATEMENT",
+  "blockKey": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$while(1441-1473)",
+  "blockStartLine": 1441,
+  "blockEndLine": 1473,
+  "startCommitId": "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "expectedChanges": [
+    {
+      "parentCommitId": "3421e6adb4a3a4fadae79feb0f180e78e2698374",
+      "commitId": "9c5b6cdc7108eb071785b0c4edd205650cdf1ca4",
+      "commitTime": 1474286171,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$while(1448-1480)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$while(1445-1477)"
+    },
+    {
+      "parentCommitId": "9949f090897b042dce8fa86830f40d11ac7701df",
+      "commitId": "2d06a7ce861432fc702168fd4c94bc00ddfc39eb",
+      "commitTime": 1056489291,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$while(837-869)",
+      "elementFileAfter": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$while(837-869)",
+      "comment": "added with method"
+    }
+  ]
+}
