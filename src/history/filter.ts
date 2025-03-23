@@ -281,14 +281,31 @@ function getSingleNodeInRange(root: SyntaxNode, range: vscode.Range) {
 }
 
 function isIsomorphic(node1: SyntaxNode, node2: SyntaxNode): boolean {
-    if(node1.type !== node2.type || node1.childCount !== node2.childCount) {
+    if(node1.type !== node2.type) {
         return false;
     }
     if(node1.childCount === 0) {
         return node1.text === node2.text;
     }
-    for(let i = 0; i < node1.childCount; i++) {
-        if(!isIsomorphic(node1.child(i)!, node2.child(i)!)) {
+    let nonCommentChildren1 = [];
+    let nonCommentChildren2 = [];
+    for(let child of node1.children) {
+        if(child.type.toLowerCase().includes('comment')) {
+            continue;
+        }
+        nonCommentChildren1.push(child);
+    }
+    for(let child of node2.children) {
+        if(child.type.toLowerCase().includes('comment')) {
+            continue;
+        }
+        nonCommentChildren2.push(child);
+    }
+    if(nonCommentChildren1.length !== nonCommentChildren2.length) {
+        return false;
+    }
+    for(let i = 0; i < nonCommentChildren1.length; i++) {
+        if(!isIsomorphic(nonCommentChildren1[i], nonCommentChildren2[i])) {
             return false;
         }
     }
@@ -318,19 +335,37 @@ export async function filterMethodsByNode(histories: MethodLevelHistory[], range
         });
         let newGuardians: FilterTreeNode[] = [];
         let shouldAddToHistory = false;
-        guardians.forEach(guardian => {
+        if(guardians.length === 1) {
+            let guardian = guardians[0];
             let cor = map.get(guardian.id);
             if(!cor) {
                 shouldAddToHistory = true;
-                return;
+                guardians = guardian.children;
+            } else {
+                let node1 = filterTrees[i - 1].id2NodeMapping.get(guardian.id)!;
+                let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
+                newGuardians.push(node2);
+                if(!shouldAddToHistory && !isIsomorphic(node1.tsNode, node2.tsNode)) {
+                    shouldAddToHistory = true;
+                }
             }
-            let node1 = filterTrees[i - 1].id2NodeMapping.get(guardian.id)!;
-            let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
-            newGuardians.push(node2);
-            if(!shouldAddToHistory && !isIsomorphic(node1.tsNode, node2.tsNode)) {
-                shouldAddToHistory = true;
-            }
-        });
+        } 
+        if(guardians.length > 1) {
+            guardians.forEach(guardian => {
+                let cor = map.get(guardian.id);
+                if(!cor) {
+                    shouldAddToHistory = true;
+                    return;
+                }
+                let node1 = filterTrees[i - 1].id2NodeMapping.get(guardian.id)!;
+                let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
+                newGuardians.push(node2);
+                if(!shouldAddToHistory && !isIsomorphic(node1.tsNode, node2.tsNode)) {
+                    shouldAddToHistory = true;
+                }
+            });
+        }
+
         guardians = filterTrees[i].calcGuardiansWhichGuards(newGuardians);
         if(shouldAddToHistory || guardians.length !== newGuardians.length) {
             result.push(histories[i]);

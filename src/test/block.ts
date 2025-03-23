@@ -90,24 +90,27 @@ export async function doBlockTest(): Promise<[MethodLevelHistory[], MethodLevelH
         return [[], []];
     }
     let projectName = workspaceFolder.split('/')[workspaceFolder.split('/').length - 1];
-    const oraclePath = path.join(__dirname, 'block_oracles/test');
+    const oraclePath = path.join(__dirname, 'block_oracles/training');
     const oracleFileNames = await fs.readdir(oraclePath);
     console.log(oracleFileNames);
+    let tasks = [];
     for(let i = 0; i < oracleFileNames.length; i++) {
         let oracleName = oracleFileNames[i];
         let oracleFilePath = path.join(oraclePath, oracleName);
         let oracleContent = await fs.readFile(oracleFilePath, 'utf-8');
         const oracle = JSON.parse(oracleContent);
-        if(oracle['repositoryName'] !== projectName || oracleName !== 'lucene-solr-Field-tokenStream-IF_STATEMENT-1.json') {
+        if(oracle['repositoryName'] !== projectName) {
             continue;
         }
         console.log(oracle);
-        let out_dir = path.join(__dirname, 'block_oracles', 'out');
+        let out_dir = path.join(__dirname, 'block_oracles', 'hyb_out');
         let out_name = path.join(out_dir, oracleName);
-        const [original, filtered] = await singleTest('test', oracleName);
-        fs.writeFile(out_name, JSON.stringify(filtered.map(f => f.commit.hash)));
-        return [original, filtered];
+        let task = singleTest('training', oracleName).then(([original, filtered]) => {
+            fs.writeFile(out_name, JSON.stringify(filtered.map(f => f.commit.hash)));
+        });
+        tasks.push(task);
     }
+    await Promise.all(tasks);
     console.log('finish');
     return [[], []];
 }
