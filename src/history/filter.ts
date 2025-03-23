@@ -161,6 +161,8 @@ class FilterTree {
     public calcGuardiansWhichGuards(nodes: FilterTreeNode[]): FilterTreeNode[] {
         if(nodes.length === 1) {
             return nodes;
+        } else if(nodes.length === 0) {
+            return [];
         }
         let lca = this.getLCA4Nodes(nodes);
         this.calcDfn();
@@ -228,7 +230,6 @@ export async function filterMethodsByRange(histories: MethodLevelHistory[], rang
         let mapping = getId2NodeMapping4FilterTreeNode(tree.root);
         tree.setId2NodeMapping(mapping);
     });
-
     // get guardians for 0-th tree
     let nodes = getSyntaxRange(syntaxes[0], range);
     let guardians = filterTrees[0].calcGuardiansWhichGuards(nodes.map(node => filterTrees[0].id2NodeMapping.get(node.id)!));
@@ -253,6 +254,80 @@ export async function filterMethodsByRange(histories: MethodLevelHistory[], rang
             let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
             newGuardians.push(node2);
             if(!shouldAddToHistory && node1.tsNode.text !== node2.tsNode.text) {
+                shouldAddToHistory = true;
+            }
+        });
+        guardians = filterTrees[i].calcGuardiansWhichGuards(newGuardians);
+        if(shouldAddToHistory || guardians.length !== newGuardians.length) {
+            result.push(histories[i]);
+        } else {
+            result[result.length - 1] = histories[i];
+        }
+    }
+    return result;
+}
+
+function getSingleNodeInRange(root: SyntaxNode, range: vscode.Range) {
+    console.log(root.type);
+    if(root.startPosition.row + 1 === range.start.line && root.endPosition.row + 1 === range.end.line) {
+        return root;
+    }
+    for(let child of root.children) {
+        if(child.startPosition.row + 1 <= range.start.line && child.endPosition.row + 1 >= range.end.line) {
+            return getSingleNodeInRange(child, range);
+        }
+    }
+    throw new Error('no matching child');
+}
+
+function isIsomorphic(node1: SyntaxNode, node2: SyntaxNode): boolean {
+    if(node1.type !== node2.type || node1.childCount !== node2.childCount) {
+        return false;
+    }
+    if(node1.childCount === 0) {
+        return node1.text === node2.text;
+    }
+    for(let i = 0; i < node1.childCount; i++) {
+        if(!isIsomorphic(node1.child(i)!, node2.child(i)!)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+export async function filterMethodsByNode(histories: MethodLevelHistory[], range: vscode.Range): Promise<MethodLevelHistory[]> {
+    let syntaxes = histories.map(h => h.method.syntaxNode);
+    let filterTrees = syntaxes.map(node => FilterTree.fromTSNode(node));
+    filterTrees.forEach(tree => {
+        let mapping = getId2NodeMapping4FilterTreeNode(tree.root);
+        tree.setId2NodeMapping(mapping);
+    });
+    // get guardians for 0-th tree
+
+    let nodes = [getSingleNodeInRange(syntaxes[0], range)];
+    console.log(nodes[0].text);
+    let guardians = filterTrees[0].calcGuardiansWhichGuards(nodes.map(node => filterTrees[0].id2NodeMapping.get(node.id)!));
+    console.log(guardians[0].tsNode.text);
+    // iterate all versions
+    let result = [histories[0]];
+    for(let i = 1; i < histories.length && guardians.length > 0; i++) {
+        let mappings = await getMappingsBetweenMethods(histories[i - 1].method, histories[i].method);
+        let map = new Map<number, number>(); // map of ids from i-1 to i
+        mappings.forEach(unit => {
+            map.set(unit[0], unit[1]);
+        });
+        let newGuardians: FilterTreeNode[] = [];
+        let shouldAddToHistory = false;
+        guardians.forEach(guardian => {
+            let cor = map.get(guardian.id);
+            if(!cor) {
+                shouldAddToHistory = true;
+                return;
+            }
+            let node1 = filterTrees[i - 1].id2NodeMapping.get(guardian.id)!;
+            let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
+            newGuardians.push(node2);
+            if(!shouldAddToHistory && !isIsomorphic(node1.tsNode, node2.tsNode)) {
                 shouldAddToHistory = true;
             }
         });

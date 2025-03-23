@@ -1,0 +1,227 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hibernate-search",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/hibernate-search/.git",
+  "startCommitName": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "sourceFileName": "ClassLoaderHelper.java",
+  "functionName": "instanceFromName",
+  "functionId": "instanceFromName___targetSuperType-Class__T____classNameToLoad-String__componentDescription-String__serviceManager-ServiceManager",
+  "sourceFilePath": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+  "functionAnnotation": "",
+  "functionDoc": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\nto be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param componentDescription a meaningful description of the role the instance will have,\nused to enrich error messages to describe the context of the error\n@param serviceManager Service manager allowing access to the class loading service\n@return a new instance of the type given by {@code classNameToLoad}\n@throws SearchException wrapping other error types with a proper error message for all kind of problems, like\nclassNotFound, missing proper constructor, wrong type, security errors.\n",
+  "functionStartLine": 59,
+  "functionEndLine": 65,
+  "numCommitsSeen": 29,
+  "timeTaken": 873,
+  "changeHistory": [
+    "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+    "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+    "915e3992753a5681b6d2e0eed49a7b171eab2902"
+  ],
+  "changeHistoryShort": {
+    "3db8c2dfa425219fd0d660c6c0e4194bfb818a38": "Ymultichange(Yparameterchange,Ybodychange,Yannotationchange,Ydocchange)",
+    "fa9e756e26d0f36f48938de2647ad769fa467b9d": "Ymultichange(Yannotationchange,Ydocchange)",
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27": "Yfilerename",
+    "915e3992753a5681b6d2e0eed49a7b171eab2902": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "3db8c2dfa425219fd0d660c6c0e4194bfb818a38": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange,Yannotationchange,Ydocchange)",
+      "commitMessage": "HSEARCH-1121 Cleaning up classloading via ClassLoadingHelper. All classloading needs to occur via the ClassLoaderService.\n",
+      "commitDate": "2014/3/10 下午10:28",
+      "commitName": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+      "commitAuthor": "Hardy Ferentschik",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "HSEARCH-1121 Cleaning up classloading via ClassLoadingHelper. All classloading needs to occur via the ClassLoaderService.\n",
+          "commitDate": "2014/3/10 下午10:28",
+          "commitName": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+          "commitAuthor": "Hardy Ferentschik",
+          "commitDateOld": "2014/3/10 下午10:28",
+          "commitNameOld": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+          "commitAuthorOld": "Hardy Ferentschik",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 2,
+          "commitsBetweenForFile": 1,
+          "actualSource": "public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, String componentDescription, ServiceManager serviceManager) {\n    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, componentDescription, serviceManager);\n    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+          "functionStartLine": 70,
+          "functionName": "instanceFromName",
+          "functionAnnotation": "",
+          "functionDoc": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\nto be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param componentDescription a meaningful description of the role the instance will have,\nused to enrich error messages to describe the context of the error\n@param serviceManager Service manager allowing access to the class loading service\n@return a new instance of the type given by {@code classNameToLoad}\n@throws SearchException wrapping other error types with a proper error message for all kind of problems, like\nclassNotFound, missing proper constructor, wrong type, security errors.\n",
+          "diff": "@@ -1,5 +1,4 @@\n-@Deprecated\n-public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n-    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n+public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, String componentDescription, ServiceManager serviceManager) {\n+    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, componentDescription, serviceManager);\n     return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[targetSuperType-Class\u003cT\u003e, classNameToLoad-String, fallbackClassLoader-ClassLoader, componentDescription-String]",
+            "newValue": "[targetSuperType-Class\u003cT\u003e, classNameToLoad-String, componentDescription-String, serviceManager-ServiceManager]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "HSEARCH-1121 Cleaning up classloading via ClassLoadingHelper. All classloading needs to occur via the ClassLoaderService.\n",
+          "commitDate": "2014/3/10 下午10:28",
+          "commitName": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+          "commitAuthor": "Hardy Ferentschik",
+          "commitDateOld": "2014/3/10 下午10:28",
+          "commitNameOld": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+          "commitAuthorOld": "Hardy Ferentschik",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 2,
+          "commitsBetweenForFile": 1,
+          "actualSource": "public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, String componentDescription, ServiceManager serviceManager) {\n    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, componentDescription, serviceManager);\n    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+          "functionStartLine": 70,
+          "functionName": "instanceFromName",
+          "functionAnnotation": "",
+          "functionDoc": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\nto be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param componentDescription a meaningful description of the role the instance will have,\nused to enrich error messages to describe the context of the error\n@param serviceManager Service manager allowing access to the class loading service\n@return a new instance of the type given by {@code classNameToLoad}\n@throws SearchException wrapping other error types with a proper error message for all kind of problems, like\nclassNotFound, missing proper constructor, wrong type, security errors.\n",
+          "diff": "@@ -1,5 +1,4 @@\n-@Deprecated\n-public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n-    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n+public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, String componentDescription, ServiceManager serviceManager) {\n+    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, componentDescription, serviceManager);\n     return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        },
+        {
+          "type": "Yannotationchange",
+          "commitMessage": "HSEARCH-1121 Cleaning up classloading via ClassLoadingHelper. All classloading needs to occur via the ClassLoaderService.\n",
+          "commitDate": "2014/3/10 下午10:28",
+          "commitName": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+          "commitAuthor": "Hardy Ferentschik",
+          "commitDateOld": "2014/3/10 下午10:28",
+          "commitNameOld": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+          "commitAuthorOld": "Hardy Ferentschik",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 2,
+          "commitsBetweenForFile": 1,
+          "actualSource": "public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, String componentDescription, ServiceManager serviceManager) {\n    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, componentDescription, serviceManager);\n    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+          "functionStartLine": 70,
+          "functionName": "instanceFromName",
+          "functionAnnotation": "",
+          "functionDoc": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\nto be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param componentDescription a meaningful description of the role the instance will have,\nused to enrich error messages to describe the context of the error\n@param serviceManager Service manager allowing access to the class loading service\n@return a new instance of the type given by {@code classNameToLoad}\n@throws SearchException wrapping other error types with a proper error message for all kind of problems, like\nclassNotFound, missing proper constructor, wrong type, security errors.\n",
+          "diff": "@@ -1,5 +1,4 @@\n-@Deprecated\n-public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n-    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n+public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, String componentDescription, ServiceManager serviceManager) {\n+    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, componentDescription, serviceManager);\n     return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "@Deprecated",
+            "newValue": ""
+          }
+        },
+        {
+          "type": "Ydocchange",
+          "commitMessage": "HSEARCH-1121 Cleaning up classloading via ClassLoadingHelper. All classloading needs to occur via the ClassLoaderService.\n",
+          "commitDate": "2014/3/10 下午10:28",
+          "commitName": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+          "commitAuthor": "Hardy Ferentschik",
+          "commitDateOld": "2014/3/10 下午10:28",
+          "commitNameOld": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+          "commitAuthorOld": "Hardy Ferentschik",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 2,
+          "commitsBetweenForFile": 1,
+          "actualSource": "public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, String componentDescription, ServiceManager serviceManager) {\n    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, componentDescription, serviceManager);\n    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+          "functionStartLine": 70,
+          "functionName": "instanceFromName",
+          "functionAnnotation": "",
+          "functionDoc": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\nto be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param componentDescription a meaningful description of the role the instance will have,\nused to enrich error messages to describe the context of the error\n@param serviceManager Service manager allowing access to the class loading service\n@return a new instance of the type given by {@code classNameToLoad}\n@throws SearchException wrapping other error types with a proper error message for all kind of problems, like\nclassNotFound, missing proper constructor, wrong type, security errors.\n",
+          "diff": "@@ -1,5 +1,4 @@\n-@Deprecated\n-public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n-    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n+public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, String componentDescription, ServiceManager serviceManager) {\n+    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, componentDescription, serviceManager);\n     return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "",
+            "newValue": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\nto be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param componentDescription a meaningful description of the role the instance will have,\nused to enrich error messages to describe the context of the error\n@param serviceManager Service manager allowing access to the class loading service\n@return a new instance of the type given by {@code classNameToLoad}\n@throws SearchException wrapping other error types with a proper error message for all kind of problems, like\nclassNotFound, missing proper constructor, wrong type, security errors.\n"
+          }
+        }
+      ]
+    },
+    "fa9e756e26d0f36f48938de2647ad769fa467b9d": {
+      "type": "Ymultichange(Yannotationchange,Ydocchange)",
+      "commitMessage": "HSEARCH-1121 Removing deprecated method from ClassLoaderHelper and moving ClassLoaderHelperTest into engine module\n",
+      "commitDate": "2014/3/10 下午10:28",
+      "commitName": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+      "commitAuthor": "Hardy Ferentschik",
+      "subchanges": [
+        {
+          "type": "Yannotationchange",
+          "commitMessage": "HSEARCH-1121 Removing deprecated method from ClassLoaderHelper and moving ClassLoaderHelperTest into engine module\n",
+          "commitDate": "2014/3/10 下午10:28",
+          "commitName": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+          "commitAuthor": "Hardy Ferentschik",
+          "commitDateOld": "2014/2/4 上午2:45",
+          "commitNameOld": "9914ffaf28153be5cbe09abc71330e138eba36e8",
+          "commitAuthorOld": "Sanne Grinovero",
+          "daysBetweenCommits": 34.82,
+          "commitsBetweenForRepo": 101,
+          "commitsBetweenForFile": 1,
+          "actualSource": "@Deprecated\npublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+          "functionStartLine": 69,
+          "functionName": "instanceFromName",
+          "functionAnnotation": "@Deprecated",
+          "functionDoc": "",
+          "diff": "@@ -1,4 +1,5 @@\n+@Deprecated\n public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n     final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n     return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "",
+            "newValue": "@Deprecated"
+          }
+        },
+        {
+          "type": "Ydocchange",
+          "commitMessage": "HSEARCH-1121 Removing deprecated method from ClassLoaderHelper and moving ClassLoaderHelperTest into engine module\n",
+          "commitDate": "2014/3/10 下午10:28",
+          "commitName": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+          "commitAuthor": "Hardy Ferentschik",
+          "commitDateOld": "2014/2/4 上午2:45",
+          "commitNameOld": "9914ffaf28153be5cbe09abc71330e138eba36e8",
+          "commitAuthorOld": "Sanne Grinovero",
+          "daysBetweenCommits": 34.82,
+          "commitsBetweenForRepo": 101,
+          "commitsBetweenForFile": 1,
+          "actualSource": "@Deprecated\npublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+          "functionStartLine": 69,
+          "functionName": "instanceFromName",
+          "functionAnnotation": "@Deprecated",
+          "functionDoc": "",
+          "diff": "@@ -1,4 +1,5 @@\n+@Deprecated\n public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n     final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n     return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\n           to be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param fallbackClassLoader the ClassLoader used when the class cannot be found in the context one\n@param componentDescription a meaningful description of the role the instance will have,\n           used to enrich error messages to describe the context of the error\n@return a new instance of classNameToLoad\n@throws SearchException\n            wrapping other error types with a proper error message for all kind of problems, like\n            classNotFound, missing proper constructor, wrong type, security errors.\n",
+            "newValue": ""
+          }
+        }
+      ]
+    },
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27": {
+      "type": "Yfilerename",
+      "commitMessage": "HSEARCH-1310 Dropping the hibernate-search directory prefix, renaming hibernate-search into legacy\n",
+      "commitDate": "2013/4/24 上午1:02",
+      "commitName": "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+      "commitAuthor": "Hardy Ferentschik",
+      "commitDateOld": "2013/4/23 下午9:27",
+      "commitNameOld": "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+      "commitAuthorOld": "Sanne Grinovero",
+      "daysBetweenCommits": 0.15,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n}",
+      "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+      "functionStartLine": 133,
+      "functionName": "instanceFromName",
+      "functionAnnotation": "",
+      "functionDoc": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\n           to be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param fallbackClassLoader the ClassLoader used when the class cannot be found in the context one\n@param componentDescription a meaningful description of the role the instance will have,\n           used to enrich error messages to describe the context of the error\n@return a new instance of classNameToLoad\n@throws SearchException\n            wrapping other error types with a proper error message for all kind of problems, like\n            classNotFound, missing proper constructor, wrong type, security errors.\n",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "hibernate-search-engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+        "newPath": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java"
+      }
+    },
+    "915e3992753a5681b6d2e0eed49a7b171eab2902": {
+      "type": "Yintroduced",
+      "commitMessage": "HSEARCH-1268 Add method to ClassLoaderHelper to pass a fallback\nClassLoader\n",
+      "commitDate": "2013/2/5 下午11:56",
+      "commitName": "915e3992753a5681b6d2e0eed49a7b171eab2902",
+      "commitAuthor": "Davide D\u0027Alto",
+      "diff": "@@ -0,0 +1,4 @@\n+public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n+    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n+    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n+}\n\\ No newline at end of file\n",
+      "actualSource": "public static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader, String componentDescription) {\n    final Class\u003c?\u003e clazzDef \u003d classForName(classNameToLoad, fallbackClassLoader, componentDescription);\n    return instanceFromClass(targetSuperType, clazzDef, componentDescription);\n}",
+      "path": "hibernate-search-engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+      "functionStartLine": 133,
+      "functionName": "instanceFromName",
+      "functionAnnotation": "",
+      "functionDoc": "Creates an instance of a target class specified by the fully qualified class name using a {@link ClassLoader}\nas fallback when the class cannot be found in the context one.\n\n@param \u003cT\u003e matches the type of targetSuperType: defines the return type\n@param targetSuperType the return type of the function, the classNameToLoad will be checked\n           to be assignable to this type.\n@param classNameToLoad a fully qualified class name, whose type is assignable to targetSuperType\n@param fallbackClassLoader the ClassLoader used when the class cannot be found in the context one\n@param componentDescription a meaningful description of the role the instance will have,\n           used to enrich error messages to describe the context of the error\n@return a new instance of classNameToLoad\n@throws SearchException\n            wrapping other error types with a proper error message for all kind of problems, like\n            classNotFound, missing proper constructor, wrong type, security errors.\n"
+    }
+  }
+}

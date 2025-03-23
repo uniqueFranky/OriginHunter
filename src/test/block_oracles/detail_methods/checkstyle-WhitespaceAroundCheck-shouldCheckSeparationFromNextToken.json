@@ -1,0 +1,61 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "checkstyle",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/checkstyle/.git",
+  "startCommitName": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "sourceFileName": "WhitespaceAroundCheck.java",
+  "functionName": "shouldCheckSeparationFromNextToken",
+  "functionId": "shouldCheckSeparationFromNextToken___ast-DetailAST__nextChar-char",
+  "sourceFilePath": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+  "functionAnnotation": "",
+  "functionDoc": "Check if it should be checked if next token is separated from current by\nwhitespace. Explanation why this method is needed is identical to one\nincluded in shouldCheckSeparationFromPreviousToken method.\n\n@param ast current AST.\n@param nextChar next character.\n@return true if it should be checked if next token is separated by whitespace,\n     false otherwise.\n",
+  "functionStartLine": 462,
+  "functionEndLine": 468,
+  "numCommitsSeen": 61,
+  "timeTaken": 690,
+  "changeHistory": [
+    "f77a01ba3683c16a5d23670b04f5929e2b042b5b",
+    "e545ce56a19877ef98f367b3aa20fd6098bbeca9"
+  ],
+  "changeHistoryShort": {
+    "f77a01ba3683c16a5d23670b04f5929e2b042b5b": "Ybodychange",
+    "e545ce56a19877ef98f367b3aa20fd6098bbeca9": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "f77a01ba3683c16a5d23670b04f5929e2b042b5b": {
+      "type": "Ybodychange",
+      "commitMessage": "Issue #3202: ARRAY_INIT whitespace follow check deleted, test cases added and fixed\n",
+      "commitDate": "2016/10/16 下午9:25",
+      "commitName": "f77a01ba3683c16a5d23670b04f5929e2b042b5b",
+      "commitAuthor": "zenigata",
+      "commitDateOld": "2016/5/27 下午9:42",
+      "commitNameOld": "39b343a32a4f1ce18ee98a34618fda0a5404d6a0",
+      "commitAuthorOld": "rnveach",
+      "daysBetweenCommits": 141.99,
+      "commitsBetweenForRepo": 235,
+      "commitsBetweenForFile": 1,
+      "actualSource": "private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {\n    return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI) \u0026\u0026 ast.getType() !\u003d TokenTypes.ARRAY_INIT \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar) \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n}",
+      "path": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+      "functionStartLine": 449,
+      "functionName": "shouldCheckSeparationFromNextToken",
+      "functionAnnotation": "",
+      "functionDoc": "Check if it should be checked if next token is separated from current by\nwhitespace. Explanation why this method is needed is identical to one\nincluded in shouldCheckSeparationFromPreviousToken method.\n\n@param ast current AST.\n@param nextChar next character.\n@return true if it should be checked if next token is separated by whitespace,\n     false otherwise.\n",
+      "diff": "@@ -1,3 +1,3 @@\n private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {\n-    return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI) \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar) \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n+    return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI) \u0026\u0026 ast.getType() !\u003d TokenTypes.ARRAY_INIT \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar) \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "e545ce56a19877ef98f367b3aa20fd6098bbeca9": {
+      "type": "Yintroduced",
+      "commitMessage": "Issue #2838: Make WhitespaceAround allow double-brace initialization.\n",
+      "commitDate": "2016/2/11 上午3:21",
+      "commitName": "e545ce56a19877ef98f367b3aa20fd6098bbeca9",
+      "commitAuthor": "liscju",
+      "diff": "@@ -0,0 +1,3 @@\n+private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {\n+    return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI) \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar) \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n+}\n\\ No newline at end of file\n",
+      "actualSource": "private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {\n    return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI) \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar) \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n}",
+      "path": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+      "functionStartLine": 449,
+      "functionName": "shouldCheckSeparationFromNextToken",
+      "functionAnnotation": "",
+      "functionDoc": "Check if it should be checked if next token is separated from current by\nwhitespace. Explanation why this method is needed is identical to one\nincluded in shouldCheckSeparationFromPreviousToken method.\n\n@param ast current AST.\n@param nextChar next character.\n@return true if it should be checked if next token is separated by whitespace,\n     false otherwise.\n"
+    }
+  }
+}

@@ -7,7 +7,7 @@ import { getHistoryFor, MethodLevelHistory } from './history/codeshovel';
 import { getHighLight, getMappingsBetweenMethods } from './history/mapping';
 import * as filter from './history/filter';
 import { doTest } from './test/codeshovel';
-import * as reason from './reason/summarize';
+import { doBlockTest } from './test/block';
 
 var historyPanel: vscode.WebviewPanel | null;
 var scriptUri: vscode.Uri;
@@ -45,8 +45,16 @@ export function activate(context: vscode.ExtensionContext) {
     // test codeshovel command
     const codeshovelTestDisposable = vscode.commands.registerCommand('OriginHunter.testCodeshovel', doTest);
     context.subscriptions.push(codeshovelTestDisposable);
+
+    // test block command
+    const blockTestDisposable = vscode.commands.registerCommand('OriginHunter.testBlock', testBlock);
+    context.subscriptions.push(blockTestDisposable);
 }
 
+async function testBlock() {
+    const [original, filtered] = await doBlockTest();
+    updateHistoryPanel(filtered);
+}
 
 async function filterHistoryByRange() {
     let range = vscode.window.activeTextEditor?.selection;

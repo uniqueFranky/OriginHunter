@@ -1,0 +1,144 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hibernate-search",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/hibernate-search/.git",
+  "startCommitName": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "sourceFileName": "TokenizerChain.java",
+  "functionName": "createComponents",
+  "functionId": "createComponents___fieldName-String",
+  "sourceFilePath": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
+  "functionAnnotation": "@Override",
+  "functionDoc": "",
+  "functionStartLine": 48,
+  "functionEndLine": 55,
+  "numCommitsSeen": 5,
+  "timeTaken": 842,
+  "changeHistory": [
+    "b3dc2cfffa7e016c288eaeb9e82443572a6c081d",
+    "bdf7b30992aba220399e67c032f5b3ef61c9e080",
+    "6e432d32793618c49eec5234e14048f0dbd59943"
+  ],
+  "changeHistoryShort": {
+    "b3dc2cfffa7e016c288eaeb9e82443572a6c081d": "Ymultichange(Yparameterchange,Ybodychange,Yparametermetachange)",
+    "bdf7b30992aba220399e67c032f5b3ef61c9e080": "Yfilerename",
+    "6e432d32793618c49eec5234e14048f0dbd59943": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "b3dc2cfffa7e016c288eaeb9e82443572a6c081d": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange,Yparametermetachange)",
+      "commitMessage": "HSEARCH-1849 Update to Apache Lucene 5.2.1\n",
+      "commitDate": "2015/8/7 上午4:17",
+      "commitName": "b3dc2cfffa7e016c288eaeb9e82443572a6c081d",
+      "commitAuthor": "Sanne Grinovero",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "HSEARCH-1849 Update to Apache Lucene 5.2.1\n",
+          "commitDate": "2015/8/7 上午4:17",
+          "commitName": "b3dc2cfffa7e016c288eaeb9e82443572a6c081d",
+          "commitAuthor": "Sanne Grinovero",
+          "commitDateOld": "2014/12/8 下午9:53",
+          "commitNameOld": "bdf7b30992aba220399e67c032f5b3ef61c9e080",
+          "commitAuthorOld": "Sanne Grinovero",
+          "daysBetweenCommits": 241.27,
+          "commitsBetweenForRepo": 412,
+          "commitsBetweenForFile": 1,
+          "actualSource": "@Override\nprotected TokenStreamComponents createComponents(String fieldName) {\n    Tokenizer tk \u003d tokenizer.create();\n    TokenStream ts \u003d tk;\n    for (TokenFilterFactory filter : filters) {\n        ts \u003d filter.create(ts);\n    }\n    return new TokenStreamComponents(tk, ts);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
+          "functionStartLine": 48,
+          "functionName": "createComponents",
+          "functionAnnotation": "@Override",
+          "functionDoc": "",
+          "diff": "@@ -1,9 +1,9 @@\n @Override\n-protected TokenStreamComponents createComponents(final String fieldName, final Reader aReader) {\n-    Tokenizer tk \u003d tokenizer.create(aReader);\n+protected TokenStreamComponents createComponents(String fieldName) {\n+    Tokenizer tk \u003d tokenizer.create();\n     TokenStream ts \u003d tk;\n     for (TokenFilterFactory filter : filters) {\n         ts \u003d filter.create(ts);\n     }\n     return new TokenStreamComponents(tk, ts);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[fieldName-String(modifiers-final), aReader-Reader(modifiers-final)]",
+            "newValue": "[fieldName-String]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "HSEARCH-1849 Update to Apache Lucene 5.2.1\n",
+          "commitDate": "2015/8/7 上午4:17",
+          "commitName": "b3dc2cfffa7e016c288eaeb9e82443572a6c081d",
+          "commitAuthor": "Sanne Grinovero",
+          "commitDateOld": "2014/12/8 下午9:53",
+          "commitNameOld": "bdf7b30992aba220399e67c032f5b3ef61c9e080",
+          "commitAuthorOld": "Sanne Grinovero",
+          "daysBetweenCommits": 241.27,
+          "commitsBetweenForRepo": 412,
+          "commitsBetweenForFile": 1,
+          "actualSource": "@Override\nprotected TokenStreamComponents createComponents(String fieldName) {\n    Tokenizer tk \u003d tokenizer.create();\n    TokenStream ts \u003d tk;\n    for (TokenFilterFactory filter : filters) {\n        ts \u003d filter.create(ts);\n    }\n    return new TokenStreamComponents(tk, ts);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
+          "functionStartLine": 48,
+          "functionName": "createComponents",
+          "functionAnnotation": "@Override",
+          "functionDoc": "",
+          "diff": "@@ -1,9 +1,9 @@\n @Override\n-protected TokenStreamComponents createComponents(final String fieldName, final Reader aReader) {\n-    Tokenizer tk \u003d tokenizer.create(aReader);\n+protected TokenStreamComponents createComponents(String fieldName) {\n+    Tokenizer tk \u003d tokenizer.create();\n     TokenStream ts \u003d tk;\n     for (TokenFilterFactory filter : filters) {\n         ts \u003d filter.create(ts);\n     }\n     return new TokenStreamComponents(tk, ts);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        },
+        {
+          "type": "Yparametermetachange",
+          "commitMessage": "HSEARCH-1849 Update to Apache Lucene 5.2.1\n",
+          "commitDate": "2015/8/7 上午4:17",
+          "commitName": "b3dc2cfffa7e016c288eaeb9e82443572a6c081d",
+          "commitAuthor": "Sanne Grinovero",
+          "commitDateOld": "2014/12/8 下午9:53",
+          "commitNameOld": "bdf7b30992aba220399e67c032f5b3ef61c9e080",
+          "commitAuthorOld": "Sanne Grinovero",
+          "daysBetweenCommits": 241.27,
+          "commitsBetweenForRepo": 412,
+          "commitsBetweenForFile": 1,
+          "actualSource": "@Override\nprotected TokenStreamComponents createComponents(String fieldName) {\n    Tokenizer tk \u003d tokenizer.create();\n    TokenStream ts \u003d tk;\n    for (TokenFilterFactory filter : filters) {\n        ts \u003d filter.create(ts);\n    }\n    return new TokenStreamComponents(tk, ts);\n}",
+          "path": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
+          "functionStartLine": 48,
+          "functionName": "createComponents",
+          "functionAnnotation": "@Override",
+          "functionDoc": "",
+          "diff": "@@ -1,9 +1,9 @@\n @Override\n-protected TokenStreamComponents createComponents(final String fieldName, final Reader aReader) {\n-    Tokenizer tk \u003d tokenizer.create(aReader);\n+protected TokenStreamComponents createComponents(String fieldName) {\n+    Tokenizer tk \u003d tokenizer.create();\n     TokenStream ts \u003d tk;\n     for (TokenFilterFactory filter : filters) {\n         ts \u003d filter.create(ts);\n     }\n     return new TokenStreamComponents(tk, ts);\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[fieldName-String(modifiers-final), aReader-Reader(modifiers-final)]",
+            "newValue": "[fieldName-String]"
+          }
+        }
+      ]
+    },
+    "bdf7b30992aba220399e67c032f5b3ef61c9e080": {
+      "type": "Yfilerename",
+      "commitMessage": "HSEARCH-1730 Move all .impl classes in hibernate-search-engine into engine.impl\n",
+      "commitDate": "2014/12/8 下午9:53",
+      "commitName": "bdf7b30992aba220399e67c032f5b3ef61c9e080",
+      "commitAuthor": "Sanne Grinovero",
+      "commitDateOld": "2014/12/8 下午9:53",
+      "commitNameOld": "12e2ad914631d46016c829e63a71b13162686fdb",
+      "commitAuthorOld": "Sanne Grinovero",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "@Override\nprotected TokenStreamComponents createComponents(final String fieldName, final Reader aReader) {\n    Tokenizer tk \u003d tokenizer.create(aReader);\n    TokenStream ts \u003d tk;\n    for (TokenFilterFactory filter : filters) {\n        ts \u003d filter.create(ts);\n    }\n    return new TokenStreamComponents(tk, ts);\n}",
+      "path": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
+      "functionStartLine": 48,
+      "functionName": "createComponents",
+      "functionAnnotation": "@Override",
+      "functionDoc": "",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "engine/src/main/java/org/hibernate/search/impl/TokenizerChain.java",
+        "newPath": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java"
+      }
+    },
+    "6e432d32793618c49eec5234e14048f0dbd59943": {
+      "type": "Yintroduced",
+      "commitMessage": "HSEARCH-1501 Removing all references to Apache Solr from our poms and code\n",
+      "commitDate": "2014/2/5 下午11:00",
+      "commitName": "6e432d32793618c49eec5234e14048f0dbd59943",
+      "commitAuthor": "Sanne Grinovero",
+      "diff": "@@ -0,0 +1,9 @@\n+@Override\n+protected TokenStreamComponents createComponents(final String fieldName, final Reader aReader) {\n+    Tokenizer tk \u003d tokenizer.create(aReader);\n+    TokenStream ts \u003d tk;\n+    for (TokenFilterFactory filter : filters) {\n+        ts \u003d filter.create(ts);\n+    }\n+    return new TokenStreamComponents(tk, ts);\n+}\n\\ No newline at end of file\n",
+      "actualSource": "@Override\nprotected TokenStreamComponents createComponents(final String fieldName, final Reader aReader) {\n    Tokenizer tk \u003d tokenizer.create(aReader);\n    TokenStream ts \u003d tk;\n    for (TokenFilterFactory filter : filters) {\n        ts \u003d filter.create(ts);\n    }\n    return new TokenStreamComponents(tk, ts);\n}",
+      "path": "engine/src/main/java/org/hibernate/search/impl/TokenizerChain.java",
+      "functionStartLine": 65,
+      "functionName": "createComponents",
+      "functionAnnotation": "@Override",
+      "functionDoc": ""
+    }
+  }
+}

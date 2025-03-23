@@ -1,0 +1,117 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "junit4",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/junit4/.git",
+  "startCommitName": "02c328028b4d32c15bbf0becc9838e54ecbafcbf",
+  "sourceFileName": "Parameterized.java",
+  "functionName": "createRunners",
+  "functionId": "$createRunners",
+  "sourceFilePath": "src/main/java/org/junit/runners/Parameterized.java",
+  "functionAnnotation": "",
+  "functionDoc": "",
+  "functionStartLine": 371,
+  "functionEndLine": 379,
+  "numCommitsSeen": 70,
+  "timeTaken": 266,
+  "changeHistory": [
+    "7111b9621997f6c660687b8ac04003398343ee3a",
+    "1bf8438b65858565dbb64736bfe13aae9cfc1b5a",
+    "495a9a93e4a1157e707a01467e7cc3f600c88d19"
+  ],
+  "changeHistoryShort": {
+    "7111b9621997f6c660687b8ac04003398343ee3a": "Ybodychange",
+    "1bf8438b65858565dbb64736bfe13aae9cfc1b5a": "Ymultichange(Yexceptionschange,Ybodychange)",
+    "495a9a93e4a1157e707a01467e7cc3f600c88d19": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "7111b9621997f6c660687b8ac04003398343ee3a": {
+      "type": "Ybodychange",
+      "commitMessage": "Handle AssumptionViolatedException in @Parameters method (#1460)\n\n",
+      "commitDate": "2017/6/15 上午3:06",
+      "commitName": "7111b9621997f6c660687b8ac04003398343ee3a",
+      "commitAuthor": "Alex Panchenko",
+      "commitDateOld": "2017/4/21 上午8:19",
+      "commitNameOld": "1bf8438b65858565dbb64736bfe13aae9cfc1b5a",
+      "commitAuthorOld": "Alex Panchenko",
+      "daysBetweenCommits": 54.78,
+      "commitsBetweenForRepo": 15,
+      "commitsBetweenForFile": 1,
+      "actualSource": "private List\u003cRunner\u003e createRunners() throws Exception {\n    if (runnerOverride !\u003d null) {\n        return Collections.singletonList(runnerOverride);\n    }\n    Parameters parameters \u003d parametersMethod.getAnnotation(Parameters.class);\n    return Collections.unmodifiableList(createRunnersForParameters(allParameters, parameters.name(), getParametersRunnerFactory()));\n}",
+      "path": "src/main/java/org/junit/runners/Parameterized.java",
+      "functionStartLine": 371,
+      "functionName": "createRunners",
+      "functionAnnotation": "",
+      "functionDoc": "",
+      "diff": "@@ -1,4 +1,7 @@\n private List\u003cRunner\u003e createRunners() throws Exception {\n+    if (runnerOverride !\u003d null) {\n+        return Collections.singletonList(runnerOverride);\n+    }\n     Parameters parameters \u003d parametersMethod.getAnnotation(Parameters.class);\n     return Collections.unmodifiableList(createRunnersForParameters(allParameters, parameters.name(), getParametersRunnerFactory()));\n }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "1bf8438b65858565dbb64736bfe13aae9cfc1b5a": {
+      "type": "Ymultichange(Yexceptionschange,Ybodychange)",
+      "commitMessage": "@BeforeParam/@AfterParam for Parameterized runner (#1435)\n\nCloses #45 ",
+      "commitDate": "2017/4/21 上午8:19",
+      "commitName": "1bf8438b65858565dbb64736bfe13aae9cfc1b5a",
+      "commitAuthor": "Alex Panchenko",
+      "subchanges": [
+        {
+          "type": "Yexceptionschange",
+          "commitMessage": "@BeforeParam/@AfterParam for Parameterized runner (#1435)\n\nCloses #45 ",
+          "commitDate": "2017/4/21 上午8:19",
+          "commitName": "1bf8438b65858565dbb64736bfe13aae9cfc1b5a",
+          "commitAuthor": "Alex Panchenko",
+          "commitDateOld": "2015/4/15 上午2:27",
+          "commitNameOld": "9f87b7819a63b53aae70e79fb72cc00e1837a3b6",
+          "commitAuthorOld": "Dmitry Baev",
+          "daysBetweenCommits": 737.24,
+          "commitsBetweenForRepo": 117,
+          "commitsBetweenForFile": 1,
+          "actualSource": "private List\u003cRunner\u003e createRunners() throws Exception {\n    Parameters parameters \u003d parametersMethod.getAnnotation(Parameters.class);\n    return Collections.unmodifiableList(createRunnersForParameters(allParameters, parameters.name(), getParametersRunnerFactory()));\n}",
+          "path": "src/main/java/org/junit/runners/Parameterized.java",
+          "functionStartLine": 334,
+          "functionName": "createRunners",
+          "functionAnnotation": "",
+          "functionDoc": "",
+          "diff": "@@ -1,4 +1,4 @@\n-private List\u003cRunner\u003e createRunners() throws Throwable {\n-    Parameters parameters \u003d getParametersMethod().getAnnotation(Parameters.class);\n-    return Collections.unmodifiableList(createRunnersForParameters(allParameters(), parameters.name(), getParametersRunnerFactory()));\n+private List\u003cRunner\u003e createRunners() throws Exception {\n+    Parameters parameters \u003d parametersMethod.getAnnotation(Parameters.class);\n+    return Collections.unmodifiableList(createRunnersForParameters(allParameters, parameters.name(), getParametersRunnerFactory()));\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[Throwable]",
+            "newValue": "[Exception]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "@BeforeParam/@AfterParam for Parameterized runner (#1435)\n\nCloses #45 ",
+          "commitDate": "2017/4/21 上午8:19",
+          "commitName": "1bf8438b65858565dbb64736bfe13aae9cfc1b5a",
+          "commitAuthor": "Alex Panchenko",
+          "commitDateOld": "2015/4/15 上午2:27",
+          "commitNameOld": "9f87b7819a63b53aae70e79fb72cc00e1837a3b6",
+          "commitAuthorOld": "Dmitry Baev",
+          "daysBetweenCommits": 737.24,
+          "commitsBetweenForRepo": 117,
+          "commitsBetweenForFile": 1,
+          "actualSource": "private List\u003cRunner\u003e createRunners() throws Exception {\n    Parameters parameters \u003d parametersMethod.getAnnotation(Parameters.class);\n    return Collections.unmodifiableList(createRunnersForParameters(allParameters, parameters.name(), getParametersRunnerFactory()));\n}",
+          "path": "src/main/java/org/junit/runners/Parameterized.java",
+          "functionStartLine": 334,
+          "functionName": "createRunners",
+          "functionAnnotation": "",
+          "functionDoc": "",
+          "diff": "@@ -1,4 +1,4 @@\n-private List\u003cRunner\u003e createRunners() throws Throwable {\n-    Parameters parameters \u003d getParametersMethod().getAnnotation(Parameters.class);\n-    return Collections.unmodifiableList(createRunnersForParameters(allParameters(), parameters.name(), getParametersRunnerFactory()));\n+private List\u003cRunner\u003e createRunners() throws Exception {\n+    Parameters parameters \u003d parametersMethod.getAnnotation(Parameters.class);\n+    return Collections.unmodifiableList(createRunnersForParameters(allParameters, parameters.name(), getParametersRunnerFactory()));\n }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "495a9a93e4a1157e707a01467e7cc3f600c88d19": {
+      "type": "Yintroduced",
+      "commitMessage": "Extract class that creates the runners.\n\nThe new code makes it clear that the Parameterized ruinner is a suite\nwith automatically generated runners for each set of parameters.\n",
+      "commitDate": "2014/11/14 上午7:14",
+      "commitName": "495a9a93e4a1157e707a01467e7cc3f600c88d19",
+      "commitAuthor": "Stefan Birkner",
+      "diff": "@@ -0,0 +1,4 @@\n+private List\u003cRunner\u003e createRunners() throws Throwable {\n+    Parameters parameters \u003d getParametersMethod().getAnnotation(Parameters.class);\n+    return Collections.unmodifiableList(createRunnersForParameters(allParameters(), parameters.name(), getParametersRunnerFactory()));\n+}\n\\ No newline at end of file\n",
+      "actualSource": "private List\u003cRunner\u003e createRunners() throws Throwable {\n    Parameters parameters \u003d getParametersMethod().getAnnotation(Parameters.class);\n    return Collections.unmodifiableList(createRunnersForParameters(allParameters(), parameters.name(), getParametersRunnerFactory()));\n}",
+      "path": "src/main/java/org/junit/runners/Parameterized.java",
+      "functionStartLine": 253,
+      "functionName": "createRunners",
+      "functionAnnotation": "",
+      "functionDoc": ""
+    }
+  }
+}

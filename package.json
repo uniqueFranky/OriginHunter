@@ -32,6 +32,10 @@
       {
         "command": "OriginHunter.testCodeshovel",
         "title": "Do Codeshovel Tests"
+      },
+      {
+        "command": "OriginHunter.testBlock",
+        "title": "Do Block Tests"
       }
     ],
     "configuration": {

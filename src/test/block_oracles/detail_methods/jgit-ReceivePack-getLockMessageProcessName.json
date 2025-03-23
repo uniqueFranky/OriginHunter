@@ -1,0 +1,87 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "jgit",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/jgit/.git",
+  "startCommitName": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "sourceFileName": "ReceivePack.java",
+  "functionName": "getLockMessageProcessName",
+  "functionId": "getLockMessageProcessName",
+  "sourceFilePath": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+  "functionAnnotation": "@Override",
+  "functionDoc": "@inheritDoc}\n",
+  "functionStartLine": 344,
+  "functionEndLine": 346,
+  "numCommitsSeen": 70,
+  "timeTaken": 704,
+  "changeHistory": [
+    "781e106a2607665a7a47b626fd5b67fa8b491d18",
+    "c310fa0c802f40a774edb58641de3ac5bfad0e2c",
+    "cc37cb777e57f6a5a8e0068945d322ac0f6834e2"
+  ],
+  "changeHistoryShort": {
+    "781e106a2607665a7a47b626fd5b67fa8b491d18": "Ydocchange",
+    "c310fa0c802f40a774edb58641de3ac5bfad0e2c": "Ybodychange",
+    "cc37cb777e57f6a5a8e0068945d322ac0f6834e2": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "781e106a2607665a7a47b626fd5b67fa8b491d18": {
+      "type": "Ydocchange",
+      "commitMessage": "Fix javadoc in org.eclipse.jgit transport package\n\nChange-Id: Id70e2c27e38bf12f87e66b28fbd0b06908494764\nSigned-off-by: Matthias Sohn \u003cmatthias.sohn@sap.com\u003e",
+      "commitDate": "2017/12/21 上午5:10",
+      "commitName": "781e106a2607665a7a47b626fd5b67fa8b491d18",
+      "commitAuthor": "Matthias Sohn",
+      "commitDateOld": "2017/2/20 上午8:05",
+      "commitNameOld": "7ac182f4e427e0d5a986b8ca67a56fc22828b1a0",
+      "commitAuthorOld": "David Pursehouse",
+      "daysBetweenCommits": 303.88,
+      "commitsBetweenForRepo": 496,
+      "commitsBetweenForFile": 1,
+      "actualSource": "@Override\nprotected String getLockMessageProcessName() {\n    return \"jgit receive-pack\";\n}",
+      "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "functionStartLine": 344,
+      "functionName": "getLockMessageProcessName",
+      "functionAnnotation": "@Override",
+      "functionDoc": "@inheritDoc}\n",
+      "diff": "",
+      "extendedDetails": {
+        "oldValue": "",
+        "newValue": "@inheritDoc}\n"
+      }
+    },
+    "c310fa0c802f40a774edb58641de3ac5bfad0e2c": {
+      "type": "Ybodychange",
+      "commitMessage": "Mark non-externalizable strings as such\n\nA few classes such as Constanrs are marked with @SuppressWarnings, as are\ntoString() methods with many liternal, but otherwise $NLS-n$ is used for\nstring containing text that should not be translated. A few literals may\nfall into the gray zone, but mostly I\u0027ve tried to only tag the obvious\nones.\n\nChange-Id: I22e50a77e2bf9e0b842a66bdf674e8fa1692f590\n",
+      "commitDate": "2012/12/27 下午11:57",
+      "commitName": "c310fa0c802f40a774edb58641de3ac5bfad0e2c",
+      "commitAuthor": "Robin Rosenberg",
+      "commitDateOld": "2012/9/5 下午11:20",
+      "commitNameOld": "e63f1c94f8f9a5b10da6c1e5932da33eb805230a",
+      "commitAuthorOld": "Shawn O. Pearce",
+      "daysBetweenCommits": 113.03,
+      "commitsBetweenForRepo": 118,
+      "commitsBetweenForFile": 1,
+      "actualSource": "@Override\nprotected String getLockMessageProcessName() {\n    return \"jgit receive-pack\";\n}",
+      "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "functionStartLine": 244,
+      "functionName": "getLockMessageProcessName",
+      "functionAnnotation": "@Override",
+      "functionDoc": "",
+      "diff": "",
+      "extendedDetails": {}
+    },
+    "cc37cb777e57f6a5a8e0068945d322ac0f6834e2": {
+      "type": "Yintroduced",
+      "commitMessage": "Factor a base class out of ReceivePack\n\nWe are working on a publish/subscribe based git protocol, and we want to\nreuse several parts of the ReceivePack-like code for reading commands\nand processing a pack. In this new implementation, the connection\nmanagement will be very different, in particular, there may be multiple\npacks received on a single open connection. So, hoist out as much as we\ncan from ReceivePack, mostly just leaving behind the single-connection\nversion in that class.\n\nChange-Id: I5567aad6ae77951f73f59c1f91996d934ea88334\n",
+      "commitDate": "2012/5/15 上午2:41",
+      "commitName": "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
+      "commitAuthor": "Dave Borowitz",
+      "diff": "@@ -0,0 +1,4 @@\n+@Override\n+protected String getLockMessageProcessName() {\n+    return \"jgit receive-pack\";\n+}\n\\ No newline at end of file\n",
+      "actualSource": "@Override\nprotected String getLockMessageProcessName() {\n    return \"jgit receive-pack\";\n}",
+      "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "functionStartLine": 207,
+      "functionName": "getLockMessageProcessName",
+      "functionAnnotation": "@Override",
+      "functionDoc": ""
+    }
+  }
+}
