@@ -6,6 +6,7 @@ import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import DiffViewer from 'react-diff-viewer';
 import * as github from './github/api';
 import { Post, Comment } from './github/utils';
+import path from 'path';
 
 interface HistoryDetailProps {
   history: MethodHistory;
@@ -17,8 +18,14 @@ interface HistoryDetailProps {
   keyLLM: string;
 }
 
+declare function acquireVsCodeApi(): any;
+
+let posts: Post[] = [];
+let vscode: any = undefined;
+
 const init = async (props: HistoryDetailProps): Promise<[{sender: string; text: string}[], {sender: string; text: string}[]]> => {
-    let posts: Post[] = [];
+    posts = [];
+    console.log('getting prs');
     let prs = await github.getPRsRelatedToCommit(props.history.commit.hash, props.githubToken, props.repoName, props.repoOwner);
     for(let pr of prs) {
         let issueComments = await github.getIssueComments(pr, props.githubToken, props.repoName, props.repoOwner);
@@ -29,16 +36,22 @@ const init = async (props: HistoryDetailProps): Promise<[{sender: string; text: 
         let tb = await github.getPRTitleAndBody(pr, props.githubToken, props.repoName, props.repoOwner);
         posts.push(new Post('Pull Request', pr, tb[0], tb[1], comments));
     }
+    console.log(prs);
 
-
+    console.log('getting issues');
     for(let pr of prs) {
         let iss = await github.getIssuesRelatedToPR(pr, props.githubToken, props.repoName, props.repoOwner);
+        console.log(iss);
         for(let issue of iss) {
+            if(posts.find((p, i) => p.id === issue)) {
+              continue;
+            }
             let issueComments = await github.getIssueComments(issue, props.githubToken, props.repoName, props.repoOwner);
             let tb = await github.getIssueTitleAndBody(issue, props.githubToken, props.repoName, props.repoOwner);
             posts.push(new Post('Issue', issue, tb[0], tb[1], issueComments));
         }
     }
+    console.log(posts);
     const prompt = {
       role: 'user',
       content: `
@@ -52,7 +65,7 @@ const init = async (props: HistoryDetailProps): Promise<[{sender: string; text: 
       Remember to focus your analysis only on the function provided and its related context. If the discussion includes other code changes, include them only if they are directly relevant to the function or if they significantly affect its behavior or purpose.
 
       Function in the earlier version:
-      ${props.previous!.code}
+      ${props.previous? props.previous.code : 'None, the function is newly introduced'}
 
       Function in the later version:
       ${props.history!.code}
@@ -71,17 +84,16 @@ const HistoryDetail: React.FC<HistoryDetailProps> = ({ history, previous, github
   const [displayMessages, setDisplayMessages] = useState<{ sender: string; text: string }[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [tabIndex, setTabIndex] = useState(0);
-  useEffect(() =>  {
-    if(!previous) {
-      return;
-    }
+  
+  const initChat = () => {
     setDisplayMessages([{'sender': 'User', 'text': 'Help me summarize the changes'}]);
     init({history, previous, githubToken, repoName, repoOwner, nameLLM, keyLLM}).then(res => {
       let [disp, stor] = res;
       setDisplayMessages(disp);
       setChatMessages(stor);
     });
-  }, [history, previous]);
+  };
+
   const sendMessage = async () => {
     if (!inputMessage.trim()) {
       return;
@@ -98,6 +110,23 @@ const HistoryDetail: React.FC<HistoryDetailProps> = ({ history, previous, github
     });
     setChatMessages([...chatMessagesReplica, userMessage]);
     setDisplayMessages([...displayMessagesReplica, userMessage]);
+  };
+
+  const saveAsData = async () => {
+    if(vscode === undefined) {
+      vscode = acquireVsCodeApi();
+    }
+
+    let d = {
+      repoName: repoName,
+      repoOwner: repoOwner,
+      previous: previous,
+      current: history,
+      posts: posts,
+      agentSum: chatMessages[chatMessages.length - 1]
+    };
+    let fileName = repoName + '-' + history.commit.hash + '.json';
+    vscode.postMessage({'type': 'saveData', 'data': JSON.stringify(d), 'path': fileName});
   };
 
   return (
@@ -150,8 +179,14 @@ const HistoryDetail: React.FC<HistoryDetailProps> = ({ history, previous, github
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Ask AI..."
           />
+          <Button variant="contained" color="primary" onClick={initChat} sx={{ marginLeft: '8px' }}>
+            Init
+          </Button>
           <Button variant="contained" color="primary" onClick={sendMessage} sx={{ marginLeft: '8px' }}>
             Send
+          </Button>
+          <Button variant="contained" color="primary" onClick={saveAsData} sx={{ marginLeft: '8px' }}>
+            Save
           </Button>
         </Box>
       )}

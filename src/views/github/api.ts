@@ -32,15 +32,21 @@ export async function getPRsRelatedToCommit(commit: string, token: string, repo:
 }
 
 function extractNumberHashtags(input: string): number[] {
-    const regex = /#\d+/g;
+    const regex = /(#|issue|pull)[\/]?\d+/gi;  // 匹配 #、issue 或 pull 后面跟数字
     const matches = input.match(regex);
-    return matches ? matches.map(match => Number(match.slice(1))) : [];
-  }
+    return matches ? matches.map(match => {
+        const numberPart = match.replace(/\D/g, '');  // 去掉非数字字符，保留数字
+        return Number(numberPart);
+    }) : [];
+}
+
 
 export async function getIssuesRelatedToPR(pr: number, token: string, repo: string, owner: string): Promise<number[]> {
     try {
         const tb = await getPRTitleAndBody(pr, token, repo, owner);
-        return extractNumberHashtags(tb[1]);
+        let res = [...extractNumberHashtags(tb[0]), ...extractNumberHashtags(tb[1])];
+        let uniqueRes = [...new Set(res)];
+        return uniqueRes;
     } catch(err) {
         console.log(err);
     }

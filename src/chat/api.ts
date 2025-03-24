@@ -139,27 +139,36 @@ export async function summarizeConversation(m1: parser.Method, m2: parser.Method
     const prompt = {
         role: 'user',
         content: `
-        You are provided with two versions of the same function, one from an earlier commit and the other from a later commit. Additionally, you have access to the related Issue and Pull Request discussions, which may include other code changes not directly related to the provided function.
-        Your task is to focus on analyzing the discussions and extracting the following information specifically related to the provided function. If other code changes are mentioned in the discussion and are closely tied to the function, include them in your analysis; if the relationship is weak or unclear, do not include those changes in your output. Pay particular attention to the motivation behind the code changes.
-        1. Reason for the change: What is the core motivation for modifying the provided function? Why was this change necessary or requested? This is the most important aspect of the analysis. Look for any issues, bugs, or performance concerns that the function change is intended to address.
-        2. Developer suggestions or feedback: What suggestions, concerns, or feedback were provided by the developers regarding the function? Were alternative approaches considered or discussed for implementing the change?
-        3. Technical decisions: What technical decisions were made in the discussions related to the function? This could include decisions about the function’s logic, design, or performance considerations.
-        4. Challenges or issues addressed by the function change: Were any challenges specific to the function mentioned during the discussion? How were these challenges resolved or mitigated in the code change?
-        5. Outcome and conclusions: What were the key takeaways regarding the function change from the discussion? Were there any conclusions on how the function should be modified, or were there any unresolved issues?
-        Remember to focus your analysis only on the function provided and its related context. If the discussion includes other code changes, include them only if they are directly relevant to the function or if they significantly affect its behavior or purpose.
-
-        Function in the earlier version:
-        ${m1.toString()}
-
-        Function in the later version:
-        ${m2.toString()}
-
-
-        Conversations in Issues and Pull Requests:
-
-        ${JSON.stringify(posts, null, '\t')};
-        `
+    You have two versions of the same function: one from an earlier commit and one from a later commit. You also have access to the related Issue and Pull Request discussions, which may include other code changes not directly related to the function. Your task is to focus specifically on the provided function and its context.
+    
+    Please analyze the discussions and extract relevant information related to the function change. If other code changes are mentioned that are closely tied to the function, include them; if the relationship is weak or unclear, do not include them. Pay special attention to the motivations behind the changes.
+    
+    ### Key aspects to address:
+    1. **Reason for the change**: Why was the function modified? What problem (e.g., bug, performance issue) is the change addressing? This is the most important point.
+    2. **Developer feedback/suggestions**: What suggestions or concerns did the developers share regarding the function? Were alternative solutions discussed?
+    3. **Technical decisions**: What technical choices were made in the function's logic, design, or performance based on the discussions?
+    4. **Challenges addressed**: Were there any challenges or specific issues related to the function mentioned in the discussions? How were they resolved?
+    5. **Outcome and conclusions**: What conclusions were reached regarding the function change? Were any issues left unresolved?
+    
+    Remember to **focus only on the function** and its context. If other changes are mentioned, include them **only if they directly affect** the function's behavior or purpose.
+    
+    ### Important:
+    - Your answer doesn't need to address all aspects above, only those specifically discussed.
+    - Provide the **source** of your conclusions (e.g., comment author, issue ID).
+    
+    ---
+    
+    #### Function in earlier version (${m1.container} ${m1.signature.toString()}):
+    ${m1.toString()}
+    
+    #### Function in later version (${m2.container} ${m2.signature.toString()}):
+    ${m2.toString()}
+    
+    #### Issue and Pull Request discussions:
+    ${JSON.stringify(posts, null, '\t')};
+    `
     };
+    
     const modelName = vscode.workspace.getConfiguration('originhunter').get('nameLLM');
     if(!modelName) {
         throw new Error('No LLM name was found.');

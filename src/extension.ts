@@ -8,6 +8,8 @@ import { getHighLight, getMappingsBetweenMethods } from './history/mapping';
 import * as filter from './history/filter';
 import { doTest } from './test/codeshovel';
 import { doBlockTest } from './test/block';
+import * as fs from 'fs/promises';
+import path from 'path';
 
 var historyPanel: vscode.WebviewPanel | null;
 var scriptUri: vscode.Uri;
@@ -121,9 +123,8 @@ function createWebviewPanelIfNotExists() {
         historyPanel.webview.postMessage({'type': 'setLLM', 'name': modelName, 'key': apiKey});
 
         historyPanel.webview.onDidReceiveMessage((message) => {
-            if(message.type === 'summarize') {
-                console.log(message.ver1);
-                console.log(message.ver2);
+            if(message.type === 'saveData') {
+                fs.writeFile(path.join(__dirname, 'test', 'sum', message.path), JSON.stringify(JSON.parse(message.data), null, '\t'));
             } else {
                 console.log('unknown message');
                 console.log(message);

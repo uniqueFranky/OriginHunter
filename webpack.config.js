@@ -10,7 +10,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'], // 解析的文件扩展名
     fallback: {
-      "timers": require.resolve("timers-browserify")
+      "timers": require.resolve("timers-browserify"),
+      "path": require.resolve("path-browserify"),
     }
   },
   module: {
