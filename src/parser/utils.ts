@@ -13,7 +13,8 @@ export class Parameter {
 }
 
 export enum SupportedLanguage {
-    Java
+    Java,
+    Python
 }
 
 export abstract class MethodSignature {
@@ -88,6 +89,8 @@ export function getSupportedLanguageForFile(fileName: string): SupportedLanguage
     switch(ext.toLowerCase()) {
         case 'java':
             return SupportedLanguage.Java;
+        case 'py':
+            return SupportedLanguage.Python;
         default:
             throw new Error('Unsupported Language: ' + ext);
     }

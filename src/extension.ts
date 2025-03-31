@@ -81,7 +81,8 @@ async function mineHistoryByMethodSignature() {
     let selectedText = editor.document.getText(selection).replaceAll(/\s+/g, ' ').trim();
     try {
         let methods = parser.parseCodeIntoMethods(fileName, editor.document.getText());
-        methods = methods.filter(met => met.signature.toString().trim() === selectedText);
+        console.log(methods);
+        methods = methods.filter(met => met.signature.toString().replaceAll(/\s+/g, '') === selectedText.replaceAll(/\s+/g, ''));
         if(methods.length !== 1) {
             throw new Error(`multiple or no (${methods.length}) corresponding method found`);
         }

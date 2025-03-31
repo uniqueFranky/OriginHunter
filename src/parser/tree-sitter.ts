@@ -1,5 +1,6 @@
 import Parser, { SyntaxNode } from 'tree-sitter';
 import Java from 'tree-sitter-java';
+import Python from 'tree-sitter-python';
 import * as dispatch from './dispatch';
 import * as utils from './utils';
 
@@ -25,6 +26,8 @@ function getTSLanguageForFile(fileName: string) {
     switch(ext.toLowerCase()) {
         case 'java':
             return Java;
+        case 'py':
+            return Python;
         default:
             throw new Error('Unsupported Language: ' + ext);
     }
