@@ -1,0 +1,18 @@
+{
+    "repositoryName": "keras",
+    "filePath": "keras/src/applications/convnext.py",
+    "functionName": "ConvNeXt",
+    "functionStartLine": 331,
+    "startCommitName": "2599816d28a423b720585bc496f090bb239908eb",
+    "expectedResult": {
+        "c49f48788723d7d264f97396a8569a0b02ed1cf3": "Ybodychange",
+        "35f76b89b67eaa6fccf2ea6edb1e8945adb5ae9c": "Ybodychange",
+        "cc1b52e79d8c2284dfb4521762d6065147bfb7e5": "Ybodychange",
+        "2b7120b104c35945d13a04ce3fadb795b923b723": "Ymultichange(Yparameterchange,Ybodychange)",
+        "1937d487b0ee4cf265051c7bd0524f2fd1a2cb51": "Ymovefromfile",
+        "440ae857b8f6bb90c9eeb3fe2206c87f9c69b541": "Ybodychange",
+        "b9be76a13a1edbea5e17a54bf91da386323222bf": "Ymovefromfile",
+        "7988a18f274aea2fab78698e93b339ab3e92398d": "Ybodychange",
+        "785c83b25ab07b446b8615f05eb02b65d56fed31": "Yintroduced"
+    }
+}

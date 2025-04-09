@@ -1,0 +1,17 @@
+{
+	"repositoryName": "httpie",
+	"filePath": "httpie/core.py",
+	"functionName": "log_error",
+	"functionStartLine": 37,
+	"startCommitName": "d9b3a16fa63211a95accb1021eda68fb140bc772",
+	"expectedResult": {
+		"bece3c77bb51ecc55dcc4008375dc29ccd91575c": "Ymultichange(Yparameterchange,Ybodychange)",
+		"e2751e5fa38b5e5cd53a607e5e82dd58ae9904bf": "Ymultichange(Yparameterchange,Ybodychange)",
+		"2a25d71aa4929ef9cb0d5d993ec9f25160d25d65": "Ymultichange(Yrename,Yparameterchange,Ybodychange)",
+		"f855de16c2c763241abc04594a89f4dfc6db3485": "Yrename",
+		"674acfe2c290e395c67ffa7bcf75646360b70de8": "Ybodychange",
+		"f2d59ba6bd1d21f8f79c11c43c8acaa7e2f8c453": "Ymultichange(Yparameterchange,Ybodychange)",
+		"dd2c89412c72262b809d42e41274c296b59370b4": "Ybodychange",
+		"4e58a3849a120ab6cb3966d9656ce65cf7d0aefc": "Yintroduced"
+	}
+}

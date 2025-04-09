@@ -1,0 +1,23 @@
+{
+    "repositoryName": "keras",
+    "filePath": "keras/src/trainers/epoch_iterator.py",
+    "functionName": "_enumerate_iterator",
+    "functionStartLine": 96,
+    "startCommitName": "2599816d28a423b720585bc496f090bb239908eb",
+    "expectedResult": {
+        "6b662d100cbfd41131744fd5fd8863a9671b2567": "Ymultichange(Ymovefromfile,Ybodychange,Yrename)",
+        "7ea0f1c22eac06e2a078b7d1831b042c4a4dc93a": "Ybodychange",
+        "1937d487b0ee4cf265051c7bd0524f2fd1a2cb51": "Ymovefromfile",
+        "600d887975c34f0db84311db901e449e3bab865f": "Ybodychange",
+        "b9be76a13a1edbea5e17a54bf91da386323222bf": "Ymovefromfile",
+        "2d40cb20b974ced614850e9d5568b13536f1cdd5": "Ybodychange",
+        "ff0db1c03fa1308603896a72da8f7b22f2a2d7ac": "Ybodychange",
+        "5855042a2a5691e76c4d1c02d9c106dc02adb017": "Ybodychange",
+        "42236e5d4e038a6d709d1bec5ac535c6834893f6": "Ybodychange",
+        "77b4fcc3dc751e50b2cc3d1a6eec37d00cd48280": "Ybodychange",
+        "b27593e5b0691455bdda23eec78f4bd41c466a9e": "Ybodychange",
+        "63573e72f008a359e1a9f730cd2e8d0fc375690b": "Ybodychange",
+        "0a054562a18afde6632b638127646060471c0e08": "Ybodychange",
+        "0b8dd458b48f7b3161f72502dc64435e4a79c6db": "Yintroduced"
+    }
+}

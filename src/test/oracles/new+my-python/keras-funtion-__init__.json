@@ -1,0 +1,20 @@
+{
+    "repositoryName": "keras",
+    "filePath": "keras/src/ops/function.py",
+    "functionName": "__init__",
+    "functionStartLine": 45,
+    "startCommitName": "2599816d28a423b720585bc496f090bb239908eb",
+    "expectedResult": {
+        "1937d487b0ee4cf265051c7bd0524f2fd1a2cb51": "Ymovefromfile",
+        "c32d8a85e4da42ed53a264fb434245e6e585a5d1": "Ybodychange",
+        "d8a06ffb959f8f52a9c3149dda8715b9b9a117b3": "Ybodychange",
+        "39d034a2d1f6da75d521332c2d4954dfb9d53a89": "Ybodychange",
+        "b9be76a13a1edbea5e17a54bf91da386323222bf": "Ymovefromfile",
+        "809cd52cab46afe9ee57b7bbfcaad4bd707735a7": "Ybodychange",
+        "7988a18f274aea2fab78698e93b339ab3e92398d": "Ybodychange",
+        "08da5649850352d1eece47c2136b6eb0820f1a84": "Yfilerename",
+        "96fe6e4b2c5f25ea8d0dd7f8077fa1a334ed87e3": "Ybodychange",
+        "de0886f0fb836ccc733012cf7e7eb8fb28dc1a27": "Yfilerename",
+        "160473c474cdea01fd044c515d82238abcfe34c8": "Yintroduced"
+    }
+}

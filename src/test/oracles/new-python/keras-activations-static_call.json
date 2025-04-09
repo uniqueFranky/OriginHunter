@@ -1,0 +1,19 @@
+{
+    "repositoryName": "keras",
+    "filePath": "keras/src/activations/activations.py",
+    "functionName": "static_call",
+    "functionStartLine": 76,
+    "startCommitName": "2599816d28a423b720585bc496f090bb239908eb",
+    "expectedResult": {
+        "95ca6a6da5c128c695e92c5142898abf0837ba6a": "Ybodychange",
+        "1937d487b0ee4cf265051c7bd0524f2fd1a2cb51": "Ymovefromfile",
+        "b9be76a13a1edbea5e17a54bf91da386323222bf": "Ymovefromfile",
+        "0efae32da204dd407e1c583b647c61caf04711e6": "Ybodychange",
+        "ab35b9667ed2e764c36d7489dddd9c2566d26df9": "Ybodychange",
+        "4a5303bc3795d81620bd22082a02b0b6d06ae3c8": "Ybodychange",
+        "3b02dddeaa2943b1085d3dfd8ee4d69c9046f619": "Ybodychange",
+        "6afc9debeced598878d4edb570045c0d42e37fa2": "Ybodychange",
+        "a702c33ea0aaa552eff34c3adb2a62140c48d079": "Ybodychange",
+        "3f7fdc23109a6c9713b3923a0c92014ad78beba7": "Yintroduced"
+    }
+}

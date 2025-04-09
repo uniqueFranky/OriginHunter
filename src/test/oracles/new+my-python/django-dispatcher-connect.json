@@ -1,0 +1,33 @@
+{
+	"repositoryName": "django",
+	"filePath": "django/dispatch/dispatcher.py",
+	"functionName": "connect",
+	"functionStartLine": 50,
+	"startCommitName": "922c1c732a47c02aa5ef28b0b1a2bd9bc9b92d87",
+	"expectedResult": {
+		"e83a88566a71a2353cebc35992c110be0f8628af": "Ybodychange",
+		"9c19aff7c7561e3a82978a272ecdaad40dda5c00": "Ybodychange",
+		"8a7ac78b706797a03d26b88eddb9d1067ed35b66": "Ybodychange",
+		"4c599ece57fa009cf3615f09497f81bfa6a585a7": "Ybodychange",
+		"c716fe87821df00f9f03ecc761c914d1682591a2": "Ybodychange",
+		"995d09ead492a1c3d71d781c7846f622b3f71186": "Ybodychange",
+		"7f1168e387dc1db70b6093cfd23a4a6978f48109": "Ybodychange",
+		"3872a33132a4bb6aa22b237927597bbfdf6f21d7": "Ybodychange",
+		"851f5bd413a93708436a129442007448755b34f3": "Ybodychange",
+		"5760fe66dfa19eb38dc7c335d7a360e533b7a352": "Ybodychange",
+		"297c009cf22b14b0124b790303404ee06a289999": "Ybodychange",
+		"c29d6f767691cceb9964c0d212e01281ac6721d3": "Ybodychange",
+		"52cad43bc3d3126fcf7e08582373c12e88895cd3": "Ybodychange",
+		"42fef2944640659b95679381a9c8f02b3be884b1": "Ybodychange",
+		"e55ca60903adcfd525938335b1ad9dbb6fd96c3e": "Ybodychange",
+		"704ee33f503c96b96c2682b946a11b3b42318ba7": "Ybodychange",
+		"a84d79f572fbe7512b999c6b3cd7667cbe3138ff": "Ybodychange",
+		"e0fce8706d31f104f781676b49e7fe0df83438e0": "Ybodychange",
+		"aee9db9b3e620aa405dae1570d40b79da029ed78": "Ybodychange",
+		"f27e6f0dd198309e0d965ca78bf1c5fd04a29f8e": "Ybodychange",
+		"352deb09159b7a6c9d52077a378bf3faa071bce4": "Ybodychange",
+		"c935d7ffe37cf9376aa30cb74c6fdaffe346255f": "Ybodychange",
+		"0a6314f249f02d928bf5cf29def470e180898e0d": "Ybodychange",
+		"34a3bd52255a2253696b74b2d76133aace839fd2": "Yintroduced"
+	}
+}

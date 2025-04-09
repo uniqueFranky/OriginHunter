@@ -1,0 +1,14 @@
+{
+    "repositoryName": "keras",
+    "filePath": "keras/src/optimizers/adam.py",
+    "functionName": "update_step",
+    "functionStartLine": 115,
+    "startCommitName": "2599816d28a423b720585bc496f090bb239908eb",
+    "expectedResult": {
+        "1937d487b0ee4cf265051c7bd0524f2fd1a2cb51": "Ymovefromfile",
+        "1c1c1d03351066864186b6d536157f97f81be06e": "Ybodychange",
+        "b9be76a13a1edbea5e17a54bf91da386323222bf": "Ymovefromfile",
+        "33fa6d56273a01a55d8d975318351531f4d83c05": "Ybodychange",
+        "3eed292dea03c6ffc2040a7a5dada9ddb49e614c": "Yintroduced"
+    }
+}

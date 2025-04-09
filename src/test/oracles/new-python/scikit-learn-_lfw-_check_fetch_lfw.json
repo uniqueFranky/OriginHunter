@@ -1,0 +1,32 @@
+{
+    "repositoryName": "scikit-learn",
+    "filePath": "sklearn/datasets/_lfw.py",
+    "functionName": "_check_fetch_lfw",
+    "functionStartLine": 77,
+    "startCommitName": "368a200ca2c08021f49c1126e5431042c2b5238f",
+    "expectedResult": {
+        "74d130714b3c4f78fb1fd271a8af1a4bf8c41cac": "Ymultichange(Yparameterchange,Ybodychange)",
+        "50e87491086fb750695f914fa1bd27839eca338b": "Ybodychange",
+        "4509e5810be8bafa0199fabba5691516d36f02c2": "Ybodychange",
+        "4a95e33e6344e15a197f33ddc2f8f786a0a45df0": "Yfilerename",
+        "72b2ed9ee1bfa91f18273788233a28d3395903f4": "Yrename",
+        "c1eee276fa501965e7b4e23e6349031092e33131": "Ybodychange",
+        "2b0439c4be5ece5be53020bce6987d7d7e26355e": "Ybodychange",
+        "2186d938c0818b9594ca9b84fc20614b5b39c55e": "Ybodychange",
+        "19705d40cec836b3c8408512d42cae95ad84e212": "Ybodychange",
+        "ddf4b7210979b60265efbcc81f86d053c50c5ce2": "Yfilerename",
+        "68f27e37905b8e38c1da06f160755cdececc64b1": "Yfilerename",
+        "fd0d3b879d419015dbd8423d8b22f3fb288bf7d6": "Yfilerename",
+        "aecc0b44d487c4477ac287aac50a08fdc22ad583": "Ybodychange",
+        "44f3d70b61726ef14033d3b3e26a9f00c13d8bf6": "Ybodychange",
+        "8f3b9ff5b15dc2ce6c34e15c66a819c8ecefd4a4": "Ymultichange(Yparameterchange,Ybodychange)",
+        "6b3e17a6d308ad5ef4d32230e3a6d396882297f8": "Ybodychange",
+        "bf935ec45a274471d947271615df991bcaa64ccc": "Ybodychange",
+        "1bb6e272df3bc7cae9db453f30546ec8c4061199": "Ybodychange",
+        "15bee0f5820d5fc5d00e0c030c84736bfdc97779": "Ybodychange",
+        "6609703cb38d56261b20ae09f2b7b98fcf1239d2": "Ybodychange",
+        "5bad62d3760c74ee242fa6ab7a1dbf15df8bc64b": "Ybodychange",
+        "6826401dc6e3390c747d83cde9fe0a5263feca3c": "Ymultichange(Yparameterchange,Ybodychange)",
+        "d4f779d4b4fb1cdb0fc93420cf15d6e89642e7d2": "Yintroduced"
+    }
+}

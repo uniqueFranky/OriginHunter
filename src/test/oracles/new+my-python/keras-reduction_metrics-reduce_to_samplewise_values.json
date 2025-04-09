@@ -1,0 +1,24 @@
+{
+    "repositoryName": "keras",
+    "filePath": "keras/src/metrics/reduction_metrics.py",
+    "functionName": "reduce_to_samplewise_values",
+    "functionStartLine": 10,
+    "startCommitName": "2599816d28a423b720585bc496f090bb239908eb",
+    "expectedResult": {
+        "5b1fca14fcd5083704306cc68da28766a43fc772": "Ybodychange",
+        "9ea70698b98015dd41fab28e273e6ce9638f3597": "Ybodychange",
+        "a4e85547b2f85283aab53f35f84c77d026ab2102": "Ybodychange",
+        "1937d487b0ee4cf265051c7bd0524f2fd1a2cb51": "Ymovefromfile",
+        "748197cce4852a5638317aa9dcf54a740893d8aa": "Ybodychange",
+        "d2dfed5dd0c2773ea0a9bd227d2c82f6c41e7423": "Ybodychange",
+        "8d58b790e4deda87240b73d23b5c19e1d24921da": "Ybodychange",
+        "72cd8be5c2ccc8b3e357ca3a0d8294b287ccd967": "Ybodychange",
+        "b9be76a13a1edbea5e17a54bf91da386323222bf": "Ymovefromfile",
+        "a1019afae58240418501a03e38b870d2593bf28b": "Ybodychange",
+        "e70dea48d0110d6520b239fd972f14a613202c06": "Ybodychange",
+        "35b5af7b6300e1bf42e82a48e7b8a7acb571ae7f": "Ybodychange",
+        "f802cc8f340298a81ba7f25dd511df7bc862f0e4": "Ybodychange",
+        "74c043bdbab09800278c457104f5bc0677145b5d": "Ybodychange",
+        "8fa442ccbe422507b5248fe42c3aa0a82036c7fb": "Yintroduced"
+    }
+}

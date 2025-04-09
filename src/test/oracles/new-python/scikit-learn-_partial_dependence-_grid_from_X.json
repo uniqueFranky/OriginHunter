@@ -1,0 +1,18 @@
+{
+    "repositoryName": "scikit-learn",
+    "filePath": "sklearn/inspection/_partial_dependence.py",
+    "functionName": "_grid_from_X",
+    "functionStartLine": 40,
+    "startCommitName": "368a200ca2c08021f49c1126e5431042c2b5238f",
+    "expectedResult": {
+        "17ab8c095aa3902ad338c58251225d3b6bacca61": "Ymultichange(Yparameterchange,Ybodychange)",
+        "53e0d95cb10cba5827751657e487f792afd94329": "Ybodychange",
+        "c1cfc4d4f36f9c00413e20d0ef85bed208a502ca": "Ymultichange(Yparameterchange,Ybodychange)",
+        "3ae7c7615343bbd36acece57825d8b0d70fd9da4": "Ybodychange",
+        "82df48934eba1df9a1ed3be98aaace8eada59e6e": "Ybodychange",
+        "9b1f746ca42dcad0206e175c461648a23cac961b": "Ybodychange",
+        "7ea78614829a144f2f82e94fca515722a0fc2ef3": "Ybodychange",
+        "f86e852c2795f73709808b10c0d4e199eec9cc3b": "Yfilerename",
+        "6b7dc9bc30e3a84b173a79635b891111807c9e4d": "Yintroduced"
+    }
+}
