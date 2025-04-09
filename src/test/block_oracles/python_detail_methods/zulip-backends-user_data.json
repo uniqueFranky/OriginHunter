@@ -1,0 +1,36 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "zulip",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/zulip/.git",
+  "startCommitName": "67b6179df28522274ebdc66e6820a6e7e41511fa",
+  "sourceFileName": "backends.py",
+  "functionName": "user_data",
+  "functionId": "GitHubAuthBackend__user_data___self__access_token-str__*args-Any__**kwargs-Any",
+  "sourceFilePath": "zproject/backends.py",
+  "functionAnnotation": "",
+  "functionStartLine": 1147,
+  "functionEndLine": 1172,
+  "numCommitsSeen": 255,
+  "timeTaken": 5825,
+  "changeHistory": [
+    "35c4a9f1d2b3adf5820cc239afd5caba2062b93f"
+  ],
+  "changeHistoryShort": {
+    "35c4a9f1d2b3adf5820cc239afd5caba2062b93f": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "35c4a9f1d2b3adf5820cc239afd5caba2062b93f": {
+      "type": "Yintroduced",
+      "commitMessage": "auth: Rewrite our social auth integration to use pipeline.\n\nThis new implementation model is a lot cleaner and should extend\nbetter to the non-oauth backend supported by python-social-auth (since\nwe\u0027re not relying on monkey-patching `do_auth` in the OAuth backend\nbase class).\n",
+      "commitDate": "2018/6/6 下午2:24",
+      "commitName": "35c4a9f1d2b3adf5820cc239afd5caba2062b93f",
+      "commitAuthor": "Tim Abbott",
+      "diff": "@@ -0,0 +1,25 @@\n+    def user_data(self, access_token: str, *args: Any, **kwargs: Any) -\u003e Dict[str, str]:\n+        \"\"\"This patched user_data function lets us combine together the 3\n+        social auth backends into a single Zulip backend for GitHub Oauth2\"\"\"\n+        team_id \u003d settings.SOCIAL_AUTH_GITHUB_TEAM_ID\n+        org_name \u003d settings.SOCIAL_AUTH_GITHUB_ORG_NAME\n+\n+        if team_id is None and org_name is None:\n+            # I believe this can\u0027t raise AuthFailed, so we don\u0027t try to catch it here.\n+            return super().user_data(\n+                access_token, *args, **kwargs\n+            )\n+        elif team_id is not None:\n+            backend \u003d GithubTeamOAuth2(self.strategy, self.redirect_uri)\n+            try:\n+                return backend.user_data(access_token, *args, **kwargs)\n+            except AuthFailed:\n+                return dict(auth_failed_reason\u003d\"GitHub user is not member of required team\")\n+        elif org_name is not None:\n+            backend \u003d GithubOrganizationOAuth2(self.strategy, self.redirect_uri)\n+            try:\n+                return backend.user_data(access_token, *args, **kwargs)\n+            except AuthFailed:\n+                return dict(auth_failed_reason\u003d\"GitHub user is not member of required organization\")\n+\n+        raise AssertionError(\"Invalid configuration\")\n",
+      "actualSource": "    def user_data(self, access_token: str, *args: Any, **kwargs: Any) -\u003e Dict[str, str]:\n        \"\"\"This patched user_data function lets us combine together the 3\n        social auth backends into a single Zulip backend for GitHub Oauth2\"\"\"\n        team_id \u003d settings.SOCIAL_AUTH_GITHUB_TEAM_ID\n        org_name \u003d settings.SOCIAL_AUTH_GITHUB_ORG_NAME\n\n        if team_id is None and org_name is None:\n            # I believe this can\u0027t raise AuthFailed, so we don\u0027t try to catch it here.\n            return super().user_data(\n                access_token, *args, **kwargs\n            )\n        elif team_id is not None:\n            backend \u003d GithubTeamOAuth2(self.strategy, self.redirect_uri)\n            try:\n                return backend.user_data(access_token, *args, **kwargs)\n            except AuthFailed:\n                return dict(auth_failed_reason\u003d\"GitHub user is not member of required team\")\n        elif org_name is not None:\n            backend \u003d GithubOrganizationOAuth2(self.strategy, self.redirect_uri)\n            try:\n                return backend.user_data(access_token, *args, **kwargs)\n            except AuthFailed:\n                return dict(auth_failed_reason\u003d\"GitHub user is not member of required organization\")\n\n        raise AssertionError(\"Invalid configuration\")\n",
+      "path": "zproject/backends.py",
+      "functionStartLine": 497,
+      "functionName": "user_data",
+      "functionAnnotation": ""
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "httpie",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/httpie/.git",
+  "startCommitName": "d9b3a16fa63211a95accb1021eda68fb140bc772",
+  "sourceFileName": "core.py",
+  "functionName": "log_error",
+  "functionId": "main__log_error___msg__level(default-\u0027error\u0027)",
+  "sourceFilePath": "httpie/core.py",
+  "functionAnnotation": "",
+  "functionStartLine": 37,
+  "functionEndLine": 40,
+  "numCommitsSeen": 205,
+  "timeTaken": 293,
+  "changeHistory": [
+    "bece3c77bb51ecc55dcc4008375dc29ccd91575c",
+    "e2751e5fa38b5e5cd53a607e5e82dd58ae9904bf",
+    "2a25d71aa4929ef9cb0d5d993ec9f25160d25d65"
+  ],
+  "changeHistoryShort": {
+    "bece3c77bb51ecc55dcc4008375dc29ccd91575c": "Ymultichange(Yparameterchange,Ybodychange)",
+    "e2751e5fa38b5e5cd53a607e5e82dd58ae9904bf": "Ymultichange(Yparameterchange,Ybodychange)",
+    "2a25d71aa4929ef9cb0d5d993ec9f25160d25d65": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "bece3c77bb51ecc55dcc4008375dc29ccd91575c": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "Add one-by-one processing of each HTTP request or response and --offline\n",
+      "commitDate": "2019/9/3 下午11:14",
+      "commitName": "bece3c77bb51ecc55dcc4008375dc29ccd91575c",
+      "commitAuthor": "Jakub Roztocil",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Add one-by-one processing of each HTTP request or response and --offline\n",
+          "commitDate": "2019/9/3 下午11:14",
+          "commitName": "bece3c77bb51ecc55dcc4008375dc29ccd91575c",
+          "commitAuthor": "Jakub Roztocil",
+          "commitDateOld": "2019/8/31 下午9:17",
+          "commitNameOld": "aba3b1ec0108197f747b9266c7a622cb16e34fdc",
+          "commitAuthorOld": "Jakub Roztocil",
+          "daysBetweenCommits": 3.08,
+          "commitsBetweenForRepo": 14,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    def log_error(msg, level\u003d\u0027error\u0027):\n        assert level in [\u0027error\u0027, \u0027warning\u0027]\n        env.stderr.write(f\u0027\\n{program_name}: {level}: {msg}\\n\u0027)\n",
+          "path": "httpie/core.py",
+          "functionStartLine": 36,
+          "functionName": "log_error",
+          "functionAnnotation": "",
+          "diff": "@@ -1,5 +1,3 @@\n-    def log_error(msg, *args, **kwargs):\n-        msg \u003d msg % args\n-        level \u003d kwargs.get(\u0027level\u0027, \u0027error\u0027)\n+    def log_error(msg, level\u003d\u0027error\u0027):\n         assert level in [\u0027error\u0027, \u0027warning\u0027]\n-        env.stderr.write(\u0027\\nhttp: %s: %s\\n\u0027 % (level, msg))\n+        env.stderr.write(f\u0027\\n{program_name}: {level}: {msg}\\n\u0027)\n",
+          "extendedDetails": {
+            "oldValue": "[msg, *args, **kwargs]",
+            "newValue": "[msg, level(default-\u0027error\u0027)]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Add one-by-one processing of each HTTP request or response and --offline\n",
+          "commitDate": "2019/9/3 下午11:14",
+          "commitName": "bece3c77bb51ecc55dcc4008375dc29ccd91575c",
+          "commitAuthor": "Jakub Roztocil",
+          "commitDateOld": "2019/8/31 下午9:17",
+          "commitNameOld": "aba3b1ec0108197f747b9266c7a622cb16e34fdc",
+          "commitAuthorOld": "Jakub Roztocil",
+          "daysBetweenCommits": 3.08,
+          "commitsBetweenForRepo": 14,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    def log_error(msg, level\u003d\u0027error\u0027):\n        assert level in [\u0027error\u0027, \u0027warning\u0027]\n        env.stderr.write(f\u0027\\n{program_name}: {level}: {msg}\\n\u0027)\n",
+          "path": "httpie/core.py",
+          "functionStartLine": 36,
+          "functionName": "log_error",
+          "functionAnnotation": "",
+          "diff": "@@ -1,5 +1,3 @@\n-    def log_error(msg, *args, **kwargs):\n-        msg \u003d msg % args\n-        level \u003d kwargs.get(\u0027level\u0027, \u0027error\u0027)\n+    def log_error(msg, level\u003d\u0027error\u0027):\n         assert level in [\u0027error\u0027, \u0027warning\u0027]\n-        env.stderr.write(\u0027\\nhttp: %s: %s\\n\u0027 % (level, msg))\n+        env.stderr.write(f\u0027\\n{program_name}: {level}: {msg}\\n\u0027)\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "e2751e5fa38b5e5cd53a607e5e82dd58ae9904bf": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "Fixed args for Python 2.x\n",
+      "commitDate": "2016/3/1 下午9:28",
+      "commitName": "e2751e5fa38b5e5cd53a607e5e82dd58ae9904bf",
+      "commitAuthor": "Jakub Roztocil",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Fixed args for Python 2.x\n",
+          "commitDate": "2016/3/1 下午9:28",
+          "commitName": "e2751e5fa38b5e5cd53a607e5e82dd58ae9904bf",
+          "commitAuthor": "Jakub Roztocil",
+          "commitDateOld": "2016/3/1 下午9:10",
+          "commitNameOld": "2a25d71aa4929ef9cb0d5d993ec9f25160d25d65",
+          "commitAuthorOld": "Jakub Roztocil",
+          "daysBetweenCommits": 0.01,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    def log_error(msg, *args, **kwargs):\n        msg \u003d msg % args\n        level \u003d kwargs.get(\u0027level\u0027, \u0027error\u0027)\n        assert level in [\u0027error\u0027, \u0027warning\u0027]\n        env.stderr.write(\u0027\\nhttp: %s: %s\\n\u0027 % (level, msg))\n",
+          "path": "httpie/core.py",
+          "functionStartLine": 176,
+          "functionName": "log_error",
+          "functionAnnotation": "",
+          "diff": "@@ -1,3 +1,5 @@\n-    def log_error(msg, *args, level\u003d\u0027error\u0027):\n+    def log_error(msg, *args, **kwargs):\n         msg \u003d msg % args\n+        level \u003d kwargs.get(\u0027level\u0027, \u0027error\u0027)\n+        assert level in [\u0027error\u0027, \u0027warning\u0027]\n         env.stderr.write(\u0027\\nhttp: %s: %s\\n\u0027 % (level, msg))\n",
+          "extendedDetails": {
+            "oldValue": "[msg, *args, level(default-\u0027error\u0027)]",
+            "newValue": "[msg, *args, **kwargs]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Fixed args for Python 2.x\n",
+          "commitDate": "2016/3/1 下午9:28",
+          "commitName": "e2751e5fa38b5e5cd53a607e5e82dd58ae9904bf",
+          "commitAuthor": "Jakub Roztocil",
+          "commitDateOld": "2016/3/1 下午9:10",
+          "commitNameOld": "2a25d71aa4929ef9cb0d5d993ec9f25160d25d65",
+          "commitAuthorOld": "Jakub Roztocil",
+          "daysBetweenCommits": 0.01,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    def log_error(msg, *args, **kwargs):\n        msg \u003d msg % args\n        level \u003d kwargs.get(\u0027level\u0027, \u0027error\u0027)\n        assert level in [\u0027error\u0027, \u0027warning\u0027]\n        env.stderr.write(\u0027\\nhttp: %s: %s\\n\u0027 % (level, msg))\n",
+          "path": "httpie/core.py",
+          "functionStartLine": 176,
+          "functionName": "log_error",
+          "functionAnnotation": "",
+          "diff": "@@ -1,3 +1,5 @@\n-    def log_error(msg, *args, level\u003d\u0027error\u0027):\n+    def log_error(msg, *args, **kwargs):\n         msg \u003d msg % args\n+        level \u003d kwargs.get(\u0027level\u0027, \u0027error\u0027)\n+        assert level in [\u0027error\u0027, \u0027warning\u0027]\n         env.stderr.write(\u0027\\nhttp: %s: %s\\n\u0027 % (level, msg))\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "2a25d71aa4929ef9cb0d5d993ec9f25160d25d65": {
+      "type": "Yintroduced",
+      "commitMessage": "Refactored main() into program()  + main()\n",
+      "commitDate": "2016/3/1 下午9:10",
+      "commitName": "2a25d71aa4929ef9cb0d5d993ec9f25160d25d65",
+      "commitAuthor": "Jakub Roztocil",
+      "diff": "@@ -0,0 +1,3 @@\n+    def log_error(msg, *args, level\u003d\u0027error\u0027):\n+        msg \u003d msg % args\n+        env.stderr.write(\u0027\\nhttp: %s: %s\\n\u0027 % (level, msg))\n",
+      "actualSource": "    def log_error(msg, *args, level\u003d\u0027error\u0027):\n        msg \u003d msg % args\n        env.stderr.write(\u0027\\nhttp: %s: %s\\n\u0027 % (level, msg))\n",
+      "path": "httpie/core.py",
+      "functionStartLine": 176,
+      "functionName": "log_error",
+      "functionAnnotation": ""
+    }
+  }
+}

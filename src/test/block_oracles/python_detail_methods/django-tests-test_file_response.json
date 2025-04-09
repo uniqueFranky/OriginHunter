@@ -1,0 +1,58 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "django",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/django/.git",
+  "startCommitName": "39791c8e6de3a71879eb26dd9f8d01273847f395",
+  "sourceFileName": "tests.py",
+  "functionName": "test_file_response",
+  "functionId": "ASGITest__test_file_response___self",
+  "sourceFilePath": "tests/asgi/tests.py",
+  "functionAnnotation": "@async_to_sync",
+  "functionStartLine": 62,
+  "functionEndLine": 88,
+  "numCommitsSeen": 4,
+  "timeTaken": 2326,
+  "changeHistory": [
+    "39791c8e6de3a71879eb26dd9f8d01273847f395",
+    "a415ce70bef6d91036b00dd2c8544aed7aeeaaed"
+  ],
+  "changeHistoryShort": {
+    "39791c8e6de3a71879eb26dd9f8d01273847f395": "Ybodychange",
+    "a415ce70bef6d91036b00dd2c8544aed7aeeaaed": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "39791c8e6de3a71879eb26dd9f8d01273847f395": {
+      "type": "Ybodychange",
+      "commitMessage": "Harmonized Windows checks in tests to a single style.\n\n",
+      "commitDate": "2019/11/6 下午10:14",
+      "commitName": "39791c8e6de3a71879eb26dd9f8d01273847f395",
+      "commitAuthor": "Jon Dufresne",
+      "commitDateOld": "2019/10/24 下午4:43",
+      "commitNameOld": "e83c300a3312995d46315616f4361dfa110c741b",
+      "commitAuthorOld": "Carlton Gibson",
+      "daysBetweenCommits": 13.23,
+      "commitsBetweenForRepo": 71,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    @async_to_sync\n    async def test_file_response(self):\n        \"\"\"\n        Makes sure that FileResponse works over ASGI.\n        \"\"\"\n        application \u003d get_asgi_application()\n        # Construct HTTP request.\n        communicator \u003d ApplicationCommunicator(application, self._get_scope(path\u003d\u0027/file/\u0027))\n        await communicator.send_input({\u0027type\u0027: \u0027http.request\u0027})\n        # Get the file content.\n        with open(test_filename, \u0027rb\u0027) as test_file:\n            test_file_contents \u003d test_file.read()\n        # Read the response.\n        response_start \u003d await communicator.receive_output()\n        self.assertEqual(response_start[\u0027type\u0027], \u0027http.response.start\u0027)\n        self.assertEqual(response_start[\u0027status\u0027], 200)\n        self.assertEqual(\n            set(response_start[\u0027headers\u0027]),\n            {\n                (b\u0027Content-Length\u0027, str(len(test_file_contents)).encode(\u0027ascii\u0027)),\n                (b\u0027Content-Type\u0027, b\u0027text/plain\u0027 if sys.platform \u003d\u003d \u0027win32\u0027 else b\u0027text/x-python\u0027),\n                (b\u0027Content-Disposition\u0027, b\u0027inline; filename\u003d\"urls.py\"\u0027),\n            },\n        )\n        response_body \u003d await communicator.receive_output()\n        self.assertEqual(response_body[\u0027type\u0027], \u0027http.response.body\u0027)\n        self.assertEqual(response_body[\u0027body\u0027], test_file_contents)\n",
+      "path": "tests/asgi/tests.py",
+      "functionStartLine": 62,
+      "functionName": "test_file_response",
+      "functionAnnotation": "@async_to_sync",
+      "diff": "@@ -1,27 +1,27 @@\n     @async_to_sync\n     async def test_file_response(self):\n         \"\"\"\n         Makes sure that FileResponse works over ASGI.\n         \"\"\"\n         application \u003d get_asgi_application()\n         # Construct HTTP request.\n         communicator \u003d ApplicationCommunicator(application, self._get_scope(path\u003d\u0027/file/\u0027))\n         await communicator.send_input({\u0027type\u0027: \u0027http.request\u0027})\n         # Get the file content.\n         with open(test_filename, \u0027rb\u0027) as test_file:\n             test_file_contents \u003d test_file.read()\n         # Read the response.\n         response_start \u003d await communicator.receive_output()\n         self.assertEqual(response_start[\u0027type\u0027], \u0027http.response.start\u0027)\n         self.assertEqual(response_start[\u0027status\u0027], 200)\n         self.assertEqual(\n             set(response_start[\u0027headers\u0027]),\n             {\n                 (b\u0027Content-Length\u0027, str(len(test_file_contents)).encode(\u0027ascii\u0027)),\n-                (b\u0027Content-Type\u0027, b\u0027text/plain\u0027 if sys.platform.startswith(\u0027win\u0027) else b\u0027text/x-python\u0027),\n+                (b\u0027Content-Type\u0027, b\u0027text/plain\u0027 if sys.platform \u003d\u003d \u0027win32\u0027 else b\u0027text/x-python\u0027),\n                 (b\u0027Content-Disposition\u0027, b\u0027inline; filename\u003d\"urls.py\"\u0027),\n             },\n         )\n         response_body \u003d await communicator.receive_output()\n         self.assertEqual(response_body[\u0027type\u0027], \u0027http.response.body\u0027)\n         self.assertEqual(response_body[\u0027body\u0027], test_file_contents)\n",
+      "extendedDetails": {}
+    },
+    "a415ce70bef6d91036b00dd2c8544aed7aeeaaed": {
+      "type": "Yintroduced",
+      "commitMessage": "Fixed #30451 -- Added ASGI handler and coroutine-safety.\n\nThis adds an ASGI handler, asgi.py file for the default project layout,\na few async utilities and adds async-safety to many parts of Django.\n",
+      "commitDate": "2019/6/20 下午6:29",
+      "commitName": "a415ce70bef6d91036b00dd2c8544aed7aeeaaed",
+      "commitAuthor": "Andrew Godwin",
+      "diff": "@@ -0,0 +1,27 @@\n+    @async_to_sync\n+    async def test_file_response(self):\n+        \"\"\"\n+        Makes sure that FileResponse works over ASGI.\n+        \"\"\"\n+        application \u003d get_asgi_application()\n+        # Construct HTTP request.\n+        communicator \u003d ApplicationCommunicator(application, self._get_scope(path\u003d\u0027/file/\u0027))\n+        await communicator.send_input({\u0027type\u0027: \u0027http.request\u0027})\n+        # Get the file content.\n+        with open(test_filename, \u0027rb\u0027) as test_file:\n+            test_file_contents \u003d test_file.read()\n+        # Read the response.\n+        response_start \u003d await communicator.receive_output()\n+        self.assertEqual(response_start[\u0027type\u0027], \u0027http.response.start\u0027)\n+        self.assertEqual(response_start[\u0027status\u0027], 200)\n+        self.assertEqual(\n+            set(response_start[\u0027headers\u0027]),\n+            {\n+                (b\u0027Content-Length\u0027, str(len(test_file_contents)).encode(\u0027ascii\u0027)),\n+                (b\u0027Content-Type\u0027, b\u0027text/plain\u0027 if sys.platform.startswith(\u0027win\u0027) else b\u0027text/x-python\u0027),\n+                (b\u0027Content-Disposition\u0027, b\u0027inline; filename\u003d\"urls.py\"\u0027),\n+            },\n+        )\n+        response_body \u003d await communicator.receive_output()\n+        self.assertEqual(response_body[\u0027type\u0027], \u0027http.response.body\u0027)\n+        self.assertEqual(response_body[\u0027body\u0027], test_file_contents)\n\\ No newline at end of file\n",
+      "actualSource": "    @async_to_sync\n    async def test_file_response(self):\n        \"\"\"\n        Makes sure that FileResponse works over ASGI.\n        \"\"\"\n        application \u003d get_asgi_application()\n        # Construct HTTP request.\n        communicator \u003d ApplicationCommunicator(application, self._get_scope(path\u003d\u0027/file/\u0027))\n        await communicator.send_input({\u0027type\u0027: \u0027http.request\u0027})\n        # Get the file content.\n        with open(test_filename, \u0027rb\u0027) as test_file:\n            test_file_contents \u003d test_file.read()\n        # Read the response.\n        response_start \u003d await communicator.receive_output()\n        self.assertEqual(response_start[\u0027type\u0027], \u0027http.response.start\u0027)\n        self.assertEqual(response_start[\u0027status\u0027], 200)\n        self.assertEqual(\n            set(response_start[\u0027headers\u0027]),\n            {\n                (b\u0027Content-Length\u0027, str(len(test_file_contents)).encode(\u0027ascii\u0027)),\n                (b\u0027Content-Type\u0027, b\u0027text/plain\u0027 if sys.platform.startswith(\u0027win\u0027) else b\u0027text/x-python\u0027),\n                (b\u0027Content-Disposition\u0027, b\u0027inline; filename\u003d\"urls.py\"\u0027),\n            },\n        )\n        response_body \u003d await communicator.receive_output()\n        self.assertEqual(response_body[\u0027type\u0027], \u0027http.response.body\u0027)\n        self.assertEqual(response_body[\u0027body\u0027], test_file_contents)",
+      "path": "tests/asgi/tests.py",
+      "functionStartLine": 59,
+      "functionName": "test_file_response",
+      "functionAnnotation": "@async_to_sync"
+    }
+  }
+}

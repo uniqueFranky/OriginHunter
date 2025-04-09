@@ -1,0 +1,16 @@
+{
+  "statementVersions": [
+    {
+      "commit": "3cc2a541e1abfdf5c04800838e5aade7283fcd0d",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "def read_blocking(fd, timeout):\n    if fd in select.select([fd], [], [], timeout)[0]:\n        return os.read(fd, 1024)\n\n    return b''"
+    },
+    {
+      "commit": "65136bf01d81ecdb73d383ad49b574e7d6c75fde",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "def read_non_blocking(fd):\n    data = b''\n\n    while fd in select.select([fd], [], [], 0)[0]:\n        data += os.read(fd, 1024)\n\n    return data"
+    }
+  ]
+}

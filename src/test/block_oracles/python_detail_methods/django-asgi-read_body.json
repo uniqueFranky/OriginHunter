@@ -1,0 +1,58 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "django",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/django/.git",
+  "startCommitName": "d0861fcb2dbb2e733a189115b546651a5042a327",
+  "sourceFileName": "asgi.py",
+  "functionName": "read_body",
+  "functionId": "ASGIHandler__read_body___self__receive",
+  "sourceFilePath": "django/core/handlers/asgi.py",
+  "functionAnnotation": "",
+  "functionStartLine": 175,
+  "functionEndLine": 192,
+  "numCommitsSeen": 4,
+  "timeTaken": 2350,
+  "changeHistory": [
+    "eea0bf7bd58cda4618ecc10133f0ad09effe1a2e",
+    "a415ce70bef6d91036b00dd2c8544aed7aeeaaed"
+  ],
+  "changeHistoryShort": {
+    "eea0bf7bd58cda4618ecc10133f0ad09effe1a2e": "Ybodychange",
+    "a415ce70bef6d91036b00dd2c8544aed7aeeaaed": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "eea0bf7bd58cda4618ecc10133f0ad09effe1a2e": {
+      "type": "Ybodychange",
+      "commitMessage": "Refs #30669 -- Removed incorrect branch in ASGIHander.read_body().\n\nNone is not valid for settings.FILE_UPLOAD_MAX_MEMORY_SIZE.\r\nAlways use SpooledTemporaryFile.",
+      "commitDate": "2019/7/31 下午7:33",
+      "commitName": "eea0bf7bd58cda4618ecc10133f0ad09effe1a2e",
+      "commitAuthor": "Carlton Gibson",
+      "commitDateOld": "2019/6/20 下午6:29",
+      "commitNameOld": "7f19e3713598a37b0809b5434114140170d12e34",
+      "commitAuthorOld": "Mariusz Felisiak",
+      "daysBetweenCommits": 41.04,
+      "commitsBetweenForRepo": 111,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    async def read_body(self, receive):\n        \"\"\"Reads a HTTP body from an ASGI connection.\"\"\"\n        # Use the tempfile that auto rolls-over to a disk file as it fills up.\n        body_file \u003d tempfile.SpooledTemporaryFile(max_size\u003dsettings.FILE_UPLOAD_MAX_MEMORY_SIZE, mode\u003d\u0027w+b\u0027)\n        while True:\n            message \u003d await receive()\n            if message[\u0027type\u0027] \u003d\u003d \u0027http.disconnect\u0027:\n                # Early client disconnect.\n                raise RequestAborted()\n            # Add a body chunk from the message, if provided.\n            if \u0027body\u0027 in message:\n                body_file.write(message[\u0027body\u0027])\n            # Quit out if that\u0027s the end.\n            if not message.get(\u0027more_body\u0027, False):\n                break\n        body_file.seek(0)\n        return body_file\n",
+      "path": "django/core/handlers/asgi.py",
+      "functionStartLine": 175,
+      "functionName": "read_body",
+      "functionAnnotation": "",
+      "diff": "@@ -1,21 +1,17 @@\n     async def read_body(self, receive):\n         \"\"\"Reads a HTTP body from an ASGI connection.\"\"\"\n-        # Use the tempfile that auto rolls-over to a disk file as it fills up,\n-        # if a maximum in-memory size is set. Otherwise use a BytesIO object.\n-        if settings.FILE_UPLOAD_MAX_MEMORY_SIZE is None:\n-            body_file \u003d BytesIO()\n-        else:\n-            body_file \u003d tempfile.SpooledTemporaryFile(max_size\u003dsettings.FILE_UPLOAD_MAX_MEMORY_SIZE, mode\u003d\u0027w+b\u0027)\n+        # Use the tempfile that auto rolls-over to a disk file as it fills up.\n+        body_file \u003d tempfile.SpooledTemporaryFile(max_size\u003dsettings.FILE_UPLOAD_MAX_MEMORY_SIZE, mode\u003d\u0027w+b\u0027)\n         while True:\n             message \u003d await receive()\n             if message[\u0027type\u0027] \u003d\u003d \u0027http.disconnect\u0027:\n                 # Early client disconnect.\n                 raise RequestAborted()\n             # Add a body chunk from the message, if provided.\n             if \u0027body\u0027 in message:\n                 body_file.write(message[\u0027body\u0027])\n             # Quit out if that\u0027s the end.\n             if not message.get(\u0027more_body\u0027, False):\n                 break\n         body_file.seek(0)\n         return body_file\n",
+      "extendedDetails": {}
+    },
+    "a415ce70bef6d91036b00dd2c8544aed7aeeaaed": {
+      "type": "Yintroduced",
+      "commitMessage": "Fixed #30451 -- Added ASGI handler and coroutine-safety.\n\nThis adds an ASGI handler, asgi.py file for the default project layout,\na few async utilities and adds async-safety to many parts of Django.\n",
+      "commitDate": "2019/6/20 下午6:29",
+      "commitName": "a415ce70bef6d91036b00dd2c8544aed7aeeaaed",
+      "commitAuthor": "Andrew Godwin",
+      "diff": "@@ -0,0 +1,21 @@\n+    async def read_body(self, receive):\n+        \"\"\"Reads a HTTP body from an ASGI connection.\"\"\"\n+        # Use the tempfile that auto rolls-over to a disk file as it fills up,\n+        # if a maximum in-memory size is set. Otherwise use a BytesIO object.\n+        if settings.FILE_UPLOAD_MAX_MEMORY_SIZE is None:\n+            body_file \u003d BytesIO()\n+        else:\n+            body_file \u003d tempfile.SpooledTemporaryFile(max_size\u003dsettings.FILE_UPLOAD_MAX_MEMORY_SIZE, mode\u003d\u0027w+b\u0027)\n+        while True:\n+            message \u003d await receive()\n+            if message[\u0027type\u0027] \u003d\u003d \u0027http.disconnect\u0027:\n+                # Early client disconnect.\n+                raise RequestAborted()\n+            # Add a body chunk from the message, if provided.\n+            if \u0027body\u0027 in message:\n+                body_file.write(message[\u0027body\u0027])\n+            # Quit out if that\u0027s the end.\n+            if not message.get(\u0027more_body\u0027, False):\n+                break\n+        body_file.seek(0)\n+        return body_file\n",
+      "actualSource": "    async def read_body(self, receive):\n        \"\"\"Reads a HTTP body from an ASGI connection.\"\"\"\n        # Use the tempfile that auto rolls-over to a disk file as it fills up,\n        # if a maximum in-memory size is set. Otherwise use a BytesIO object.\n        if settings.FILE_UPLOAD_MAX_MEMORY_SIZE is None:\n            body_file \u003d BytesIO()\n        else:\n            body_file \u003d tempfile.SpooledTemporaryFile(max_size\u003dsettings.FILE_UPLOAD_MAX_MEMORY_SIZE, mode\u003d\u0027w+b\u0027)\n        while True:\n            message \u003d await receive()\n            if message[\u0027type\u0027] \u003d\u003d \u0027http.disconnect\u0027:\n                # Early client disconnect.\n                raise RequestAborted()\n            # Add a body chunk from the message, if provided.\n            if \u0027body\u0027 in message:\n                body_file.write(message[\u0027body\u0027])\n            # Quit out if that\u0027s the end.\n            if not message.get(\u0027more_body\u0027, False):\n                break\n        body_file.seek(0)\n        return body_file\n",
+      "path": "django/core/handlers/asgi.py",
+      "functionStartLine": 176,
+      "functionName": "read_body",
+      "functionAnnotation": ""
+    }
+  }
+}

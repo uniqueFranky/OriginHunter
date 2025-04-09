@@ -90,7 +90,7 @@ export async function doBlockTest(): Promise<[MethodLevelHistory[], MethodLevelH
         return [[], []];
     }
     let projectName = workspaceFolder.split('/')[workspaceFolder.split('/').length - 1];
-    const oraclePath = path.join(__dirname, 'block_oracles/training');
+    const oraclePath = path.join(__dirname, 'block_oracles/test');
     const oracleFileNames = await fs.readdir(oraclePath);
     console.log(oracleFileNames);
     let tasks = [];
@@ -103,9 +103,9 @@ export async function doBlockTest(): Promise<[MethodLevelHistory[], MethodLevelH
             continue;
         }
         console.log(oracle);
-        let out_dir = path.join(__dirname, 'block_oracles', 'hyb_out');
+        let out_dir = path.join(__dirname, 'block_oracles', 'sample_out');
         let out_name = path.join(out_dir, oracleName);
-        let task = singleTest('training', oracleName).then(([original, filtered]) => {
+        let task = singleTest('test', oracleName).then(([original, filtered]) => {
             fs.writeFile(out_name, JSON.stringify(filtered.map(f => f.commit.hash)));
         });
         tasks.push(task);

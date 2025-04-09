@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "67b6179df28522274ebdc66e6820a6e7e41511fa",
+      "startLine": 29,
+      "endLine": 29,
+      "methodCode": "def sync_user_from_ldap(user_profile: UserProfile, logger: logging.Logger) -> bool:\n    backend = ZulipLDAPUserPopulator()\n    try:\n        ldap_username = backend.django_to_ldap_username(user_profile.email)\n    except ZulipLDAPExceptionNoMatchingLDAPUser:\n        if settings.LDAP_DEACTIVATE_NON_MATCHING_USERS:\n            do_deactivate_user(user_profile)\n            logger.info(\"Deactivated non-matching user: %s\" % (user_profile.email,))\n            return True\n        elif user_profile.is_active:\n            logger.warning(\"Did not find %s in LDAP.\" % (user_profile.email,))\n        return False\n\n    # What one would expect to see like to do here is just a call to\n    # `backend.populate_user`, which in turn just creates the\n    # `_LDAPUser` object and calls `ldap_user.populate_user()` on\n    # that.  Unfortunately, that will produce incorrect results in the\n    # case that the server has multiple Zulip users in different\n    # realms associated with a single LDAP user, because\n    # `django-auth-ldap` isn't implemented with the possibility of\n    # multiple realms on different subdomains in mind.\n    #\n    # To address this, we construct a version of the _LDAPUser class\n    # extended to store the realm of the target user, and call its\n    # `.populate_user` function directly.\n    #\n    # Ideally, we'd contribute changes to `django-auth-ldap` upstream\n    # making this flow possible in a more directly supported fashion.\n    updated_user = ZulipLDAPUser(backend, ldap_username, realm=user_profile.realm).populate_user()\n    if updated_user:\n        logger.info(\"Updated %s.\" % (user_profile.email,))\n        return True\n\n    raise PopulateUserLDAPError(\"populate_user unexpectedly returned {}\".format(updated_user))\n\n# Quick tool to test whether you're correctly authenticating to LDAP"
+    },
+    {
+      "commit": "8c065d1fcdf74d84570f364ff48953bc78a94994",
+      "startLine": 14,
+      "endLine": 14,
+      "methodCode": "def sync_user_from_ldap(user_profile: UserProfile, logger: logging.Logger) -> bool:\n    backend = ZulipLDAPUserPopulator()\n    try:\n        ldap_username = backend.django_to_ldap_username(user_profile.email)\n    except ZulipLDAPExceptionNoMatchingLDAPUser:\n        if settings.LDAP_DEACTIVATE_NON_MATCHING_USERS:\n            do_deactivate_user(user_profile)\n            logger.info(\"Deactivated non-matching user: %s\" % (user_profile.email,))\n            return True\n        elif user_profile.is_active:\n            logger.warning(\"Did not find %s in LDAP.\" % (user_profile.email,))\n        return False\n\n    updated_user = backend.populate_user(ldap_username)\n    if updated_user:\n        logger.info(\"Updated %s.\" % (user_profile.email,))\n        return True\n\n    raise PopulateUserLDAPError(\"populate_user unexpectedly returned {}\".format(updated_user))\n\n# Quick tool to test whether you're correctly authenticating to LDAP"
+    },
+    {
+      "commit": "7e75f987df6b537746fcbcb0614a2f9c42a21024",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "def sync_user_from_ldap(user_profile: UserProfile, logger: logging.Logger) -> bool:\n    backend = ZulipLDAPUserPopulator()\n    updated_user = backend.populate_user(backend.django_to_ldap_username(user_profile.email))\n    if updated_user:\n        logger.info(\"Updated %s.\" % (user_profile.email,))\n        return True\n\n    if settings.LDAP_DEACTIVATE_NON_MATCHING_USERS:\n        do_deactivate_user(user_profile)\n        logger.info(\"Deactivated non-matching user: %s\" % (user_profile.email,))\n        return True\n    elif user_profile.is_active:\n        logger.warning(\"Did not find %s in LDAP.\" % (user_profile.email,))\n    return False\n\n# Quick tool to test whether you're correctly authenticating to LDAP"
+    },
+    {
+      "commit": "71761bc2dac27a8e6acdea692dc46c6c14c7c0a8",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "def sync_user_from_ldap(user_profile: UserProfile) -> bool:\n    backend = ZulipLDAPUserPopulator()\n    updated_user = backend.populate_user(backend.django_to_ldap_username(user_profile.email))\n    if not updated_user:\n        if settings.LDAP_DEACTIVATE_NON_MATCHING_USERS:\n            do_deactivate_user(user_profile)\n        return False\n    return True\n"
+    },
+    {
+      "commit": "348f370b796bcaf19563c23d9548c88a5862c307",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "def sync_user_from_ldap(user_profile: UserProfile) -> bool:\n    backend = ZulipLDAPUserPopulator()\n    updated_user = backend.populate_user(backend.django_to_ldap_username(user_profile.email))\n    return updated_user is not None\n"
+    }
+  ]
+}

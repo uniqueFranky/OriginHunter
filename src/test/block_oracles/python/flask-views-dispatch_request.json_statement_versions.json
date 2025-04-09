@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "ca278a8694f42e569a6d9f7d71c669465019bf06",
+      "startLine": 6,
+      "endLine": 7,
+      "methodCode": "    def dispatch_request(self, *args, **kwargs):\n        meth = getattr(self, request.method.lower(), None)\n\n        # If the request method is HEAD and we don't have a handler for it\n        # retry with GET.\n        if meth is None and request.method == \"HEAD\":\n            meth = getattr(self, \"get\", None)\n\n        assert meth is not None, \"Unimplemented method %r\" % request.method\n        return meth(*args, **kwargs)"
+    },
+    {
+      "commit": "025589ee766249652e2e097da05808fe64911ddc",
+      "startLine": 6,
+      "endLine": 7,
+      "methodCode": "    def dispatch_request(self, *args, **kwargs):\n        meth = getattr(self, request.method.lower(), None)\n\n        # If the request method is HEAD and we don't have a handler for it\n        # retry with GET.\n        if meth is None and request.method == \"HEAD\":\n            meth = getattr(self, \"get\", None)\n\n        assert meth is not None, \"Unimplemented method %r\" % request.method\n        return meth(*args, **kwargs)"
+    },
+    {
+      "commit": "a59cbd4f5256a356fcb7858bf0a5a0ad535e8e6d",
+      "startLine": 5,
+      "endLine": 6,
+      "methodCode": "    def dispatch_request(self, *args, **kwargs):\n        meth = getattr(self, request.method.lower(), None)\n        # if the request method is HEAD and we don't have a handler for it\n        # retry with GET\n        if meth is None and request.method == 'HEAD':\n            meth = getattr(self, 'get', None)\n        assert meth is not None, 'Unimplemented method %r' % request.method\n        return meth(*args, **kwargs)"
+    },
+    {
+      "commit": "32c7e43dda6600828ae9b11111d722ab92fb0594",
+      "startLine": 5,
+      "endLine": 6,
+      "methodCode": "    def dispatch_request(self, *args, **kwargs):\n        meth = getattr(self, request.method.lower(), None)\n        # if the request method is HEAD and we don't have a handler for it\n        # retry with GET\n        if meth is None and request.method == 'HEAD':\n            meth = getattr(self, 'get', None)\n        assert meth is not None, 'Not implemented method %r' % request.method\n        return meth(*args, **kwargs)"
+    }
+  ]
+}

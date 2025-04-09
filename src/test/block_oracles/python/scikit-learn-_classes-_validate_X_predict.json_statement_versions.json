@@ -1,0 +1,40 @@
+{
+  "statementVersions": [
+    {
+      "commit": "437ca0553ce8d97571cecc3f4df8493e5cf959c5",
+      "startLine": 11,
+      "endLine": 15,
+      "methodCode": "    def _validate_X_predict(self, X, check_input):\n        \"\"\"Validate X whenever one tries to predict, apply, predict_proba\"\"\"\n        if check_input:\n            X = check_array(X, dtype=DTYPE, accept_sparse=\"csr\")\n            if issparse(X) and (X.indices.dtype != np.intc or\n                                X.indptr.dtype != np.intc):\n                raise ValueError(\"No support for np.int64 index based \"\n                                 \"sparse matrices\")\n\n        n_features = X.shape[1]\n        if self.n_features_ != n_features:\n            raise ValueError(\"Number of features of the model must \"\n                             \"match the input. Model n_features is %s and \"\n                             \"input n_features is %s \"\n                             % (self.n_features_, n_features))\n\n        return X\n"
+    },
+    {
+      "commit": "834608ec1dc5de20b25411f283df739fc110478b",
+      "startLine": 11,
+      "endLine": 15,
+      "methodCode": "    def _validate_X_predict(self, X, check_input):\n        \"\"\"Validate X whenever one tries to predict, apply, predict_proba\"\"\"\n        if check_input:\n            X = check_array(X, dtype=DTYPE, accept_sparse=\"csr\")\n            if issparse(X) and (X.indices.dtype != np.intc or\n                                X.indptr.dtype != np.intc):\n                raise ValueError(\"No support for np.int64 index based \"\n                                 \"sparse matrices\")\n\n        n_features = X.shape[1]\n        if self.n_features_ != n_features:\n            raise ValueError(\"Number of features of the model must \"\n                             \"match the input. Model n_features is %s and \"\n                             \"input n_features is %s \"\n                             % (self.n_features_, n_features))\n\n        return X\n"
+    },
+    {
+      "commit": "77665e3c319a2e8887424a5872f1aac9eb844319",
+      "startLine": 15,
+      "endLine": 19,
+      "methodCode": "    def _validate_X_predict(self, X, check_input):\n        \"\"\"Validate X whenever one tries to predict, apply, predict_proba\"\"\"\n        if self.tree_ is None:\n            raise NotFittedError(\"Estimator not fitted, \"\n                                 \"call `fit` before exploiting the model.\")\n\n        if check_input:\n            X = check_array(X, dtype=DTYPE, accept_sparse=\"csr\")\n            if issparse(X) and (X.indices.dtype != np.intc or\n                                X.indptr.dtype != np.intc):\n                raise ValueError(\"No support for np.int64 index based \"\n                                 \"sparse matrices\")\n\n        n_features = X.shape[1]\n        if self.n_features_ != n_features:\n            raise ValueError(\"Number of features of the model must \"\n                             \"match the input. Model n_features is %s and \"\n                             \"input n_features is %s \"\n                             % (self.n_features_, n_features))\n\n        return X\n"
+    },
+    {
+      "commit": "92bda9794fdd913426c660e9d1e208a83f8d341f",
+      "startLine": 15,
+      "endLine": 19,
+      "methodCode": "    def _validate_X_predict(self, X, check_input):\n        \"\"\"Validate X whenever one tries to predict, apply, predict_proba\"\"\"\n        if self.tree_ is None:\n            raise NotFittedError(\"Estimator not fitted, \"\n                                 \"call `fit` before exploiting the model.\")\n\n        if check_input:\n            X = check_array(X, dtype=DTYPE, accept_sparse=\"csr\")\n            if issparse(X) and (X.indices.dtype != np.intc or\n                                X.indptr.dtype != np.intc):\n                raise ValueError(\"No support for np.int64 index based \"\n                                 \"sparse matrices\")\n\n        n_features = X.shape[1]\n        if self.n_features_ != n_features:\n            raise ValueError(\"Number of features of the model must \"\n                             \" match the input. Model n_features is %s and \"\n                             \" input n_features is %s \"\n                             % (self.n_features_, n_features))\n\n        return X\n"
+    },
+    {
+      "commit": "294a6219e28daffb505893e1ff9529dc86633a87",
+      "startLine": 14,
+      "endLine": 18,
+      "methodCode": "    def _validate_X_predict(self, X, check_input):\n        \"\"\"Validate X whenever one tries to predict, apply, predict_proba\"\"\"\n        if self.tree_ is None:\n            raise NotFittedError(\"Tree not initialized. Perform a fit first\")\n\n        if check_input:\n            X = check_array(X, dtype=DTYPE, accept_sparse=\"csr\")\n            if issparse(X) and (X.indices.dtype != np.intc or\n                                X.indptr.dtype != np.intc):\n                raise ValueError(\"No support for np.int64 index based \"\n                                 \"sparse matrices\")\n\n        n_features = X.shape[1]\n        if self.n_features_ != n_features:\n            raise ValueError(\"Number of features of the model must \"\n                             \" match the input. Model n_features is %s and \"\n                             \" input n_features is %s \"\n                             % (self.n_features_, n_features))\n\n        return X\n"
+    },
+    {
+      "commit": "4ffbf34588e66d10a6ae79d7692c66c83f7edbab",
+      "startLine": 14,
+      "endLine": 18,
+      "methodCode": "    def _validate_X_predict(self, X, check_input):\n        \"\"\"Validate X whenever one try to predict, apply, predict_proba\"\"\"\n        if self.tree_ is None:\n            raise NotFittedError(\"Tree not initialized. Perform a fit first\")\n\n        if check_input:\n            X = check_array(X, dtype=DTYPE, accept_sparse=\"csr\")\n            if issparse(X) and (X.indices.dtype != np.intc or\n                                X.indptr.dtype != np.intc):\n                raise ValueError(\"No support for np.int64 index based \"\n                                 \"sparse matrices\")\n\n        n_features = X.shape[1]\n        if self.n_features_ != n_features:\n            raise ValueError(\"Number of features of the model must \"\n                             \" match the input. Model n_features is %s and \"\n                             \" input n_features is %s \"\n                             % (self.n_features_, n_features))\n\n        return X\n"
+    }
+  ]
+}

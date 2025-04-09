@@ -58,8 +58,8 @@ async function singleTest(oracleName: string): Promise<[TestResult[], boolean]> 
         if(newStatements === oldStatements) {
             continue;
         }
-        const newSyntaxNode = parseCodeIntoSyntaxNode('1.java', newCode);
-        const oldSyntaxNode = parseCodeIntoSyntaxNode('1.java', oldCode);
+        const newSyntaxNode = parseCodeIntoSyntaxNode('1.py', newCode);
+        const oldSyntaxNode = parseCodeIntoSyntaxNode('1.py', oldCode);
 
         const [resStart, resEnd] = await getRangeInPreviousVersion(oldSyntaxNode, newSyntaxNode, versions[i]['startLine'], versions[i]['endLine']);
         ret.push(new TestResult(oldCode, versions[i + 1]['commit'], newCode, versions[i]['commit'], versions[i]['startLine'], versions[i]['endLIne'], versions[i + 1]['startLine'], versions[i + 1]['endLine'], resStart, resEnd));
@@ -68,7 +68,7 @@ async function singleTest(oracleName: string): Promise<[TestResult[], boolean]> 
 }
 
 export async function doStatementTest() {
-    const oraclePath = path.join(__dirname, 'statement_oracles');
+    const oraclePath = path.join(__dirname, 'block_oracles', 'python');
     const oracleFileNames = await fs.readdir(oraclePath);
     const results: TestResult[] = [];
     let allCorrect = 0;

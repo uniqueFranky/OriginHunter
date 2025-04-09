@@ -2,7 +2,7 @@ import subprocess
 import os
 import json
 
-dir = '../../out/test/oracles/java'
+dir = '../../out/test/oracles/python'
 file_names = os.listdir(dir)
 
 for file_name in file_names:
@@ -20,7 +20,7 @@ for file_name in file_names:
                 "-methodname", data['functionName'],
                 "-startline", str(data['functionStartLine']),
                 "-startcommit", data['startCommitName'],
-                "-outfile", './block_oracles/detail_methods/' + (file_name if not file_name.startswith('Z') else file_name[2:])
+                "-outfile", './block_oracles/python_detail_methods/' + (file_name if not file_name.startswith('Z') else file_name[2:])
             ]
             subprocess.run(command, check=True)
         except Exception as e:

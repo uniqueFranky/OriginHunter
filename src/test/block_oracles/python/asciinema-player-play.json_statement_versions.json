@@ -1,0 +1,52 @@
+{
+  "statementVersions": [
+    {
+      "commit": "7b9c8298b49936b0d0ae82ae19d5ba985b0274c6",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "    def play(self, asciicast, idle_time_limit=None, speed=1.0):\n        try:\n            stdin = open('/dev/tty')\n            with raw(stdin.fileno()):\n                self._play(asciicast, idle_time_limit, speed, stdin)\n        except Exception:\n            self._play(asciicast, idle_time_limit, speed, None)\n"
+    },
+    {
+      "commit": "a3a38794e5e1d962c2941ea9667326c09b52aa64",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "    def play(self, asciicast, idle_time_limit=None, speed=1.0):\n        try:\n            stdin = open('/dev/tty')\n            with raw(stdin.fileno()):\n                self._play(asciicast, idle_time_limit, speed, stdin)\n        except:\n            self._play(asciicast, idle_time_limit, speed, None)\n"
+    },
+    {
+      "commit": "ac58f27a2e758bf4cd3c5eb3d11a343b27b95dbc",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "    def play(self, asciicast, idle_time_limit=None, speed=1.0):\n        if os.isatty(sys.stdin.fileno()):\n            with raw(sys.stdin.fileno()):\n                self._play(asciicast, idle_time_limit, speed, True)\n        else:\n            self._play(asciicast, idle_time_limit, speed, False)\n"
+    },
+    {
+      "commit": "479cfafecba2595332113ce18b421bc4955b1ad4",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "    def play(self, asciicast, max_wait=None, speed=1.0):\n        if os.isatty(sys.stdin.fileno()):\n            with raw(sys.stdin.fileno()):\n                self._play(asciicast, max_wait, speed, True)\n        else:\n            self._play(asciicast, max_wait, speed, False)\n"
+    },
+    {
+      "commit": "65136bf01d81ecdb73d383ad49b574e7d6c75fde",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "    def play(self, asciicast, max_wait=None, speed=1.0):\n        with raw(sys.stdin.fileno()):\n            for delay, text in asciicast.stdout:\n                if max_wait and delay > max_wait:\n                    delay = max_wait\n                time.sleep(delay / speed)\n                sys.stdout.write(text)\n                sys.stdout.flush()\n\n                data = read_non_blocking(sys.stdin.fileno())\n                if 0x03 in data:  # ctrl-c\n                    break"
+    },
+    {
+      "commit": "93851e03c35e6e0deda65331ed6203e9d086cebf",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "    def play(self, asciicast, max_wait=None, speed=1.0):\n        for delay, text in asciicast.stdout:\n            if max_wait and delay > max_wait:\n                delay = max_wait\n            time.sleep(delay / speed)\n            sys.stdout.write(text)\n            sys.stdout.flush()"
+    },
+    {
+      "commit": "d665ebf5569a84ab52b51b5c91661250f69c5a0c",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "    def play(self, asciicast, max_wait=None):\n        for delay, text in asciicast.stdout:\n            if max_wait and delay > max_wait:\n                delay = max_wait\n            time.sleep(delay)\n            sys.stdout.write(text)\n            sys.stdout.flush()"
+    },
+    {
+      "commit": "33a21aa2da853e2c6a38c7c7f9bd665240edc82f",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "    def play(self, asciicast):\n        for delay, text in asciicast.stdout:\n            time.sleep(delay)\n            sys.stdout.write(text)\n            sys.stdout.flush()"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "statementVersions": [
+    {
+      "commit": "96ea4e735e5d5dac54ce4bd3011920f09e4905a3",
+      "startLine": 15,
+      "endLine": 57,
+      "methodCode": "    def _play(self, asciicast, idle_time_limit, speed, stdin):\n        idle_time_limit = idle_time_limit or asciicast.idle_time_limit\n\n        stdout = asciicast.stdout_events()\n        stdout = ev.to_relative_time(stdout)\n        stdout = ev.cap_relative_time(stdout, idle_time_limit)\n        stdout = ev.to_absolute_time(stdout)\n        stdout = ev.adjust_speed(stdout, speed)\n\n        base_time = time.time()\n        ctrl_c = False\n        paused = False\n        pause_time = None\n\n        for t, _type, text in stdout:\n            delay = t - (time.time() - base_time)\n\n            while stdin and not ctrl_c and delay > 0:\n                if paused:\n                    while True:\n                        data = read_blocking(stdin.fileno(), 1000)\n\n                        if 0x03 in data:  # ctrl-c\n                            ctrl_c = True\n                            break\n\n                        if 0x20 in data:  # space\n                            paused = False\n                            base_time = base_time + (time.time() - pause_time)\n                            break\n\n                        if 0x2e in data:  # period (dot)\n                            delay = 0\n                            pause_time = time.time()\n                            base_time = pause_time - t\n                            break\n                else:\n                    data = read_blocking(stdin.fileno(), delay)\n\n                    if not data:\n                        break\n\n                    if 0x03 in data:  # ctrl-c\n                        ctrl_c = True\n                        break\n\n                    if 0x20 in data:  # space\n                        paused = True\n                        pause_time = time.time()\n                        slept = t - (pause_time - base_time)\n                        delay = delay - slept\n\n            if ctrl_c:\n                break\n\n            sys.stdout.write(text)\n            sys.stdout.flush()"
+    },
+    {
+      "commit": "fb1e25d933851743f4aed744279ab5361af9ad4b",
+      "startLine": 15,
+      "endLine": 57,
+      "methodCode": "    def _play(self, asciicast, idle_time_limit, speed, stdin):\n        idle_time_limit = idle_time_limit or asciicast.idle_time_limit\n\n        stdout = asciicast.stdout()\n        stdout = frames.to_relative_time(stdout)\n        stdout = frames.cap_relative_time(stdout, idle_time_limit)\n        stdout = frames.to_absolute_time(stdout)\n        stdout = frames.adjust_speed(stdout, speed)\n\n        base_time = time.time()\n        ctrl_c = False\n        paused = False\n        pause_time = None\n\n        for t, text in stdout:\n            delay = t - (time.time() - base_time)\n\n            while stdin and not ctrl_c and delay > 0:\n                if paused:\n                    while True:\n                        data = read_blocking(stdin.fileno(), 1000)\n\n                        if 0x03 in data:  # ctrl-c\n                            ctrl_c = True\n                            break\n\n                        if 0x20 in data:  # space\n                            paused = False\n                            base_time = base_time + (time.time() - pause_time)\n                            break\n\n                        if 0x2e in data:  # period (dot)\n                            delay = 0\n                            pause_time = time.time()\n                            base_time = pause_time - t\n                            break\n                else:\n                    data = read_blocking(stdin.fileno(), delay)\n\n                    if not data:\n                        break\n\n                    if 0x03 in data:  # ctrl-c\n                        ctrl_c = True\n                        break\n\n                    if 0x20 in data:  # space\n                        paused = True\n                        pause_time = time.time()\n                        slept = t - (pause_time - base_time)\n                        delay = delay - slept\n\n            if ctrl_c:\n                break\n\n            sys.stdout.write(text)\n            sys.stdout.flush()"
+    },
+    {
+      "commit": "3cc2a541e1abfdf5c04800838e5aade7283fcd0d",
+      "startLine": 12,
+      "endLine": 21,
+      "methodCode": "    def _play(self, asciicast, idle_time_limit, speed, stdin):\n        idle_time_limit = idle_time_limit or asciicast.idle_time_limit\n\n        stdout = asciicast.stdout()\n        stdout = frames.to_relative_time(stdout)\n        stdout = frames.cap_relative_time(stdout, idle_time_limit)\n        stdout = frames.to_absolute_time(stdout)\n        stdout = frames.adjust_speed(stdout, speed)\n\n        base_time = time.time()\n\n        for t, text in stdout:\n            delay = t - (time.time() - base_time)\n\n            if delay > 0:\n                data = read_blocking(stdin.fileno(), delay)\n                if 0x03 in data:  # ctrl-c\n                    break\n\n            sys.stdout.write(text)\n            sys.stdout.flush()"
+    },
+    {
+      "commit": "a3a38794e5e1d962c2941ea9667326c09b52aa64",
+      "startLine": 12,
+      "endLine": 24,
+      "methodCode": "    def _play(self, asciicast, idle_time_limit, speed, stdin):\n        idle_time_limit = idle_time_limit or asciicast.idle_time_limit\n\n        stdout = asciicast.stdout()\n        stdout = frames.to_relative_time(stdout)\n        stdout = frames.cap_relative_time(stdout, idle_time_limit)\n        stdout = frames.to_absolute_time(stdout)\n        stdout = frames.adjust_speed(stdout, speed)\n\n        base_time = time.time()\n\n        for t, text in stdout:\n            delay = t - (time.time() - base_time)\n\n            if delay > 0:\n                time.sleep(delay)\n\n            sys.stdout.write(text)\n            sys.stdout.flush()\n\n            if stdin:\n                data = read_non_blocking(stdin.fileno())\n                if 0x03 in data:  # ctrl-c\n                    break"
+    },
+    {
+      "commit": "8f804bf687e6ccdf62ffed2afe6e765fc758c460",
+      "startLine": 12,
+      "endLine": 24,
+      "methodCode": "    def _play(self, asciicast, idle_time_limit, speed, raw):\n        idle_time_limit = idle_time_limit or asciicast.idle_time_limit\n\n        stdout = asciicast.stdout()\n        stdout = frames.to_relative_time(stdout)\n        stdout = frames.cap_relative_time(stdout, idle_time_limit)\n        stdout = frames.to_absolute_time(stdout)\n        stdout = frames.adjust_speed(stdout, speed)\n\n        base_time = time.time()\n\n        for t, text in stdout:\n            delay = t - (time.time() - base_time)\n\n            if delay > 0:\n                time.sleep(delay)\n\n            sys.stdout.write(text)\n            sys.stdout.flush()\n\n            if raw:\n                data = read_non_blocking(sys.stdin.fileno())\n                if 0x03 in data:  # ctrl-c\n                    break"
+    },
+    {
+      "commit": "fef56d548fece46c56dc698d1325a6df01770833",
+      "startLine": 12,
+      "endLine": 24,
+      "methodCode": "    def _play(self, asciicast, idle_time_limit, speed, raw):\n        idle_time_limit = idle_time_limit or asciicast.idle_time_limit\n\n        stdout = asciicast.stdout()\n        stdout = to_relative_time(stdout)\n        stdout = compress_time(stdout, idle_time_limit)\n        stdout = to_absolute_time(stdout)\n        stdout = adjust_speed(stdout, speed)\n\n        base_time = time.time()\n\n        for t, text in stdout:\n            delay = t - (time.time() - base_time)\n\n            if delay > 0:\n                time.sleep(delay)\n\n            sys.stdout.write(text)\n            sys.stdout.flush()\n\n            if raw:\n                data = read_non_blocking(sys.stdin.fileno())\n                if 0x03 in data:  # ctrl-c\n                    break"
+    },
+    {
+      "commit": "ac58f27a2e758bf4cd3c5eb3d11a343b27b95dbc",
+      "startLine": 8,
+      "endLine": 16,
+      "methodCode": "    def _play(self, asciicast, idle_time_limit, speed, raw):\n        idle_time_limit = idle_time_limit or asciicast.idle_time_limit\n\n        stdout = asciicast.stdout()\n        stdout = compress_time(stdout, idle_time_limit)\n        stdout = adjust_speed(stdout, speed)\n\n        for delay, text in stdout:\n            time.sleep(delay)\n            sys.stdout.write(text)\n            sys.stdout.flush()\n\n            if raw:\n                data = read_non_blocking(sys.stdin.fileno())\n                if 0x03 in data:  # ctrl-c\n                    break"
+    },
+    {
+      "commit": "8927554e445a0915a67da3c32e656645aee7a96c",
+      "startLine": 8,
+      "endLine": 16,
+      "methodCode": "    def _play(self, asciicast, max_wait, speed, raw):\n        max_wait = max_wait or asciicast.max_wait\n\n        stdout = asciicast.stdout()\n        stdout = compress_time(stdout, max_wait)\n        stdout = adjust_speed(stdout, speed)\n\n        for delay, text in stdout:\n            time.sleep(delay)\n            sys.stdout.write(text)\n            sys.stdout.flush()\n\n            if raw:\n                data = read_non_blocking(sys.stdin.fileno())\n                if 0x03 in data:  # ctrl-c\n                    break"
+    },
+    {
+      "commit": "479cfafecba2595332113ce18b421bc4955b1ad4",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "    def _play(self, asciicast, max_wait, speed, raw):\n        for delay, text in asciicast.stdout:\n            if max_wait and delay > max_wait:\n                delay = max_wait\n            time.sleep(delay / speed)\n            sys.stdout.write(text)\n            sys.stdout.flush()\n\n            if raw:\n                data = read_non_blocking(sys.stdin.fileno())\n                if 0x03 in data:  # ctrl-c\n                    break"
+    }
+  ]
+}

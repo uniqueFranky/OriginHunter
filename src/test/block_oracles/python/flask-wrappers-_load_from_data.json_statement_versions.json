@@ -1,0 +1,52 @@
+{
+  "statementVersions": [
+    {
+      "commit": "ca278a8694f42e569a6d9f7d71c669465019bf06",
+      "startLine": 6,
+      "endLine": 14,
+      "methodCode": "    def _load_form_data(self):\n        RequestBase._load_form_data(self)\n\n        # In debug mode we're replacing the files multidict with an ad-hoc\n        # subclass that raises a different error for key errors.\n        if (\n            current_app\n            and current_app.debug\n            and self.mimetype != \"multipart/form-data\"\n            and not self.files\n        ):\n            from .debughelpers import attach_enctype_error_multidict\n\n            attach_enctype_error_multidict(self)\n\n"
+    },
+    {
+      "commit": "025589ee766249652e2e097da05808fe64911ddc",
+      "startLine": 6,
+      "endLine": 14,
+      "methodCode": "    def _load_form_data(self):\n        RequestBase._load_form_data(self)\n\n        # In debug mode we're replacing the files multidict with an ad-hoc\n        # subclass that raises a different error for key errors.\n        if (\n            current_app\n            and current_app.debug\n            and self.mimetype != \"multipart/form-data\"\n            and not self.files\n        ):\n            from .debughelpers import attach_enctype_error_multidict\n\n            attach_enctype_error_multidict(self)\n\n"
+    },
+    {
+      "commit": "e97253e4c1a0380f0b70108e8f984b0d9b87ac11",
+      "startLine": 6,
+      "endLine": 13,
+      "methodCode": "    def _load_form_data(self):\n        RequestBase._load_form_data(self)\n\n        # In debug mode we're replacing the files multidict with an ad-hoc\n        # subclass that raises a different error for key errors.\n        if (\n            current_app\n            and current_app.debug\n            and self.mimetype != 'multipart/form-data'\n            and not self.files\n        ):\n            from .debughelpers import attach_enctype_error_multidict\n            attach_enctype_error_multidict(self)\n\n"
+    },
+    {
+      "commit": "1df2788a8f29a1238cbdebd7fa59b0d6218995b5",
+      "startLine": 7,
+      "endLine": 10,
+      "methodCode": "    def _load_form_data(self):\n        RequestBase._load_form_data(self)\n\n        # In debug mode we're replacing the files multidict with an ad-hoc\n        # subclass that raises a different error for key errors.\n        ctx = _app_ctx_stack.top\n        if ctx is not None and ctx.app.debug and \\\n           self.mimetype != 'multipart/form-data' and not self.files:\n            from .debughelpers import attach_enctype_error_multidict\n            attach_enctype_error_multidict(self)\n\n"
+    },
+    {
+      "commit": "bafc13981002dee4610234c7c97ac176766181c1",
+      "startLine": 7,
+      "endLine": 10,
+      "methodCode": "    def _load_form_data(self):\n        RequestBase._load_form_data(self)\n\n        # In debug mode we're replacing the files multidict with an ad-hoc\n        # subclass that raises a different error for key errors.\n        ctx = _request_ctx_stack.top\n        if ctx is not None and ctx.app.debug and \\\n           self.mimetype != 'multipart/form-data' and not self.files:\n            from .debughelpers import attach_enctype_error_multidict\n            attach_enctype_error_multidict(self)\n\n"
+    },
+    {
+      "commit": "ac99cd33a827f0694d718dae5f2699430263ed7e",
+      "startLine": 7,
+      "endLine": 9,
+      "methodCode": "    def _load_form_data(self):\n        RequestBase._load_form_data(self)\n\n        # in debug mode we're replacing the files multidict with an ad-hoc\n        # subclass that raises a different error for key errors.\n        ctx = _request_ctx_stack.top\n        if ctx is not None and ctx.app.debug and \\\n           self.mimetype != 'multipart/form-data' and not self.files:\n            attach_enctype_error_multidict(self)\n\n"
+    },
+    {
+      "commit": "3400b78db23fbd305cb11368946be1bf280e2696",
+      "startLine": 7,
+      "endLine": 9,
+      "methodCode": "    def _load_form_data(self):\n        RequestBase._load_form_data(self)\n\n        # in debug mode we're replacing the files multidict with an ad-hoc\n        # subclass that raises a different error for key errors.\n        ctx = _request_ctx_stack.top\n        if ctx is not None and ctx.app.debug and \\\n           self.mimetype != 'multipart/form-data' and not self.files:\n            make_enctype_error_multidict(self)\n\n"
+    },
+    {
+      "commit": "2e022cb2727cfa99355261f2c18d1e0fc56e82ee",
+      "startLine": 7,
+      "endLine": 9,
+      "methodCode": "    def _load_form_data(self):\n        RequestBase._load_form_data(self)\n\n        # in debug mode we're replacing the files multidict with an ad-hoc\n        # subclass that raises a different error for key errors.\n        ctx = _request_ctx_stack.top\n        if ctx is not None and ctx.app.debug and \\\n           self.mimetype != 'multipart/form-data':\n            make_enctype_error_multidict(self)\n\n"
+    }
+  ]
+}

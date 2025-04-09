@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "b01906a45c7b745a487af535310373a890b2758a",
+      "startLine": 16,
+      "endLine": 22,
+      "methodCode": "    def sum_up(self):\n        actually_downloaded = (self.status.downloaded\n                               - self.status.resumed_from)\n        time_taken = self.status.time_finished - self.status.time_started\n\n        self.output.write(CLEAR_LINE)\n\n        try:\n            speed = actually_downloaded / time_taken\n        except ZeroDivisionError:\n            # Either time is 0 (not all systems provide `time.time`\n            # with a better precision than 1 second), and/or nothing\n            # has been downloaded.\n            speed = actually_downloaded\n\n        self.output.write(SUMMARY.format(\n            downloaded=humanize_bytes(actually_downloaded),\n            total=(self.status.total_size\n                   and humanize_bytes(self.status.total_size)),\n            speed=humanize_bytes(speed),\n            time=time_taken,\n        ))\n        self.output.flush()"
+    },
+    {
+      "commit": "1fc8396c4ba6b6e6fda19fb1d3a7d8fa40296cd5",
+      "startLine": 7,
+      "endLine": 13,
+      "methodCode": "    def sum_up(self):\n        actually_downloaded = (self.status.downloaded\n                               - self.status.resumed_from)\n        time_taken = self.status.time_finished - self.status.time_started\n\n        self.output.write(CLEAR_LINE)\n        self.output.write(SUMMARY.format(\n            downloaded=humanize_bytes(actually_downloaded),\n            total=(self.status.total_size\n                   and humanize_bytes(self.status.total_size)),\n            speed=humanize_bytes(actually_downloaded / time_taken),\n            time=time_taken,\n        ))\n        self.output.flush()"
+    },
+    {
+      "commit": "5a1177d57e58072d929a674a28e80661b81a393a",
+      "startLine": 7,
+      "endLine": 13,
+      "methodCode": "    def sum_up(self):\n        actually_downloaded = (\n            self.progress.downloaded - self.progress.resumed_from)\n        time_taken = self.progress.time_finished - self.progress.time_started\n\n        self.output.write(CLEAR_LINE)\n        self.output.write(SUMMARY.format(\n            downloaded=humanize_bytes(actually_downloaded),\n            total=(self.progress.total_size\n                   and humanize_bytes(self.progress.total_size)),\n            speed=humanize_bytes(actually_downloaded / time_taken),\n            time=time_taken,\n        ))\n        self.output.flush()"
+    },
+    {
+      "commit": "40bd8f65af247896f26456a8fc099633d23f5cf6",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "    def sum_up(self):\n        actually_downloaded = (\n            self.progress.downloaded - self.progress.resumed_from)\n        time_taken = self.progress.time_finished - self.progress.time_started\n\n        self.output.write(CLEAR_LINE)\n        self.output.write(SUMMARY.format(\n            downloaded=humanize_bytes(actually_downloaded),\n            total=humanize_bytes(self.progress.total_size),\n            speed=humanize_bytes(actually_downloaded / time_taken),\n            time=time_taken,\n        ))\n        self.output.flush()"
+    },
+    {
+      "commit": "ebfce6fb93b077a039a5aef7f5deb0e5f23b5c28",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "    def sum_up(self):\n        actually_downloaded = (\n            self.progress.downloaded - self.progress.resumed_from)\n        time_taken = self.progress.time_finished - self.progress.time_started\n\n        self.output.write(CLEAR_LINE)\n        self.output.write(SUMMARY.format(\n            downloaded=humanize_bytes(actually_downloaded),\n            total=humanize_bytes(self.progress.downloaded),\n            speed=humanize_bytes(actually_downloaded / time_taken),\n            time=time_taken,\n        ))\n        self.output.flush()"
+    }
+  ]
+}

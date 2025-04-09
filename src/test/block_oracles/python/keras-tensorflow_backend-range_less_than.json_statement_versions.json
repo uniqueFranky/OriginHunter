@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "8d317c986721371f6d11ae9fbc0afa0212a088dc",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def range_less_than(_, current_input):\n        return tf.expand_dims(tf.range(label_shape[1]), 0) < tf.fill(\n            max_num_labels_tns, current_input)\n"
+    },
+    {
+      "commit": "aeb22266c91af9d17bee7a4c266c7396a6167cbf",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def range_less_than(current_input):\n        return tf.expand_dims(tf.range(label_shape[1]), 0) < tf.fill(\n            max_num_labels_tns, current_input)\n"
+    },
+    {
+      "commit": "6b18a908b8ee6e9b58c834a3f7b1944e002764a3",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "    def range_less_than(previous_state, current_input):\n        return tf.expand_dims(tf.range(label_shape[1]), 0) < tf.fill(max_num_labels_tns, current_input)\n"
+    },
+    {
+      "commit": "e8190a8d8d4a59359f93bc9b366d04b9c72cc2ed",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "    def range_less_than(previous_state, current_input):\n        return tf.expand_dims(tf.range(label_shape[1]), 0) < current_input\n"
+    }
+  ]
+}

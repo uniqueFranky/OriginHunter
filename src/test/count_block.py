@@ -2,7 +2,7 @@ import os
 import sys
 import json
 
-out_dir = '../../out/test/block_oracles/hyb_out'
+out_dir = '../../out/test/block_oracles/sample_out'
 
 test_dir = '../../out/test/block_oracles/test'
 train_dir = '../../out/test/block_oracles/training'

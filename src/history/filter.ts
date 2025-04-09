@@ -344,36 +344,28 @@ export async function filterMethodsByNode(histories: MethodLevelHistory[], range
         });
         let newGuardians: FilterTreeNode[] = [];
         let shouldAddToHistory = false;
-        if(guardians.length === 1) {
-            let guardian = guardians[0];
+
+        guardians.forEach(guardian => {
             let cor = map.get(guardian.id);
             if(!cor) {
                 shouldAddToHistory = true;
-                guardians = guardian.children;
-            } else {
-                let node1 = filterTrees[i - 1].id2NodeMapping.get(guardian.id)!;
-                let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
-                newGuardians.push(node2);
-                if(!shouldAddToHistory && !isIsomorphic(node1.tsNode, node2.tsNode)) {
-                    shouldAddToHistory = true;
-                }
+                const nodes = randomSample(filterTrees[i - 1].id2NodeMapping.get(guardian.id)!, 0.8, true);
+                nodes.forEach(node => {
+                    cor = map.get(node.id);
+                    if(cor) {
+                        newGuardians.push(filterTrees[i].id2NodeMapping.get(cor)!);
+                    }
+                });
+                return;
             }
-        } 
-        if(guardians.length > 1) {
-            guardians.forEach(guardian => {
-                let cor = map.get(guardian.id);
-                if(!cor) {
-                    shouldAddToHistory = true;
-                    return;
-                }
-                let node1 = filterTrees[i - 1].id2NodeMapping.get(guardian.id)!;
-                let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
-                newGuardians.push(node2);
-                if(!shouldAddToHistory && !isIsomorphic(node1.tsNode, node2.tsNode)) {
-                    shouldAddToHistory = true;
-                }
-            });
-        }
+            let node1 = filterTrees[i - 1].id2NodeMapping.get(guardian.id)!;
+            let node2 = filterTrees[i].id2NodeMapping.get(cor)!;
+            newGuardians.push(node2);
+            if(!shouldAddToHistory && !isIsomorphic(node1.tsNode, node2.tsNode)) {
+                shouldAddToHistory = true;
+            }
+        });
+        
 
         guardians = filterTrees[i].calcGuardiansWhichGuards(newGuardians);
         if(shouldAddToHistory || guardians.length !== newGuardians.length) {

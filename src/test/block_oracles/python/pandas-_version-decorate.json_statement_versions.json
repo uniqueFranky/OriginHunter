@@ -1,0 +1,16 @@
+{
+  "statementVersions": [
+    {
+      "commit": "8b15dff89a0386110459bfd8ef6af96c75320439",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def decorate(f: Callable) -> Callable:\n        if vcs not in HANDLERS:\n            HANDLERS[vcs] = {}\n        HANDLERS[vcs][method] = f\n        return f"
+    },
+    {
+      "commit": "c4a0147c9e46c6b43501e126609c6d16c3eff2ba",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def decorate(f):\n        if vcs not in HANDLERS:\n            HANDLERS[vcs] = {}\n        HANDLERS[vcs][method] = f\n        return f"
+    }
+  ]
+}

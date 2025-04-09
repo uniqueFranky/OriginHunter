@@ -4,6 +4,7 @@ import HistoryList from './HistoryList';
 import { MethodHistory } from './Models';
 import HistoryDetail from './HistoryDetail';
 import LoadingScreen from './LoadingScreen';
+import { Button } from '@mui/material';
 
 // App 组件
 const App: React.FC = () => {
@@ -17,6 +18,22 @@ const App: React.FC = () => {
   const [repoName, setRepoName] = useState<string>();
   const [nameLLM, setNameLLM] = useState<string>();
   const [keyLLM, setKeyLLM] = useState<string>();
+
+  const saveAsData = () => {
+    const commits = codeHistory.map(h => h.commit.hash);
+    const filePath = codeHistory[0].container;
+    const expectedResult = new Map<string, string>();
+    commits.forEach(commit => expectedResult.set(commit, 'YType'));
+    const data = {
+      'repositoryName': repoName,
+      'filePath': filePath,
+      'functionName': '',
+      'functionStartLine': 0,
+      'startCommitName': '',
+      'expectedResult': expectedResult
+    };
+    console.log(JSON.stringify(data, null, 2));
+  };
 
   useEffect(() => {
     const handler = (event: MessageEvent) => {
@@ -61,6 +78,9 @@ const App: React.FC = () => {
             }} 
           />
         </div>
+        <Button variant="contained" color="primary" onClick={saveAsData} sx={{ marginLeft: '8px' }}>
+            Save
+        </Button>
 
         <div style={{ flex: 1, padding: '20px', borderLeft: '1px solid #ddd', overflowY: 'auto' }}>
           {currentHistory && <HistoryDetail history={currentHistory} previous={currentPrevious} 
