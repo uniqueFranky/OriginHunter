@@ -1,0 +1,112 @@
+{
+  "statementVersions": [
+    {
+      "commit": "544625545afe2e9c2b358e356c11bb8be53ceb51",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "    def __init__(self, learning_rate=0.001, rho=0.9, **kwargs):\n        self.initial_decay = kwargs.pop('decay', 0.0)\n        self.epsilon = kwargs.pop('epsilon', K.epsilon())\n        learning_rate = kwargs.pop('lr', learning_rate)\n        super(RMSprop, self).__init__(**kwargs)\n        with K.name_scope(self.__class__.__name__):\n            self.learning_rate = K.variable(learning_rate, name='learning_rate')\n            self.rho = K.variable(rho, name='rho')\n            self.decay = K.variable(self.initial_decay, name='decay')\n            self.iterations = K.variable(0, dtype='int64', name='iterations')\n"
+    },
+    {
+      "commit": "36098bf0d7ca1e8285f63963130877746dc2809d",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "    def __init__(self, learning_rate=0.001, rho=0.9, epsilon=None, decay=0.,\n                 **kwargs):\n        learning_rate = kwargs.pop('lr', None) or learning_rate\n        super(RMSprop, self).__init__(**kwargs)\n        with K.name_scope(self.__class__.__name__):\n            self.learning_rate = K.variable(learning_rate, name='learning_rate')\n            self.rho = K.variable(rho, name='rho')\n            self.decay = K.variable(decay, name='decay')\n            self.iterations = K.variable(0, dtype='int64', name='iterations')\n        if epsilon is None:\n            epsilon = K.epsilon()\n        self.epsilon = epsilon\n        self.initial_decay = decay\n"
+    },
+    {
+      "commit": "321d838ba880c3c3529997354617963bb501eaec",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=None, decay=0.,\n                 **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        with K.name_scope(self.__class__.__name__):\n            self.lr = K.variable(lr, name='lr')\n            self.rho = K.variable(rho, name='rho')\n            self.decay = K.variable(decay, name='decay')\n            self.iterations = K.variable(0, dtype='int64', name='iterations')\n        if epsilon is None:\n            epsilon = K.epsilon()\n        self.epsilon = epsilon\n        self.initial_decay = decay\n"
+    },
+    {
+      "commit": "2d8739dda9859b91bf2b7da5402d242555c48d7d",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-8, decay=0.,\n                 **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        with K.name_scope(self.__class__.__name__):\n            self.lr = K.variable(lr, name='lr')\n            self.rho = K.variable(rho, name='rho')\n            self.decay = K.variable(decay, name='decay')\n            self.iterations = K.variable(0, dtype='int64', name='iterations')\n        self.epsilon = epsilon\n        self.initial_decay = decay\n"
+    },
+    {
+      "commit": "2afe0b0054694045aff3dd7e263b5c44f04c323a",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-8, decay=0.,\n                 **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        with K.name_scope(self.__class__.__name__):\n            self.lr = K.variable(lr, name='lr')\n            self.rho = K.variable(rho, name='rho')\n            self.decay = K.variable(decay, name='decay')\n            self.iterations = K.variable(0., name='iterations')\n        self.epsilon = epsilon\n        self.initial_decay = decay\n"
+    },
+    {
+      "commit": "a164addd8d5d1642d613100226a94398d929804d",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-8, decay=0.,\n                 **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        self.lr = K.variable(lr, name='lr')\n        self.rho = K.variable(rho, name='rho')\n        self.epsilon = epsilon\n        self.decay = K.variable(decay, name='decay')\n        self.initial_decay = decay\n        self.iterations = K.variable(0., name='iterations')\n"
+    },
+    {
+      "commit": "ea47e6de279397cb1adf953ae971cf884587447d",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-8, decay=0.,\n                 **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        self.lr = K.variable(lr)\n        self.rho = K.variable(rho)\n        self.epsilon = epsilon\n        self.decay = K.variable(decay)\n        self.initial_decay = decay\n        self.iterations = K.variable(0.)\n"
+    },
+    {
+      "commit": "b2e8d5ab7c476fbed088ebee27ec3373e508af47",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-8, decay=0.,\n                 **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        self.__dict__.update(locals())\n        self.lr = K.variable(lr)\n        self.rho = K.variable(rho)\n        self.decay = K.variable(decay)\n        self.inital_decay = decay\n        self.iterations = K.variable(0.)\n"
+    },
+    {
+      "commit": "b581eb3f27a49c57f861ae64a3dfdd6f8fba53b3",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-8, **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        self.__dict__.update(locals())\n        self.lr = K.variable(lr)\n        self.rho = K.variable(rho)\n"
+    },
+    {
+      "commit": "5f7e78df65a865084a34fc54a6cb4f78c1592137",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        self.__dict__.update(locals())\n        self.lr = K.variable(lr)\n        self.rho = K.variable(rho)\n"
+    },
+    {
+      "commit": "33ed943ad59fc99f469c0d9d52bfd8462542bf74",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        self.__dict__.update(locals())\n        self.lr = K.variable(lr)\n        self.rho = K.variable(rho)\n"
+    },
+    {
+      "commit": "cdbbdce9341b34a1f9b3fbceaf9d76ac11a580f8",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        self.__dict__.update(locals())\n        self.lr = shared_scalar(lr)\n        self.rho = shared_scalar(rho)\n"
+    },
+    {
+      "commit": "347e6d01ffa324b6a2c548c171eaae1569cbb6ea",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):\n        super(RMSprop, self).__init__(**kwargs)\n        self.__dict__.update(locals())\n"
+    },
+    {
+      "commit": "6fc8660a5148c1693e2c02874ffdb6a7d8f1a2c8",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):\n        self.__dict__.update(kwargs)\n        self.__dict__.update(locals())\n"
+    },
+    {
+      "commit": "3653f906ebf7d249bb7e0a07f991f495f56f13b7",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):\n        self.__dict__.update(locals())\n"
+    },
+    {
+      "commit": "af46ab0d4dc981b899fe6c82c1712e95f251a118",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):\n        self.__dict__.update(kwargs)\n        self.__dict__.update(locals())\n"
+    },
+    {
+      "commit": "e5844deadccf77aef650b6af263453a2e2d83e09",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):\n        self.__dict__.update(locals())\n"
+    },
+    {
+      "commit": "37a1db225420851cc668600c49697d9a2057f098",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "    def __init__(self, lr=0.001, rho=0.9, epsilon=1e-6, *args, **kwargs):\n        self.__dict__.update(locals())\n"
+    }
+  ]
+}

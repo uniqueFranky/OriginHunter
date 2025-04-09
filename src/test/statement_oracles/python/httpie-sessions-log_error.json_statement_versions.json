@@ -1,0 +1,22 @@
+{
+  "statementVersions": [
+    {
+      "commit": "bece3c77bb51ecc55dcc4008375dc29ccd91575c",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def log_error(msg, level='error'):\n        assert level in ['error', 'warning']\n        env.stderr.write(f'\\n{program_name}: {level}: {msg}\\n')\n"
+    },
+    {
+      "commit": "e2751e5fa38b5e5cd53a607e5e82dd58ae9904bf",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "    def log_error(msg, *args, **kwargs):\n        msg = msg % args\n        level = kwargs.get('level', 'error')\n        assert level in ['error', 'warning']\n        env.stderr.write('\\nhttp: %s: %s\\n' % (level, msg))\n"
+    },
+    {
+      "commit": "2a25d71aa4929ef9cb0d5d993ec9f25160d25d65",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "    def log_error(msg, *args, level='error'):\n        msg = msg % args\n        env.stderr.write('\\nhttp: %s: %s\\n' % (level, msg))\n"
+    }
+  ]
+}

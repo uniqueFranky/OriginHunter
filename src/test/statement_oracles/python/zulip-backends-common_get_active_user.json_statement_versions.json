@@ -1,0 +1,46 @@
+{
+  "statementVersions": [
+    {
+      "commit": "371a7768ad611417c6e94a31878481e7c656607a",
+      "startLine": 8,
+      "endLine": 21,
+      "methodCode": "def common_get_active_user(email: str, realm: Realm,\n                           return_data: Optional[Dict[str, Any]]=None) -> Optional[UserProfile]:\n    \"\"\"This is the core common function used by essentially all\n    authentication backends to check if there's an active user account\n    with a given email address in the organization, handling both\n    user-level and realm-level deactivation correctly.\n    \"\"\"\n    try:\n        user_profile = get_user_by_delivery_email(email, realm)\n    except UserProfile.DoesNotExist:\n        # If the user doesn't have an account in the target realm, we\n        # check whether they might have an account in another realm,\n        # and if so, provide a helpful error message via\n        # `invalid_subdomain`.\n        if not UserProfile.objects.filter(delivery_email__iexact=email).exists():\n            return None\n        if return_data is not None:\n            return_data['invalid_subdomain'] = True\n        return None\n    if not is_user_active(user_profile, return_data):\n        return None\n\n    return user_profile\n"
+    },
+    {
+      "commit": "873aca4a8243e3187fc00c38ae4da80ccf0cd88a",
+      "startLine": 8,
+      "endLine": 26,
+      "methodCode": "def common_get_active_user(email: str, realm: Realm,\n                           return_data: Optional[Dict[str, Any]]=None) -> Optional[UserProfile]:\n    \"\"\"This is the core common function used by essentially all\n    authentication backends to check if there's an active user account\n    with a given email address in the organization, handling both\n    user-level and realm-level deactivation correctly.\n    \"\"\"\n    try:\n        user_profile = get_user_by_delivery_email(email, realm)\n    except UserProfile.DoesNotExist:\n        # If the user doesn't have an account in the target realm, we\n        # check whether they might have an account in another realm,\n        # and if so, provide a helpful error message via\n        # `invalid_subdomain`.\n        if not UserProfile.objects.filter(delivery_email__iexact=email).exists():\n            return None\n        if return_data is not None:\n            return_data['invalid_subdomain'] = True\n        return None\n    if not user_profile.is_active:\n        if return_data is not None:\n            if user_profile.is_mirror_dummy:\n                # Record whether it's a mirror dummy account\n                return_data['is_mirror_dummy'] = True\n            return_data['inactive_user'] = True\n        return None\n    if user_profile.realm.deactivated:\n        if return_data is not None:\n            return_data['inactive_realm'] = True\n        return None\n    return user_profile\n"
+    },
+    {
+      "commit": "e603237010c6bb3520ae0b01454876bea443f85b",
+      "startLine": 3,
+      "endLine": 21,
+      "methodCode": "def common_get_active_user(email: str, realm: Realm,\n                           return_data: Optional[Dict[str, Any]]=None) -> Optional[UserProfile]:\n    try:\n        user_profile = get_user_by_delivery_email(email, realm)\n    except UserProfile.DoesNotExist:\n        # If the user doesn't have an account in the target realm, we\n        # check whether they might have an account in another realm,\n        # and if so, provide a helpful error message via\n        # `invalid_subdomain`.\n        if not UserProfile.objects.filter(delivery_email__iexact=email).exists():\n            return None\n        if return_data is not None:\n            return_data['invalid_subdomain'] = True\n        return None\n    if not user_profile.is_active:\n        if return_data is not None:\n            if user_profile.is_mirror_dummy:\n                # Record whether it's a mirror dummy account\n                return_data['is_mirror_dummy'] = True\n            return_data['inactive_user'] = True\n        return None\n    if user_profile.realm.deactivated:\n        if return_data is not None:\n            return_data['inactive_realm'] = True\n        return None\n    return user_profile\n"
+    },
+    {
+      "commit": "c3cd3e94c16c80371e97ea224eb02c80660ec1db",
+      "startLine": 3,
+      "endLine": 21,
+      "methodCode": "def common_get_active_user(email: str, realm: Realm,\n                           return_data: Optional[Dict[str, Any]]=None) -> Optional[UserProfile]:\n    try:\n        user_profile = get_user(email, realm)\n    except UserProfile.DoesNotExist:\n        # If the user doesn't have an account in the target realm, we\n        # check whether they might have an account in another realm,\n        # and if so, provide a helpful error message via\n        # `invalid_subdomain`.\n        if not UserProfile.objects.filter(email__iexact=email).exists():\n            return None\n        if return_data is not None:\n            return_data['invalid_subdomain'] = True\n        return None\n    if not user_profile.is_active:\n        if return_data is not None:\n            if user_profile.is_mirror_dummy:\n                # Record whether it's a mirror dummy account\n                return_data['is_mirror_dummy'] = True\n            return_data['inactive_user'] = True\n        return None\n    if user_profile.realm.deactivated:\n        if return_data is not None:\n            return_data['inactive_realm'] = True\n        return None\n    return user_profile\n"
+    },
+    {
+      "commit": "d1ff4293a51c6e565c5de1aa553cf7911e88b325",
+      "startLine": 3,
+      "endLine": 21,
+      "methodCode": "def common_get_active_user(email: str, realm: Realm,\n                           return_data: Dict[str, Any]=None) -> Optional[UserProfile]:\n    try:\n        user_profile = get_user(email, realm)\n    except UserProfile.DoesNotExist:\n        # If the user doesn't have an account in the target realm, we\n        # check whether they might have an account in another realm,\n        # and if so, provide a helpful error message via\n        # `invalid_subdomain`.\n        if not UserProfile.objects.filter(email__iexact=email).exists():\n            return None\n        if return_data is not None:\n            return_data['invalid_subdomain'] = True\n        return None\n    if not user_profile.is_active:\n        if return_data is not None:\n            if user_profile.is_mirror_dummy:\n                # Record whether it's a mirror dummy account\n                return_data['is_mirror_dummy'] = True\n            return_data['inactive_user'] = True\n        return None\n    if user_profile.realm.deactivated:\n        if return_data is not None:\n            return_data['inactive_realm'] = True\n        return None\n    return user_profile\n"
+    },
+    {
+      "commit": "719d6c49dfcf1b5a0ce80182755038b347eb7cc4",
+      "startLine": 3,
+      "endLine": 23,
+      "methodCode": "def common_get_active_user(email: str, realm: Realm,\n                           return_data: Dict[str, Any]=None) -> Optional[UserProfile]:\n    try:\n        user_profile = get_user(email, realm)\n    except UserProfile.DoesNotExist:\n        # If the user doesn't have an account in the target realm, we\n        # check whether they might have an account in another realm,\n        # and if so, provide a helpful error message via\n        # `invalid_subdomain`.\n        try:\n            user_profile = get_user_profile_by_email(email)\n        except UserProfile.DoesNotExist:\n            return None\n        if return_data is not None:\n            return_data['invalid_subdomain'] = True\n        return None\n    if not user_profile.is_active:\n        if return_data is not None:\n            if user_profile.is_mirror_dummy:\n                # Record whether it's a mirror dummy account\n                return_data['is_mirror_dummy'] = True\n            return_data['inactive_user'] = True\n        return None\n    if user_profile.realm.deactivated:\n        if return_data is not None:\n            return_data['inactive_realm'] = True\n        return None\n    return user_profile\n"
+    },
+    {
+      "commit": "fb6abe1b1e9c9491f630879aeb6adf8921d92d3c",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "def common_get_active_user(email: str, realm: Realm,\n                           return_data: Dict[str, Any]=None) -> Optional[UserProfile]:\n    try:\n        user_profile = get_user(email, realm)\n    except UserProfile.DoesNotExist:\n        # If the user doesn't have an account in the target realm, we\n        # check whether they might have an account in another realm,\n        # and if so, provide a helpful error message via\n        # `invalid_subdomain`.\n        try:\n            user_profile = get_user_profile_by_email(email)\n        except UserProfile.DoesNotExist:\n            return None\n        if return_data is not None:\n            return_data['invalid_subdomain'] = True\n        return None\n    if not user_profile.is_active:\n        if return_data is not None:\n            return_data['inactive_user'] = True\n        return None\n    if user_profile.realm.deactivated:\n        if return_data is not None:\n            return_data['inactive_realm'] = True\n        return None\n    return user_profile\n"
+    }
+  ]
+}

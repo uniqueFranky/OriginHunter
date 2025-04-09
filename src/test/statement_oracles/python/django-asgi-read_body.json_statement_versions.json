@@ -1,0 +1,16 @@
+{
+  "statementVersions": [
+    {
+      "commit": "eea0bf7bd58cda4618ecc10133f0ad09effe1a2e",
+      "startLine": 4,
+      "endLine": 15,
+      "methodCode": "    async def read_body(self, receive):\n        \"\"\"Reads a HTTP body from an ASGI connection.\"\"\"\n        # Use the tempfile that auto rolls-over to a disk file as it fills up.\n        body_file = tempfile.SpooledTemporaryFile(max_size=settings.FILE_UPLOAD_MAX_MEMORY_SIZE, mode='w+b')\n        while True:\n            message = await receive()\n            if message['type'] == 'http.disconnect':\n                # Early client disconnect.\n                raise RequestAborted()\n            # Add a body chunk from the message, if provided.\n            if 'body' in message:\n                body_file.write(message['body'])\n            # Quit out if that's the end.\n            if not message.get('more_body', False):\n                break\n        body_file.seek(0)\n        return body_file\n"
+    },
+    {
+      "commit": "a415ce70bef6d91036b00dd2c8544aed7aeeaaed",
+      "startLine": 5,
+      "endLine": 19,
+      "methodCode": "    async def read_body(self, receive):\n        \"\"\"Reads a HTTP body from an ASGI connection.\"\"\"\n        # Use the tempfile that auto rolls-over to a disk file as it fills up,\n        # if a maximum in-memory size is set. Otherwise use a BytesIO object.\n        if settings.FILE_UPLOAD_MAX_MEMORY_SIZE is None:\n            body_file = BytesIO()\n        else:\n            body_file = tempfile.SpooledTemporaryFile(max_size=settings.FILE_UPLOAD_MAX_MEMORY_SIZE, mode='w+b')\n        while True:\n            message = await receive()\n            if message['type'] == 'http.disconnect':\n                # Early client disconnect.\n                raise RequestAborted()\n            # Add a body chunk from the message, if provided.\n            if 'body' in message:\n                body_file.write(message['body'])\n            # Quit out if that's the end.\n            if not message.get('more_body', False):\n                break\n        body_file.seek(0)\n        return body_file\n"
+    }
+  ]
+}

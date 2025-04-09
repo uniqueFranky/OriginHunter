@@ -68,7 +68,7 @@ async function singleTest(oracleName: string): Promise<[TestResult[], boolean]> 
 }
 
 export async function doStatementTest() {
-    const oraclePath = path.join(__dirname, 'block_oracles', 'python');
+    const oraclePath = path.join(__dirname, 'statement_oracles', 'python');
     const oracleFileNames = await fs.readdir(oraclePath);
     const results: TestResult[] = [];
     let allCorrect = 0;

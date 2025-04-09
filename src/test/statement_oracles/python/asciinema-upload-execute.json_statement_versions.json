@@ -1,0 +1,40 @@
+{
+  "statementVersions": [
+    {
+      "commit": "0cec6ab2dd435f88b8b803ceb300d64de257942d",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def execute(self):\n        try:\n            result, warn = self.api.upload_asciicast(self.filename)\n\n            if warn:\n                self.print_warning(warn)\n\n            self.print(result.get('message') or result['url'])\n\n        except OSError as e:\n            self.print_error(\"upload failed: %s\" % str(e))\n            return 1\n\n        except APIError as e:\n            self.print_error(\"upload failed: %s\" % str(e))\n            self.print_error(\"retry later by running: asciinema upload %s\" % self.filename)\n            return 1\n\n        return 0"
+    },
+    {
+      "commit": "ac1f970a0de3433022d6244d50e92839d8d1027e",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def execute(self):\n        try:\n            result, warn = self.api.upload_asciicast(self.filename)\n\n            if warn:\n                self.print_warning(warn)\n\n            self.print(result['url'])\n\n        except OSError as e:\n            self.print_error(\"upload failed: %s\" % str(e))\n            return 1\n\n        except APIError as e:\n            self.print_error(\"upload failed: %s\" % str(e))\n            self.print_error(\"retry later by running: asciinema upload %s\" % self.filename)\n            return 1\n\n        return 0"
+    },
+    {
+      "commit": "b7231c28722dfd776298b56b1b0ec68c0305192b",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def execute(self):\n        try:\n            url, warn = self.api.upload_asciicast(self.filename)\n\n            if warn:\n                self.print_warning(warn)\n\n            self.print(url)\n\n        except OSError as e:\n            self.print_error(\"upload failed: %s\" % str(e))\n            return 1\n\n        except APIError as e:\n            self.print_error(\"upload failed: %s\" % str(e))\n            self.print_error(\"retry later by running: asciinema upload %s\" % self.filename)\n            return 1\n\n        return 0"
+    },
+    {
+      "commit": "4926788675caacd77fb2d7e9a8187721743553b7",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def execute(self):\n        try:\n            url, warn = self.api.upload_asciicast(self.filename)\n\n            if warn:\n                self.print_warning(warn)\n\n            self.print(url)\n\n        except FileNotFoundError as e:\n            self.print_error(\"upload failed: %s\" % str(e))\n            return 1\n\n        except APIError as e:\n            self.print_error(\"upload failed: %s\" % str(e))\n            self.print_error(\"retry later by running: asciinema upload %s\" % self.filename)\n            return 1\n\n        return 0"
+    },
+    {
+      "commit": "2fbd561e2c77a860a3b8022d300b3aa80921221d",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def execute(self):\n        try:\n            url, warn = self.api.upload_asciicast(self.filename)\n\n            if warn:\n                self.print_warning(warn)\n\n            self.print(url)\n\n        except FileNotFoundError as e:\n            self.print_error(\"Upload failed: %s\" % str(e))\n            return 1\n\n        except APIError as e:\n            self.print_error(\"Upload failed: %s\" % str(e))\n            self.print_error(\"Retry later by running: asciinema upload %s\" % self.filename)\n            return 1\n\n        return 0"
+    },
+    {
+      "commit": "6d81785498b69f77e53c719bb90a049915f605f5",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "    def execute(self):\n        try:\n            url, warn = self.api.upload_asciicast(self.filename)\n\n            if warn:\n                self.print_warning(warn)\n\n            self.print(url)\n\n        except FileNotFoundError as e:\n            self.print_warning(\"Upload failed: %s\" % str(e))\n            return 1\n\n        except APIError as e:\n            self.print_warning(\"Upload failed: %s\" % str(e))\n            self.print_warning(\"Retry later by running: asciinema upload %s\" % self.filename)\n            return 1\n\n        return 0"
+    }
+  ]
+}

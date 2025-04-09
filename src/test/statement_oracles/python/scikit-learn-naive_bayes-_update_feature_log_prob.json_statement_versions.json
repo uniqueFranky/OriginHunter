@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "b4b5de8cf9748a07d8f3a2d1fc89ccaacdf6576f",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "    def _update_feature_log_prob(self, alpha):\n        \"\"\"Apply smoothing to raw counts and recompute log probabilities\"\"\"\n        smoothed_fc = self.feature_count_ + alpha\n        smoothed_cc = self.class_count_ + alpha * 2\n\n        self.feature_log_prob_ = (np.log(smoothed_fc) -\n                                  np.log(smoothed_cc.reshape(-1, 1)))\n"
+    },
+    {
+      "commit": "e073432fc6cf93a765f78934fba5639f0174e3a6",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "    def _update_feature_log_prob(self):\n        \"\"\"Apply smoothing to raw counts and recompute log probabilities\"\"\"\n        smoothed_fc = self.feature_count_ + self.alpha\n        smoothed_cc = self.class_count_ + self.alpha * 2\n\n        self.feature_log_prob_ = (np.log(smoothed_fc)\n                                  - np.log(smoothed_cc.reshape(-1, 1)))\n"
+    },
+    {
+      "commit": "ef17c8b47e6f1de1d322028f82c2283c0a73b177",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "    def _update_feature_log_prob(self):\n        \"\"\"Apply smoothing to raw counts and recompute log probabilities\"\"\"\n        n_classes = len(self.classes_)\n        smoothed_fc = self.feature_count_ + self.alpha\n        smoothed_cc = self.class_count_ + self.alpha * n_classes\n\n        self.feature_log_prob_ = (np.log(smoothed_fc)\n                                  - np.log(smoothed_cc.reshape(-1, 1)))\n"
+    },
+    {
+      "commit": "02cdd92f98c0e96f6fd02d81a1c57c7921e35273",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "    def _update_log_probas(self, class_prior=None):\n        \"\"\"Apply smoothing to raw counts and recompute log probabilities\"\"\"\n        n_classes = len(self.classes_)\n        smoothed_fc = self.feature_count_ + self.alpha\n        smoothed_cc = self.class_count_ + self.alpha * n_classes\n\n        self.feature_log_prob_ = (np.log(smoothed_fc)\n                                  - np.log(smoothed_cc.reshape(-1, 1)))\n\n        if class_prior is not None:\n            if len(class_prior) != n_classes:\n                raise ValueError(\"Number of priors must match number of\"\n                                 \" classes.\")\n            self.class_log_prior_ = np.log(class_prior)\n        elif self.fit_prior:\n            # empirical prior, with sample_weight taken into account\n            self.class_log_prior_ = (np.log(self.class_count_)\n                                     - np.log(self.class_count_.sum()))\n        else:\n            self.class_log_prior_ = np.zeros(n_classes) - np.log(n_classes)\n"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "statementVersions": [
+    {
+      "commit": "55ad09c9024d2f0d23123c934e505042516cc796",
+      "startLine": 13,
+      "endLine": 14,
+      "methodCode": "    @property\n    def templates_auto_reload(self):\n        \"\"\"Reload templates when they are changed. Used by\n        :meth:`create_jinja_environment`.\n\n        This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n        not set, it will be enabled in debug mode.\n\n        .. versionadded:: 1.0\n            This property was added but the underlying config and behavior\n            already existed.\n        \"\"\"\n        rv = self.config[\"TEMPLATES_AUTO_RELOAD\"]\n        return rv if rv is not None else self.debug\n"
+    },
+    {
+      "commit": "025589ee766249652e2e097da05808fe64911ddc",
+      "startLine": 12,
+      "endLine": 13,
+      "methodCode": "    def _get_templates_auto_reload(self):\n        \"\"\"Reload templates when they are changed. Used by\n        :meth:`create_jinja_environment`.\n\n        This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n        not set, it will be enabled in debug mode.\n\n        .. versionadded:: 1.0\n            This property was added but the underlying config and behavior\n            already existed.\n        \"\"\"\n        rv = self.config[\"TEMPLATES_AUTO_RELOAD\"]\n        return rv if rv is not None else self.debug\n"
+    },
+    {
+      "commit": "4fc48200a58907ffdf136961b84ef7d19192e6ef",
+      "startLine": 12,
+      "endLine": 13,
+      "methodCode": "    def _get_templates_auto_reload(self):\n        \"\"\"Reload templates when they are changed. Used by\n        :meth:`create_jinja_environment`.\n\n        This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n        not set, it will be enabled in debug mode.\n\n        .. versionadded:: 1.0\n            This property was added but the underlying config and behavior\n            already existed.\n        \"\"\"\n        rv = self.config['TEMPLATES_AUTO_RELOAD']\n        return rv if rv is not None else self.debug\n"
+    }
+  ]
+}
