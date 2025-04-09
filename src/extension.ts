@@ -8,6 +8,7 @@ import { getHighLight, getMappingsBetweenMethods } from './history/mapping';
 import * as filter from './history/filter';
 import { doTest } from './test/codeshovel';
 import { doBlockTest } from './test/block';
+import { doStatementTest } from './test/statement';
 import * as fs from 'fs/promises';
 import path from 'path';
 
@@ -51,6 +52,10 @@ export function activate(context: vscode.ExtensionContext) {
     // test block command
     const blockTestDisposable = vscode.commands.registerCommand('OriginHunter.testBlock', testBlock);
     context.subscriptions.push(blockTestDisposable);
+
+    // test statement command
+    const statementTestDisposable = vscode.commands.registerCommand('OriginHunter.testStatement', doStatementTest);
+    context.subscriptions.push(statementTestDisposable);
 }
 
 async function testBlock() {

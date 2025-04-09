@@ -1,12 +1,13 @@
 import { SyntaxNode } from "tree-sitter";
 import { MethodLevelHistory } from "./codeshovel";
 import * as vscode from 'vscode';
-import { getMappingsBetweenMethods } from "./mapping";
+import { getMappingsBetweenMethods, getMappingsBetweenSyntaxNodes } from "./mapping";
 
 class FilterTreeNode {
     id: number;
     tsNode: SyntaxNode;
     depth: number;
+    depthFromBot: number;
     children: FilterTreeNode[];
     parents: Map<number, number>;
     dfin: number;
@@ -16,6 +17,7 @@ class FilterTreeNode {
         this.id = node.id;
         this.tsNode = node;
         this.depth = -1;
+        this.depthFromBot = -1;
         this.children = [];
         this.parents = new Map<number, number>();
         this.dfin = 0;
@@ -36,11 +38,18 @@ class FilterTreeNode {
         return ret;
     }
 
-    public calcDepth(nowDep: number) {
+    public calcDepth(nowDep: number): number {
         this.depth = nowDep;
+        if(this.children.length === 0) {
+            this.depthFromBot = 1;
+        }
         this.children.forEach(child => {
-            child.calcDepth(nowDep + 1);
+            const childDepthFromBot = child.calcDepth(nowDep + 1);
+            if(this.depthFromBot < childDepthFromBot + 1) {
+                this.depthFromBot = childDepthFromBot + 1;
+            }
         });
+        return this.depthFromBot;
     }
 
     public calcParent4Level(level: number, id2NodeMapping: Map<number, FilterTreeNode>) {
@@ -374,4 +383,91 @@ export async function filterMethodsByNode(histories: MethodLevelHistory[], range
         }
     }
     return result;
+}
+
+
+
+function rangeIntersects(start1: number, end1: number, start2: number, end2: number): boolean {
+    return start1 <= end2 && end1 >= start2;
+}
+
+function getSyntaxRangeByLineNumber(root: SyntaxNode, start: number, end: number): SyntaxNode[] {
+    const currentStart = root.startPosition.row + 1;
+    const currentEnd = root.endPosition.row + 1;
+    if(start <= currentStart && end >= currentEnd) {
+        return [root];
+    }
+    if(root.childCount === 0 && rangeIntersects(start, end, currentStart, currentEnd)) {
+        return [root];
+    }
+
+    const ret: SyntaxNode[] = [];
+    for(let i = 0; i < root.childCount; i++) {
+        const childStart = root.child(i)!.startPosition.row + 1;
+        const childEnd = root.child(i)!.endPosition.row + 1;
+        if(rangeIntersects(start, end, childStart, childEnd)) {
+            getSyntaxRangeByLineNumber(root.child(i)!, start, end).forEach(node => ret.push(node));
+        }
+    }
+    return ret;
+}
+
+function randomSample(root: FilterTreeNode, pDeep: number, first: boolean): FilterTreeNode[] {
+    if(!root.tsNode.isNamed) {
+        return [];
+    }
+    const ret: FilterTreeNode[] = [];
+    if(first || Math.random() < pDeep && root.depthFromBot >= 3) {
+        root.children.forEach(child => {
+            ret.push(...randomSample(child, pDeep, false));
+        });
+    } else {
+        ret.push(root);
+    }
+    return ret;
+}
+
+export async function getRangeInPreviousVersion(oldSyntaxNode: SyntaxNode, newSyntaxNode: SyntaxNode, start: number, end: number): Promise<[number, number]> {
+    const oldFilterTree = FilterTree.fromTSNode(oldSyntaxNode);
+    const newFilterTree = FilterTree.fromTSNode(newSyntaxNode);
+    oldFilterTree.setId2NodeMapping(getId2NodeMapping4FilterTreeNode(oldFilterTree.root));
+    newFilterTree.setId2NodeMapping(getId2NodeMapping4FilterTreeNode(newFilterTree.root));
+    // get guardians for 0-th tree
+    const nodes = getSyntaxRangeByLineNumber(newSyntaxNode, start, end);
+
+    let guardians = newFilterTree.calcGuardiansWhichGuards(nodes.map(node => newFilterTree.id2NodeMapping.get(node.id)!));
+
+    const mappings = await getMappingsBetweenSyntaxNodes(newSyntaxNode, oldSyntaxNode);
+    const map = new Map<number, number>(); // map of ids from i-1 to i
+    mappings.forEach(unit => {
+        map.set(unit[0], unit[1]);
+    });
+    const newGuardians: FilterTreeNode[] = [];
+    guardians.forEach(guardian => {
+        const cor = map.get(guardian.id);
+        if(!cor) {
+            const nodes = randomSample(guardian, 0.5, true);
+            nodes.forEach(node => {
+                const corr = map.get(node.id);
+                if(corr) {
+                    newGuardians.push(oldFilterTree.id2NodeMapping.get(corr)!);
+                }
+            });
+        } else {
+            const node = oldFilterTree.id2NodeMapping.get(cor)!;
+            newGuardians.push(node);
+        }
+    });
+    guardians = oldFilterTree.calcGuardiansWhichGuards(newGuardians);
+    let s = 100000000;
+    let e = 0;
+    guardians.forEach(node => {
+        if(node.tsNode.startPosition.row + 1 < s) {
+            s = node.tsNode.startPosition.row + 1;
+        }
+        if(node.tsNode.endPosition.row + 1 > e) {
+            e = node.tsNode.endPosition.row + 1;
+        }
+    });
+    return [s, e];
 }

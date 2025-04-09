@@ -36,6 +36,10 @@
       {
         "command": "OriginHunter.testBlock",
         "title": "Do Block Tests"
+      },
+      {
+        "command": "OriginHunter.testStatement",
+        "title": "Do Statement Tests"
       }
     ],
     "configuration": {
