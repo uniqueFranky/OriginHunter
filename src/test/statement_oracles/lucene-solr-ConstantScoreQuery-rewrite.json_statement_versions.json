@@ -1,0 +1,58 @@
+{
+  "statementVersions": [
+    {
+      "commit": "962313b83ba9c69379e1f84dffc881a361713ce9",
+      "startLine": 3,
+      "endLine": 13,
+      "methodCode": "@Override\npublic Query rewrite(IndexReader reader) throws IOException {\n    Query rewritten = query.rewrite(reader);\n    if (rewritten != query) {\n        return new ConstantScoreQuery(rewritten);\n    }\n    if (rewritten.getClass() == ConstantScoreQuery.class) {\n        return rewritten;\n    }\n    if (rewritten.getClass() == BoostQuery.class) {\n        return new ConstantScoreQuery(((BoostQuery) rewritten).getQuery());\n    }\n    return super.rewrite(reader);\n}"
+    },
+    {
+      "commit": "1422c4607f30cb576333ac6fba7f864d8e9fdc4a",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic Query rewrite(IndexReader reader) throws IOException {\n    Query rewritten = query.rewrite(reader);\n    if (rewritten.getClass() == getClass()) {\n        if (getBoost() != rewritten.getBoost()) {\n            rewritten = rewritten.clone();\n            rewritten.setBoost(getBoost());\n        }\n        return rewritten;\n    }\n    if (rewritten != query) {\n        rewritten = new ConstantScoreQuery(rewritten);\n        rewritten.setBoost(this.getBoost());\n        return rewritten;\n    }\n    return this;\n}"
+    },
+    {
+      "commit": "82eff4eb4de76ff641ddd603d9b8558a4277644d",
+      "startLine": 3,
+      "endLine": 13,
+      "methodCode": "@Override\npublic Query rewrite(IndexReader reader) throws IOException {\n    Query sub = query;\n    if (sub instanceof QueryWrapperFilter) {\n        sub = ((QueryWrapperFilter) sub).getQuery();\n    }\n    Query rewritten = sub.rewrite(reader);\n    if (rewritten != query) {\n        rewritten = new ConstantScoreQuery(rewritten);\n        rewritten.setBoost(this.getBoost());\n        return rewritten;\n    }\n    return this;\n}"
+    },
+    {
+      "commit": "e45d67083e642ad21c9dc337637b53d55da94964",
+      "startLine": 3,
+      "endLine": 19,
+      "methodCode": "@Override\npublic Query rewrite(IndexReader reader) throws IOException {\n    if (query != null) {\n        Query rewritten = query.rewrite(reader);\n        if (rewritten != query) {\n            rewritten = new ConstantScoreQuery(rewritten);\n            rewritten.setBoost(this.getBoost());\n            return rewritten;\n        }\n    } else {\n        assert filter != null;\n        if (filter instanceof QueryWrapperFilter) {\n            final QueryWrapperFilter qwf = (QueryWrapperFilter) filter;\n            final Query rewritten = new ConstantScoreQuery(qwf.getQuery().rewrite(reader));\n            rewritten.setBoost(this.getBoost());\n            return rewritten;\n        }\n    }\n    return this;\n}"
+    },
+    {
+      "commit": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "@Override\npublic Query rewrite(IndexReader reader) throws IOException {\n    if (query != null) {\n        Query rewritten = query.rewrite(reader);\n        if (rewritten != query) {\n            rewritten = new ConstantScoreQuery(rewritten);\n            rewritten.setBoost(this.getBoost());\n            return rewritten;\n        }\n    }\n    return this;\n}"
+    },
+    {
+      "commit": "adfabc3df71f372a5c968d61e9167890388d24fd",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "@Override\npublic Query rewrite(IndexReader reader) throws IOException {\n    if (query != null) {\n        Query rewritten = query.rewrite(reader);\n        if (rewritten != query) {\n            rewritten = new ConstantScoreQuery(rewritten);\n            rewritten.setBoost(this.getBoost());\n            return rewritten;\n        }\n    }\n    return this;\n}"
+    },
+    {
+      "commit": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic Query rewrite(IndexReader reader) throws IOException {\n    return this;\n}"
+    },
+    {
+      "commit": "00f4efde1fe23f1190e322adb20b8065c591e5d6",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic Query rewrite(IndexReader reader) throws IOException {\n    return this;\n}"
+    },
+    {
+      "commit": "fd41195ef316b9ff2f1721d259c2bbeedf1a1ff0",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Query rewrite(IndexReader reader) throws IOException {\n    return this;\n}"
+    }
+  ]
+}

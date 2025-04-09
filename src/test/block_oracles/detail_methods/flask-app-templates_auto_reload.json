@@ -1,0 +1,115 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "flask",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/flask/.git",
+  "startCommitName": "55ad09c9024d2f0d23123c934e505042516cc796",
+  "sourceFileName": "app.py",
+  "functionName": "templates_auto_reload",
+  "functionId": "Flask__templates_auto_reload___self",
+  "sourceFilePath": "flask/app.py",
+  "functionAnnotation": "@property",
+  "functionStartLine": 731,
+  "functionEndLine": 744,
+  "numCommitsSeen": 691,
+  "timeTaken": 6736,
+  "changeHistory": [
+    "55ad09c9024d2f0d23123c934e505042516cc796",
+    "025589ee766249652e2e097da05808fe64911ddc",
+    "4fc48200a58907ffdf136961b84ef7d19192e6ef"
+  ],
+  "changeHistoryShort": {
+    "55ad09c9024d2f0d23123c934e505042516cc796": "Ymultichange(Yrename,Yannotationchange)",
+    "025589ee766249652e2e097da05808fe64911ddc": "Ybodychange",
+    "4fc48200a58907ffdf136961b84ef7d19192e6ef": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "55ad09c9024d2f0d23123c934e505042516cc796": {
+      "type": "Ymultichange(Yrename,Yannotationchange)",
+      "commitMessage": "Move python properties to decorator syntax\n",
+      "commitDate": "2019/5/31 下午11:53",
+      "commitName": "55ad09c9024d2f0d23123c934e505042516cc796",
+      "commitAuthor": "Scott Crosby",
+      "subchanges": [
+        {
+          "type": "Yrename",
+          "commitMessage": "Move python properties to decorator syntax\n",
+          "commitDate": "2019/5/31 下午11:53",
+          "commitName": "55ad09c9024d2f0d23123c934e505042516cc796",
+          "commitAuthor": "Scott Crosby",
+          "commitDateOld": "2019/5/26 上午2:18",
+          "commitNameOld": "ed9ab2d3b6fc005b3807ddf484e85160233ffc82",
+          "commitAuthorOld": "David Lord",
+          "daysBetweenCommits": 5.9,
+          "commitsBetweenForRepo": 5,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    @property\n    def templates_auto_reload(self):\n        \"\"\"Reload templates when they are changed. Used by\n        :meth:`create_jinja_environment`.\n\n        This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n        not set, it will be enabled in debug mode.\n\n        .. versionadded:: 1.0\n            This property was added but the underlying config and behavior\n            already existed.\n        \"\"\"\n        rv \u003d self.config[\"TEMPLATES_AUTO_RELOAD\"]\n        return rv if rv is not None else self.debug\n",
+          "path": "flask/app.py",
+          "functionStartLine": 731,
+          "functionName": "templates_auto_reload",
+          "functionAnnotation": "@property",
+          "diff": "@@ -1,13 +1,14 @@\n-    def _get_templates_auto_reload(self):\n+    @property\n+    def templates_auto_reload(self):\n         \"\"\"Reload templates when they are changed. Used by\n         :meth:`create_jinja_environment`.\n \n         This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n         not set, it will be enabled in debug mode.\n \n         .. versionadded:: 1.0\n             This property was added but the underlying config and behavior\n             already existed.\n         \"\"\"\n         rv \u003d self.config[\"TEMPLATES_AUTO_RELOAD\"]\n         return rv if rv is not None else self.debug\n",
+          "extendedDetails": {
+            "oldValue": "_get_templates_auto_reload",
+            "newValue": "templates_auto_reload"
+          }
+        },
+        {
+          "type": "Yannotationchange",
+          "commitMessage": "Move python properties to decorator syntax\n",
+          "commitDate": "2019/5/31 下午11:53",
+          "commitName": "55ad09c9024d2f0d23123c934e505042516cc796",
+          "commitAuthor": "Scott Crosby",
+          "commitDateOld": "2019/5/26 上午2:18",
+          "commitNameOld": "ed9ab2d3b6fc005b3807ddf484e85160233ffc82",
+          "commitAuthorOld": "David Lord",
+          "daysBetweenCommits": 5.9,
+          "commitsBetweenForRepo": 5,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    @property\n    def templates_auto_reload(self):\n        \"\"\"Reload templates when they are changed. Used by\n        :meth:`create_jinja_environment`.\n\n        This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n        not set, it will be enabled in debug mode.\n\n        .. versionadded:: 1.0\n            This property was added but the underlying config and behavior\n            already existed.\n        \"\"\"\n        rv \u003d self.config[\"TEMPLATES_AUTO_RELOAD\"]\n        return rv if rv is not None else self.debug\n",
+          "path": "flask/app.py",
+          "functionStartLine": 731,
+          "functionName": "templates_auto_reload",
+          "functionAnnotation": "@property",
+          "diff": "@@ -1,13 +1,14 @@\n-    def _get_templates_auto_reload(self):\n+    @property\n+    def templates_auto_reload(self):\n         \"\"\"Reload templates when they are changed. Used by\n         :meth:`create_jinja_environment`.\n \n         This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n         not set, it will be enabled in debug mode.\n \n         .. versionadded:: 1.0\n             This property was added but the underlying config and behavior\n             already existed.\n         \"\"\"\n         rv \u003d self.config[\"TEMPLATES_AUTO_RELOAD\"]\n         return rv if rv is not None else self.debug\n",
+          "extendedDetails": {
+            "oldValue": "",
+            "newValue": "@property"
+          }
+        }
+      ]
+    },
+    "025589ee766249652e2e097da05808fe64911ddc": {
+      "type": "Ybodychange",
+      "commitMessage": "Reformat with black\n\nhttps://github.com/python/black\n",
+      "commitDate": "2019/5/7 上午4:28",
+      "commitName": "025589ee766249652e2e097da05808fe64911ddc",
+      "commitAuthor": "David Baumgold",
+      "commitDateOld": "2019/1/8 上午2:00",
+      "commitNameOld": "a74864ec229141784374f1998324d2cbac837295",
+      "commitAuthorOld": "",
+      "daysBetweenCommits": 119.1,
+      "commitsBetweenForRepo": 14,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    def _get_templates_auto_reload(self):\n        \"\"\"Reload templates when they are changed. Used by\n        :meth:`create_jinja_environment`.\n\n        This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n        not set, it will be enabled in debug mode.\n\n        .. versionadded:: 1.0\n            This property was added but the underlying config and behavior\n            already existed.\n        \"\"\"\n        rv \u003d self.config[\"TEMPLATES_AUTO_RELOAD\"]\n        return rv if rv is not None else self.debug\n",
+      "path": "flask/app.py",
+      "functionStartLine": 719,
+      "functionName": "_get_templates_auto_reload",
+      "functionAnnotation": "",
+      "diff": "@@ -1,13 +1,13 @@\n     def _get_templates_auto_reload(self):\n         \"\"\"Reload templates when they are changed. Used by\n         :meth:`create_jinja_environment`.\n \n         This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n         not set, it will be enabled in debug mode.\n \n         .. versionadded:: 1.0\n             This property was added but the underlying config and behavior\n             already existed.\n         \"\"\"\n-        rv \u003d self.config[\u0027TEMPLATES_AUTO_RELOAD\u0027]\n+        rv \u003d self.config[\"TEMPLATES_AUTO_RELOAD\"]\n         return rv if rv is not None else self.debug\n",
+      "extendedDetails": {}
+    },
+    "4fc48200a58907ffdf136961b84ef7d19192e6ef": {
+      "type": "Yintroduced",
+      "commitMessage": "reconfigure the app from run command and method\nextract templates_auto_reload to property\ncontinues #1910\ncloses #1907\n",
+      "commitDate": "2017/6/15 上午3:08",
+      "commitName": "4fc48200a58907ffdf136961b84ef7d19192e6ef",
+      "commitAuthor": "David Lord",
+      "diff": "@@ -0,0 +1,13 @@\n+    def _get_templates_auto_reload(self):\n+        \"\"\"Reload templates when they are changed. Used by\n+        :meth:`create_jinja_environment`.\n+\n+        This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n+        not set, it will be enabled in debug mode.\n+\n+        .. versionadded:: 1.0\n+            This property was added but the underlying config and behavior\n+            already existed.\n+        \"\"\"\n+        rv \u003d self.config[\u0027TEMPLATES_AUTO_RELOAD\u0027]\n+        return rv if rv is not None else self.debug\n",
+      "actualSource": "    def _get_templates_auto_reload(self):\n        \"\"\"Reload templates when they are changed. Used by\n        :meth:`create_jinja_environment`.\n\n        This attribute can be configured with :data:`TEMPLATES_AUTO_RELOAD`. If\n        not set, it will be enabled in debug mode.\n\n        .. versionadded:: 1.0\n            This property was added but the underlying config and behavior\n            already existed.\n        \"\"\"\n        rv \u003d self.config[\u0027TEMPLATES_AUTO_RELOAD\u0027]\n        return rv if rv is not None else self.debug\n",
+      "path": "flask/app.py",
+      "functionStartLine": 706,
+      "functionName": "_get_templates_auto_reload",
+      "functionAnnotation": ""
+    }
+  }
+}

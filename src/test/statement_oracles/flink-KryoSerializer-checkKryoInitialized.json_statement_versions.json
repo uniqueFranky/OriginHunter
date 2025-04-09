@@ -1,0 +1,88 @@
+{
+  "statementVersions": [
+    {
+      "commit": "8aa5e05733655e7b3d1f11ed15f61672d61e5cb5",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = getKryoInstance();\n        kryo.setReferences(true);\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> entry : defaultSerializers.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue().getSerializer());\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> entry : defaultSerializerClasses.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue());\n        }\n        KryoUtils.applyRegistrations(this.kryo, kryoRegistrations.values());\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "f2143172feca2925832c8b26c3c9fbbb92ecd48f",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = getKryoInstance();\n        kryo.setReferences(true);\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> entry : defaultSerializers.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue().getSerializer());\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> entry : defaultSerializerClasses.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue());\n        }\n        kryo.register(type);\n        for (Class<?> type : registeredTypes) {\n            kryo.register(type);\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredTypesWithSerializerClasses.entrySet()) {\n            Class<?> typeClass = e.getKey();\n            Class<? extends Serializer<?>> serializerClass = e.getValue();\n            Serializer<?> serializer = ReflectionSerializerFactory.makeSerializer(kryo, serializerClass, typeClass);\n            kryo.register(typeClass, serializer);\n        }\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> e : registeredTypesWithSerializers.entrySet()) {\n            kryo.register(e.getKey(), e.getValue().getSerializer());\n        }\n        kryo.register(GenericData.Array.class, new SpecificInstanceCollectionSerializerForArrayList());\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "dc78a7470a5da086a08140b200a20d840460ef79",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = getKryoInstance();\n        kryo.setReferences(true);\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> entry : defaultSerializers.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue().getSerializer());\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> entry : defaultSerializerClasses.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue());\n        }\n        kryo.register(type);\n        for (Class<?> type : registeredTypes) {\n            kryo.register(type);\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredTypesWithSerializerClasses.entrySet()) {\n            Class<?> typeClass = e.getKey();\n            Class<? extends Serializer<?>> serializerClass = e.getValue();\n            Serializer<?> serializer = ReflectionSerializerFactory.makeSerializer(kryo, serializerClass, typeClass);\n            kryo.register(typeClass, serializer);\n        }\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> e : registeredTypesWithSerializers.entrySet()) {\n            kryo.register(e.getKey(), e.getValue().getSerializer());\n        }\n        kryo.register(GenericData.Array.class, new SpecificInstanceCollectionSerializerForArrayList());\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "21a715867d655bb61df9a9f7eef37e42b99e206a",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = getKryoInstance();\n        kryo.setReferences(false);\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> entry : defaultSerializers.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue().getSerializer());\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> entry : defaultSerializerClasses.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue());\n        }\n        kryo.register(type);\n        for (Class<?> type : registeredTypes) {\n            kryo.register(type);\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredTypesWithSerializerClasses.entrySet()) {\n            Class<?> typeClass = e.getKey();\n            Class<? extends Serializer<?>> serializerClass = e.getValue();\n            Serializer<?> serializer = ReflectionSerializerFactory.makeSerializer(kryo, serializerClass, typeClass);\n            kryo.register(typeClass, serializer);\n        }\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> e : registeredTypesWithSerializers.entrySet()) {\n            kryo.register(e.getKey(), e.getValue().getSerializer());\n        }\n        kryo.register(GenericData.Array.class, new SpecificInstanceCollectionSerializerForArrayList());\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "ed3810b1282dfba80d63b1f43a0c202925a3b11c",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = getKryoInstance();\n        kryo.setReferences(false);\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> entry : defaultSerializers.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue().getSerializer());\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> entry : defaultSerializerClasses.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue());\n        }\n        kryo.register(type);\n        for (Class<?> type : registeredTypes) {\n            kryo.register(type);\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredTypesWithSerializerClasses.entrySet()) {\n            Class<?> typeClass = e.getKey();\n            Class<? extends Serializer<?>> serializerClass = e.getValue();\n            Serializer<?> serializer = ReflectionSerializerFactory.makeSerializer(kryo, serializerClass, typeClass);\n            kryo.register(typeClass, serializer);\n        }\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> e : registeredTypesWithSerializers.entrySet()) {\n            kryo.register(e.getKey(), e.getValue().getSerializer());\n        }\n        kryo.register(GenericData.Array.class, new SpecificInstanceCollectionSerializerForArrayList());\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "cd899f3be39c5f052a2a3e90771111d1a7df1d47",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = getKryoInstance();\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> entry : defaultSerializers.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue().getSerializer());\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> entry : defaultSerializerClasses.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue());\n        }\n        kryo.register(type);\n        for (Class<?> type : registeredTypes) {\n            kryo.register(type);\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredTypesWithSerializerClasses.entrySet()) {\n            Class<?> typeClass = e.getKey();\n            Class<? extends Serializer<?>> serializerClass = e.getValue();\n            Serializer<?> serializer = ReflectionSerializerFactory.makeSerializer(kryo, serializerClass, typeClass);\n            kryo.register(typeClass, serializer);\n        }\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> e : registeredTypesWithSerializers.entrySet()) {\n            kryo.register(e.getKey(), e.getValue().getSerializer());\n        }\n        kryo.register(GenericData.Array.class, new SpecificInstanceCollectionSerializerForArrayList());\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "2cc5d98c690c1b1b1ff1f48628ca58b1b4f0c932",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = new ScalaKryoInstantiator().newKryo();\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> entry : defaultSerializers.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue().getSerializer());\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> entry : defaultSerializerClasses.entrySet()) {\n            kryo.addDefaultSerializer(entry.getKey(), entry.getValue());\n        }\n        kryo.register(type);\n        for (Class<?> type : registeredTypes) {\n            kryo.register(type);\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredTypesWithSerializerClasses.entrySet()) {\n            Class<?> typeClass = e.getKey();\n            Class<? extends Serializer<?>> serializerClass = e.getValue();\n            Serializer<?> serializer = ReflectionSerializerFactory.makeSerializer(kryo, serializerClass, typeClass);\n            kryo.register(typeClass, serializer);\n        }\n        for (Map.Entry<Class<?>, ExecutionConfig.SerializableSerializer<?>> e : registeredTypesWithSerializers.entrySet()) {\n            kryo.register(e.getKey(), e.getValue().getSerializer());\n        }\n        kryo.register(GenericData.Array.class, new SpecificInstanceCollectionSerializerForArrayList());\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "354efec0f9da0fa03ea9b337b02a1a2a03a9ac16",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = new ScalaKryoInstantiator().newKryo();\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (ExecutionConfig.Entry<Class<?>, Serializer<?>> serializer : defaultSerializers) {\n            kryo.addDefaultSerializer(serializer.getKey(), serializer.getValue());\n        }\n        for (ExecutionConfig.Entry<Class<?>, Class<? extends Serializer<?>>> serializer : defaultSerializerClasses) {\n            kryo.addDefaultSerializer(serializer.getKey(), serializer.getValue());\n        }\n        kryo.register(type);\n        for (Class<?> type : registeredTypes) {\n            kryo.register(type);\n        }\n        for (ExecutionConfig.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredTypesWithSerializerClasses) {\n            Class<?> typeClass = e.getKey();\n            Class<? extends Serializer<?>> serializerClass = e.getValue();\n            Serializer<?> serializer = ReflectionSerializerFactory.makeSerializer(kryo, serializerClass, typeClass);\n            kryo.register(typeClass, serializer);\n        }\n        for (ExecutionConfig.Entry<Class<?>, Serializer<?>> e : registeredTypesWithSerializers) {\n            kryo.register(e.getKey(), e.getValue());\n        }\n        kryo.register(GenericData.Array.class, new SpecificInstanceCollectionSerializerForArrayList());\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "a0b6af20beed6d12d0f33f6f58f323b20cc12961",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = new ScalaKryoInstantiator().newKryo();\n        kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        kryo.register(type);\n        for (Class<?> type : registeredTypes) {\n            kryo.register(type);\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredSerializersClasses.entrySet()) {\n            Class<?> typeClass = e.getKey();\n            Class<? extends Serializer<?>> serializerClass = e.getValue();\n            Serializer<?> serializer = ReflectionSerializerFactory.makeSerializer(kryo, serializerClass, typeClass);\n            kryo.register(typeClass, serializer);\n        }\n        for (Map.Entry<Class<?>, Serializer<?>> e : registeredSerializers.entrySet()) {\n            kryo.register(e.getKey(), e.getValue());\n        }\n        kryo.setRegistrationRequired(false);\n        kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "2d4ed15e8d2aa1a1fcd7001fccea2ee70cc8a8b0",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = new ScalaKryoInstantiator().newKryo();\n        this.kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        for (Map.Entry<Class<?>, Serializer<?>> e : registeredSerializers.entrySet()) {\n            this.kryo.addDefaultSerializer(e.getKey(), e.getValue());\n        }\n        for (Map.Entry<Class<?>, Class<? extends Serializer<?>>> e : registeredSerializersClasses.entrySet()) {\n            this.kryo.addDefaultSerializer(e.getKey(), e.getValue());\n        }\n        this.kryo.setRegistrationRequired(false);\n        this.kryo.register(type);\n        this.kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "8af6ef49fd84c309aeba0a3c8963ac83e0243c59",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = new ScalaKryoInstantiator().newKryo();\n        this.kryo.addDefaultSerializer(Throwable.class, new JavaSerializer());\n        this.kryo.setRegistrationRequired(false);\n        this.kryo.register(type);\n        this.kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "a70aa67a0881afc5d66329d46fe536d7a0b89fa8",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = new ScalaKryoInstantiator().newKryo();\n        this.kryo.setRegistrationRequired(false);\n        this.kryo.register(type);\n        this.kryo.setClassLoader(Thread.currentThread().getContextClassLoader());\n    }\n}"
+    },
+    {
+      "commit": "f5898a01e7877afa3df06223713db211708eaf9a",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "private void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = new Kryo();\n        this.kryo.setAsmEnabled(true);\n        this.kryo.register(type);\n    }\n}"
+    },
+    {
+      "commit": "22203e75f8a0d193ce0187396d0b267e05e9b58e",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "private final void checkKryoInitialized() {\n    if (this.kryo == null) {\n        this.kryo = new Kryo();\n        this.kryo.setAsmEnabled(true);\n        this.kryo.register(type);\n    }\n}"
+    }
+  ]
+}

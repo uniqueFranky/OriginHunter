@@ -1,0 +1,184 @@
+{
+  "statementVersions": [
+    {
+      "commit": "77471444ec81ad9452ebde7ca2b58db58a1f77d1",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "@Nullable\nRealConnection get(Address address, StreamAllocation streamAllocation, Route route) {\n    assert (Thread.holdsLock(this));\n    for (RealConnection connection : connections) {\n        if (connection.isEligible(address, route)) {\n            streamAllocation.acquire(connection, true);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "011b2ee76d41fc689be75e1aa4d2efd9fe33c285",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "@Nullable\nRealConnection get(Address address, StreamAllocation streamAllocation, Route route) {\n    assert (Thread.holdsLock(this));\n    for (RealConnection connection : connections) {\n        if (connection.isEligible(address, route)) {\n            streamAllocation.acquire(connection);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "81c7461c98f2228c3bb1a0c80fb803b5ea2e47f0",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "RealConnection get(Address address, StreamAllocation streamAllocation, Route route) {\n    assert (Thread.holdsLock(this));\n    for (RealConnection connection : connections) {\n        if (connection.isEligible(address, route)) {\n            streamAllocation.acquire(connection);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "98443a9ca8ca9ad82d5fb9b05b32f180bb510601",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "RealConnection get(Address address, StreamAllocation streamAllocation) {\n    assert (Thread.holdsLock(this));\n    for (RealConnection connection : connections) {\n        if (connection.isEligible(address)) {\n            streamAllocation.acquire(connection);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "75ebcd5cd13995c3b70e0b621d3204b9a5996806",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "RealConnection get(Address address, StreamAllocation streamAllocation) {\n    assert (Thread.holdsLock(this));\n    for (RealConnection connection : connections) {\n        if (connection.allocations.size() < connection.allocationLimit && address.equals(connection.route().address) && !connection.noNewStreams) {\n            streamAllocation.acquire(connection);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "02d6b4e78c4f1bda5f20e3089af024c58fe6baf6",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "RealConnection get(Address address, StreamAllocation streamAllocation) {\n    assert (Thread.holdsLock(this));\n    for (RealConnection connection : connections) {\n        if (connection.allocations.size() < connection.allocationLimit() && address.equals(connection.route().address) && !connection.noNewStreams) {\n            streamAllocation.acquire(connection);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "c9a89876de476983f273edbf108c365127c18c5e",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "RealConnection get(Address address, StreamAllocation streamAllocation) {\n    assert (Thread.holdsLock(this));\n    for (RealConnection connection : connections) {\n        if (connection.allocations.size() < connection.allocationLimit() && address.equals(connection.getRoute().address) && !connection.noNewStreams) {\n            streamAllocation.acquire(connection);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "c099f69d0b7198a40e4a6373ae564b65d04363ef",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "RealConnection get(Address address, StreamAllocation streamAllocation) {\n    assert (Thread.holdsLock(this));\n    for (RealConnection connection : connections) {\n        if (connection.allocations.size() < connection.allocationLimit() && address.equals(connection.getRoute().address) && !connection.noNewStreams) {\n            streamAllocation.acquire(connection);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "4ae314a1f21d07ee5dbad024bc098182219e9e07",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public synchronized Connection get(Address address, StreamAllocation streamAllocation) {\n    for (RealConnection connection : connections) {\n        if (connection.allocations.size() < connection.allocationLimit() && address.equals(connection.getRoute().address) && !connection.noNewStreams) {\n            streamAllocation.acquire(connection);\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "c5f58e45454d1ffc621c65e377cb91345018e087",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public synchronized Connection get(Address address) {\n    for (RealConnection connection : connections) {\n        if (connection.allocationCount < connection.allocationLimit() && address.equals(connection.getRoute().address) && !connection.noNewStreams) {\n            connection.allocationCount++;\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "c358656c8799d30fd422448153e99a5dd37e298a",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public synchronized Connection get(Address address) {\n    for (RealConnection connection : connections) {\n        if (connection.allocationCount < connection.allocationLimit && address.equals(connection.getRoute().address) && !connection.noNewStreams) {\n            connection.allocationCount++;\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "49a331385343f3ca49d26c4ddd947546867bcd3b",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (Iterator<Connection> i = connections.descendingIterator(); i.hasNext(); ) {\n        Connection connection = i.next();\n        if (!connection.getRoute().getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isFramed()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection.getSocket());\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isFramed()) {\n        connections.addFirst(foundConnection);\n    }\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (ListIterator<Connection> i = connections.listIterator(connections.size()); i.hasPrevious(); ) {\n        Connection connection = i.previous();\n        if (!connection.getRoute().getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isFramed()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection.getSocket());\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isFramed()) {\n        connections.addFirst(foundConnection);\n    }\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "98c74ace40b089f2769afb3e56c59a64eef327cb",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (ListIterator<Connection> i = connections.listIterator(connections.size()); i.hasPrevious(); ) {\n        Connection connection = i.previous();\n        if (!connection.getRoute().getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isSpdy()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection.getSocket());\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isSpdy()) {\n        connections.addFirst(foundConnection);\n    }\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "a8327d121b9eeb3b61ae63f06095d423936a5da2",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (ListIterator<Connection> i = connections.listIterator(connections.size()); i.hasPrevious(); ) {\n        Connection connection = i.previous();\n        if (!connection.getRoute().getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isSpdy()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection.getSocket());\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isSpdy()) {\n        connections.addFirst(foundConnection);\n        scheduleCleanupAsRequired();\n    }\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "c26f9af0489869a9e1873ed5010c65f8464cff26",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (ListIterator<Connection> i = connections.listIterator(connections.size()); i.hasPrevious(); ) {\n        Connection connection = i.previous();\n        if (!connection.getRoute().getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isSpdy()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection.getSocket());\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isSpdy()) {\n        connections.addFirst(foundConnection);\n    }\n    executorService.execute(connectionsCleanupRunnable);\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "fdee6f13a4c5bf5bd24f2c237c2996aea01cc5ff",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (ListIterator<Connection> i = connections.listIterator(connections.size()); i.hasPrevious(); ) {\n        Connection connection = i.previous();\n        if (!connection.getRoute().getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isSpdy()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection);\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isSpdy()) {\n        connections.addFirst(foundConnection);\n    }\n    executorService.execute(connectionsCleanupRunnable);\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "1ece746c815a26782042b1fca6069eb527d1029b",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (ListIterator<Connection> i = connections.listIterator(connections.size()); i.hasPrevious(); ) {\n        Connection connection = i.previous();\n        if (!connection.getRoute().getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isSpdy()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection);\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isSpdy()) {\n        connections.addFirst(foundConnection);\n    }\n    executorService.submit(connectionsCleanupCallable);\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "7ccbf48838b7cfe42759c67790636d442ea5daa3",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (ListIterator<Connection> i = connections.listIterator(connections.size()); i.hasPrevious(); ) {\n        Connection connection = i.previous();\n        if (!connection.getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isSpdy()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection);\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isSpdy()) {\n        connections.addFirst(foundConnection);\n    }\n    executorService.submit(connectionsCleanupCallable);\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "f373e2d6e5bfaa86afc147b877a72d600c224c5d",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (ListIterator<Connection> i = connections.listIterator(connections.size()); i.hasPrevious(); ) {\n        Connection connection = i.previous();\n        if (!connection.getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isSpdy()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection);\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isSpdy()) {\n        connections.addFirst(foundConnection);\n    }\n    executorService.submit(connectionsCleanupCallable);\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "6f6d959fdae64065521990413f86bc7ab038d7c1",
+      "startLine": 3,
+      "endLine": 20,
+      "methodCode": "public synchronized Connection get(Address address) {\n    Connection foundConnection = null;\n    for (Iterator<Connection> i = connections.descendingIterator(); i.hasNext(); ) {\n        Connection connection = i.next();\n        if (!connection.getAddress().equals(address) || !connection.isAlive() || System.nanoTime() - connection.getIdleStartTimeNs() >= keepAliveDurationNs) {\n            continue;\n        }\n        i.remove();\n        if (!connection.isSpdy()) {\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Util.closeQuietly(connection);\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                continue;\n            }\n        }\n        foundConnection = connection;\n        break;\n    }\n    if (foundConnection != null && foundConnection.isSpdy()) {\n        connections.addFirst(foundConnection);\n    }\n    executorService.submit(connectionsCleanupCallable);\n    return foundConnection;\n}"
+    },
+    {
+      "commit": "06579c5bfb6a051a9fbca5be2d15a52fcf77f38c",
+      "startLine": 4,
+      "endLine": 27,
+      "methodCode": "public Connection get(Address address) {\n    synchronized (connectionPool) {\n        List<Connection> connections = connectionPool.get(address);\n        while (connections != null) {\n            Connection connection = connections.get(connections.size() - 1);\n            boolean usable = connection.isEligibleForRecycling();\n            if (usable && !connection.isSpdy()) {\n                try {\n                    Platform.get().tagSocket(connection.getSocket());\n                } catch (SocketException e) {\n                    Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                    usable = false;\n                }\n            }\n            if (!connection.isSpdy() || !usable) {\n                connections.remove(connections.size() - 1);\n                if (connections.isEmpty()) {\n                    connectionPool.remove(address);\n                    connections = null;\n                }\n            }\n            if (usable) {\n                return connection;\n            } else {\n                Util.closeQuietly(connection);\n            }\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "689f66222bd8984dd69229a4ee9caf8da528ae12",
+      "startLine": 4,
+      "endLine": 25,
+      "methodCode": "public Connection get(Address address) {\n    synchronized (connectionPool) {\n        List<Connection> connections = connectionPool.get(address);\n        while (connections != null) {\n            Connection connection = connections.get(connections.size() - 1);\n            if (!connection.isSpdy()) {\n                connections.remove(connections.size() - 1);\n            }\n            if (connections.isEmpty()) {\n                connectionPool.remove(address);\n                connections = null;\n            }\n            if (!connection.isEligibleForRecycling()) {\n                Util.closeQuietly(connection);\n                continue;\n            }\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                Util.closeQuietly(connection);\n                continue;\n            }\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "67604f618d96ae00318ce696ec29a66bec6aafa8",
+      "startLine": 4,
+      "endLine": 25,
+      "methodCode": "public Connection get(Address address) {\n    synchronized (connectionPool) {\n        List<Connection> connections = connectionPool.get(address);\n        while (connections != null) {\n            Connection connection = connections.get(connections.size() - 1);\n            if (!connection.isSpdy()) {\n                connections.remove(connections.size() - 1);\n            }\n            if (connections.isEmpty()) {\n                connectionPool.remove(address);\n                connections = null;\n            }\n            if (!connection.isEligibleForRecycling()) {\n                IoUtils.closeQuietly(connection);\n                continue;\n            }\n            try {\n                Platform.get().tagSocket(connection.getSocket());\n            } catch (SocketException e) {\n                Platform.get().logW(\"Unable to tagSocket(): \" + e);\n                IoUtils.closeQuietly(connection);\n                continue;\n            }\n            return connection;\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "78c6624b11d5f33504dae8211b4592383468343e",
+      "startLine": 4,
+      "endLine": 18,
+      "methodCode": "public Connection get(Address address) {\n    synchronized (connectionPool) {\n        List<Connection> connections = connectionPool.get(address);\n        while (connections != null) {\n            Connection connection = connections.get(connections.size() - 1);\n            if (!connection.isSpdy()) {\n                connections.remove(connections.size() - 1);\n            }\n            if (connections.isEmpty()) {\n                connectionPool.remove(address);\n                connections = null;\n            }\n            if (connection.isEligibleForRecycling()) {\n                Libcore.tagSocket(connection.getSocket());\n                return connection;\n            } else {\n            }\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "70e64037ff295874602133a1d254e5a0440ae4e3",
+      "startLine": 4,
+      "endLine": 18,
+      "methodCode": "public HttpConnection get(HttpConnection.Address address) {\n    synchronized (connectionPool) {\n        List<HttpConnection> connections = connectionPool.get(address);\n        while (connections != null) {\n            HttpConnection connection = connections.get(connections.size() - 1);\n            if (!connection.isSpdy()) {\n                connections.remove(connections.size() - 1);\n            }\n            if (connections.isEmpty()) {\n                connectionPool.remove(address);\n                connections = null;\n            }\n            if (connection.isEligibleForRecycling()) {\n                Libcore.tagSocket(connection.getSocket());\n                return connection;\n            } else {\n            }\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "3d2547f18886e771aaa9baa996a21136c93460c4",
+      "startLine": 4,
+      "endLine": 17,
+      "methodCode": "public HttpConnection get(HttpConnection.Address address) {\n    synchronized (connectionPool) {\n        List<HttpConnection> connections = connectionPool.get(address);\n        while (connections != null) {\n            HttpConnection connection = connections.get(connections.size() - 1);\n            if (!connection.isSpdy()) {\n                connections.remove(connections.size() - 1);\n            }\n            if (connections.isEmpty()) {\n                connectionPool.remove(address);\n                connections = null;\n            }\n            if (connection.isEligibleForRecycling()) {\n                Libcore.tagSocket(connection.getSocket());\n                return connection;\n            }\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "50999cceb5f5bcdaf79baa5ac7eeef90c72bda8d",
+      "startLine": 4,
+      "endLine": 18,
+      "methodCode": "public HttpConnection get(HttpConnection.Address address) {\n    synchronized (connectionPool) {\n        List<HttpConnection> connections = connectionPool.get(address);\n        while (connections != null) {\n            HttpConnection connection = connections.get(connections.size() - 1);\n            if (!connection.isSpdy()) {\n                connections.remove(connections.size() - 1);\n            }\n            if (connections.isEmpty()) {\n                connectionPool.remove(address);\n                connections = null;\n            }\n            if (connection.isEligibleForRecycling()) {\n                Socket socket = connection.getSocket();\n                Libcore.tagSocket(socket);\n                return connection;\n            }\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "40ff76547064c3fb5acb9047a6f679dd4379a4d0",
+      "startLine": 4,
+      "endLine": 18,
+      "methodCode": "public HttpConnection get(HttpConnection.Address address) {\n    synchronized (connectionPool) {\n        List<HttpConnection> connections = connectionPool.get(address);\n        while (connections != null) {\n            HttpConnection connection = connections.get(connections.size() - 1);\n            if (!connection.isSpdy()) {\n                connections.remove(connections.size() - 1);\n            }\n            if (connections.isEmpty()) {\n                connectionPool.remove(address);\n                connections = null;\n            }\n            if (connection.isEligibleForRecycling()) {\n                Socket socket = connection.getSocket();\n                Libcore.tagSocket(socket);\n                return connection;\n            }\n        }\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "ea63463c2ff8a67f63e541036f0d5998b5bb1f3e",
+      "startLine": 4,
+      "endLine": 18,
+      "methodCode": "public HttpConnection get(HttpConnection.Address address, int connectTimeout) throws IOException {\n    synchronized (connectionPool) {\n        List<HttpConnection> connections = connectionPool.get(address);\n        while (connections != null) {\n            HttpConnection connection = connections.get(connections.size() - 1);\n            if (!connection.isSpdy()) {\n                connections.remove(connections.size() - 1);\n            }\n            if (connections.isEmpty()) {\n                connectionPool.remove(address);\n                connections = null;\n            }\n            if (connection.isEligibleForRecycling()) {\n                Socket socket = connection.getSocket();\n                Libcore.tagSocket(socket);\n                return connection;\n            }\n        }\n    }\n    return address.connect(connectTimeout);\n}"
+    }
+  ]
+}

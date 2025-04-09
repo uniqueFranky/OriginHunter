@@ -1,0 +1,113 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "pandas",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/pandas/.git",
+  "startCommitName": "eddd9f09a76628e1842cc19634b3f9b9f3b0fe83",
+  "sourceFileName": "_version.py",
+  "functionName": "register_vcs_handler",
+  "functionId": "__register_vcs_handler___vcs-str__method-str__f-Callable",
+  "sourceFilePath": "pandas/_version.py",
+  "functionAnnotation": "",
+  "functionStartLine": 53,
+  "functionEndLine": 62,
+  "numCommitsSeen": 27,
+  "timeTaken": 2173,
+  "changeHistory": [
+    "8b15dff89a0386110459bfd8ef6af96c75320439",
+    "c4a0147c9e46c6b43501e126609c6d16c3eff2ba"
+  ],
+  "changeHistoryShort": {
+    "8b15dff89a0386110459bfd8ef6af96c75320439": "Ymultichange(Yparameterchange,Yreturntypechange,Ybodychange)",
+    "c4a0147c9e46c6b43501e126609c6d16c3eff2ba": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "8b15dff89a0386110459bfd8ef6af96c75320439": {
+      "type": "Ymultichange(Yparameterchange,Yreturntypechange,Ybodychange)",
+      "commitMessage": "Fix type annotation in pandas. version (#25949)\n\n",
+      "commitDate": "2019/4/4 下午8:56",
+      "commitName": "8b15dff89a0386110459bfd8ef6af96c75320439",
+      "commitAuthor": "Vaibhav Vishal",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Fix type annotation in pandas. version (#25949)\n\n",
+          "commitDate": "2019/4/4 下午8:56",
+          "commitName": "8b15dff89a0386110459bfd8ef6af96c75320439",
+          "commitAuthor": "Vaibhav Vishal",
+          "commitDateOld": "2018/11/29 上午6:22",
+          "commitNameOld": "15f70464580d9e6223a63278117b8baaa3261c22",
+          "commitAuthorOld": "chris-b1",
+          "daysBetweenCommits": 126.61,
+          "commitsBetweenForRepo": 868,
+          "commitsBetweenForFile": 1,
+          "actualSource": "def register_vcs_handler(vcs: str, method: str) -\u003e Callable:  # decorator\n    def decorate(f: Callable) -\u003e Callable:\n        if vcs not in HANDLERS:\n            HANDLERS[vcs] \u003d {}\n        HANDLERS[vcs][method] \u003d f\n        return f\n    return decorate\n\n",
+          "path": "pandas/_version.py",
+          "functionStartLine": 55,
+          "functionName": "register_vcs_handler",
+          "functionAnnotation": "",
+          "diff": "@@ -1,8 +1,8 @@\n-def register_vcs_handler(vcs, method):  # decorator\n-    def decorate(f):\n+def register_vcs_handler(vcs: str, method: str) -\u003e Callable:  # decorator\n+    def decorate(f: Callable) -\u003e Callable:\n         if vcs not in HANDLERS:\n             HANDLERS[vcs] \u003d {}\n         HANDLERS[vcs][method] \u003d f\n         return f\n     return decorate\n \n",
+          "extendedDetails": {
+            "oldValue": "[vcs, method, f]",
+            "newValue": "[vcs-str, method-str, f-Callable]"
+          }
+        },
+        {
+          "type": "Yreturntypechange",
+          "commitMessage": "Fix type annotation in pandas. version (#25949)\n\n",
+          "commitDate": "2019/4/4 下午8:56",
+          "commitName": "8b15dff89a0386110459bfd8ef6af96c75320439",
+          "commitAuthor": "Vaibhav Vishal",
+          "commitDateOld": "2018/11/29 上午6:22",
+          "commitNameOld": "15f70464580d9e6223a63278117b8baaa3261c22",
+          "commitAuthorOld": "chris-b1",
+          "daysBetweenCommits": 126.61,
+          "commitsBetweenForRepo": 868,
+          "commitsBetweenForFile": 1,
+          "actualSource": "def register_vcs_handler(vcs: str, method: str) -\u003e Callable:  # decorator\n    def decorate(f: Callable) -\u003e Callable:\n        if vcs not in HANDLERS:\n            HANDLERS[vcs] \u003d {}\n        HANDLERS[vcs][method] \u003d f\n        return f\n    return decorate\n\n",
+          "path": "pandas/_version.py",
+          "functionStartLine": 55,
+          "functionName": "register_vcs_handler",
+          "functionAnnotation": "",
+          "diff": "@@ -1,8 +1,8 @@\n-def register_vcs_handler(vcs, method):  # decorator\n-    def decorate(f):\n+def register_vcs_handler(vcs: str, method: str) -\u003e Callable:  # decorator\n+    def decorate(f: Callable) -\u003e Callable:\n         if vcs not in HANDLERS:\n             HANDLERS[vcs] \u003d {}\n         HANDLERS[vcs][method] \u003d f\n         return f\n     return decorate\n \n",
+          "extendedDetails": {
+            "oldValue": "",
+            "newValue": "Callable"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Fix type annotation in pandas. version (#25949)\n\n",
+          "commitDate": "2019/4/4 下午8:56",
+          "commitName": "8b15dff89a0386110459bfd8ef6af96c75320439",
+          "commitAuthor": "Vaibhav Vishal",
+          "commitDateOld": "2018/11/29 上午6:22",
+          "commitNameOld": "15f70464580d9e6223a63278117b8baaa3261c22",
+          "commitAuthorOld": "chris-b1",
+          "daysBetweenCommits": 126.61,
+          "commitsBetweenForRepo": 868,
+          "commitsBetweenForFile": 1,
+          "actualSource": "def register_vcs_handler(vcs: str, method: str) -\u003e Callable:  # decorator\n    def decorate(f: Callable) -\u003e Callable:\n        if vcs not in HANDLERS:\n            HANDLERS[vcs] \u003d {}\n        HANDLERS[vcs][method] \u003d f\n        return f\n    return decorate\n\n",
+          "path": "pandas/_version.py",
+          "functionStartLine": 55,
+          "functionName": "register_vcs_handler",
+          "functionAnnotation": "",
+          "diff": "@@ -1,8 +1,8 @@\n-def register_vcs_handler(vcs, method):  # decorator\n-    def decorate(f):\n+def register_vcs_handler(vcs: str, method: str) -\u003e Callable:  # decorator\n+    def decorate(f: Callable) -\u003e Callable:\n         if vcs not in HANDLERS:\n             HANDLERS[vcs] \u003d {}\n         HANDLERS[vcs][method] \u003d f\n         return f\n     return decorate\n \n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "c4a0147c9e46c6b43501e126609c6d16c3eff2ba": {
+      "type": "Yintroduced",
+      "commitMessage": "CI: use versioneer, for PEP440 version strings #9518\n    use binstar build\n    OSX stack testing, #7127\n",
+      "commitDate": "2015/7/6 下午11:24",
+      "commitName": "c4a0147c9e46c6b43501e126609c6d16c3eff2ba",
+      "commitAuthor": "Jeff Reback",
+      "diff": "@@ -0,0 +1,8 @@\n+def register_vcs_handler(vcs, method):  # decorator\n+    def decorate(f):\n+        if vcs not in HANDLERS:\n+            HANDLERS[vcs] \u003d {}\n+        HANDLERS[vcs][method] \u003d f\n+        return f\n+    return decorate\n+\n",
+      "actualSource": "def register_vcs_handler(vcs, method):  # decorator\n    def decorate(f):\n        if vcs not in HANDLERS:\n            HANDLERS[vcs] \u003d {}\n        HANDLERS[vcs][method] \u003d f\n        return f\n    return decorate\n\n",
+      "path": "pandas/_version.py",
+      "functionStartLine": 54,
+      "functionName": "register_vcs_handler",
+      "functionAnnotation": ""
+    }
+  }
+}

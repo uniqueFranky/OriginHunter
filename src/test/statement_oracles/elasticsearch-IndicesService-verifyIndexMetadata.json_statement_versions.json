@@ -1,0 +1,52 @@
+{
+  "statementVersions": [
+    {
+      "commit": "700d9ecc953fa30df0d12d086f0e9d9322446459",
+      "startLine": 7,
+      "endLine": 14,
+      "methodCode": "public synchronized void verifyIndexMetadata(IndexMetaData metaData, IndexMetaData metaDataUpdate) throws IOException {\n    final List<Closeable> closeables = new ArrayList<>();\n    try {\n        IndicesFieldDataCache indicesFieldDataCache = new IndicesFieldDataCache(settings, new IndexFieldDataCache.Listener() {\n        });\n        closeables.add(indicesFieldDataCache);\n        IndicesQueryCache indicesQueryCache = new IndicesQueryCache(settings);\n        closeables.add(indicesQueryCache);\n        final IndexService service = createIndexService(\"metadata verification\", metaData, indicesQueryCache, indicesFieldDataCache, emptyList());\n        closeables.add(() -> service.close(\"metadata verification\", false));\n        service.mapperService().merge(metaData, MapperService.MergeReason.MAPPING_RECOVERY);\n        if (metaData.equals(metaDataUpdate) == false) {\n            service.updateMetaData(metaDataUpdate);\n        }\n    } finally {\n        IOUtils.close(closeables);\n    }\n}"
+    },
+    {
+      "commit": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "startLine": 7,
+      "endLine": 14,
+      "methodCode": "public synchronized void verifyIndexMetadata(IndexMetaData metaData, IndexMetaData metaDataUpdate) throws IOException {\n    final List<Closeable> closeables = new ArrayList<>();\n    try {\n        IndicesFieldDataCache indicesFieldDataCache = new IndicesFieldDataCache(settings, new IndexFieldDataCache.Listener() {\n        });\n        closeables.add(indicesFieldDataCache);\n        IndicesQueryCache indicesQueryCache = new IndicesQueryCache(settings);\n        closeables.add(indicesQueryCache);\n        final IndexService service = createIndexService(\"metadata verification\", metaData, indicesQueryCache, indicesFieldDataCache, emptyList());\n        closeables.add(() -> service.close(\"metadata verification\", false));\n        service.mapperService().merge(metaData, MapperService.MergeReason.MAPPING_RECOVERY, true);\n        if (metaData.equals(metaDataUpdate) == false) {\n            service.updateMetaData(metaDataUpdate);\n        }\n    } finally {\n        IOUtils.close(closeables);\n    }\n}"
+    },
+    {
+      "commit": "8f873620ee5a22008a97d29ca4fa448790cf8f0d",
+      "startLine": 7,
+      "endLine": 14,
+      "methodCode": "public synchronized void verifyIndexMetadata(IndexMetaData metaData, IndexMetaData metaDataUpdate) throws IOException {\n    final List<Closeable> closeables = new ArrayList<>();\n    try {\n        IndicesFieldDataCache indicesFieldDataCache = new IndicesFieldDataCache(settings, new IndexFieldDataCache.Listener() {\n        });\n        closeables.add(indicesFieldDataCache);\n        IndicesQueryCache indicesQueryCache = new IndicesQueryCache(settings);\n        closeables.add(indicesQueryCache);\n        final IndexService service = createIndexService(\"metadata verification\", metaData, indicesQueryCache, indicesFieldDataCache, emptyList());\n        closeables.add(() -> service.close(\"metadata verification\", false));\n        service.mapperService().merge(metaData, MapperService.MergeReason.MAPPING_RECOVERY, true);\n        if (metaData.equals(metaDataUpdate) == false) {\n            service.updateMetaData(metaDataUpdate);\n        }\n    } finally {\n        IOUtils.close(closeables);\n    }\n}"
+    },
+    {
+      "commit": "63af03a1042a6ae1ed333aaabcd9cfc3a9fc3fec",
+      "startLine": 7,
+      "endLine": 15,
+      "methodCode": "public synchronized void verifyIndexMetadata(IndexMetaData metaData, IndexMetaData metaDataUpdate) throws IOException {\n    final List<Closeable> closeables = new ArrayList<>();\n    try {\n        IndicesFieldDataCache indicesFieldDataCache = new IndicesFieldDataCache(settings, new IndexFieldDataCache.Listener() {\n        });\n        closeables.add(indicesFieldDataCache);\n        IndicesQueryCache indicesQueryCache = new IndicesQueryCache(settings);\n        closeables.add(indicesQueryCache);\n        final IndexService service = createIndexService(\"metadata verification\", metaData, indicesQueryCache, indicesFieldDataCache, emptyList(), s -> {\n        });\n        closeables.add(() -> service.close(\"metadata verification\", false));\n        service.mapperService().merge(metaData, MapperService.MergeReason.MAPPING_RECOVERY, true);\n        if (metaData.equals(metaDataUpdate) == false) {\n            service.updateMetaData(metaDataUpdate);\n        }\n    } finally {\n        IOUtils.close(closeables);\n    }\n}"
+    },
+    {
+      "commit": "6418f89feb55970c04474e3cced6ff1031725e39",
+      "startLine": 7,
+      "endLine": 16,
+      "methodCode": "public synchronized void verifyIndexMetadata(IndexMetaData metaData, IndexMetaData metaDataUpdate) throws IOException {\n    final List<Closeable> closeables = new ArrayList<>();\n    try {\n        IndicesFieldDataCache indicesFieldDataCache = new IndicesFieldDataCache(settings, new IndexFieldDataCache.Listener() {\n        });\n        closeables.add(indicesFieldDataCache);\n        IndicesQueryCache indicesQueryCache = new IndicesQueryCache(settings);\n        closeables.add(indicesQueryCache);\n        final IndexService service = createIndexService(\"metadata verification\", metaData, indicesQueryCache, indicesFieldDataCache, emptyList());\n        closeables.add(() -> service.close(\"metadata verification\", false));\n        for (ObjectCursor<MappingMetaData> typeMapping : metaData.getMappings().values()) {\n            service.mapperService().merge(typeMapping.value.type(), typeMapping.value.source(), MapperService.MergeReason.MAPPING_RECOVERY, true);\n        }\n        if (metaData.equals(metaDataUpdate) == false) {\n            service.updateMetaData(metaDataUpdate);\n        }\n    } finally {\n        IOUtils.close(closeables);\n    }\n}"
+    },
+    {
+      "commit": "ef0e3db0de6928ddca70d18e929223980f283fe1",
+      "startLine": 7,
+      "endLine": 16,
+      "methodCode": "public synchronized void verifyIndexMetadata(final NodeServicesProvider nodeServicesProvider, IndexMetaData metaData, IndexMetaData metaDataUpdate) throws IOException {\n    final List<Closeable> closeables = new ArrayList<>();\n    try {\n        IndicesFieldDataCache indicesFieldDataCache = new IndicesFieldDataCache(settings, new IndexFieldDataCache.Listener() {\n        });\n        closeables.add(indicesFieldDataCache);\n        IndicesQueryCache indicesQueryCache = new IndicesQueryCache(settings);\n        closeables.add(indicesQueryCache);\n        final IndexService service = createIndexService(\"metadata verification\", nodeServicesProvider, metaData, indicesQueryCache, indicesFieldDataCache, Collections.emptyList());\n        closeables.add(() -> service.close(\"metadata verification\", false));\n        for (ObjectCursor<MappingMetaData> typeMapping : metaData.getMappings().values()) {\n            service.mapperService().merge(typeMapping.value.type(), typeMapping.value.source(), MapperService.MergeReason.MAPPING_RECOVERY, true);\n        }\n        if (metaData.equals(metaDataUpdate) == false) {\n            service.updateMetaData(metaDataUpdate);\n        }\n    } finally {\n        IOUtils.close(closeables);\n    }\n}"
+    },
+    {
+      "commit": "4fb1c4fe5ad7017d60b2b6aae08f55f407805386",
+      "startLine": 7,
+      "endLine": 13,
+      "methodCode": "public synchronized void verifyIndexMetadata(final NodeServicesProvider nodeServicesProvider, IndexMetaData metaData) throws IOException {\n    final List<Closeable> closeables = new ArrayList<>();\n    try {\n        IndicesFieldDataCache indicesFieldDataCache = new IndicesFieldDataCache(settings, new IndexFieldDataCache.Listener() {\n        });\n        closeables.add(indicesFieldDataCache);\n        IndicesQueryCache indicesQueryCache = new IndicesQueryCache(settings);\n        closeables.add(indicesQueryCache);\n        final IndexService service = createIndexService(\"metadata verification\", nodeServicesProvider, metaData, indicesQueryCache, indicesFieldDataCache, Collections.emptyList());\n        closeables.add(() -> service.close(\"metadata verification\", false));\n        for (ObjectCursor<MappingMetaData> typeMapping : metaData.getMappings().values()) {\n            service.mapperService().merge(typeMapping.value.type(), typeMapping.value.source(), MapperService.MergeReason.MAPPING_RECOVERY, true);\n        }\n        service.getIndexSettings().getScopedSettings().validateUpdate(metaData.getSettings());\n    } finally {\n        IOUtils.close(closeables);\n    }\n}"
+    },
+    {
+      "commit": "8127a06b2ec40fd5f31a6915143386dd853abc2b",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "public synchronized void verifyIndexMetadata(final NodeServicesProvider nodeServicesProvider, IndexMetaData metaData) throws IOException {\n    final List<Closeable> closeables = new ArrayList<>();\n    try {\n        IndicesFieldDataCache indicesFieldDataCache = new IndicesFieldDataCache(settings, new IndexFieldDataCache.Listener() {\n        });\n        closeables.add(indicesFieldDataCache);\n        IndicesQueryCache indicesQueryCache = new IndicesQueryCache(settings);\n        closeables.add(indicesQueryCache);\n        final IndexService service = createIndexService(\"metadata verification\", nodeServicesProvider, metaData, indicesQueryCache, indicesFieldDataCache, Collections.emptyList());\n        for (ObjectCursor<MappingMetaData> typeMapping : metaData.getMappings().values()) {\n            service.mapperService().merge(typeMapping.value.type(), typeMapping.value.source(), MapperService.MergeReason.MAPPING_RECOVERY, true);\n        }\n        closeables.add(() -> service.close(\"metadata verification\", false));\n    } finally {\n        IOUtils.close(closeables);\n    }\n}"
+    }
+  ]
+}

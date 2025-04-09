@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "4a8099c6962da1e68309e0e382d0e6198a3937c2",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "private static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n    builder.startObject();\n    builder.field(Fields.DESCRIPTION, tree.toString());\n    builder.humanReadableField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n    Collection<Accountable> children = tree.getChildResources();\n    if (children.isEmpty() == false) {\n        builder.startArray(Fields.CHILDREN);\n        for (Accountable child : children) {\n            toXContent(builder, child);\n        }\n        builder.endArray();\n    }\n    builder.endObject();\n}"
+    },
+    {
+      "commit": "4bd217c94f4cea806b1ab41b359908355ac2984c",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n    builder.startObject();\n    builder.field(Fields.DESCRIPTION, tree.toString());\n    builder.humanReadableField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n    Collection<Accountable> children = tree.getChildResources();\n    if (children.isEmpty() == false) {\n        builder.startArray(Fields.CHILDREN);\n        for (Accountable child : children) {\n            toXContent(builder, child);\n        }\n        builder.endArray();\n    }\n    builder.endObject();\n}"
+    },
+    {
+      "commit": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n    builder.startObject();\n    builder.field(Fields.DESCRIPTION, tree.toString());\n    builder.byteSizeField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n    Collection<Accountable> children = tree.getChildResources();\n    if (children.isEmpty() == false) {\n        builder.startArray(Fields.CHILDREN);\n        for (Accountable child : children) {\n            toXContent(builder, child);\n        }\n        builder.endArray();\n    }\n    builder.endObject();\n}"
+    },
+    {
+      "commit": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n    builder.startObject();\n    builder.field(Fields.DESCRIPTION, tree.toString());\n    builder.byteSizeField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n    Collection<Accountable> children = tree.getChildResources();\n    if (children.isEmpty() == false) {\n        builder.startArray(Fields.CHILDREN);\n        for (Accountable child : children) {\n            toXContent(builder, child);\n        }\n        builder.endArray();\n    }\n    builder.endObject();\n}"
+    },
+    {
+      "commit": "f7f99b8dbfe4cc10612faceec8f82e03884f0d6d",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n    builder.startObject();\n    builder.field(Fields.DESCRIPTION, tree.toString());\n    builder.byteSizeField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n    Collection<Accountable> children = tree.getChildResources();\n    if (children.isEmpty() == false) {\n        builder.startArray(Fields.CHILDREN);\n        for (Accountable child : children) {\n            toXContent(builder, child);\n        }\n        builder.endArray();\n    }\n    builder.endObject();\n}"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "de3b4aac561258ad242a3c5ed1c919428893fd4c",
+      "startLine": 4,
+      "endLine": 7,
+      "methodCode": "@Override\npublic synchronized List<ApplicationAttemptId> getAppsInQueue(String queueName) {\n    if (queueName.equals(DEFAULT_QUEUE.getQueueName())) {\n        List<ApplicationAttemptId> attempts = new ArrayList<ApplicationAttemptId>(applications.size());\n        for (SchedulerApplication<FifoAppAttempt> app : applications.values()) {\n            attempts.add(app.getCurrentAppAttempt().getApplicationAttemptId());\n        }\n        return attempts;\n    } else {\n        return null;\n    }\n}"
+    },
+    {
+      "commit": "82f3454f5ac1f1c457e668e2cee12b4dcc800ee1",
+      "startLine": 4,
+      "endLine": 7,
+      "methodCode": "@Override\npublic synchronized List<ApplicationAttemptId> getAppsInQueue(String queueName) {\n    if (queueName.equals(DEFAULT_QUEUE.getQueueName())) {\n        List<ApplicationAttemptId> attempts = new ArrayList<ApplicationAttemptId>(applications.size());\n        for (SchedulerApplication<FiCaSchedulerApp> app : applications.values()) {\n            attempts.add(app.getCurrentAppAttempt().getApplicationAttemptId());\n        }\n        return attempts;\n    } else {\n        return null;\n    }\n}"
+    },
+    {
+      "commit": "1393581bceda234c88cafec00dbfc0ef2a402e83",
+      "startLine": 4,
+      "endLine": 7,
+      "methodCode": "@Override\npublic synchronized List<ApplicationAttemptId> getAppsInQueue(String queueName) {\n    if (queueName.equals(DEFAULT_QUEUE.getQueueName())) {\n        List<ApplicationAttemptId> attempts = new ArrayList<ApplicationAttemptId>(applications.size());\n        for (SchedulerApplication app : applications.values()) {\n            attempts.add(app.getCurrentAppAttempt().getApplicationAttemptId());\n        }\n        return attempts;\n    } else {\n        return null;\n    }\n}"
+    },
+    {
+      "commit": "a45017a5f17ec11814db7e206d1e80aaa4dd8d8f",
+      "startLine": 4,
+      "endLine": 7,
+      "methodCode": "@Override\npublic synchronized List<ApplicationAttemptId> getAppsInQueue(String queueName) {\n    if (queueName.equals(DEFAULT_QUEUE.getQueueName())) {\n        List<ApplicationAttemptId> apps = new ArrayList<ApplicationAttemptId>(appAttempts.size());\n        for (FiCaSchedulerApp app : appAttempts.values()) {\n            apps.add(app.getApplicationAttemptId());\n        }\n        return apps;\n    } else {\n        return null;\n    }\n}"
+    },
+    {
+      "commit": "e1d3670f4c233696dc673c37b578ce46b44a6876",
+      "startLine": 4,
+      "endLine": 7,
+      "methodCode": "@Override\npublic synchronized List<ApplicationAttemptId> getAppsInQueue(String queueName) {\n    if (queueName.equals(DEFAULT_QUEUE.getQueueName())) {\n        List<ApplicationAttemptId> apps = new ArrayList<ApplicationAttemptId>(applications.size());\n        for (FiCaSchedulerApp app : applications.values()) {\n            apps.add(app.getApplicationAttemptId());\n        }\n        return apps;\n    } else {\n        return null;\n    }\n}"
+    }
+  ]
+}

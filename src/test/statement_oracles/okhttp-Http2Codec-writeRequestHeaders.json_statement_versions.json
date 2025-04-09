@@ -1,0 +1,208 @@
+{
+  "statementVersions": [
+    {
+      "commit": "1d8233ddb7a0dfa490a340a06433909148f21610",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    boolean hasRequestBody = request.body() != null;\n    List<Header> requestHeaders = http2HeadersList(request);\n    stream = connection.newStream(requestHeaders, hasRequestBody);\n    stream.readTimeout().timeout(chain.readTimeoutMillis(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(chain.writeTimeoutMillis(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "a32b1044a480aabbf4716d5c90b907c5ec46056c",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    boolean hasRequestBody = request.body() != null;\n    List<Header> requestHeaders = http2HeadersList(request);\n    stream = connection.newStream(requestHeaders, hasRequestBody);\n    stream.readTimeout().timeout(chain.readTimeoutMillis(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(client.writeTimeoutMillis(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "578d8debd65202f574b544f876b45e6110afdb69",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    boolean hasRequestBody = request.body() != null;\n    List<Header> requestHeaders = http2HeadersList(request);\n    stream = connection.newStream(requestHeaders, hasRequestBody);\n    stream.readTimeout().timeout(client.readTimeoutMillis(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(client.writeTimeoutMillis(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    boolean permitsRequestBody = HttpMethod.permitsRequestBody(request.method());\n    List<Header> requestHeaders = http2HeadersList(request);\n    stream = connection.newStream(requestHeaders, permitsRequestBody);\n    stream.readTimeout().timeout(client.readTimeoutMillis(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(client.writeTimeoutMillis(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "0c04821a25c83fddebb29e8cd590609142ba20a2",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    boolean permitsRequestBody = HttpMethod.permitsRequestBody(request.method());\n    List<Header> requestHeaders = http2HeadersList(request);\n    stream = framedConnection.newStream(requestHeaders, permitsRequestBody);\n    stream.readTimeout().timeout(client.readTimeoutMillis(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(client.writeTimeoutMillis(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "e3b3180f9c4cc8821e9092955127935fa956a988",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    boolean permitsRequestBody = HttpMethod.permitsRequestBody(request.method());\n    List<Header> requestHeaders = framedConnection.getProtocol() == Protocol.HTTP_2 ? http2HeadersList(request) : spdy3HeadersList(request);\n    boolean hasResponseBody = true;\n    stream = framedConnection.newStream(requestHeaders, permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(client.readTimeoutMillis(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(client.writeTimeoutMillis(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "15a5bc40a4520d935bbc02a3552f51dda77fcc9c",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    boolean permitsRequestBody = HttpMethod.permitsRequestBody(request.method());\n    List<Header> requestHeaders = framedConnection.getProtocol() == Protocol.HTTP_2 ? http2HeadersList(request) : spdy3HeadersList(request);\n    boolean hasResponseBody = true;\n    stream = framedConnection.newStream(requestHeaders, permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.readTimeoutMillis(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(httpEngine.client.writeTimeoutMillis(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "38d570a6b28664b398cfa50c5c243c3631cde997",
+      "startLine": 6,
+      "endLine": 11,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean permitsRequestBody = httpEngine.permitsRequestBody(request);\n    List<Header> requestHeaders = framedConnection.getProtocol() == Protocol.HTTP_2 ? http2HeadersList(request) : spdy3HeadersList(request);\n    boolean hasResponseBody = true;\n    stream = framedConnection.newStream(requestHeaders, permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.readTimeoutMillis(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(httpEngine.client.writeTimeoutMillis(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "c9a89876de476983f273edbf108c365127c18c5e",
+      "startLine": 6,
+      "endLine": 11,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean permitsRequestBody = httpEngine.permitsRequestBody(request);\n    List<Header> requestHeaders = framedConnection.getProtocol() == Protocol.HTTP_2 ? http2HeadersList(request) : spdy3HeadersList(request);\n    boolean hasResponseBody = true;\n    stream = framedConnection.newStream(requestHeaders, permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.getReadTimeout(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(httpEngine.client.getWriteTimeout(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "c358656c8799d30fd422448153e99a5dd37e298a",
+      "startLine": 6,
+      "endLine": 11,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean permitsRequestBody = httpEngine.permitsRequestBody(request);\n    List<Header> requestHeaders = framedConnection.getProtocol() == Protocol.HTTP_2 ? http2HeadersList(request) : spdy3HeadersList(request);\n    boolean hasResponseBody = true;\n    stream = framedConnection.newStream(requestHeaders, permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.getReadTimeout(), TimeUnit.MILLISECONDS);\n    stream.writeTimeout().timeout(httpEngine.client.getWriteTimeout(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "bf560c1b253c1a6d157ee4839f4bb1b31a790f48",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean permitsRequestBody = httpEngine.permitsRequestBody(request);\n    List<Header> requestHeaders = framedConnection.getProtocol() == Protocol.HTTP_2 ? http2HeadersList(request) : spdy3HeadersList(request);\n    boolean hasResponseBody = true;\n    stream = framedConnection.newStream(requestHeaders, permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.getReadTimeout(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "529c4a36bb21b3fb7717c27f8a31c39c1b603e9d",
+      "startLine": 6,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean permitsRequestBody = httpEngine.permitsRequestBody(request);\n    boolean hasResponseBody = true;\n    stream = framedConnection.newStream(writeNameValueBlock(request, framedConnection.getProtocol()), permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.getReadTimeout(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "8e996aadc5d7839f249399abac657e3c9df1dc4a",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean permitsRequestBody = httpEngine.permitsRequestBody(request);\n    boolean hasResponseBody = true;\n    String version = RequestLine.version(httpEngine.getConnection().getProtocol());\n    stream = framedConnection.newStream(writeNameValueBlock(request, framedConnection.getProtocol(), version), permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.getReadTimeout(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean permitsRequestBody = httpEngine.permitsRequestBody();\n    boolean hasResponseBody = true;\n    String version = RequestLine.version(httpEngine.getConnection().getProtocol());\n    stream = framedConnection.newStream(writeNameValueBlock(request, framedConnection.getProtocol(), version), permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.getReadTimeout(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "64b607fc113cec3c18d04574ee1c024192d8cc43",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean permitsRequestBody = httpEngine.permitsRequestBody();\n    boolean hasResponseBody = true;\n    String version = RequestLine.version(httpEngine.getConnection().getProtocol());\n    stream = spdyConnection.newStream(writeNameValueBlock(request, spdyConnection.getProtocol(), version), permitsRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.getReadTimeout(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "5ddcdf54828b8543613d2a07da1139cc4c20ea72",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    String version = RequestLine.version(httpEngine.getConnection().getProtocol());\n    stream = spdyConnection.newStream(writeNameValueBlock(request, spdyConnection.getProtocol(), version), hasRequestBody, hasResponseBody);\n    stream.readTimeout().timeout(httpEngine.client.getReadTimeout(), TimeUnit.MILLISECONDS);\n}"
+    },
+    {
+      "commit": "9546527a1c34400a0020f50fe58ffd1f109800ab",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    String version = RequestLine.version(httpEngine.getConnection().getProtocol());\n    stream = spdyConnection.newStream(writeNameValueBlock(request, spdyConnection.getProtocol(), version), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "8972a94aee5b1a8732b4f8246c6ce43fd9e5e1cb",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    String version = RequestLine.version(httpEngine.getConnection().getHttpMinorVersion());\n    stream = spdyConnection.newStream(writeNameValueBlock(request, spdyConnection.getProtocol(), version), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "d7444f5fc4414b51b2708606257381cc0de404e1",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    String version = RequestLine.version(httpEngine.connection.getHttpMinorVersion());\n    stream = spdyConnection.newStream(writeNameValueBlock(request, spdyConnection.getProtocol(), version), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "262e3d43b63083ad9f87f3f332827b2ae37a30ff",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    String version = RequestLine.version(httpEngine.connection.getHttpMinorVersion());\n    stream = spdyConnection.newStream(writeNameValueBlock(request, version), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "957537774b319bb0109819258a11af78a98bcb97",
+      "startLine": 6,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders(Request request) throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(writeNameValueBlock(request.getHeaders()), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "4831a8dc6577f762e0f21fd15dd9700fe824740d",
+      "startLine": 6,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(writeNameValueBlock(httpEngine.getRequest().getHeaders()), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "14b6e76e7d7af9b99a7fdc1a56d7ee9309711722",
+      "startLine": 6,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(httpEngine.getRequest().getHeaders().toNameValueBlock(), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "350c43b6fe02401a73f967d9ef322061638b372a",
+      "startLine": 6,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null)\n        return;\n    httpEngine.writingRequestHeaders();\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(httpEngine.requestHeaders.getHeaders().toNameValueBlock(), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "39b3b59f6f6cea6335f264b56e370787d92082e1",
+      "startLine": 11,
+      "endLine": 14,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    httpEngine.writingRequestHeaders();\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.getHttpMinorVersion() == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    URL url = httpEngine.policy.getURL();\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, HttpEngine.requestPath(url), version, HttpEngine.getOriginAddress(url), httpEngine.uri.getScheme());\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.client.getReadTimeout());\n}"
+    },
+    {
+      "commit": "7ccbf48838b7cfe42759c67790636d442ea5daa3",
+      "startLine": 11,
+      "endLine": 14,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    httpEngine.writingRequestHeaders();\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.getHttpMinorVersion() == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    URL url = httpEngine.policy.getURL();\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, HttpEngine.requestPath(url), version, HttpEngine.getOriginAddress(url), httpEngine.uri.getScheme());\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.policy.getReadTimeout());\n}"
+    },
+    {
+      "commit": "194290e5f3819bf91d87c5d08c152946b6aa3509",
+      "startLine": 11,
+      "endLine": 14,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    httpEngine.writingRequestHeaders();\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.getHttpMinorVersion() == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    URL url = httpEngine.policy.getURL();\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, HttpEngine.requestPath(url), version, HttpEngine.getOriginAddress(url), httpEngine.uri.getScheme());\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.policy.getReadTimeout());\n}"
+    },
+    {
+      "commit": "06579c5bfb6a051a9fbca5be2d15a52fcf77f38c",
+      "startLine": 10,
+      "endLine": 13,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.getHttpMinorVersion() == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    URL url = httpEngine.policy.getURL();\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, HttpEngine.requestPath(url), version, HttpEngine.getOriginAddress(url), httpEngine.uri.getScheme());\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.policy.getReadTimeout());\n}"
+    },
+    {
+      "commit": "689f66222bd8984dd69229a4ee9caf8da528ae12",
+      "startLine": 9,
+      "endLine": 12,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.getHttpMinorVersion() == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, httpEngine.uri.getScheme(), HttpEngine.requestPath(httpEngine.policy.getURL()), version);\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.policy.getReadTimeout());\n}"
+    },
+    {
+      "commit": "86e5c34846d810a258952d966d58cb34ad483a14",
+      "startLine": 9,
+      "endLine": 12,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.getHttpMinorVersion() == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, httpEngine.uri.getScheme(), HttpEngine.requestPath(httpEngine.policy.getURL()), version);\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n    stream.setReadTimeout(httpEngine.policy.getReadTimeout());\n}"
+    },
+    {
+      "commit": "70e64037ff295874602133a1d254e5a0440ae4e3",
+      "startLine": 9,
+      "endLine": 11,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.getHttpMinorVersion() == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, httpEngine.uri.getScheme(), HttpEngine.requestPath(httpEngine.policy.getURL()), version);\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n}"
+    },
+    {
+      "commit": "50999cceb5f5bcdaf79baa5ac7eeef90c72bda8d",
+      "startLine": 9,
+      "endLine": 11,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.httpMinorVersion == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, httpEngine.uri.getScheme(), HttpEngine.requestPath(httpEngine.policy.getURL()), version);\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n}"
+    },
+    {
+      "commit": "e5b78cabad22ffdfbbe2755fece9c6c535438cdc",
+      "startLine": 9,
+      "endLine": 11,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.httpMinorVersion == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, httpEngine.uri.getScheme(), HttpEngine.requestPath(httpEngine.policy.getURL()), version);\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n}"
+    },
+    {
+      "commit": "ea63463c2ff8a67f63e541036f0d5998b5bb1f3e",
+      "startLine": 9,
+      "endLine": 11,
+      "methodCode": "@Override\npublic void writeRequestHeaders() throws IOException {\n    if (stream != null) {\n        return;\n    }\n    RawHeaders requestHeaders = httpEngine.requestHeaders.getHeaders();\n    String version = httpEngine.connection.httpMinorVersion == 1 ? \"HTTP/1.1\" : \"HTTP/1.0\";\n    requestHeaders.addSpdyRequestHeaders(httpEngine.method, httpEngine.uri.getScheme(), httpEngine.uri.getPath(), version);\n    boolean hasRequestBody = httpEngine.hasRequestBody();\n    boolean hasResponseBody = true;\n    stream = spdyConnection.newStream(requestHeaders.toNameValueBlock(), hasRequestBody, hasResponseBody);\n}"
+    }
+  ]
+}

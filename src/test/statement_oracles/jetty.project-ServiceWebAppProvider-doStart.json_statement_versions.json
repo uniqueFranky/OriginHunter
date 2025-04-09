@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "96218e8bc42390c9ff6bb3c72f7deb6c5a0a7880",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "@Override\nprotected void doStart() throws Exception {\n    BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass()).getBundleContext();\n    webappTracker = new WebAppTracker(bundleContext, Util.createFilter(bundleContext, WebAppContext.class.getName(), getServerInstanceWrapper().getManagedServerName()));\n    webappTracker.open();\n    Dictionary<String, String> properties = new Hashtable<>();\n    properties.put(OSGiServerConstants.MANAGED_JETTY_SERVER_NAME, getServerInstanceWrapper().getManagedServerName());\n    _serviceRegForServices = FrameworkUtil.getBundle(this.getClass()).getBundleContext().registerService(ServiceProvider.class.getName(), this, properties);\n    super.doStart();\n}"
+    },
+    {
+      "commit": "05e2527b5c781db8c7179a134ac1bf800e830580",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "protected void doStart() throws Exception {\n    BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass()).getBundleContext();\n    webappTracker = new WebAppTracker(bundleContext, Util.createFilter(bundleContext, WebAppContext.class.getName(), getServerInstanceWrapper().getManagedServerName()));\n    webappTracker.open();\n    Dictionary<String, String> properties = new Hashtable<>();\n    properties.put(OSGiServerConstants.MANAGED_JETTY_SERVER_NAME, getServerInstanceWrapper().getManagedServerName());\n    _serviceRegForServices = FrameworkUtil.getBundle(this.getClass()).getBundleContext().registerService(ServiceProvider.class.getName(), this, properties);\n    super.doStart();\n}"
+    },
+    {
+      "commit": "a639ee9275e672ca21320f56f62f1648d24aa140",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "@Override\nprotected void doStart() throws Exception {\n    BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass()).getBundleContext();\n    webappTracker = new WebAppTracker(bundleContext, Util.createFilter(bundleContext, WebAppContext.class.getName(), getServerInstanceWrapper().getManagedServerName()));\n    webappTracker.open();\n    Dictionary<String, String> properties = new Hashtable<String, String>();\n    properties.put(OSGiServerConstants.MANAGED_JETTY_SERVER_NAME, getServerInstanceWrapper().getManagedServerName());\n    _serviceRegForServices = FrameworkUtil.getBundle(this.getClass()).getBundleContext().registerService(ServiceProvider.class.getName(), this, properties);\n    super.doStart();\n}"
+    },
+    {
+      "commit": "37fa778ea03aba953712348426393136e2314658",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "protected void doStart() throws Exception {\n    BundleContext bundleContext = FrameworkUtil.getBundle(this.getClass()).getBundleContext();\n    webappTracker = new WebAppTracker(bundleContext, Util.createFilter(bundleContext, WebAppContext.class.getName(), getServerInstanceWrapper().getManagedServerName()));\n    webappTracker.open();\n    Dictionary<String, String> properties = new Hashtable<String, String>();\n    properties.put(OSGiServerConstants.MANAGED_JETTY_SERVER_NAME, getServerInstanceWrapper().getManagedServerName());\n    _serviceRegForServices = FrameworkUtil.getBundle(this.getClass()).getBundleContext().registerService(ServiceProvider.class.getName(), this, properties);\n    super.doStart();\n}"
+    },
+    {
+      "commit": "9af433473961dab9f5d534031fe0a6daa615a2a6",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "protected void doStart() throws Exception {\n    Dictionary<String, String> properties = new Hashtable<String, String>();\n    properties.put(OSGiServerConstants.MANAGED_JETTY_SERVER_NAME, getServerInstanceWrapper().getManagedServerName());\n    _serviceRegForServices = FrameworkUtil.getBundle(this.getClass()).getBundleContext().registerService(ServiceProvider.class.getName(), this, properties);\n    super.doStart();\n}"
+    }
+  ]
+}

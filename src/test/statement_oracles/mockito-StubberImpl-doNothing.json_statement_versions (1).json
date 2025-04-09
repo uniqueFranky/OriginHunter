@@ -1,0 +1,40 @@
+{
+  "statementVersions": [
+    {
+      "commit": "275586ecf3a00da078b6fb7e9cc4508231cc4301",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic Stubber doNothing() {\n    answers.add(doesNothing());\n    return this;\n}"
+    },
+    {
+      "commit": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Stubber doNothing() {\n    answers.add(new DoesNothing());\n    return this;\n}"
+    },
+    {
+      "commit": "af098cc912eb51ba8c457c68c8dcf97fa4dbb9f2",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Stubber doNothing() {\n    answers.add(new DoesNothing());\n    return this;\n}"
+    },
+    {
+      "commit": "87581fc75cb381237dba8fcb3351bbbad1aecfc2",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Stubber doReturn() {\n    answers.add(new ReturnsVoid());\n    return this;\n}"
+    },
+    {
+      "commit": "235b99ae5d66e7ce5386d9993ef9a3ad95ddee23",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Stubber doReturn() {\n    answers.add(new Returns());\n    return this;\n}"
+    },
+    {
+      "commit": "183167dbd20a85fa1106c300b304684ddec5f3d8",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public StubberFoo doReturn() {\n    answers.add(new Returns());\n    return this;\n}"
+    }
+  ]
+}

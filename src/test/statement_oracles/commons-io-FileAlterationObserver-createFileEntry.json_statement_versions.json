@@ -1,0 +1,52 @@
+{
+  "statementVersions": [
+    {
+      "commit": "d4e1ad171208fc1a63de63b4a7e4c08e43edc41a",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "private FileEntry createFileEntry(final FileEntry parent, final File file) {\n    final FileEntry entry = parent.newChildInstance(file);\n    entry.refresh(file);\n    final FileEntry[] children = doListFiles(file, entry);\n    entry.setChildren(children);\n    return entry;\n}"
+    },
+    {
+      "commit": "6aa00766b9103d75c763160280429af8e1f0549e",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "private FileEntry createFileEntry(final FileEntry parent, final File file) {\n    final FileEntry entry = parent.newChildInstance(file);\n    entry.refresh(file);\n    final File[] files = listFiles(file);\n    final FileEntry[] children = files.length > 0 ? new FileEntry[files.length] : FileEntry.EMPTY_ENTRIES;\n    for (int i = 0; i < files.length; i++) {\n        children[i] = createFileEntry(entry, files[i]);\n    }\n    entry.setChildren(children);\n    return entry;\n}"
+    },
+    {
+      "commit": "2abfa999f08533349b7067edb4c5d368f5b3612c",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "private FileEntry createFileEntry(FileEntry parent, File file) {\n    FileEntry entry = parent.newChildInstance(file);\n    entry.refresh(file);\n    File[] files = listFiles(file);\n    FileEntry[] children = files.length > 0 ? new FileEntry[files.length] : FileEntry.EMPTY_ENTRIES;\n    for (int i = 0; i < files.length; i++) {\n        children[i] = createFileEntry(entry, files[i]);\n    }\n    entry.setChildren(children);\n    return entry;\n}"
+    },
+    {
+      "commit": "f2c7194deeaf66ef3c83e24cb3a13236efe68261",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "private FileEntry createFileEntry(FileEntry parent, File file) {\n    FileEntry entry = parent.newChildInstance(file);\n    entry.refresh(file);\n    File[] files = listFiles(file);\n    FileEntry[] children = files.length > 0 ? new FileEntry[files.length] : EMPTY_ENTRIES;\n    for (int i = 0; i < files.length; i++) {\n        children[i] = createFileEntry(entry, files[i]);\n    }\n    entry.setChildren(children);\n    return entry;\n}"
+    },
+    {
+      "commit": "2ee073f3eb5da25c88e184ea78581b297f168a06",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "private FileEntry createFileEntry(FileEntry parent, File file) {\n    FileEntry entry = parent.newChildInstance(file);\n    entry.refresh(file);\n    File[] files = listFiles(file);\n    FileEntry[] children = files.length > 0 ? new FileEntry[files.length] : EMPTY_ENTRIES;\n    for (int i = 0; i < files.length; i++) {\n        children[i] = createFileEntry(entry, files[i]);\n    }\n    entry.setChildren(children);\n    return entry;\n}"
+    },
+    {
+      "commit": "f11021dca612e6bc4e9963248c0927225299a857",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "private FilesystemEntry createFileEntry(FilesystemEntry parent, File file) {\n    FilesystemEntry entry = parent.newChildInstance(file);\n    entry.refresh(file);\n    File[] files = listFiles(file);\n    FilesystemEntry[] children = files.length > 0 ? new FilesystemEntry[files.length] : EMPTY_ENTRIES;\n    for (int i = 0; i < files.length; i++) {\n        children[i] = createFileEntry(entry, files[i]);\n    }\n    entry.setChildren(children);\n    return entry;\n}"
+    },
+    {
+      "commit": "83f7246c3e9fe1d3f1ad6cf7ea0715a573fe2f2a",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "private FilesystemEntry createFileEntry(FilesystemEntry parent, File file) {\n    FilesystemEntry entry = parent.newChildInstance(file);\n    entry.refresh();\n    File[] files = listFiles(file);\n    FilesystemEntry[] children = files.length > 0 ? new FilesystemEntry[files.length] : EMPTY_ENTRIES;\n    for (int i = 0; i < files.length; i++) {\n        children[i] = createFileEntry(entry, files[i]);\n    }\n    entry.setChildren(children);\n    return entry;\n}"
+    },
+    {
+      "commit": "81eef5ded4684a1f4edea06e038894520fe72bc2",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "private FilesystemEntry createFileEntry(FilesystemEntry parent, File file) {\n    FilesystemEntry entry = parent.newChildInstance(file);\n    entry.refresh();\n    File[] files = listFiles(file);\n    FilesystemEntry[] children = files.length > 0 ? new FilesystemEntry[files.length] : EMPTY_ENTRIES;\n    for (int i = 0; i < files.length; i++) {\n        children[i] = createFileEntry(entry, files[i]);\n    }\n    entry.setChildren(children);\n    return entry;\n}"
+    }
+  ]
+}

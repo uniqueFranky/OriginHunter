@@ -1,0 +1,22 @@
+{
+  "statementVersions": [
+    {
+      "commit": "d6622daaa3c95a5040d06f91dc0c793bafa70f95",
+      "startLine": 7,
+      "endLine": 9,
+      "methodCode": "@Override\npublic synchronized Configuration retrieve() {\n    DBIterator itr = db.iterator();\n    itr.seekToFirst();\n    Configuration config = new Configuration(false);\n    while (itr.hasNext()) {\n        Map.Entry<byte[], byte[]> entry = itr.next();\n        String key = new String(entry.getKey(), StandardCharsets.UTF_8);\n        String value = new String(entry.getValue(), StandardCharsets.UTF_8);\n        if (key.equals(LOG_KEY) || key.equals(VERSION_KEY)) {\n            break;\n        }\n        config.set(key, value);\n    }\n    return config;\n}"
+    },
+    {
+      "commit": "ff39c0de206a4fce1f0e8a416357a7a8261f8634",
+      "startLine": 8,
+      "endLine": 8,
+      "methodCode": "@Override\npublic synchronized Configuration retrieve() {\n    DBIterator itr = db.iterator();\n    itr.seek(bytes(LOG_KEY));\n    Configuration config = new Configuration(false);\n    itr.next();\n    while (itr.hasNext()) {\n        Map.Entry<byte[], byte[]> entry = itr.next();\n        config.set(new String(entry.getKey(), StandardCharsets.UTF_8), new String(entry.getValue(), StandardCharsets.UTF_8));\n    }\n    return config;\n}"
+    },
+    {
+      "commit": "74ba6ffa0b601badc68366685dcf993a0844520a",
+      "startLine": 8,
+      "endLine": 8,
+      "methodCode": "@Override\npublic synchronized Configuration retrieve() {\n    DBIterator itr = db.iterator();\n    itr.seek(bytes(LOG_COMMITTED_TXN));\n    Configuration config = new Configuration(false);\n    itr.next();\n    while (itr.hasNext()) {\n        Map.Entry<byte[], byte[]> entry = itr.next();\n        config.set(new String(entry.getKey(), StandardCharsets.UTF_8), new String(entry.getValue(), StandardCharsets.UTF_8));\n    }\n    return config;\n}"
+    }
+  ]
+}

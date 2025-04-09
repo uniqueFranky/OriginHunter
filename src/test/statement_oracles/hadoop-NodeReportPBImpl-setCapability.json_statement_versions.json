@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "b46ca7e73b8bac3fdbff0b13afe009308078acf2",
+      "startLine": 3,
+      "endLine": 6,
+      "methodCode": "@Override\npublic void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability == null) {\n        builder.clearCapability();\n    }\n    this.capability = capability;\n}"
+    },
+    {
+      "commit": "2fd7f2823074cbfbcc083a6f66edff62c7a131f0",
+      "startLine": 3,
+      "endLine": 5,
+      "methodCode": "@Override\npublic void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability == null)\n        builder.clearCapability();\n    this.capability = capability;\n}"
+    },
+    {
+      "commit": "e1fdf62123625e4ba399af02f8aad500637d29d1",
+      "startLine": 3,
+      "endLine": 5,
+      "methodCode": "@Override\npublic void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability == null)\n        builder.clearCapability();\n    this.capability = capability;\n}"
+    },
+    {
+      "commit": "cd7157784e5e5ddc4e77144d042e54dd0d04bac1",
+      "startLine": 3,
+      "endLine": 5,
+      "methodCode": "@Override\npublic void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability == null)\n        builder.clearCapability();\n    this.capability = capability;\n}"
+    },
+    {
+      "commit": "dbecbe5dfe50f834fc3b8401709079e9470cc517",
+      "startLine": 3,
+      "endLine": 5,
+      "methodCode": "@Override\npublic void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability == null)\n        builder.clearCapability();\n    this.capability = capability;\n}"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "statementVersions": [
+    {
+      "commit": "913fe67db10cc4d93587ad55b40d0edfeb662ebe",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void findJavadocs() {\n    Collection<JavadocElement> kids = new ArrayList<>();\n    Matcher javadocTagMatcher = JAVADOC_TAG.matcher(getFilteredComment());\n    while (javadocTagMatcher.find()) {\n        JavadocTag tag = JavadocTag.tagFor(javadocTagMatcher.group(1));\n        int tagStartIndex = javadocTagMatcher.start(1);\n        if (tag != null) {\n            kids.add(new JavadocElement(getBeginLine(), getBeginLine(), tagStartIndex, tagStartIndex + tag.label.length() + 1, tag));\n        }\n    }\n    children = kids.toArray(new Node[0]);\n}"
+    },
+    {
+      "commit": "7221903f73dff36842abe6a024d2090021117fe1",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null) {\n            continue;\n        }\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[0]);\n}"
+    },
+    {
+      "commit": "8bd1e3b486de39438d9412335742ea4aa01e6483",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null) {\n            continue;\n        }\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[0]);\n}"
+    },
+    {
+      "commit": "9e2bade8c24e9b2bdc2ef4a29421922faf569d85",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null) {\n            continue;\n        }\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[kids.size()]);\n}"
+    },
+    {
+      "commit": "2680c33d84306aed438baeedaca115fe1b6f2d05",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null) {\n            continue;\n        }\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[kids.size()]);\n}"
+    },
+    {
+      "commit": "fd2dcddc447c8ae88fe5b1df9fca0326017309f8",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null) {\n            continue;\n        }\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[kids.size()]);\n}"
+    },
+    {
+      "commit": "10ae0fb999e53a911c1847ebfdb2e563fcd80861",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<JavadocElement>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null) {\n            continue;\n        }\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[kids.size()]);\n}"
+    },
+    {
+      "commit": "ad88b4784d78bf1698fac72cad3825144caf6863",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<JavadocElement>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null)\n            continue;\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[kids.size()]);\n}"
+    },
+    {
+      "commit": "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<JavadocElement>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null)\n            continue;\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[kids.size()]);\n}"
+    },
+    {
+      "commit": "4ffa5c453f41ca0b8ae9f317570453064ed48f3d",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "private void findJavadocs(String commentText) {\n    Collection<JavadocElement> kids = new ArrayList<JavadocElement>();\n    Map<String, Integer> tags = CommentUtil.javadocTagsIn(commentText);\n    for (Map.Entry<String, Integer> entry : tags.entrySet()) {\n        JavadocTag tag = JavadocTag.tagFor(entry.getKey());\n        if (tag == null)\n            continue;\n        kids.add(new JavadocElement(getBeginLine(), getBeginLine(), entry.getValue() + 1, entry.getValue() + tag.label.length() + 1, tag));\n    }\n    children = kids.toArray(new Node[kids.size()]);\n}"
+    }
+  ]
+}

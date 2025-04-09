@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "926397824e9fd4b7f480cff547a73aad3c056974",
+      "startLine": 5,
+      "endLine": 13,
+      "methodCode": "public void sync() {\n    boolean interrupted = false;\n    try {\n        while (true) {\n            MergeThread toSync = null;\n            synchronized (this) {\n                for (MergeThread t : mergeThreads) {\n                    if (t.isAlive() && t != Thread.currentThread()) {\n                        toSync = t;\n                        break;\n                    }\n                }\n            }\n            if (toSync != null) {\n                try {\n                    toSync.join();\n                } catch (InterruptedException ie) {\n                    interrupted = true;\n                }\n            } else {\n                break;\n            }\n        }\n    } finally {\n        if (interrupted)\n            Thread.currentThread().interrupt();\n    }\n}"
+    },
+    {
+      "commit": "22a8a7cde9f2cf57dcd76682587ae468159b5f3b",
+      "startLine": 5,
+      "endLine": 13,
+      "methodCode": "public void sync() {\n    boolean interrupted = false;\n    try {\n        while (true) {\n            MergeThread toSync = null;\n            synchronized (this) {\n                for (MergeThread t : mergeThreads) {\n                    if (t.isAlive()) {\n                        toSync = t;\n                        break;\n                    }\n                }\n            }\n            if (toSync != null) {\n                try {\n                    toSync.join();\n                } catch (InterruptedException ie) {\n                    interrupted = true;\n                }\n            } else {\n                break;\n            }\n        }\n    } finally {\n        if (interrupted)\n            Thread.currentThread().interrupt();\n    }\n}"
+    },
+    {
+      "commit": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "public void sync() {\n    while (true) {\n        MergeThread toSync = null;\n        synchronized (this) {\n            for (MergeThread t : mergeThreads) {\n                if (t.isAlive()) {\n                    toSync = t;\n                    break;\n                }\n            }\n        }\n        if (toSync != null) {\n            try {\n                toSync.join();\n            } catch (InterruptedException ie) {\n                throw new ThreadInterruptedException(ie);\n            }\n        } else {\n            break;\n        }\n    }\n}"
+    },
+    {
+      "commit": "765eab4008f44bb655b3dbbe4cc625455711536b",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "public void sync() {\n    while (true) {\n        MergeThread toSync = null;\n        synchronized (this) {\n            for (MergeThread t : mergeThreads) {\n                if (t.isAlive()) {\n                    toSync = t;\n                    break;\n                }\n            }\n        }\n        if (toSync != null) {\n            try {\n                toSync.join();\n            } catch (InterruptedException ie) {\n                throw new ThreadInterruptedException(ie);\n            }\n        } else {\n            break;\n        }\n    }\n}"
+    }
+  ]
+}

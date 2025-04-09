@@ -1,0 +1,148 @@
+{
+  "statementVersions": [
+    {
+      "commit": "327c0bc843612486ab4ded32a2f01038e1271fd0",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {\n    final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);\n    boolean hasNonFilteredViolations = false;\n    for (final LocalizedMessage element : errors) {\n        final AuditEvent event = new AuditEvent(this, stripped, element);\n        if (filters.accept(event)) {\n            hasNonFilteredViolations = true;\n            for (final AuditListener listener : listeners) {\n                listener.addError(event);\n            }\n        }\n    }\n    if (hasNonFilteredViolations && cacheFile != null) {\n        cacheFile.remove(fileName);\n    }\n}"
+    },
+    {
+      "commit": "56cc11416ebdf52dd299d11424fb04fda42fa63f",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {\n    final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);\n    boolean hasNonFilteredViolations = false;\n    for (final LocalizedMessage element : errors) {\n        final AuditEvent event = new AuditEvent(this, stripped, element);\n        if (filters.accept(event)) {\n            hasNonFilteredViolations = true;\n            for (final AuditListener listener : listeners) {\n                listener.addError(event);\n            }\n        }\n    }\n    if (hasNonFilteredViolations && cache != null) {\n        cache.remove(fileName);\n    }\n}"
+    },
+    {
+      "commit": "ce196814d857a4244a80c51d5151cc35e90b6749",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {\n    final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);\n    for (final LocalizedMessage element : errors) {\n        final AuditEvent event = new AuditEvent(this, stripped, element);\n        if (filters.accept(event)) {\n            for (final AuditListener listener : listeners) {\n                listener.addError(event);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "cdf3e56bacd3895262af8a1df9ca5c81f4071970",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {\n    final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);\n    for (final LocalizedMessage element : errors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (filters.accept(evt)) {\n            for (final AuditListener listener : listeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "efa16e17bf710b7b24af828296c2337612912ba9",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {\n    final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);\n    for (final LocalizedMessage element : errors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (filters.accept(evt)) {\n            for (final AuditListener listener : listeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "3a20dbe8edafe0cca300b7b9dfa48effa9a36a06",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {\n    final String stripped = Utils.relativizeAndNormalizePath(basedir, fileName);\n    for (final LocalizedMessage element : errors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (filters.accept(evt)) {\n            for (final AuditListener listener : listeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {\n    final String stripped = getStrippedFileName(fileName);\n    for (final LocalizedMessage element : errors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (filters.accept(evt)) {\n            for (final AuditListener listener : listeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "7aa061665c2b005f97b0c05bf03604636175dc9a",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void fireErrors(String aFileName, SortedSet<LocalizedMessage> aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (final LocalizedMessage element : aErrors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (mFilters.accept(evt)) {\n            for (final AuditListener listener : mListeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "public void fireErrors(String aFileName, SortedSet<LocalizedMessage> aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (final LocalizedMessage element : aErrors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (mFilters.accept(evt)) {\n            for (final AuditListener listener : mListeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "1d614c3a7ecf8a3ede4df8a50da46e71792d0025",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "public void fireErrors(String aFileName, SortedSet<LocalizedMessage> aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (final LocalizedMessage element : aErrors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (mFilters.accept(evt)) {\n            for (final AuditListener listener : mListeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "e00c478dd61d9d883e41b500b780ab217582c2e7",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "public void fireErrors(String aFileName, TreeSet<LocalizedMessage> aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (final LocalizedMessage element : aErrors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (mFilters.accept(evt)) {\n            for (final AuditListener listener : mListeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "public void fireErrors(String aFileName, TreeSet<LocalizedMessage> aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (LocalizedMessage element : aErrors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (mFilters.accept(evt)) {\n            for (AuditListener listener : mListeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "e50e1fcd1c17ba1f73d11df38382907cc163a1d1",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "public void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (LocalizedMessage element : aErrors) {\n        final AuditEvent evt = new AuditEvent(this, stripped, element);\n        if (mFilters.accept(evt)) {\n            for (AuditListener listener : mListeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "f1afaf83f39b83cc3bd07a2388448b262652a76b",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "public void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);\n        if (mFilters.accept(evt)) {\n            for (AuditListener listener : mListeners) {\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "1846dacad6c2a3a04b3350b45bb8b05835192296",
+      "startLine": 4,
+      "endLine": 11,
+      "methodCode": "public void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);\n        if (mFilters.accept(evt)) {\n            final Iterator it = mListeners.iterator();\n            while (it.hasNext()) {\n                final AuditListener listener = (AuditListener) it.next();\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "1e7d8eef0641edcf97316618c8fab40bd248133d",
+      "startLine": 4,
+      "endLine": 11,
+      "methodCode": "public void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);\n        if (mFilterChain.accept(evt)) {\n            final Iterator it = mListeners.iterator();\n            while (it.hasNext()) {\n                final AuditListener listener = (AuditListener) it.next();\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "21f0b07bd031f022d14106150af66ceddb4c06b8",
+      "startLine": 4,
+      "endLine": 11,
+      "methodCode": "public void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);\n        if (mFilterChain.decide(evt) != Filter.DENY) {\n            final Iterator it = mListeners.iterator();\n            while (it.hasNext()) {\n                final AuditListener listener = (AuditListener) it.next();\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "c3baa3fa77f4ed8e475ab52db6d0f2f860d93ef0",
+      "startLine": 4,
+      "endLine": 11,
+      "methodCode": "public void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);\n        if (accept(evt)) {\n            final Iterator it = mListeners.iterator();\n            while (it.hasNext()) {\n                final AuditListener listener = (AuditListener) it.next();\n                listener.addError(evt);\n            }\n        }\n    }\n}"
+    },
+    {
+      "commit": "54a09706ec1db32435b09e6b6910813325558f8d",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "public void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);\n        final Iterator it = mListeners.iterator();\n        while (it.hasNext()) {\n            final AuditListener listener = (AuditListener) it.next();\n            listener.addError(evt);\n        }\n    }\n}"
+    },
+    {
+      "commit": "82b2ba526976588d550cac698e512f8de6c1ffc6",
+      "startLine": 4,
+      "endLine": 9,
+      "methodCode": "protected void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    final String stripped = getStrippedFileName(aFileName);\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, stripped, aErrors[i]);\n        final Iterator it = mListeners.iterator();\n        while (it.hasNext()) {\n            final AuditListener listener = (AuditListener) it.next();\n            listener.addError(evt);\n        }\n    }\n}"
+    },
+    {
+      "commit": "20483ae032296610315fafb9a8774cfdd0e13857",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "protected void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, aFileName, aErrors[i]);\n        final Iterator it = mListeners.iterator();\n        while (it.hasNext()) {\n            final AuditListener listener = (AuditListener) it.next();\n            listener.addError(evt);\n        }\n    }\n}"
+    },
+    {
+      "commit": "c682b5725d22afc38bf19d9667b23a7deab6d8c3",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "protected void fireErrors(String aFileName, LocalizedMessage[] aErrors) {\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, aFileName, aErrors[i].getLineNo(), aErrors[i].getColumnNo(), aErrors[i].getMessage());\n        final Iterator it = mListeners.iterator();\n        while (it.hasNext()) {\n            final AuditListener listener = (AuditListener) it.next();\n            listener.addError(evt);\n        }\n    }\n}"
+    },
+    {
+      "commit": "6970485b88600343de72af03a6bf87cf78e6cf55",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "protected void fireErrors(String aFileName, LineText[] aErrors) {\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, aFileName, aErrors[i].getLineNo(), aErrors[i].getColumnNo(), aErrors[i].getText());\n        final Iterator it = mListeners.iterator();\n        while (it.hasNext()) {\n            final AuditListener listener = (AuditListener) it.next();\n            listener.addError(evt);\n        }\n    }\n}"
+    },
+    {
+      "commit": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "protected void fireErrors(String aFileName, LineText[] aErrors) {\n    for (int i = 0; i < aErrors.length; i++) {\n        final AuditEvent evt = new AuditEvent(this, aFileName, aErrors[i].getLineNo(), aErrors[i].getText());\n        final Iterator it = mListeners.iterator();\n        while (it.hasNext()) {\n            final AuditListener listener = (AuditListener) it.next();\n            listener.addError(evt);\n        }\n    }\n}"
+    }
+  ]
+}

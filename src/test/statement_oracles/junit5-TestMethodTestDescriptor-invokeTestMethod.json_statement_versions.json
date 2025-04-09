@@ -1,0 +1,220 @@
+{
+  "statementVersions": [
+    {
+      "commit": "b2cc5f49d5f892dbf022c62ec48f4e4bd95cf7cd",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    ExtensionContext extensionContext = context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = extensionContext.getRequiredTestInstance();\n            executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "bef03b5ce4c2385a99b13ac1a3354ac2ca8acc96",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    ExtensionContext extensionContext = context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = extensionContext.getRequiredTestInstance();\n            executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "7b9267e3665c8550f4d2c9fda4cc6ce24e054cff",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    ExtensionContext extensionContext = context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = getRequiredTestInstance(extensionContext);\n            executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "a97e4d3088f97b58031b139c006a98c8e0f49422",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    ExtensionContext extensionContext = context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = extensionContext.getTestInstance().orElseThrow(() -> new JUnitException(\"Illegal state: test instance not present for method: \" + testMethod.toGenericString()));\n            executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "0836f8f28601d1d27d07ad302c6aa1ef9f2ab023",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    AbstractExtensionContext<?> extensionContext = context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = extensionContext.getRequiredTestInstance();\n            executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "83b3eb665aa35a87cfd8484e0d06cc3b3d0478c7",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    ExtensionContext extensionContext = context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = extensionContext.getTestInstance().orElseThrow(() -> new JUnitException(\"Illegal state: test instance not present for method: \" + testMethod.toGenericString()));\n            executableInvoker.invoke(testMethod, instance, extensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), extensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "fdadf905479b4cd63f1987d08940eddfbf89d088",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = testExtensionContext.getTestInstance().orElseThrow(() -> new JUnitException(\"Illegal state: test instance not present for method: \" + testMethod.toGenericString()));\n            executableInvoker.invoke(testMethod, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "ee8cb2e44a92c511bc73553f2005ecc890bec141",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = testExtensionContext.getTestInstance().get();\n            executableInvoker.invoke(testMethod, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "21cb383011c9f55e8d8da8afbeaadbf3fb400c1e",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(testMethod, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "9a5ddb30bb206026eb7b209e98d809c1bedd887e",
+      "startLine": 2,
+      "endLine": 15,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method testMethod = getTestMethod();\n            if (ReflectionUtils.isPublic(testMethod) && !testMethod.isDefault()) {\n                LOG.config(() -> \"Modifier `public` is not necessary at \" + testMethod);\n            }\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(testMethod, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "9838fabf19e19b0e6cc80da85aeac94b427867d5",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(getTestMethod(), instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "fc3c61b41f014a2500f176e23fe8ad2989d20565",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "4b41518fa052b28a953e99b087d505603a22c175",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, Consumer<TestDescriptor> dynamicTestExecutor) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "da4a05ba9572191b3600a79ec616ea47fe8a3fd3",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "c95005adbe2f754997a43009a47124f725496530",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context) {\n    MethodBasedTestExtensionContext testExtensionContext = (MethodBasedTestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "2397538bc17fe9c105c8a2ef6955c13ba45e4628",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context) {\n    MethodBasedTestExtensionContext testExtensionContext = (MethodBasedTestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n    testExtensionContext.setTestException(throwableCollector.getThrowable());\n}"
+    },
+    {
+      "commit": "3e3b402131a99f01480c57dd82c2e81ad6d9a4ea",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context) {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "babcc661bd906b38a272f287ac8779669268fc58",
+      "startLine": 2,
+      "endLine": 10,
+      "methodCode": "protected void invokeTestMethod(JupiterEngineExecutionContext context, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+      "startLine": 2,
+      "endLine": 10,
+      "methodCode": "protected void invokeTestMethod(JUnit5EngineExecutionContext context, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "507e50872c6df8a66c32f45cb2153555f510c4b1",
+      "startLine": 2,
+      "endLine": 10,
+      "methodCode": "protected void invokeTestMethod(JUnit5EngineExecutionContext context, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "e0e131335d2117a2a1630db22260a258e47d8c4d",
+      "startLine": 2,
+      "endLine": 10,
+      "methodCode": "protected void invokeTestMethod(JUnit5EngineExecutionContext context, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            executableInvoker.invoke(method, instance, testExtensionContext, context.getExtensionRegistry());\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "9eacc9c2d51557bffa003ca24fa125b8cbe69bbb",
+      "startLine": 2,
+      "endLine": 10,
+      "methodCode": "protected void invokeTestMethod(JUnit5EngineExecutionContext context, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        try {\n            Method method = testExtensionContext.getTestMethod().get();\n            Object instance = testExtensionContext.getTestInstance();\n            new ExecutableInvoker(testExtensionContext, context.getExtensionRegistry()).invoke(method, instance);\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "c7c0d24a3b6b46868d732e6358834c2ddf81ad48",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "protected void invokeTestMethod(JUnit5EngineExecutionContext context, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        MethodInvocationContext methodInvocationContext = methodInvocationContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod().get());\n        try {\n            new MethodInvoker(testExtensionContext, context.getExtensionRegistry()).invoke(methodInvocationContext);\n        } catch (Throwable throwable) {\n            invokeTestExecutionExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "a409b27b1fca748a504a8bbcf7a914eeadeebdab",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "protected void invokeTestMethod(JUnit5EngineExecutionContext context, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        MethodInvocationContext methodInvocationContext = methodInvocationContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod().get());\n        try {\n            new MethodInvoker(testExtensionContext, context.getExtensionRegistry()).invoke(methodInvocationContext);\n        } catch (Throwable throwable) {\n            invokeExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "ac7bb522519cd8a600324aa909a5c17a110cb97f",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "protected void invokeTestMethod(JUnit5EngineExecutionContext context, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        MethodInvocationContext methodInvocationContext = methodInvocationContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        try {\n            new MethodInvoker(testExtensionContext, context.getExtensionRegistry()).invoke(methodInvocationContext);\n        } catch (Throwable throwable) {\n            invokeExceptionHandlers(context.getExtensionRegistry(), testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "23c20e541adffed56fcb34ad297d843081eaa796",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "private void invokeTestMethod(ExtensionRegistry ExtensionRegistry, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        MethodInvocationContext methodInvocationContext = methodInvocationContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        try {\n            new MethodInvoker(testExtensionContext, ExtensionRegistry).invoke(methodInvocationContext);\n        } catch (Throwable throwable) {\n            invokeExceptionHandlers(ExtensionRegistry, testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "f250792f7f2a6a40cdec82f3090ce88d99aad152",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "private void invokeTestMethod(ExtensionRegistry ExtensionRegistry, TestExtensionContext testExtensionContext, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        MethodInvocationContext methodInvocationContext = methodInvocationContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        try {\n            new MethodInvoker(testExtensionContext, ExtensionRegistry).invoke(methodInvocationContext);\n        } catch (Throwable throwable) {\n            invokeExceptionHandlerExtensionPoints(ExtensionRegistry, testExtensionContext, throwable);\n        }\n    });\n}"
+    },
+    {
+      "commit": "c0a0e14d2c11bb77bfe25aee9594b04e793b04aa",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "private void invokeTestMethod(TestExtensionContext testExtensionContext, ExtensionRegistry extensionRegistry, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        MethodInvocationContext methodInvocationContext = methodInvocationContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(testExtensionContext, extensionRegistry).invoke(methodInvocationContext);\n    });\n}"
+    },
+    {
+      "commit": "0fd76305d40d56ca9377d8d64bfc160cc834c134",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "private void invokeTestMethod(TestExtensionContext testExtensionContext, TestExtensionRegistry testExtensionRegistry, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        MethodInvocationContext methodInvocationContext = methodInvocationContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(testExtensionContext, testExtensionRegistry).invoke(methodInvocationContext);\n    });\n}"
+    },
+    {
+      "commit": "a1eb11673e2b7e69bc0c4c2f5c5b81cf572dfeab",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "private void invokeTestMethod(TestExtensionContext testExtensionContext, TestExtensionRegistry testExtensionRegistry, ThrowableCollector throwableCollector) {\n    throwableCollector.execute(() -> {\n        MethodContext methodContext = methodContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(testExtensionContext, testExtensionRegistry).invoke(methodContext);\n    });\n}"
+    },
+    {
+      "commit": "e45c3250aaedd8e80f854b6cd99c24f7f99f145b",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "private void invokeTestMethod(TestExtensionContext testExtensionContext, TestExtensionRegistry testExtensionRegistry, List<Throwable> throwablesCollector) {\n    executeAndCollectThrowables(() -> {\n        MethodContext methodContext = methodContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(testExtensionContext, testExtensionRegistry).invoke(methodContext);\n    }, throwablesCollector);\n}"
+    },
+    {
+      "commit": "12bbe5afc72f457e5bba4bbcf68c49d6e4b77a4e",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "private void invokeTestMethod(TestExtensionContext testExtensionContext, TestExtensionRegistry testExtensionRegistry, List<Throwable> throwablesCollector) {\n    try {\n        MethodContext methodContext = methodContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(testExtensionContext, testExtensionRegistry).invoke(methodContext);\n    } catch (ReflectionUtils.TargetExceptionWrapper wrapper) {\n        throwablesCollector.add(wrapper.getTargetException());\n    } catch (Throwable t) {\n        throwablesCollector.add(t);\n    }\n}"
+    },
+    {
+      "commit": "b8f87c20c3c0f77bf1051123c9f43cea8eaa8ce8",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private void invokeTestMethod(TestExtensionContext testExtensionContext, TestExtensionRegistry testExtensionRegistry, List<Throwable> throwablesCollector) {\n    try {\n        MethodContext methodContext = methodContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(testExtensionContext, testExtensionRegistry).invoke(methodContext);\n    } catch (Throwable t) {\n        throwablesCollector.add(t);\n    }\n}"
+    },
+    {
+      "commit": "b67bd2e32f8274fb0972e3a98157e2398140dcbf",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "private Optional<Throwable> invokeTestMethod(TestExtensionContext testExtensionContext, TestExtensionRegistry testExtensionRegistry) {\n    try {\n        MethodContext methodContext = methodContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(testExtensionContext, testExtensionRegistry).invoke(methodContext);\n        return Optional.empty();\n    } catch (Throwable t) {\n        return Optional.of(t);\n    }\n}"
+    },
+    {
+      "commit": "11ece8b11085a01a95a10e7bf26e4eb51034ac00",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "private Optional<Throwable> invokeTestMethod(TestExtensionContext testExtensionContext, TestExtensionRegistry testExtensionRegistry) {\n    try {\n        MethodContext methodContext = methodContext(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(methodContext, testExtensionContext, testExtensionRegistry).invoke();\n        return Optional.empty();\n    } catch (Throwable t) {\n        return Optional.of(t);\n    }\n}"
+    },
+    {
+      "commit": "fc5ff8d87c124e43601f64da76668e516758a74a",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "private Optional<Throwable> invokeTestMethod(JUnit5Context myContext, TestExtensionContext testExtensionContext) {\n    try {\n        MethodContext methodContext = new MethodContextImpl(testExtensionContext.getTestInstance(), testExtensionContext.getTestMethod());\n        new MethodInvoker(methodContext, testExtensionContext, myContext.getTestExtensionRegistry()).invoke();\n        return Optional.empty();\n    } catch (Throwable t) {\n        return Optional.of(t);\n    }\n}"
+    }
+  ]
+}

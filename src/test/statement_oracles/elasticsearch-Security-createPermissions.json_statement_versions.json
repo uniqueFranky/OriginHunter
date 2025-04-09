@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "static Permissions createPermissions(Environment environment) throws IOException {\n    Permissions policy = new Permissions();\n    addClasspathPermissions(policy);\n    addFilePermissions(policy, environment);\n    addBindPermissions(policy, environment.settings());\n    return policy;\n}"
+    },
+    {
+      "commit": "720ebe347d1410bce178e4f244237b9870403b84",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "static Permissions createPermissions(Environment environment) throws IOException {\n    Permissions policy = new Permissions();\n    addClasspathPermissions(policy);\n    addFilePermissions(policy, environment);\n    addBindPermissions(policy, environment.settings());\n    return policy;\n}"
+    },
+    {
+      "commit": "e06cae84f3ca9c43ddb1424268bf9a87a429fdc4",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "static Permissions createPermissions(Environment environment) throws IOException {\n    Permissions policy = new Permissions();\n    addFilePermissions(policy, environment);\n    addBindPermissions(policy, environment.settings());\n    return policy;\n}"
+    },
+    {
+      "commit": "d96af934db7a9ab25e8e76f01a2b5fe4c26f6ec1",
+      "startLine": 2,
+      "endLine": 25,
+      "methodCode": "static Permissions createPermissions(Environment environment) throws IOException {\n    Permissions policy = new Permissions();\n    addPath(policy, \"path.home\", environment.binFile(), \"read,readlink\");\n    addPath(policy, \"path.home\", environment.libFile(), \"read,readlink\");\n    addPath(policy, \"path.plugins\", environment.pluginsFile(), \"read,readlink\");\n    addPath(policy, \"path.conf\", environment.configFile(), \"read,readlink\");\n    addPath(policy, \"path.scripts\", environment.scriptsFile(), \"read,readlink\");\n    addPath(policy, \"java.io.tmpdir\", environment.tmpFile(), \"read,readlink,write,delete\");\n    addPath(policy, \"path.logs\", environment.logsFile(), \"read,readlink,write,delete\");\n    if (environment.sharedDataFile() != null) {\n        addPath(policy, \"path.shared_data\", environment.sharedDataFile(), \"read,readlink,write,delete\");\n    }\n    for (Path path : environment.dataFiles()) {\n        addPath(policy, \"path.data\", path, \"read,readlink,write,delete\");\n    }\n    for (Path path : environment.dataWithClusterFiles()) {\n        addPath(policy, \"path.data\", path, \"read,readlink,write,delete\");\n    }\n    for (Path path : environment.repoFiles()) {\n        addPath(policy, \"path.repo\", path, \"read,readlink,write,delete\");\n    }\n    if (environment.pidFile() != null) {\n        policy.add(new FilePermission(environment.pidFile().toString(), \"delete\"));\n    }\n    return policy;\n}"
+    }
+  ]
+}

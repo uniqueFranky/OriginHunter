@@ -1,0 +1,124 @@
+{
+  "statementVersions": [
+    {
+      "commit": "30afff46c65d17dd4974f4831b1ea0f0232bdf75",
+      "startLine": 5,
+      "endLine": 11,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        currentAcu = node;\n        importedOnDemand = new ArrayList<>();\n        importedClasses = new HashMap<>();\n        staticFieldImageToTypeDef = new HashMap<>();\n        staticNamesToClasses = new HashMap<>();\n        importOnDemandStaticClasses = new ArrayList<>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException | NoClassDefFoundError e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (LinkageError e) {\n        if (LOG.isLoggable(Level.WARNING)) {\n            LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "2146a077ebbb902cd1460464a082bbfaacd2f4ce",
+      "startLine": 5,
+      "endLine": 11,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        currentAcu = node;\n        importedOnDemand = new ArrayList<>();\n        importedClasses = new HashMap<>();\n        staticFieldImageToTypeDef = new HashMap<>();\n        staticNamesToClasses = new HashMap<>();\n        importOnDemandStaticClasses = new ArrayList<>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (NoClassDefFoundError e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (LinkageError e) {\n        if (LOG.isLoggable(Level.WARNING)) {\n            LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "800cfa6e484e0ae704b4f2856ce7e5aa4b66509e",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        currentAcu = node;\n        importedOnDemand = new ArrayList<>();\n        importedClasses = new HashMap<>();\n        staticFieldImageToTypeDef = new HashMap<>();\n        staticFieldImportOnDemand = new ArrayList<>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (NoClassDefFoundError e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (LinkageError e) {\n        if (LOG.isLoggable(Level.WARNING)) {\n            LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "fd2dcddc447c8ae88fe5b1df9fca0326017309f8",
+      "startLine": 5,
+      "endLine": 7,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<>();\n        importedClasses = new HashMap<>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (NoClassDefFoundError e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (LinkageError e) {\n        if (LOG.isLoggable(Level.WARNING)) {\n            LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "1f6421ec8800fc0aebb2f46ccf2bac2b563862d7",
+      "startLine": 5,
+      "endLine": 7,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        importedClasses = new HashMap<String, String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (NoClassDefFoundError e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } catch (LinkageError e) {\n        if (LOG.isLoggable(Level.WARNING)) {\n            LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e);\n        }\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "5f35ded04bae4c4a4446f78b7a6288f8dfa0472c",
+      "startLine": 5,
+      "endLine": 7,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        importedClasses = new HashMap<String, String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        if (LOG.isLoggable(Level.FINE)) {\n            LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n        }\n    } catch (LinkageError e) {\n        if (LOG.isLoggable(Level.WARNING)) {\n            LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n        }\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "ad88b4784d78bf1698fac72cad3825144caf6863",
+      "startLine": 5,
+      "endLine": 7,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        importedClasses = new HashMap<String, String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } catch (LinkageError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "b172c19de7f487e36e7185aaa41ea34c0734e130",
+      "startLine": 5,
+      "endLine": 7,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        importedClasses = new HashMap<String, String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } catch (LinkageError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+      "startLine": 5,
+      "endLine": 7,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        importedClasses = new HashMap<String, String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } catch (ClassFormatError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "3aedf63a96d787f626b2876b134f81831db17117",
+      "startLine": 5,
+      "endLine": 7,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        importedClasses = new HashMap<String, String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } catch (ClassFormatError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "c1c74ad02bfd383c4c29b608e524c9d8c2056ca2",
+      "startLine": 5,
+      "endLine": 6,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } catch (ClassFormatError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className + \", due to: \" + e.getClass().getName() + \": \" + e.getMessage());\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "de9c2b0e3ae70f755a4746debac2c01636204af1",
+      "startLine": 5,
+      "endLine": 6,
+      "methodCode": "@Override\npublic Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className);\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } catch (ClassFormatError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "ca6eda7e61fe4daf90682014e11fe1507fd331ed",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "public Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className);\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } catch (ClassFormatError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "c595c61edd4259c73748baab5bf0c952eda9a374",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "public Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className);\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } catch (ClassFormatError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "40501042ce13fce37eb69fbcf2ec34642133aeaf",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "public Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        className = getClassName(node);\n        if (className != null) {\n            populateClassName(node, className);\n        }\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className);\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "a708221106c1084c8aef235b14c39ad0f2c6bb1a",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "public Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        className = getClassName(node);\n        populateClassName(node, className);\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.FINE, \"Could not find class \" + className);\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "1b4aef4e56a27d4f13aed630d4e91cc8d36d2066",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "public Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        className = getClassName(node);\n        populateClassName(node, className);\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class \" + className);\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "3bbc6575ef1ade840f1bfa7b9d9090a20a4e1394",
+      "startLine": 4,
+      "endLine": 5,
+      "methodCode": "public Object visit(ASTCompilationUnit node, Object data) {\n    String className = null;\n    try {\n        importedOnDemand = new ArrayList<String>();\n        className = getClassName(node);\n        populateClassName(node, className);\n    } catch (ClassNotFoundException e) {\n        LOG.log(Level.WARNING, \"Could not find class {0}\", className);\n    } catch (NoClassDefFoundError e) {\n        LOG.log(Level.WARNING, \"Could not find class {0}\", className);\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "ad46a291ea19b057a88588db2c80f50374599b6a",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "public Object visit(ASTCompilationUnit node, Object data) {\n    try {\n        importedOnDemand = new ArrayList<String>();\n        populateClassName(node);\n    } catch (ClassNotFoundException e) {\n    } catch (NoClassDefFoundError e) {\n    } finally {\n        populateImports(node);\n    }\n    return super.visit(node, data);\n}"
+    },
+    {
+      "commit": "8812185444622ed8606bbcf79aed12477786a877",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "public Object visit(ASTCompilationUnit node, Object data) {\n    try {\n        importedOnDemand = new ArrayList<String>();\n        populateClassName(node);\n        populateImports(node, true);\n    } catch (ClassNotFoundException e) {\n        populateImports(node, false);\n    } catch (NoClassDefFoundError e) {\n        populateImports(node, false);\n    }\n    return super.visit(node, data);\n}"
+    }
+  ]
+}

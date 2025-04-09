@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "6d26b45afed18dd5fe1211ccfbac7eb2587aa9a9",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "public void processAfters(XmlParser.Node ordering) {\n    XmlParser.Node after = ordering.get(\"after\");\n    if (after == null)\n        return;\n    Iterator<?> iter = after.iterator();\n    XmlParser.Node node = null;\n    while (iter.hasNext()) {\n        Object o = iter.next();\n        if (!(o instanceof XmlParser.Node))\n            continue;\n        node = (XmlParser.Node) o;\n        if (node.getTag().equalsIgnoreCase(\"others\")) {\n            if (_otherType != OtherType.None)\n                throw new IllegalStateException(\"Duplicate <other> clause detected in \" + _xml.getURI());\n            _otherType = OtherType.After;\n        } else if (node.getTag().equalsIgnoreCase(\"name\"))\n            _afters.add(node.toString(false, true));\n    }\n}"
+    },
+    {
+      "commit": "3919023be5d403b0e081430bb8f41d20ac1f29d1",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "public void processAfters(XmlParser.Node ordering) {\n    XmlParser.Node after = ordering.get(\"after\");\n    if (after == null)\n        return;\n    Iterator<?> iter = after.iterator();\n    XmlParser.Node node = null;\n    while (iter.hasNext()) {\n        Object o = iter.next();\n        if (!(o instanceof XmlParser.Node))\n            continue;\n        node = (XmlParser.Node) o;\n        if (node.getTag().equalsIgnoreCase(\"others\")) {\n            if (_otherType != OtherType.After)\n                throw new IllegalStateException(\"Duplicate <other> clause detected in \" + _xml.getURI());\n            _otherType = OtherType.After;\n        } else if (node.getTag().equalsIgnoreCase(\"name\"))\n            _afters.add(node.toString(false, true));\n    }\n}"
+    },
+    {
+      "commit": "314f94decc0e814baf31f500502020e05fcb73a2",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "public void processAfters(XmlParser.Node ordering) {\n    XmlParser.Node after = ordering.get(\"after\");\n    if (after == null)\n        return;\n    Iterator iter = after.iterator();\n    XmlParser.Node node = null;\n    while (iter.hasNext()) {\n        Object o = iter.next();\n        if (!(o instanceof XmlParser.Node))\n            continue;\n        node = (XmlParser.Node) o;\n        if (node.getTag().equalsIgnoreCase(\"others\")) {\n            if (_otherType != OtherType.After)\n                throw new IllegalStateException(\"Duplicate <other> clause detected in \" + _xml.getURI());\n            _otherType = OtherType.After;\n        } else if (node.getTag().equalsIgnoreCase(\"name\"))\n            _afters.add(node.toString(false, true));\n    }\n}"
+    },
+    {
+      "commit": "688fbac7aa52a61bd864d6e5890507a95e71e287",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "public void process(XmlParser.Node root) throws Exception {\n    if (root == null)\n        return;\n    Iterator iter = root.iterator();\n    XmlParser.Node node = null;\n    while (iter.hasNext()) {\n        try {\n            Object o = iter.next();\n            if (!(o instanceof XmlParser.Node))\n                continue;\n            node = (XmlParser.Node) o;\n            String name = node.getTag();\n            initWebXmlElement(name, node);\n        } catch (ClassNotFoundException e) {\n            throw e;\n        } catch (Exception e) {\n            Log.warn(\"Configuration problem at \" + node, e);\n            throw new UnavailableException(\"Configuration problem\");\n        }\n    }\n}"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "statementVersions": [
+    {
+      "commit": "0ba4830b4fb20deea040ca5e1c9a34651708b222",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private void addErrorMessage(Map<String, Object> errorAttributes, Throwable error) {\n    BindingResult result = extractBindingResult(error);\n    if (result == null) {\n        errorAttributes.put(\"message\", error.getMessage());\n        return;\n    }\n    if (result.getErrorCount() > 0) {\n        errorAttributes.put(\"errors\", result.getAllErrors());\n        errorAttributes.put(\"message\", \"Validation failed for object='\" + result.getObjectName() + \"'. Error count: \" + result.getErrorCount());\n    } else {\n        errorAttributes.put(\"message\", \"No errors\");\n    }\n}"
+    },
+    {
+      "commit": "2e51b48cd9ad9ad3e599aa0cb0b916061a061dfa",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private void addErrorMessage(Map<String, Object> errorAttributes, Throwable error) {\n    BindingResult result = extractBindingResult(error);\n    if (result == null) {\n        errorAttributes.put(\"message\", error.getMessage());\n        return;\n    }\n    if (result.getErrorCount() > 0) {\n        errorAttributes.put(\"errors\", result.getAllErrors());\n        errorAttributes.put(\"message\", \"Validation failed for object='\" + result.getObjectName() + \"'. Error count: \" + result.getErrorCount());\n    } else {\n        errorAttributes.put(\"message\", \"No errors\");\n    }\n}"
+    },
+    {
+      "commit": "b76ca0bf8f61aafe2f812911f208200c96c4bc69",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private void addErrorMessage(Map<String, Object> errorAttributes, Throwable error) {\n    BindingResult result = extractBindingResult(error);\n    if (result == null) {\n        errorAttributes.put(\"message\", error.getMessage());\n        return;\n    }\n    if (result.getErrorCount() > 0) {\n        errorAttributes.put(\"errors\", result.getAllErrors());\n        errorAttributes.put(\"message\", \"Validation failed for object='\" + result.getObjectName() + \"'. Error count: \" + result.getErrorCount());\n    } else {\n        errorAttributes.put(\"message\", \"No errors\");\n    }\n}"
+    },
+    {
+      "commit": "266335339db46d2487ffafcff9a8c0a316552abc",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private void addErrorMessage(Map<String, Object> errorAttributes, Throwable error) {\n    BindingResult result = extractBindingResult(error);\n    if (result == null) {\n        errorAttributes.put(\"message\", error.getMessage());\n        return;\n    }\n    if (result.getErrorCount() > 0) {\n        errorAttributes.put(\"errors\", result.getAllErrors());\n        errorAttributes.put(\"message\", \"Validation failed for object='\" + result.getObjectName() + \"'. Error count: \" + result.getErrorCount());\n    } else {\n        errorAttributes.put(\"message\", \"No errors\");\n    }\n}"
+    },
+    {
+      "commit": "9e56c38b7ac49a87330581336bb36910416fbed5",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private void addErrorMessage(Map<String, Object> errorAttributes, Throwable error) {\n    if (!(error instanceof BindingResult)) {\n        errorAttributes.put(\"message\", error.getMessage());\n        return;\n    }\n    BindingResult result = (BindingResult) error;\n    if (result.getErrorCount() > 0) {\n        errorAttributes.put(\"errors\", result.getAllErrors());\n        errorAttributes.put(\"message\", \"Validation failed for object='\" + result.getObjectName() + \"'. Error count: \" + result.getErrorCount());\n    } else {\n        errorAttributes.put(\"message\", \"No errors\");\n    }\n}"
+    },
+    {
+      "commit": "30ac768cbfca5d6aaa3719028033c792da789853",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private void addErrorMessage(Map<String, Object> errorAttributes, Throwable error) {\n    if (!(error instanceof BindingResult)) {\n        errorAttributes.put(\"message\", error.getMessage());\n        return;\n    }\n    BindingResult result = (BindingResult) error;\n    if (result.getErrorCount() > 0) {\n        errorAttributes.put(\"errors\", result.getAllErrors());\n        errorAttributes.put(\"message\", \"Validation failed for object='\" + result.getObjectName() + \"'. Error count: \" + result.getErrorCount());\n    } else {\n        errorAttributes.put(\"message\", \"No errors\");\n    }\n}"
+    },
+    {
+      "commit": "ef4e83a879f34eac29700984137c0e68d5e4f8ae",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void addMessage(Map<String, Object> map, Throwable error) {\n    if (error instanceof BindingResult) {\n        BindingResult result = (BindingResult) error;\n        if (result.getErrorCount() > 0) {\n            map.put(\"errors\", result.getAllErrors());\n            map.put(\"message\", \"Validation failed for object='\" + result.getObjectName() + \"'. Error count: \" + result.getErrorCount());\n        } else {\n            map.put(\"message\", \"No errors\");\n        }\n    } else {\n        map.put(\"message\", error.getMessage());\n    }\n}"
+    },
+    {
+      "commit": "27580e726fa907c57590a0935673d1d7c620c57a",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "protected void addMessage(Map<String, Object> map, Throwable error) {\n    if (error instanceof BindingResult) {\n        BindingResult result = (BindingResult) error;\n        if (result.getErrorCount() > 0) {\n            map.put(\"errors\", result.getAllErrors());\n            map.put(\"message\", \"Validation failed for object='\" + result.getObjectName() + \"'. Error count: \" + result.getErrorCount());\n        } else {\n            map.put(\"message\", \"No errors\");\n        }\n    } else {\n        map.put(\"message\", error.getMessage());\n    }\n}"
+    }
+  ]
+}

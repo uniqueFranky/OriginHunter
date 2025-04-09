@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "startLine": 6,
+      "endLine": 17,
+      "methodCode": "private static Set<String> expandHeadersFromRequest(Table table, RestRequest request) {\n    Set<String> headers = new LinkedHashSet<>(table.getHeaders().size());\n    for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n        if (Regex.isSimpleMatchPattern(header)) {\n            for (Table.Cell tableHeaderCell : table.getHeaders()) {\n                String configuredHeader = tableHeaderCell.value.toString();\n                if (Regex.simpleMatch(header, configuredHeader)) {\n                    headers.add(configuredHeader);\n                } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n                    String[] aliases = Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                    for (String alias : aliases) {\n                        if (Regex.simpleMatch(header, alias)) {\n                            headers.add(configuredHeader);\n                            break;\n                        }\n                    }\n                }\n            }\n        } else {\n            headers.add(header);\n        }\n    }\n    return headers;\n}"
+    },
+    {
+      "commit": "1452ab4b9f7fcd2b2699dc95fc64f03f1d97338f",
+      "startLine": 6,
+      "endLine": 17,
+      "methodCode": "private static Set<String> expandHeadersFromRequest(Table table, RestRequest request) {\n    Set<String> headers = new LinkedHashSet<>(table.getHeaders().size());\n    for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n        if (Regex.isSimpleMatchPattern(header)) {\n            for (Table.Cell tableHeaderCell : table.getHeaders()) {\n                String configuredHeader = tableHeaderCell.value.toString();\n                if (Regex.simpleMatch(header, configuredHeader)) {\n                    headers.add(configuredHeader);\n                } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n                    String[] aliases = Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                    for (String alias : aliases) {\n                        if (Regex.simpleMatch(header, alias)) {\n                            headers.add(configuredHeader);\n                            break;\n                        }\n                    }\n                }\n            }\n        } else {\n            headers.add(header);\n        }\n    }\n    return headers;\n}"
+    },
+    {
+      "commit": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "startLine": 6,
+      "endLine": 17,
+      "methodCode": "private static Set<String> expandHeadersFromRequest(Table table, RestRequest request) {\n    Set<String> headers = new LinkedHashSet<>(table.getHeaders().size());\n    for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n        if (Regex.isSimpleMatchPattern(header)) {\n            for (Table.Cell tableHeaderCell : table.getHeaders()) {\n                String configuredHeader = tableHeaderCell.value.toString();\n                if (Regex.simpleMatch(header, configuredHeader)) {\n                    headers.add(configuredHeader);\n                } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n                    String[] aliases = Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                    for (String alias : aliases) {\n                        if (Regex.simpleMatch(header, alias)) {\n                            headers.add(configuredHeader);\n                            break;\n                        }\n                    }\n                }\n            }\n        } else {\n            headers.add(header);\n        }\n    }\n    return headers;\n}"
+    },
+    {
+      "commit": "9d5e7895080cd186f8cea327f4fa43445476bee6",
+      "startLine": 6,
+      "endLine": 17,
+      "methodCode": "private static Set<String> expandHeadersFromRequest(Table table, RestRequest request) {\n    Set<String> headers = new LinkedHashSet<>(table.getHeaders().size());\n    for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n        if (Regex.isSimpleMatchPattern(header)) {\n            for (Table.Cell tableHeaderCell : table.getHeaders()) {\n                String configuredHeader = tableHeaderCell.value.toString();\n                if (Regex.simpleMatch(header, configuredHeader)) {\n                    headers.add(configuredHeader);\n                } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n                    String[] aliases = Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                    for (String alias : aliases) {\n                        if (Regex.simpleMatch(header, alias)) {\n                            headers.add(configuredHeader);\n                            break;\n                        }\n                    }\n                }\n            }\n        } else {\n            headers.add(header);\n        }\n    }\n    return headers;\n}"
+    },
+    {
+      "commit": "fc224a0de8153652ed2d0e409bc2dbd8746068e8",
+      "startLine": 7,
+      "endLine": 18,
+      "methodCode": "private static Set<String> expandHeadersFromRequest(Table table, RestRequest request) {\n    Set<String> headers = new LinkedHashSet<>(table.getHeaders().size());\n    Map<String, Table.Cell> headerMap = table.getHeaderMap();\n    for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n        if (Regex.isSimpleMatchPattern(header)) {\n            for (Map.Entry<String, Table.Cell> configuredHeaderEntry : headerMap.entrySet()) {\n                String configuredHeader = configuredHeaderEntry.getKey();\n                if (Regex.simpleMatch(header, configuredHeader)) {\n                    headers.add(configuredHeader);\n                } else if (configuredHeaderEntry.getValue().attr.containsKey(\"alias\")) {\n                    String[] aliases = Strings.splitStringByCommaToArray(configuredHeaderEntry.getValue().attr.get(\"alias\"));\n                    for (String alias : aliases) {\n                        if (Regex.simpleMatch(header, alias)) {\n                            headers.add(configuredHeader);\n                            break;\n                        }\n                    }\n                }\n            }\n        } else {\n            headers.add(header);\n        }\n    }\n    return headers;\n}"
+    }
+  ]
+}

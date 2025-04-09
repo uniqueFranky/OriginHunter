@@ -1,0 +1,113 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "asciinema",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/asciinema/.git",
+  "startCommitName": "350d5e9d8b7cee1be5db4091815942c9d035e7dc",
+  "sourceFileName": "term.py",
+  "functionName": "read_blocking",
+  "functionId": "__read_blocking___fd__timeout",
+  "sourceFilePath": "asciinema/term.py",
+  "functionAnnotation": "",
+  "functionStartLine": 25,
+  "functionEndLine": 31,
+  "numCommitsSeen": 4,
+  "timeTaken": 124,
+  "changeHistory": [
+    "3cc2a541e1abfdf5c04800838e5aade7283fcd0d",
+    "65136bf01d81ecdb73d383ad49b574e7d6c75fde"
+  ],
+  "changeHistoryShort": {
+    "3cc2a541e1abfdf5c04800838e5aade7283fcd0d": "Ymultichange(Yrename,Yparameterchange,Ybodychange)",
+    "65136bf01d81ecdb73d383ad49b574e7d6c75fde": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "3cc2a541e1abfdf5c04800838e5aade7283fcd0d": {
+      "type": "Ymultichange(Yrename,Yparameterchange,Ybodychange)",
+      "commitMessage": "Make ctr+c respond immediately during playback\n",
+      "commitDate": "2017/11/26 上午1:43",
+      "commitName": "3cc2a541e1abfdf5c04800838e5aade7283fcd0d",
+      "commitAuthor": "Marcin Kulik",
+      "subchanges": [
+        {
+          "type": "Yrename",
+          "commitMessage": "Make ctr+c respond immediately during playback\n",
+          "commitDate": "2017/11/26 上午1:43",
+          "commitName": "3cc2a541e1abfdf5c04800838e5aade7283fcd0d",
+          "commitAuthor": "Marcin Kulik",
+          "commitDateOld": "2017/3/25 下午8:34",
+          "commitNameOld": "65136bf01d81ecdb73d383ad49b574e7d6c75fde",
+          "commitAuthorOld": "Marcin Kulik",
+          "daysBetweenCommits": 245.21,
+          "commitsBetweenForRepo": 110,
+          "commitsBetweenForFile": 1,
+          "actualSource": "def read_blocking(fd, timeout):\n    if fd in select.select([fd], [], [], timeout)[0]:\n        return os.read(fd, 1024)\n\n    return b\u0027\u0027",
+          "path": "asciinema/term.py",
+          "functionStartLine": 24,
+          "functionName": "read_blocking",
+          "functionAnnotation": "",
+          "diff": "@@ -1,7 +1,5 @@\n-def read_non_blocking(fd):\n-    data \u003d b\u0027\u0027\n+def read_blocking(fd, timeout):\n+    if fd in select.select([fd], [], [], timeout)[0]:\n+        return os.read(fd, 1024)\n \n-    while fd in select.select([fd], [], [], 0)[0]:\n-        data +\u003d os.read(fd, 1024)\n-\n-    return data\n\\ No newline at end of file\n+    return b\u0027\u0027\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "read_non_blocking",
+            "newValue": "read_blocking"
+          }
+        },
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Make ctr+c respond immediately during playback\n",
+          "commitDate": "2017/11/26 上午1:43",
+          "commitName": "3cc2a541e1abfdf5c04800838e5aade7283fcd0d",
+          "commitAuthor": "Marcin Kulik",
+          "commitDateOld": "2017/3/25 下午8:34",
+          "commitNameOld": "65136bf01d81ecdb73d383ad49b574e7d6c75fde",
+          "commitAuthorOld": "Marcin Kulik",
+          "daysBetweenCommits": 245.21,
+          "commitsBetweenForRepo": 110,
+          "commitsBetweenForFile": 1,
+          "actualSource": "def read_blocking(fd, timeout):\n    if fd in select.select([fd], [], [], timeout)[0]:\n        return os.read(fd, 1024)\n\n    return b\u0027\u0027",
+          "path": "asciinema/term.py",
+          "functionStartLine": 24,
+          "functionName": "read_blocking",
+          "functionAnnotation": "",
+          "diff": "@@ -1,7 +1,5 @@\n-def read_non_blocking(fd):\n-    data \u003d b\u0027\u0027\n+def read_blocking(fd, timeout):\n+    if fd in select.select([fd], [], [], timeout)[0]:\n+        return os.read(fd, 1024)\n \n-    while fd in select.select([fd], [], [], 0)[0]:\n-        data +\u003d os.read(fd, 1024)\n-\n-    return data\n\\ No newline at end of file\n+    return b\u0027\u0027\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[fd]",
+            "newValue": "[fd, timeout]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Make ctr+c respond immediately during playback\n",
+          "commitDate": "2017/11/26 上午1:43",
+          "commitName": "3cc2a541e1abfdf5c04800838e5aade7283fcd0d",
+          "commitAuthor": "Marcin Kulik",
+          "commitDateOld": "2017/3/25 下午8:34",
+          "commitNameOld": "65136bf01d81ecdb73d383ad49b574e7d6c75fde",
+          "commitAuthorOld": "Marcin Kulik",
+          "daysBetweenCommits": 245.21,
+          "commitsBetweenForRepo": 110,
+          "commitsBetweenForFile": 1,
+          "actualSource": "def read_blocking(fd, timeout):\n    if fd in select.select([fd], [], [], timeout)[0]:\n        return os.read(fd, 1024)\n\n    return b\u0027\u0027",
+          "path": "asciinema/term.py",
+          "functionStartLine": 24,
+          "functionName": "read_blocking",
+          "functionAnnotation": "",
+          "diff": "@@ -1,7 +1,5 @@\n-def read_non_blocking(fd):\n-    data \u003d b\u0027\u0027\n+def read_blocking(fd, timeout):\n+    if fd in select.select([fd], [], [], timeout)[0]:\n+        return os.read(fd, 1024)\n \n-    while fd in select.select([fd], [], [], 0)[0]:\n-        data +\u003d os.read(fd, 1024)\n-\n-    return data\n\\ No newline at end of file\n+    return b\u0027\u0027\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "65136bf01d81ecdb73d383ad49b574e7d6c75fde": {
+      "type": "Yintroduced",
+      "commitMessage": "Eat all stdin during playback (fixes #194, fixes #192, fixes #108)\n",
+      "commitDate": "2017/3/25 下午8:34",
+      "commitName": "65136bf01d81ecdb73d383ad49b574e7d6c75fde",
+      "commitAuthor": "Marcin Kulik",
+      "diff": "@@ -0,0 +1,7 @@\n+def read_non_blocking(fd):\n+    data \u003d b\u0027\u0027\n+\n+    while fd in select.select([fd], [], [], 0)[0]:\n+        data +\u003d os.read(fd, 1024)\n+\n+    return data\n\\ No newline at end of file\n",
+      "actualSource": "def read_non_blocking(fd):\n    data \u003d b\u0027\u0027\n\n    while fd in select.select([fd], [], [], 0)[0]:\n        data +\u003d os.read(fd, 1024)\n\n    return data",
+      "path": "asciinema/term.py",
+      "functionStartLine": 24,
+      "functionName": "read_non_blocking",
+      "functionAnnotation": ""
+    }
+  }
+}

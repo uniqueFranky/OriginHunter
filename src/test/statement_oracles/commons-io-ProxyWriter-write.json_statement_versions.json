@@ -1,0 +1,58 @@
+{
+  "statementVersions": [
+    {
+      "commit": "6aa00766b9103d75c763160280429af8e1f0549e",
+      "startLine": 8,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void write(final String str) throws IOException {\n    try {\n        int len = 0;\n        if (str != null) {\n            len = str.length();\n        }\n        beforeWrite(len);\n        out.write(str);\n        afterWrite(len);\n    } catch (final IOException e) {\n        handleIOException(e);\n    }\n}"
+    },
+    {
+      "commit": "83f7246c3e9fe1d3f1ad6cf7ea0715a573fe2f2a",
+      "startLine": 8,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void write(String str) throws IOException {\n    try {\n        int len = 0;\n        if (str != null) {\n            len = str.length();\n        }\n        beforeWrite(len);\n        out.write(str);\n        afterWrite(len);\n    } catch (IOException e) {\n        handleIOException(e);\n    }\n}"
+    },
+    {
+      "commit": "3c034f895a6f77439ade84d6af8c4a7ebfa73486",
+      "startLine": 8,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void write(String str) throws IOException {\n    try {\n        int len = 0;\n        if (str != null) {\n            len = str.length();\n        }\n        beforeWrite(len);\n        out.write(str);\n        afterWrite(len);\n    } catch (IOException e) {\n        handleIOException(e);\n    }\n}"
+    },
+    {
+      "commit": "d8d63554f59c74fe44ded336129a6bf23080dd12",
+      "startLine": 4,
+      "endLine": 6,
+      "methodCode": "@Override\npublic void write(String str) throws IOException {\n    try {\n        beforeWrite(str.length());\n        out.write(str);\n        afterWrite(str.length());\n    } catch (IOException e) {\n        handleIOException(e);\n    }\n}"
+    },
+    {
+      "commit": "6319a20fdc43ab33c19d162d527b95ced13c0e76",
+      "startLine": 4,
+      "endLine": 4,
+      "methodCode": "@Override\npublic void write(String str) throws IOException {\n    try {\n        out.write(str);\n    } catch (IOException e) {\n        handleIOException(e);\n    }\n}"
+    },
+    {
+      "commit": "91509112bb42d52eb4cef40f2dee16a3633b446f",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic void write(String str) throws IOException {\n    out.write(str);\n}"
+    },
+    {
+      "commit": "fe6ec030da1ab53b5e5dc481572c9f072be3b965",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public void write(String str) throws IOException {\n    out.write(str);\n}"
+    },
+    {
+      "commit": "4a92373a2418adac401cc25e1316a059e9c3233b",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public void write(String str) throws IOException {\n    out.write(str);\n}"
+    },
+    {
+      "commit": "a77ea19924b8590d847d75720f28afcaac84ebfb",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public void write(String str) throws IOException {\n    this.proxy.write(str);\n}"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "statementVersions": [
+    {
+      "commit": "b2cc5f49d5f892dbf022c62ec48f4e4bd95cf7cd",
+      "startLine": 4,
+      "endLine": 16,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext execute(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) throws Exception {\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    invokeBeforeEachCallbacks(context);\n    if (throwableCollector.isEmpty()) {\n        invokeBeforeEachMethods(context);\n        if (throwableCollector.isEmpty()) {\n            invokeBeforeTestExecutionCallbacks(context);\n            if (throwableCollector.isEmpty()) {\n                invokeTestMethod(context, dynamicTestExecutor);\n            }\n            invokeAfterTestExecutionCallbacks(context);\n        }\n        invokeAfterEachMethods(context);\n    }\n    invokeAfterEachCallbacks(context);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "fc3c61b41f014a2500f176e23fe8ad2989d20565",
+      "startLine": 4,
+      "endLine": 16,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext execute(JupiterEngineExecutionContext context, DynamicTestExecutor dynamicTestExecutor) throws Exception {\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    invokeBeforeEachCallbacks(context);\n    if (throwableCollector.isEmpty()) {\n        invokeBeforeEachMethods(context);\n        if (throwableCollector.isEmpty()) {\n            invokeBeforeTestExecutionCallbacks(context);\n            if (throwableCollector.isEmpty()) {\n                invokeTestMethod(context, dynamicTestExecutor);\n            }\n            invokeAfterTestExecutionCallbacks(context);\n        }\n        invokeAfterEachMethods(context);\n    }\n    invokeAfterEachCallbacks(context);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "4b41518fa052b28a953e99b087d505603a22c175",
+      "startLine": 4,
+      "endLine": 16,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext execute(JupiterEngineExecutionContext context, Consumer<TestDescriptor> dynamicTestExecutor) throws Exception {\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    invokeBeforeEachCallbacks(context);\n    if (throwableCollector.isEmpty()) {\n        invokeBeforeEachMethods(context);\n        if (throwableCollector.isEmpty()) {\n            invokeBeforeTestExecutionCallbacks(context);\n            if (throwableCollector.isEmpty()) {\n                invokeTestMethod(context, dynamicTestExecutor);\n            }\n            invokeAfterTestExecutionCallbacks(context);\n        }\n        invokeAfterEachMethods(context);\n    }\n    invokeAfterEachCallbacks(context);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "3e3b402131a99f01480c57dd82c2e81ad6d9a4ea",
+      "startLine": 4,
+      "endLine": 16,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext execute(JupiterEngineExecutionContext context) throws Exception {\n    ThrowableCollector throwableCollector = context.getThrowableCollector();\n    invokeBeforeEachCallbacks(context);\n    if (throwableCollector.isEmpty()) {\n        invokeBeforeEachMethods(context);\n        if (throwableCollector.isEmpty()) {\n            invokeBeforeTestExecutionCallbacks(context);\n            if (throwableCollector.isEmpty()) {\n                invokeTestMethod(context);\n            }\n            invokeAfterTestExecutionCallbacks(context);\n        }\n        invokeAfterEachMethods(context);\n    }\n    invokeAfterEachCallbacks(context);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "ef5a029e8ca36ec19cc699fc5d9b3c3090638912",
+      "startLine": 6,
+      "endLine": 18,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext execute(JupiterEngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeBeforeEachCallbacks(registry, testExtensionContext, throwableCollector);\n    if (throwableCollector.isEmpty()) {\n        invokeBeforeEachMethods(registry, testExtensionContext, throwableCollector);\n        if (throwableCollector.isEmpty()) {\n            invokeBeforeTestExecutionCallbacks(registry, testExtensionContext, throwableCollector);\n            if (throwableCollector.isEmpty()) {\n                invokeTestMethod(context, testExtensionContext, throwableCollector);\n            }\n            invokeAfterTestExecutionCallbacks(registry, testExtensionContext, throwableCollector);\n        }\n        invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    }\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "babcc661bd906b38a272f287ac8779669268fc58",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext execute(JupiterEngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeBeforeEachCallbacks(registry, testExtensionContext);\n    invokeBeforeEachMethods(registry, testExtensionContext);\n    invokeBeforeTestExecutionCallbacks(registry, testExtensionContext);\n    invokeTestMethod(context, testExtensionContext, throwableCollector);\n    invokeAfterTestExecutionCallbacks(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeBeforeEachCallbacks(registry, testExtensionContext);\n    invokeBeforeEachMethods(registry, testExtensionContext);\n    invokeBeforeTestExecutionCallbacks(registry, testExtensionContext);\n    invokeTestMethod(context, testExtensionContext, throwableCollector);\n    invokeAfterTestExecutionCallbacks(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "507e50872c6df8a66c32f45cb2153555f510c4b1",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeBeforeEachCallbacks(registry, testExtensionContext);\n    invokeBeforeEachMethods(registry, testExtensionContext);\n    invokeBeforeTestExecutionCallbacks(registry, testExtensionContext);\n    invokeTestMethod(context, testExtensionContext, throwableCollector);\n    invokeAfterTestExecutionCallbacks(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "f68eba6bd690e5686b9b6492db3ea36f758b7b4c",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeBeforeEachCallbacks(registry, testExtensionContext);\n    invokeBeforeEachMethods(registry, testExtensionContext);\n    invokeBeforeTestExecutionCallbacks(registry, testExtensionContext);\n    invokeTestMethod(context, testExtensionContext, throwableCollector);\n    invokeAfterTestExecutionCallbacks(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "6b9f227921f86893f4a759b578f4d197437cbae9",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeBeforeEachCallbacks(registry, testExtensionContext);\n    invokeBeforeEachMethods(registry, testExtensionContext);\n    invokeBeforeTestExecutionCallbacks(registry, testExtensionContext);\n    invokeTestMethod(context, testExtensionContext, throwableCollector);\n    invokeAfterTestMethodCallbacks(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "ac7bb522519cd8a600324aa909a5c17a110cb97f",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeBeforeEachCallbacks(registry, testExtensionContext);\n    invokeBeforeEachMethods(registry, testExtensionContext);\n    invokeBeforeTestMethodCallbacks(registry, testExtensionContext);\n    invokeTestMethod(context, testExtensionContext, throwableCollector);\n    invokeAfterTestMethodCallbacks(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "65e0bd5483c8923393fa85955ddaf24d68fd8042",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeBeforeEachCallbacks(registry, testExtensionContext);\n    invokeBeforeEachMethods(registry, testExtensionContext);\n    invokeBeforeTestMethodCallbacks(registry, testExtensionContext);\n    invokeTestMethod(registry, testExtensionContext, throwableCollector);\n    invokeAfterTestMethodCallbacks(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "b2ba6b95138382f25ca757a5ca2a7295bee4c3b8",
+      "startLine": 7,
+      "endLine": 13,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    ExtensionRegistry registry = context.getExtensionRegistry();\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeInstancePostProcessors(registry, testExtensionContext);\n    invokeBeforeEachCallbacks(registry, testExtensionContext);\n    invokeBeforeEachMethods(registry, testExtensionContext);\n    invokeBeforeTestMethodCallbacks(registry, testExtensionContext);\n    invokeTestMethod(registry, testExtensionContext, throwableCollector);\n    invokeAfterTestMethodCallbacks(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachMethods(registry, testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(registry, testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "7d84c39939665d7366e6425bf2e9d52e417822f5",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeInstancePostProcessors(context.getExtensionRegistry(), testExtensionContext);\n    invokeBeforeEachCallbacks(context.getExtensionRegistry(), testExtensionContext);\n    invokeBeforeTestMethodCallbacks(context.getExtensionRegistry(), testExtensionContext);\n    invokeTestMethod(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    invokeAfterTestMethodCallbacks(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "9027966eb5c513f451e7ec2bebcd51b7b1bfa27e",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeInstancePostProcessors(context.getExtensionRegistry(), testExtensionContext);\n    invokeBeforeEachCallbacks(context.getExtensionRegistry(), testExtensionContext);\n    invokeTestMethod(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    invokeAfterEachCallbacks(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "23c20e541adffed56fcb34ad297d843081eaa796",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeInstancePostProcessors(context.getExtensionRegistry(), testExtensionContext);\n    invokeBeforeEachExtensionPoints(context.getExtensionRegistry(), testExtensionContext);\n    invokeTestMethod(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    invokeAfterEachExtensionPoints(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "f250792f7f2a6a40cdec82f3090ce88d99aad152",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeInstancePostProcessorExtensionPoints(context.getExtensionRegistry(), testExtensionContext);\n    invokeBeforeEachExtensionPoints(context.getExtensionRegistry(), testExtensionContext);\n    invokeTestMethod(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    invokeAfterEachExtensionPoints(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "c0a0e14d2c11bb77bfe25aee9594b04e793b04aa",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeInstancePostProcessorExtensionPoints(context.getExtensionRegistry(), testExtensionContext);\n    invokeBeforeEachExtensionPoints(context.getExtensionRegistry(), testExtensionContext);\n    invokeTestMethod(testExtensionContext, context.getExtensionRegistry(), throwableCollector);\n    invokeAfterEachExtensionPoints(context.getExtensionRegistry(), testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "266b9b90ab55ed3ffdfd43960309606300db8758",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Exception {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeInstancePostProcessorExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext);\n    invokeBeforeEachExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext);\n    invokeTestMethod(testExtensionContext, context.getTestExtensionRegistry(), throwableCollector);\n    invokeAfterEachExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "a1eb11673e2b7e69bc0c4c2f5c5b81cf572dfeab",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    invokeInstancePostProcessorExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext);\n    invokeBeforeEachExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext);\n    invokeTestMethod(testExtensionContext, context.getTestExtensionRegistry(), throwableCollector);\n    invokeAfterEachExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext, throwableCollector);\n    throwableCollector.assertEmpty();\n    return context;\n}"
+    },
+    {
+      "commit": "0027ade00fd483e08714ece1021a7715bb1855da",
+      "startLine": 5,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    TestExtensionContext testExtensionContext = (TestExtensionContext) context.getExtensionContext();\n    invokeInstancePostProcessorExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext);\n    invokeBeforeEachExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext);\n    List<Throwable> throwablesCollector = new LinkedList<>();\n    invokeTestMethod(testExtensionContext, context.getTestExtensionRegistry(), throwablesCollector);\n    invokeAfterEachExtensionPoints(context.getTestExtensionRegistry(), testExtensionContext, throwablesCollector);\n    throwIfAnyThrowablePresent(throwablesCollector);\n    return context;\n}"
+    },
+    {
+      "commit": "b2f64779aee87021348c8b8465be89675b700b16",
+      "startLine": 8,
+      "endLine": 11,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    TestExtensionRegistry newTestExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry());\n    JUnit5EngineExecutionContext newContext = context.extend().withTestExtensionRegistry(newTestExtensionRegistry).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(context.getExtensionContext(), this, testInstance);\n    invokeInstancePostProcessorExtensionPoints(newTestExtensionRegistry, testExtensionContext);\n    invokeBeforeEachExtensionPoints(newTestExtensionRegistry, testExtensionContext);\n    List<Throwable> throwablesCollector = new LinkedList<>();\n    invokeTestMethod(testExtensionContext, newTestExtensionRegistry, throwablesCollector);\n    invokeAfterEachExtensionPoints(newTestExtensionRegistry, testExtensionContext, throwablesCollector);\n    throwIfAnyThrowablePresent(throwablesCollector);\n    return newContext;\n}"
+    },
+    {
+      "commit": "c2d9a533b97ee808e5f51ffd94eb4a0524ff8362",
+      "startLine": 7,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    TestExtensionRegistry newTestExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry());\n    JUnit5EngineExecutionContext newContext = context.extend().withTestExtensionRegistry(newTestExtensionRegistry).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(context.getExtensionContext(), this, testInstance);\n    invokeBeforeEachExtensionPoints(newTestExtensionRegistry, testExtensionContext);\n    List<Throwable> throwablesCollector = new LinkedList<>();\n    invokeTestMethod(testExtensionContext, newTestExtensionRegistry, throwablesCollector);\n    invokeAfterEachExtensionPoints(newTestExtensionRegistry, testExtensionContext, throwablesCollector);\n    throwIfAnyThrowablePresent(throwablesCollector);\n    return newContext;\n}"
+    },
+    {
+      "commit": "8db7e41d03b3d1f989c458e040f86f7e30e153d7",
+      "startLine": 7,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    TestExtensionRegistry newTestExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry());\n    JUnit5EngineExecutionContext newContext = context.extend().withTestExtensionRegistry(newTestExtensionRegistry).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(context.getExtensionContext(), this, testInstance);\n    invokeBeforeEachExtensionPoints(newTestExtensionRegistry, testExtensionContext);\n    List<Throwable> throwablesCollector = new LinkedList<>();\n    invokeTestMethod(testExtensionContext, newTestExtensionRegistry, throwablesCollector);\n    invokeAfterEachExtensionPoints(newTestExtensionRegistry, testExtensionContext, throwablesCollector);\n    if (!throwablesCollector.isEmpty()) {\n        Throwable t = throwablesCollector.get(0);\n        throwablesCollector.stream().skip(1).forEach(t::addSuppressed);\n        throw t;\n    }\n    return newContext;\n}"
+    },
+    {
+      "commit": "b8f87c20c3c0f77bf1051123c9f43cea8eaa8ce8",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    TestExtensionRegistry newTestExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry());\n    JUnit5EngineExecutionContext newContext = context.extend().withTestExtensionRegistry(newTestExtensionRegistry).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(context.getExtensionContext(), this, testInstance);\n    invokeBeforeEachExtensionPoints(newTestExtensionRegistry, testExtensionContext);\n    context.getBeforeEachCallback().beforeEach(testExtensionContext, testInstance);\n    List<Throwable> throwablesCollector = new LinkedList<>();\n    invokeTestMethod(testExtensionContext, newTestExtensionRegistry, throwablesCollector);\n    context.getAfterEachCallback().afterEach(testExtensionContext, testInstance, throwablesCollector);\n    invokeAfterEachExtensionPoints(newTestExtensionRegistry, testExtensionContext, throwablesCollector);\n    if (!throwablesCollector.isEmpty()) {\n        Throwable t = throwablesCollector.get(0);\n        throwablesCollector.stream().skip(1).forEach(t::addSuppressed);\n        throw t;\n    }\n    return newContext;\n}"
+    },
+    {
+      "commit": "30aa4cfa124dd4d987dcc3cb3aa482ed60108cee",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    JUnit5EngineExecutionContext newContext = context.extend().withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry())).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(context.getExtensionContext(), this, testInstance);\n    context.getBeforeEachCallback().beforeEach(testExtensionContext, testInstance);\n    Optional<Throwable> throwable = invokeTestMethod(testExtensionContext, newContext.getTestExtensionRegistry());\n    List<Throwable> throwables = new LinkedList<>();\n    throwable.ifPresent(throwables::add);\n    context.getAfterEachCallback().afterEach(testExtensionContext, testInstance, throwables);\n    if (!throwables.isEmpty()) {\n        Throwable t = throwables.get(0);\n        throwables.stream().skip(1).forEach(t::addSuppressed);\n        throw t;\n    }\n    return newContext;\n}"
+    },
+    {
+      "commit": "634890bff8f38128db31c244486d257b8ef729d7",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    JUnit5EngineExecutionContext newContext = context.extend().withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry())).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(context.getExtensionContext(), this, testInstance);\n    context.getBeforeEachCallback().beforeEach(testExtensionContext, testInstance);\n    Optional<Throwable> throwable = invokeTestMethod(testExtensionContext, newContext.getTestExtensionRegistry());\n    context.getAfterEachCallback().afterEach(testExtensionContext, testInstance, throwable);\n    return newContext;\n}"
+    },
+    {
+      "commit": "3f9c11b9326b7d3051cb2a50568cd91113a0c0da",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext execute(JUnit5EngineExecutionContext context) throws Throwable {\n    JUnit5EngineExecutionContext newContext = context.extend().withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry())).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(this, testInstance);\n    context.getBeforeEachCallback().beforeEach(testExtensionContext, testInstance);\n    Optional<Throwable> throwable = invokeTestMethod(testExtensionContext, newContext.getTestExtensionRegistry());\n    context.getAfterEachCallback().afterEach(testExtensionContext, testInstance, throwable);\n    return newContext;\n}"
+    },
+    {
+      "commit": "11ece8b11085a01a95a10e7bf26e4eb51034ac00",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    JUnit5Context newContext = context.extend().withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry())).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(this, testInstance);\n    context.getBeforeEachCallback().beforeEach(testExtensionContext, testInstance);\n    Optional<Throwable> throwable = invokeTestMethod(testExtensionContext, newContext.getTestExtensionRegistry());\n    context.getAfterEachCallback().afterEach(testExtensionContext, testInstance, throwable);\n    return newContext;\n}"
+    },
+    {
+      "commit": "fc5ff8d87c124e43601f64da76668e516758a74a",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    JUnit5Context newContext = context.extend().withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry())).build();\n    Object testInstance = context.getTestInstanceProvider().getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(this, testInstance);\n    context.getBeforeEachCallback().beforeEach(testExtensionContext, testInstance);\n    Optional<Throwable> throwable = invokeTestMethod(newContext, testExtensionContext);\n    context.getAfterEachCallback().afterEach(testExtensionContext, testInstance, throwable);\n    return newContext;\n}"
+    },
+    {
+      "commit": "efb867427dd0722262fea5c869ac37cd64ea0070",
+      "startLine": 7,
+      "endLine": 22,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    JUnit5Context myContext = context.extend().withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry())).build();\n    TestInstanceProvider provider = context.getTestInstanceProvider();\n    Object testInstance = provider.getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(this, testInstance);\n    context.getBeforeEachCallback().beforeEach(testExtensionContext, testInstance);\n    List<Throwable> throwables = new LinkedList<>();\n    try {\n        MethodContext methodContext = new MethodContextImpl(testInstance, testMethod);\n        new MethodInvoker(methodContext, testExtensionContext, myContext.getTestExtensionRegistry()).invoke();\n    } catch (Throwable t) {\n        throwables.add(t);\n    } finally {\n        for (Method method : findAnnotatedMethods(testClass, AfterEach.class, MethodSortOrder.HierarchyUp)) {\n            try {\n                ReflectionUtils.invokeMethod(method, testInstance);\n            } catch (Throwable t) {\n                throwables.add(t);\n            }\n        }\n    }\n    if (throwables.isEmpty()) {\n        return myContext;\n    }\n    Throwable t = throwables.get(0);\n    throwables.stream().skip(1).forEach(t::addSuppressed);\n    throw t;\n}"
+    },
+    {
+      "commit": "3cbb596f9b35b903e29675841eb20ab97e8cbb88",
+      "startLine": 7,
+      "endLine": 22,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    JUnit5Context myContext = context.withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry()));\n    TestInstanceProvider provider = context.getTestInstanceProvider();\n    Object testInstance = provider.getTestInstance();\n    TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(this, testInstance);\n    context.getBeforeEachCallback().beforeEach(testExtensionContext, testInstance);\n    List<Throwable> throwables = new LinkedList<>();\n    try {\n        MethodContext methodContext = new MethodContextImpl(testInstance, testMethod);\n        new MethodInvoker(methodContext, testExtensionContext, myContext.getTestExtensionRegistry()).invoke();\n    } catch (Throwable t) {\n        throwables.add(t);\n    } finally {\n        for (Method method : findAnnotatedMethods(testClass, AfterEach.class, MethodSortOrder.HierarchyUp)) {\n            try {\n                ReflectionUtils.invokeMethod(method, testInstance);\n            } catch (Throwable t) {\n                throwables.add(t);\n            }\n        }\n    }\n    if (throwables.isEmpty()) {\n        return myContext;\n    }\n    Throwable t = throwables.get(0);\n    throwables.stream().skip(1).forEach(t::addSuppressed);\n    throw t;\n}"
+    },
+    {
+      "commit": "1707de270bd5f59f4e93e080ef56e6f6460d03da",
+      "startLine": 6,
+      "endLine": 21,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    JUnit5Context myContext = context.withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry()));\n    TestInstanceProvider provider = context.getTestInstanceProvider();\n    Object testInstance = provider.getTestInstance();\n    context.getBeforeEachCallback().beforeEach(testInstance);\n    List<Throwable> throwables = new LinkedList<>();\n    try {\n        TestExtensionContext testExtensionContext = new MethodBasedTestExtensionContext(this, testInstance);\n        new MethodInvoker(testMethod, testExtensionContext, myContext.getTestExtensionRegistry()).invoke();\n    } catch (Throwable t) {\n        throwables.add(t);\n    } finally {\n        for (Method method : findAnnotatedMethods(testClass, AfterEach.class, MethodSortOrder.HierarchyUp)) {\n            try {\n                ReflectionUtils.invokeMethod(method, testInstance);\n            } catch (Throwable t) {\n                throwables.add(t);\n            }\n        }\n    }\n    if (throwables.isEmpty()) {\n        return myContext;\n    }\n    Throwable t = throwables.get(0);\n    throwables.stream().skip(1).forEach(t::addSuppressed);\n    throw t;\n}"
+    },
+    {
+      "commit": "67ec62513564b48741925f79132f3fe6427e48b3",
+      "startLine": 6,
+      "endLine": 21,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    JUnit5Context myContext = context.withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testMethod, context.getTestExtensionRegistry()));\n    TestInstanceProvider provider = context.getTestInstanceProvider();\n    Object testInstance = provider.getTestInstance();\n    context.getBeforeEachCallback().beforeEach(testInstance);\n    List<Throwable> throwables = new LinkedList<>();\n    try {\n        TestExecutionContext testExecutionContext = new TestExecutionContextImpl(this, myContext);\n        new MethodInvoker(testMethod, testInstance, testExecutionContext).invoke();\n    } catch (Throwable t) {\n        throwables.add(t);\n    } finally {\n        for (Method method : findAnnotatedMethods(testClass, AfterEach.class, MethodSortOrder.HierarchyUp)) {\n            try {\n                ReflectionUtils.invokeMethod(method, testInstance);\n            } catch (Throwable t) {\n                throwables.add(t);\n            }\n        }\n    }\n    if (throwables.isEmpty()) {\n        return myContext;\n    }\n    Throwable t = throwables.get(0);\n    throwables.stream().skip(1).forEach(t::addSuppressed);\n    throw t;\n}"
+    },
+    {
+      "commit": "fa681a536942811f712ca91be70f5510ca472020",
+      "startLine": 5,
+      "endLine": 19,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    TestInstanceProvider provider = context.getTestInstanceProvider();\n    Object testInstance = provider.getTestInstance();\n    context.getBeforeEachCallback().beforeEach(testInstance);\n    List<Throwable> throwables = new LinkedList<>();\n    try {\n        ReflectionUtils.invokeMethod(testMethod, testInstance);\n    } catch (Throwable t) {\n        throwables.add(t);\n    } finally {\n        for (Method method : findAnnotatedMethods(testClass, AfterEach.class, MethodSortOrder.HierarchyUp)) {\n            try {\n                ReflectionUtils.invokeMethod(method, testInstance);\n            } catch (Throwable t) {\n                throwables.add(t);\n            }\n        }\n    }\n    if (throwables.isEmpty()) {\n        return context;\n    }\n    Throwable t = throwables.get(0);\n    throwables.stream().skip(1).forEach(t::addSuppressed);\n    throw t;\n}"
+    },
+    {
+      "commit": "470866bc19cac8717ac77b26efc1fe703bed264a",
+      "startLine": 8,
+      "endLine": 21,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    TestInstanceProvider provider = context.getTestInstanceProvider();\n    Object testInstance = provider.getTestInstance();\n    for (Method method : findAnnotatedMethods(testClass, BeforeEach.class, MethodSortOrder.HierarchyDown)) {\n        ReflectionUtils.invokeMethod(method, testInstance);\n    }\n    List<Throwable> throwables = new LinkedList<>();\n    try {\n        ReflectionUtils.invokeMethod(testMethod, testInstance);\n    } catch (Throwable t) {\n        throwables.add(t);\n    } finally {\n        for (Method method : findAnnotatedMethods(testClass, AfterEach.class, MethodSortOrder.HierarchyUp)) {\n            try {\n                ReflectionUtils.invokeMethod(method, testInstance);\n            } catch (Throwable t) {\n                throwables.add(t);\n            }\n        }\n    }\n    if (throwables.isEmpty()) {\n        return context;\n    }\n    Throwable t = throwables.get(0);\n    throwables.stream().skip(1).forEach(t::addSuppressed);\n    throw t;\n}"
+    },
+    {
+      "commit": "57b31220d25f59bb4aa4903dfee4b8ec2be4525e",
+      "startLine": 8,
+      "endLine": 21,
+      "methodCode": "@Override\npublic JUnit5Context execute(JUnit5Context context) throws Throwable {\n    TestInstanceProvider provider = context.getTestInstanceProvider();\n    Object testInstance = provider.getTestInstance();\n    for (Method method : findAnnotatedMethods(testClass, BeforeEach.class, MethodSortOrder.HierarchyDown)) {\n        ReflectionUtils.invokeMethod(method, testInstance);\n    }\n    List<Throwable> throwables = new LinkedList<>();\n    try {\n        ReflectionUtils.invokeMethod(method, testInstance);\n    } catch (Throwable t) {\n        throwables.add(t);\n    } finally {\n        for (Method method : findAnnotatedMethods(testClass, AfterEach.class, MethodSortOrder.HierarchyUp)) {\n            try {\n                ReflectionUtils.invokeMethod(method, testInstance);\n            } catch (Throwable t) {\n                throwables.add(t);\n            }\n        }\n    }\n    if (throwables.isEmpty()) {\n        return context;\n    }\n    Throwable t = throwables.get(0);\n    throwables.stream().skip(1).forEach(t::addSuppressed);\n    throw t;\n}"
+    },
+    {
+      "commit": "28ffd5ee9d1e996133445cac2256407f28380e91",
+      "startLine": 8,
+      "endLine": 21,
+      "methodCode": "@Override\npublic Context execute(Context context) throws Throwable {\n    TestInstanceProvider provider = context.get(\"TestInstanceProvider\", TestInstanceProvider.class);\n    Object testInstance = provider.getTestInstance();\n    for (Method method : findAnnotatedMethods(testClass, BeforeEach.class, MethodSortOrder.HierarchyDown)) {\n        ReflectionUtils.invokeMethod(method, testInstance);\n    }\n    List<Throwable> throwables = new LinkedList<>();\n    try {\n        ReflectionUtils.invokeMethod(method, testInstance);\n    } catch (Throwable t) {\n        throwables.add(t);\n    } finally {\n        for (Method method : findAnnotatedMethods(testClass, AfterEach.class, MethodSortOrder.HierarchyUp)) {\n            try {\n                ReflectionUtils.invokeMethod(method, testInstance);\n            } catch (Throwable t) {\n                throwables.add(t);\n            }\n        }\n    }\n    if (throwables.isEmpty()) {\n        return context;\n    }\n    Throwable t = throwables.get(0);\n    throwables.stream().skip(1).forEach(t::addSuppressed);\n    throw t;\n}"
+    }
+  ]
+}

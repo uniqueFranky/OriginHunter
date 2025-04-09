@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "1cf93d1325d9c1635bf919198916f2fdf6977dd6",
+      "startLine": 4,
+      "endLine": 6,
+      "methodCode": "private void executeWork(LuceneWork work, IndexingMonitor progressMonitor) {\n    final IndexedTypeIdentifier entityType = work.getEntityType();\n    EntityIndexBinding entityIndexBinding = integrator.getIndexBinding(entityType);\n    IndexManagerSelector selector = entityIndexBinding.getIndexManagerSelector();\n    StreamingOperationExecutor executor = work.acceptIndexWorkVisitor(StreamingOperationExecutorSelector.INSTANCE, null);\n    executor.performStreamOperation(work, selector, progressMonitor, forceAsync);\n}"
+    },
+    {
+      "commit": "3c42a071e8d9b163d207e7e2e77e038341bf26e1",
+      "startLine": 4,
+      "endLine": 6,
+      "methodCode": "private void executeWork(LuceneWork work, IndexingMonitor progressMonitor) {\n    final IndexedTypeIdentifier entityType = work.getEntityType();\n    EntityIndexBinding entityIndexBinding = integrator.getIndexBinding(entityType);\n    IndexShardingStrategy shardingStrategy = entityIndexBinding.getSelectionStrategy();\n    StreamingOperationExecutor executor = work.acceptIndexWorkVisitor(StreamingOperationExecutorSelector.INSTANCE, null);\n    executor.performStreamOperation(work, shardingStrategy, progressMonitor, forceAsync);\n}"
+    },
+    {
+      "commit": "bb0e67026acff2766b118ceb1fa1ed4c326a38bf",
+      "startLine": 4,
+      "endLine": 6,
+      "methodCode": "private void executeWork(LuceneWork work, IndexingMonitor progressMonitor) {\n    final Class<?> entityType = work.getEntityClass();\n    EntityIndexBinding entityIndexBinding = integrator.getIndexBinding(entityType);\n    IndexShardingStrategy shardingStrategy = entityIndexBinding.getSelectionStrategy();\n    StreamingOperationExecutor executor = work.acceptIndexWorkVisitor(StreamingOperationExecutorSelector.INSTANCE, null);\n    executor.performStreamOperation(work, shardingStrategy, progressMonitor, forceAsync);\n}"
+    },
+    {
+      "commit": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "startLine": 4,
+      "endLine": 6,
+      "methodCode": "private void executeWork(LuceneWork work, IndexingMonitor progressMonitor) {\n    final Class<?> entityType = work.getEntityClass();\n    EntityIndexBinding entityIndexBinding = bindingLookup.apply(entityType);\n    IndexShardingStrategy shardingStrategy = entityIndexBinding.getSelectionStrategy();\n    StreamingOperationExecutor executor = work.acceptIndexWorkVisitor(StreamingOperationExecutorSelector.INSTANCE, null);\n    executor.performStreamOperation(work, shardingStrategy, progressMonitor, forceAsync);\n}"
+    }
+  ]
+}

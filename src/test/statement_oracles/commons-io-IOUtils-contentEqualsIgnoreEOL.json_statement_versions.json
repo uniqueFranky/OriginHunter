@@ -1,0 +1,64 @@
+{
+  "statementVersions": [
+    {
+      "commit": "abb0fc08e7014d8e20e957e5c43ef04b22353d2c",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(final Reader input1, final Reader input2) throws IOException {\n    if (input1 == input2) {\n        return true;\n    }\n    final BufferedReader br1 = toBufferedReader(input1);\n    final BufferedReader br2 = toBufferedReader(input2);\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? line2 == null ? true : false : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "7c58d8a9919c5c9dbc1485a21d56bb3f37444060",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(final Reader input1, final Reader input2) throws IOException {\n    if (input1 == input2) {\n        return true;\n    }\n    final BufferedReader br1 = toBufferedReader(input1);\n    final BufferedReader br2 = toBufferedReader(input2);\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? line2 == null ? true : false : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "0cee0fe1d42f73933d8fdfedfe91bff8013f0bb3",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(final Reader input1, final Reader input2) throws IOException {\n    if (input1 == input2) {\n        return true;\n    }\n    final BufferedReader br1 = toBufferedReader(input1);\n    final BufferedReader br2 = toBufferedReader(input2);\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? line2 == null ? true : false : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "6aa00766b9103d75c763160280429af8e1f0549e",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(final Reader input1, final Reader input2) throws IOException {\n    final BufferedReader br1 = toBufferedReader(input1);\n    final BufferedReader br2 = toBufferedReader(input2);\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? line2 == null ? true : false : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "efca1657258b7555b80bbee207a3221489b9ffed",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(Reader input1, Reader input2) throws IOException {\n    BufferedReader br1 = toBufferedReader(input1);\n    BufferedReader br2 = toBufferedReader(input2);\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? line2 == null ? true : false : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "1d6feac910975c5d22b66b7f2a46ec87dd844d66",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(Reader input1, Reader input2) throws IOException {\n    BufferedReader br1 = toBufferedReader(input1);\n    BufferedReader br2 = toBufferedReader(input2);\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? line2 == null ? true : false : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "2413cf3c607371a7b7aa9d37a9e5d916814a4799",
+      "startLine": 2,
+      "endLine": 19,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(Reader input1, Reader input2) throws IOException {\n    BufferedReader br1;\n    if (input1 instanceof BufferedReader) {\n        br1 = (BufferedReader) input1;\n    } else {\n        br1 = new BufferedReader(input1);\n    }\n    BufferedReader br2;\n    if (input2 instanceof BufferedReader) {\n        br2 = (BufferedReader) input2;\n    } else {\n        br2 = new BufferedReader(input2);\n    }\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? line2 == null ? true : false : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "1170279dc85c2bbdea594b053c56b379a72a2104",
+      "startLine": 2,
+      "endLine": 19,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(Reader input1, Reader input2) throws IOException {\n    BufferedReader br1;\n    if (input1 instanceof BufferedReader) {\n        br1 = (BufferedReader) input1;\n    } else {\n        br1 = new BufferedReader(input1);\n    }\n    BufferedReader br2;\n    if (input2 instanceof BufferedReader) {\n        br2 = (BufferedReader) input2;\n    } else {\n        br2 = new BufferedReader(input2);\n    }\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? line2 == null ? true : false : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "33368e1a9d1fa6f960490ceace5c90d9dda80924",
+      "startLine": 2,
+      "endLine": 19,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(Reader input1, Reader input2) throws IOException {\n    BufferedReader br1;\n    if (input1 instanceof BufferedReader) {\n        br1 = (BufferedReader) input1;\n    } else {\n        br1 = new BufferedReader(input1);\n    }\n    BufferedReader br2;\n    if (input2 instanceof BufferedReader) {\n        br2 = (BufferedReader) input2;\n    } else {\n        br2 = new BufferedReader(input2);\n    }\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? (line2 == null ? true : false) : line1.equals(line2);\n}"
+    },
+    {
+      "commit": "a2cf54639b1655d9059d416e6a6cb80931940a7d",
+      "startLine": 2,
+      "endLine": 19,
+      "methodCode": "public static boolean contentEqualsIgnoreEOL(Reader input1, Reader input2) throws IOException {\n    BufferedReader br1;\n    if (input1 instanceof BufferedReader) {\n        br1 = (BufferedReader) input1;\n    } else {\n        br1 = new BufferedReader(input1);\n    }\n    BufferedReader br2;\n    if (input2 instanceof BufferedReader) {\n        br2 = (BufferedReader) input2;\n    } else {\n        br2 = new BufferedReader(input2);\n    }\n    String line1 = br1.readLine();\n    String line2 = br2.readLine();\n    while (line1 != null && line2 != null && line1.equals(line2)) {\n        line1 = br1.readLine();\n        line2 = br2.readLine();\n    }\n    return line1 == null ? (line2 == null ? true : false) : line1.equals(line2);\n}"
+    }
+  ]
+}

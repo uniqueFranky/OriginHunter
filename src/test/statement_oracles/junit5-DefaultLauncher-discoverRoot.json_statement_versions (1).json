@@ -1,0 +1,340 @@
+{
+  "statementVersions": [
+    {
+      "commit": "d5c0b1cca585ea7cef809db5377f5ee6b31cf630",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            logger.debug(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        logger.debug(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        Optional<TestDescriptor> engineRoot = discoverEngineRoot(testEngine, discoveryRequest);\n        engineRoot.ifPresent(rootDescriptor -> root.add(testEngine, rootDescriptor));\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "583ef858522084a4bb939c53860135228764cb37",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            logger.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        logger.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        Optional<TestDescriptor> engineRoot = discoverEngineRoot(testEngine, discoveryRequest);\n        engineRoot.ifPresent(rootDescriptor -> root.add(testEngine, rootDescriptor));\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "d438a975feaa869a334794ac10082699c1dae1ca",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        Optional<TestDescriptor> engineRoot = discoverEngineRoot(testEngine, discoveryRequest);\n        engineRoot.ifPresent(rootDescriptor -> root.add(testEngine, rootDescriptor));\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "936a919111e688079af5d6a5eee36bb2373e931d",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        Optional<TestDescriptor> engineRoot = discoverEngineRoot(testEngine, discoveryRequest);\n        engineRoot.ifPresent(rootDescriptor -> root.add(testEngine, rootDescriptor));\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    return root;\n}"
+    },
+    {
+      "commit": "8ca326a0b7a664a38ed489bd4a69470b9391063d",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        Optional<TestDescriptor> engineRoot = discoverEngineRoot(testEngine, discoveryRequest);\n        engineRoot.ifPresent(rootDescriptor -> root.add(testEngine, rootDescriptor));\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "c49b423f2d1c723a3724597049810416a91f5cba",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        Optional<TestDescriptor> engineRoot = discoverRoot(testEngine, discoveryRequest);\n        engineRoot.ifPresent(rootDescriptor -> root.add(testEngine, rootDescriptor));\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "c88bd40fc19d16022abd5ee9bd4cc287b67afff9",
+      "startLine": 2,
+      "endLine": 14,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        Preconditions.notNull(engineRoot, () -> String.format(\"The discover() method for TestEngine with ID '%s' must return a non-null root TestDescriptor.\", testEngine.getId()));\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "483222d5853c2df6d9df7f8ea0868ef9c82b5901",
+      "startLine": 2,
+      "endLine": 14,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        Preconditions.notNull(engineRoot, \"The discover() method must return at least the engine's TestDescriptor.\");\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "402c756a056e13f5f49634616d87b1333e3c211e",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "private Root discoverRoot(LauncherDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "4537bec58804c392a8bce296dced0337c8ec1a8d",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "e273d6681b96509b0bd35916a82fcfada21f18c6",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "c1f6fc7c8a7dbdf120b7447c96c9b81751b8a96b",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        boolean engineIsExcluded = discoveryRequest.getEngineFilters().stream().map(engineFilter -> engineFilter.apply(testEngine)).anyMatch(FilterResult::excluded);\n        if (engineIsExcluded) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to an EngineFilter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "d75683776656e7781919bec097971cbae38c5d9d",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        final String engineId = testEngine.getId();\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.apply(engineId)).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", engineId, phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, engineId));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "875b6ea55d22a6b5e7d734974d7d710fb05825a1",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        final String engineId = testEngine.getId();\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(engineId)).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", engineId, phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during Launcher %s phase in engine '%s'.\", phase, engineId));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "0ffade04d33544837b126ae868da1ec087d113e3",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        final String engineId = testEngine.getId();\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(engineId)).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", engineId, phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, engineId));\n        UniqueId uniqueEngineId = UniqueId.forEngine(testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest, uniqueEngineId);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "7a4e5ff5338a68a68cd8072a235fb5ee19ba2f85",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : this.testEngines) {\n        final String engineId = testEngine.getId();\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(engineId)).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", engineId, phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, engineId));\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "9ce6fbe62ab7eda318f2ecb9cc5f91a18dce39d3",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : testEngines) {\n        final String engineId = testEngine.getId();\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(engineId)).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", engineId, phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, engineId));\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "2be5dd432541041b0d023d2f535287b7f7a2b882",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    Set<String> uniqueEngineIds = new HashSet<>();\n    for (TestEngine testEngine : testEngines) {\n        final String engineId = testEngine.getId();\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(engineId)).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", engineId, phase));\n            continue;\n        }\n        if (!uniqueEngineIds.add(engineId)) {\n            throw new JUnitException(String.format(\"Failure in launcher: multiple engines with the same ID [%s].\", engineId));\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, engineId));\n        TestDescriptor engineRoot = testEngine.discover(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "9c963d4a51e6d0fa8ecddb6c6f9f72f25e06dcd0",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    Set<String> uniqueEngineIds = new HashSet<>();\n    for (TestEngine testEngine : testEngines) {\n        final String engineId = testEngine.getId();\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(engineId)).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", engineId, phase));\n            continue;\n        }\n        if (!uniqueEngineIds.add(engineId)) {\n            throw new JUnitException(String.format(\"Failure in launcher: multiple engines with the same ID [%s].\", engineId));\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, engineId));\n        TestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "bc1770895674f4b22c7db1068d2b33b3699f9aa8",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    Set<String> uniqueEngineIds = new HashSet<>();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        final String engineId = testEngine.getId();\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(engineId)).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", engineId, phase));\n            continue;\n        }\n        if (!uniqueEngineIds.add(engineId)) {\n            throw new JUnitException(String.format(\"Failure in launcher: TestEngineRegistry [%s] returned multiple engines with the same ID [%s].\", testEngineRegistry.getClass().getName(), engineId));\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, engineId));\n        TestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "0d96e17fb66ba6e7dc174c5c87a1c4cfc3fade33",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        TestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "a2e588e96c3a763553d764d5c35a44b9eea41d75",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        TestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "795066436d5b33a32375cd421a9241f1b1d0499d",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        TestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyPostDiscoveryFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "57b07e0594875902399805d6e41514f03a4b2f31",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private Root discoverRoot(TestDiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        TestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "961fd47344c55d21907607ec9672df6d4f3d2362",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private Root discoverRoot(DiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        TestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "ab12dc85ce90a941531d666e658dfaa0834fda31",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private Root discoverRoot(DiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        TestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "9da25e126d174ba6e6ae02596afa538a7cafe17b",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private Root discoverRoot(DiscoveryRequest discoveryRequest, String phase) {\n    Root root = new Root();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.add(testEngine, engineRoot);\n    }\n    root.applyFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(DiscoveryRequest discoveryRequest, String phase) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (discoveryRequest.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(discoveryRequest);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(discoveryRequest);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(DiscoveryRequest specification, String phase) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (specification.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::excluded)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "af19db7e5a676b3d7e56c48847b09347866d1fcb",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(DiscoveryRequest specification, String phase) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (specification.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::isDeclined)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "b76422c02c3a9eed390c5949764dc8b7fc3e3243",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(DiscoveryRequest specification, String phase) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        if (specification.getEngineIdFilters().stream().map(engineIdFilter -> engineIdFilter.filter(testEngine.getId())).anyMatch(FilterResult::isFiltered)) {\n            LOG.fine(() -> String.format(\"Test discovery for engine '%s' was skipped due to a filter in phase '%s'.\", testEngine.getId(), phase));\n            continue;\n        }\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "ad553b10b4b2b1a78c9a0c91a6d50ebb1421ff3f",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(DiscoveryRequest specification, String phase) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "e061fa45d89529edff690f329298c6a061482834",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(TestPlanSpecification specification, String phase) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        LOG.fine(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "cfed3cac24530762a6a8b99627b17f5b00ac9260",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(TestPlanSpecification specification, String phase) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.getTestEngines()) {\n        LOG.info(() -> String.format(\"Discovering tests during launcher %s phase in engine '%s'.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "d6b17576a2b7e2d1ba28dbef2430c042ad1b887a",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(TestPlanSpecification specification, String phase) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.lookupAllTestEngines()) {\n        LOG.info(() -> String.format(\"Discovering tests during launcher %s phase in engine %s.\", phase, testEngine.getId()));\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "e56fcfc20e3c100cf9e4ed4b142a6a3863c29353",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(TestPlanSpecification specification) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.lookupAllTestEngines()) {\n        LOG.info(\"Discovering tests in engine \" + testEngine.getId());\n        EngineAwareTestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addChild(engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "830b6d5976b6db01dad3866cfb3d54c6216b1252",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private RootTestDescriptor discoverRootDescriptor(TestPlanSpecification specification) {\n    RootTestDescriptor root = new RootTestDescriptor();\n    for (TestEngine testEngine : testEngineRegistry.lookupAllTestEngines()) {\n        LOG.info(\"Discovering tests in engine \" + testEngine.getId());\n        TestDescriptor engineRoot = testEngine.discoverTests(specification);\n        root.addTestDescriptorForEngine(testEngine, engineRoot);\n    }\n    root.applyFilters(specification);\n    root.prune();\n    return root;\n}"
+    },
+    {
+      "commit": "7dc017fd9255ba302736d9ad1ce778f93e77b573",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : testEngineRegistry.lookupAllTestEngines()) {\n        LOG.info(\"Discovering tests in engine \" + testEngine.getId());\n        TestDescriptor rootTestDescriptor = testEngine.discoverTests(specification);\n        testPlan.addTestDescriptorForEngine(testEngine, rootTestDescriptor);\n    }\n    testPlan.applyFilters(specification);\n    testPlan.prune();\n    return testPlan;\n}"
+    },
+    {
+      "commit": "40ea4f270254c3faf95fea9e2a48ecb7a6c47bb8",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        LOG.info(\"Discovering tests in engine \" + testEngine.getId());\n        TestDescriptor rootTestDescriptor = testEngine.discoverTests(specification);\n        testPlan.addTestDescriptorForEngine(testEngine, rootTestDescriptor);\n    }\n    testPlan.applyFilters(specification);\n    testPlan.prune();\n    return testPlan;\n}"
+    },
+    {
+      "commit": "849e9afba14e3ea2639dfc985b0fd515a991639a",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        LOG.info(\"Discovering tests in engine \" + testEngine.getId());\n        EngineDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        testEngine.discoverTests(specification, engineDescriptor);\n        testPlan.addEngineDescriptor(engineDescriptor);\n    }\n    testPlan.applyFilters(specification);\n    testPlan.prune();\n    return testPlan;\n}"
+    },
+    {
+      "commit": "a6a549c084132d2d1c2d7d46a26b47e48cb4f608",
+      "startLine": 2,
+      "endLine": 8,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        LOG.info(\"Discovering tests in enginge \" + testEngine.getId());\n        EngineDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        testEngine.discoverTests(specification, engineDescriptor);\n        testPlan.addEngineDescriptor(engineDescriptor);\n    }\n    testPlan.applyFilters(specification);\n    testPlan.prune();\n    return testPlan;\n}"
+    },
+    {
+      "commit": "49ae3709bdf93aa8c83f5d11476b9c301eb4fc7f",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        EngineDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        testEngine.discoverTests(specification, engineDescriptor);\n        testPlan.addEngineDescriptor(engineDescriptor);\n    }\n    testPlan.applyFilters(specification);\n    testPlan.prune();\n    return testPlan;\n}"
+    },
+    {
+      "commit": "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        EngineDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        testEngine.discoverTests(specification, engineDescriptor);\n        applyFiltersToEngineDescriptor(specification, engineDescriptor);\n        pruneEngineDescriptor(engineDescriptor);\n        testPlan.addEngineDescriptor(engineDescriptor);\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "1105bef6877be1c036331d5b6d607d5e16c7463b",
+      "startLine": 2,
+      "endLine": 12,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        EngineDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        Collection<TestDescriptor> testDescriptors = testEngine.discoverTests(specification, engineDescriptor);\n        if (!testDescriptors.isEmpty()) {\n            Set<TestDescriptor> descriptorCandidates = findFilteredCandidates(specification, testDescriptors);\n            descriptorCandidates.add(engineDescriptor);\n            Set<TestDescriptor> prunedDescriptors = pruneAllWithoutConcreteTests(descriptorCandidates);\n            testPlan.addTestDescriptors(prunedDescriptors);\n        }\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "e1184f5a171d084f33ddca961836b17dabc63165",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        EngineDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        Collection<TestDescriptor> testDescriptors = testEngine.discoverTests(specification, engineDescriptor);\n        if (!testDescriptors.isEmpty()) {\n            Set<TestDescriptor> descriptorCandidates = findFilteredCandidates(specification, testDescriptors);\n            Set<TestDescriptor> prunedDescriptors = pruneAllWithoutConcreteTests(descriptorCandidates);\n            testPlan.addTestDescriptors(prunedDescriptors);\n        }\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "cecc46dfd9b0dd931bc8625560cdcd9bced45753",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        EngineDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        Collection<TestDescriptor> testDescriptors = testEngine.discoverTests(specification, engineDescriptor);\n        if (!testDescriptors.isEmpty()) {\n            Set<TestDescriptor> descriptorCandidates = findFilteredCandidates(specification, testDescriptors);\n            Set<TestDescriptor> descriptorsWithConcreteTests = filterWithoutConcreteTests(descriptorCandidates);\n            testPlan.addTestDescriptors(descriptorsWithConcreteTests);\n        }\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "a150c7c86dcb16500114a601f76f476c06b0a782",
+      "startLine": 2,
+      "endLine": 10,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        EngineDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        Collection<TestDescriptor> testDescriptors = testEngine.discoverTests(specification, engineDescriptor);\n        if (!testDescriptors.isEmpty()) {\n            testPlan.addTestDescriptor(engineDescriptor);\n            testPlan.addTestDescriptors(testDescriptors);\n        }\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "0e097640972835e71a625cdee7a9359089cbec78",
+      "startLine": 2,
+      "endLine": 10,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        TestDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        Collection<TestDescriptor> testDescriptors = testEngine.discoverTests(specification, engineDescriptor);\n        if (!testDescriptors.isEmpty()) {\n            testPlan.addTestDescriptor(engineDescriptor);\n            testPlan.addTestDescriptors(testDescriptors);\n        }\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "623ccd4a73d487ec55e24f8415597910626fd90d",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        TestDescriptor engineDescriptor = new EngineDescriptor(testEngine);\n        testPlan.addTestDescriptor(engineDescriptor);\n        testPlan.addTestDescriptors(testEngine.discoverTests(specification, engineDescriptor));\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "9d0819e13f70c9385836259aabb8077b5240fb2c",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        testPlan.addTestDescriptors(testEngine.discoverTests(specification));\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "2faf053a85fd24cb6f65e7b1258d7c507587866c",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        TestDescriptor engineDescriptor = testEngine.createEngineDescriptor();\n        testPlan.addTestDescriptor(engineDescriptor);\n        testPlan.addTestDescriptors(testEngine.discoverTests(specification, engineDescriptor));\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "8edbcf80166518746080a12cecfddc04f2577351",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        TestDescriptor engineDescriptor = testEngine.createEngineDescriptor();\n        testPlan.addTest(engineDescriptor);\n        testPlan.addTests(testEngine.discoverTests(specification, engineDescriptor));\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "cdaf66815c7308c9d5a430f08c7bc0d790a80534",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "public TestPlan discover(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        testPlan.addTests(testEngine.discoverTests(specification));\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "public TestPlan createTestPlanWithConfiguration(TestPlanSpecification specification) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        testPlan.addTests(testEngine.discoverTests(specification));\n    }\n    return testPlan;\n}"
+    },
+    {
+      "commit": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
+      "startLine": 2,
+      "endLine": 5,
+      "methodCode": "public TestPlan createTestPlanWithConfiguration(TestPlanConfiguration configuration) {\n    TestPlan testPlan = new TestPlan();\n    for (TestEngine testEngine : lookupAllTestEngines()) {\n        testPlan.addTests(testEngine.discoverTests(configuration));\n    }\n    return testPlan;\n}"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "statementVersions": [
+    {
+      "commit": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, Invocation invocation) {\n    List<LocalizedMatcher> lastMatchers = argumentMatcherStorage.pullLocalizedMatchers();\n    validateMatchers(invocation, lastMatchers);\n    List<ArgumentMatcher> matchers = new LinkedList<ArgumentMatcher>();\n    for (LocalizedMatcher m : lastMatchers) {\n        matchers.add(m.getMatcher());\n    }\n    return new InvocationMatcher(invocation, matchers);\n}"
+    },
+    {
+      "commit": "35786f34e99802ff57cc3134869f82f493a30269",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, Invocation invocation) {\n    List<LocalizedMatcher> lastMatchers = argumentMatcherStorage.pullLocalizedMatchers();\n    validateMatchers(invocation, lastMatchers);\n    List<ArgumentMatcher> matchers = new LinkedList<ArgumentMatcher>();\n    for (LocalizedMatcher m : lastMatchers) {\n        matchers.add(m.getMatcher());\n    }\n    return new InvocationMatcher(invocation, matchers);\n}"
+    },
+    {
+      "commit": "ca6896347965ec1354d9e0439d9389839fc9bc5f",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, Invocation invocation) {\n    List<LocalizedMatcher> lastMatchers = argumentMatcherStorage.pullLocalizedMatchers();\n    validateMatchers(invocation, lastMatchers);\n    List<MockitoMatcher> matchers = new LinkedList<MockitoMatcher>();\n    for (LocalizedMatcher m : lastMatchers) {\n        matchers.add(m.getMatcher());\n    }\n    return new InvocationMatcher(invocation, matchers);\n}"
+    },
+    {
+      "commit": "7f20e63a7252f33c888085134d16ee8bf45f183f",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, Invocation invocation) {\n    List<LocalizedMatcher> lastMatchers = argumentMatcherStorage.pullLocalizedMatchers();\n    validateMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, (List<MockitoMatcher>) (List) lastMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "60f0c0c767879989d40d7846054cfc1df64e76af",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, Invocation invocation) {\n    List<LocalizedMatcher> lastMatchers = argumentMatcherStorage.pullLocalizedMatchers();\n    validateMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, (List<Matcher>) (List) lastMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "a99d63b477bac80720fa25214ef7c3eb73576627",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, InvocationImpl invocation) {\n    List<LocalizedMatcher> lastMatchers = argumentMatcherStorage.pullLocalizedMatchers();\n    validateMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, (List<Matcher>) (List) lastMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "21649c3e56387e29275d90ed9b73b58c64bb0e6d",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, Invocation invocation) {\n    List<LocalizedMatcher> lastMatchers = argumentMatcherStorage.pullLocalizedMatchers();\n    validateMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, (List<Matcher>) (List) lastMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "6d73019b0ece43252f38e628df88689967856b09",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, Invocation invocation) {\n    List<Matcher> lastMatchers = argumentMatcherStorage.pullMatchers();\n    validateMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, lastMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "affa89d1e43844ba83bd152fe41c5688d6b3df3f",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(LastArguments lastArguments, Invocation invocation) {\n    List<Matcher> lastMatchers = lastArguments.pullMatchers();\n    validateMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, lastMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "cf55a936d4ec3e68dc85732f7db544b7a140db12",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(Invocation invocation) {\n    List<Matcher> lastMatchers = LastArguments.instance().pullMatchers();\n    validateMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, lastMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "bf4eec3e73c82a3eff75acce0921f766a33f535f",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(Invocation invocation) {\n    List<Matcher> lastMatchers = LastArguments.instance().pullMatchers();\n    validateMatchers(invocation, lastMatchers);\n    List<Matcher> processedMatchers = createEqualsMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, processedMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "e40088f906af0a00dce8720091a9391e885026f3",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(Invocation invocation) {\n    List<ArgumentMatcher> lastMatchers = LastArguments.instance().pullMatchers();\n    validateMatchers(invocation, lastMatchers);\n    List<ArgumentMatcher> processedMatchers = createEqualsMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, processedMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "78621206cd311054c14895b9f966e819ea63c9ec",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(Invocation invocation) {\n    List<IArgumentMatcher> lastMatchers = LastArguments.instance().pullMatchers();\n    validateMatchers(invocation, lastMatchers);\n    List<IArgumentMatcher> processedMatchers = createEqualsMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, processedMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "9952454f4efc6a8734149b5e81e4f66c0349dcbb",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(Invocation invocation) throws InvalidUseOfMatchersException {\n    List<IArgumentMatcher> lastMatchers = LastArguments.instance().pullMatchers();\n    validateMatchers(invocation, lastMatchers);\n    List<IArgumentMatcher> processedMatchers = createEqualsMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, processedMatchers);\n    return invocationWithMatchers;\n}"
+    },
+    {
+      "commit": "110e46a16b4fa91c1856958e78cc45fe70fff9d2",
+      "startLine": 2,
+      "endLine": 3,
+      "methodCode": "public InvocationMatcher bindMatchers(Invocation invocation) throws InvalidUseOfMatchersException {\n    List<IArgumentMatcher> lastMatchers = LastArguments.instance().pullMatchers();\n    validateMatchers(invocation, lastMatchers);\n    List<IArgumentMatcher> processedMatchers = createEqualsMatchers(invocation, lastMatchers);\n    InvocationMatcher invocationWithMatchers = new InvocationMatcher(invocation, processedMatchers);\n    return invocationWithMatchers;\n}"
+    }
+  ]
+}

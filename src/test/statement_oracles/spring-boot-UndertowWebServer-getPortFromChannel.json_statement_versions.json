@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "7fc455654a19c3a988c6ca2116ce04001163adb4",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private UndertowWebServer.Port getPortFromChannel(BoundChannel channel) {\n    SocketAddress socketAddress = channel.getLocalAddress();\n    if (socketAddress instanceof InetSocketAddress) {\n        Field sslField = ReflectionUtils.findField(channel.getClass(), \"ssl\");\n        String protocol = (sslField != null) ? \"https\" : \"http\";\n        return new UndertowWebServer.Port(((InetSocketAddress) socketAddress).getPort(), protocol);\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "41efea51a7171044b5f90b28822fd9dc7e665e33",
+      "startLine": 2,
+      "endLine": 7,
+      "methodCode": "private UndertowWebServer.Port getPortFromChannel(BoundChannel channel) {\n    SocketAddress socketAddress = channel.getLocalAddress();\n    if (socketAddress instanceof InetSocketAddress) {\n        Field sslField = ReflectionUtils.findField(channel.getClass(), \"ssl\");\n        String protocol = (sslField != null ? \"https\" : \"http\");\n        return new UndertowWebServer.Port(((InetSocketAddress) socketAddress).getPort(), protocol);\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "0ba4830b4fb20deea040ca5e1c9a34651708b222",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "private UndertowWebServer.Port getPortFromChannel(BoundChannel channel) {\n    SocketAddress socketAddress = channel.getLocalAddress();\n    if (socketAddress instanceof InetSocketAddress) {\n        String protocol = ReflectionUtils.findField(channel.getClass(), \"ssl\") != null ? \"https\" : \"http\";\n        return new UndertowWebServer.Port(((InetSocketAddress) socketAddress).getPort(), protocol);\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "67556ba8eaf22a352b03fe197a0c452f695835a6",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "private UndertowWebServer.Port getPortFromChannel(BoundChannel channel) {\n    SocketAddress socketAddress = channel.getLocalAddress();\n    if (socketAddress instanceof InetSocketAddress) {\n        String protocol = ReflectionUtils.findField(channel.getClass(), \"ssl\") != null ? \"https\" : \"http\";\n        return new UndertowWebServer.Port(((InetSocketAddress) socketAddress).getPort(), protocol);\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "656b509f0329a37701755c633268f0c68160d912",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "private UndertowWebServer.Port getPortFromChannel(BoundChannel channel) {\n    SocketAddress socketAddress = channel.getLocalAddress();\n    if (socketAddress instanceof InetSocketAddress) {\n        String protocol = ReflectionUtils.findField(channel.getClass(), \"ssl\") != null ? \"https\" : \"http\";\n        return new UndertowWebServer.Port(((InetSocketAddress) socketAddress).getPort(), protocol);\n    }\n    return null;\n}"
+    }
+  ]
+}

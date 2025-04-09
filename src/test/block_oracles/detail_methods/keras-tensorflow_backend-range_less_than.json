@@ -1,0 +1,108 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "keras",
+  "repositoryPath": "/Users/franky/Documents/Homework/毕业设计/testcase/keras/.git",
+  "startCommitName": "8d317c986721371f6d11ae9fbc0afa0212a088dc",
+  "sourceFileName": "tensorflow_backend.py",
+  "functionName": "range_less_than",
+  "functionId": "ctc_label_dense_to_sparse__range_less_than______current_input",
+  "sourceFilePath": "keras/backend/tensorflow_backend.py",
+  "functionAnnotation": "",
+  "functionStartLine": 3188,
+  "functionEndLine": 3191,
+  "numCommitsSeen": 605,
+  "timeTaken": 22074,
+  "changeHistory": [
+    "8d317c986721371f6d11ae9fbc0afa0212a088dc",
+    "aeb22266c91af9d17bee7a4c266c7396a6167cbf",
+    "6b18a908b8ee6e9b58c834a3f7b1944e002764a3",
+    "e8190a8d8d4a59359f93bc9b366d04b9c72cc2ed"
+  ],
+  "changeHistoryShort": {
+    "8d317c986721371f6d11ae9fbc0afa0212a088dc": "Yparameterchange",
+    "aeb22266c91af9d17bee7a4c266c7396a6167cbf": "Yparameterchange",
+    "6b18a908b8ee6e9b58c834a3f7b1944e002764a3": "Ybodychange",
+    "e8190a8d8d4a59359f93bc9b366d04b9c72cc2ed": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "8d317c986721371f6d11ae9fbc0afa0212a088dc": {
+      "type": "Yparameterchange",
+      "commitMessage": "Backend fixes.",
+      "commitDate": "2017/2/23 上午7:21",
+      "commitName": "8d317c986721371f6d11ae9fbc0afa0212a088dc",
+      "commitAuthor": "Francois Chollet",
+      "commitDateOld": "2017/2/23 上午6:30",
+      "commitNameOld": "c81f9447c7b008e075f1ef89e5bc0dd546e4fa79",
+      "commitAuthorOld": "Francois Chollet",
+      "daysBetweenCommits": 0.04,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    def range_less_than(_, current_input):\n        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c tf.fill(\n            max_num_labels_tns, current_input)\n",
+      "path": "keras/backend/tensorflow_backend.py",
+      "functionStartLine": 3188,
+      "functionName": "range_less_than",
+      "functionAnnotation": "",
+      "diff": "@@ -1,3 +1,3 @@\n-    def range_less_than(current_input):\n+    def range_less_than(_, current_input):\n         return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c tf.fill(\n             max_num_labels_tns, current_input)\n",
+      "extendedDetails": {
+        "oldValue": "[current_input]",
+        "newValue": "[_, current_input]"
+      }
+    },
+    "aeb22266c91af9d17bee7a4c266c7396a6167cbf": {
+      "type": "Yparameterchange",
+      "commitMessage": "Backend style fixes.",
+      "commitDate": "2017/2/23 上午6:12",
+      "commitName": "aeb22266c91af9d17bee7a4c266c7396a6167cbf",
+      "commitAuthor": "Francois Chollet",
+      "commitDateOld": "2017/2/22 上午8:41",
+      "commitNameOld": "26e6df8a98670802286978e1657526fe2afa61d5",
+      "commitAuthorOld": "Francois Chollet",
+      "daysBetweenCommits": 0.9,
+      "commitsBetweenForRepo": 23,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    def range_less_than(current_input):\n        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c tf.fill(\n            max_num_labels_tns, current_input)\n",
+      "path": "keras/backend/tensorflow_backend.py",
+      "functionStartLine": 3069,
+      "functionName": "range_less_than",
+      "functionAnnotation": "",
+      "diff": "@@ -1,2 +1,3 @@\n-    def range_less_than(previous_state, current_input):\n-        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c tf.fill(max_num_labels_tns, current_input)\n+    def range_less_than(current_input):\n+        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c tf.fill(\n+            max_num_labels_tns, current_input)\n",
+      "extendedDetails": {
+        "oldValue": "[previous_state, current_input]",
+        "newValue": "[current_input]"
+      }
+    },
+    "6b18a908b8ee6e9b58c834a3f7b1944e002764a3": {
+      "type": "Ybodychange",
+      "commitMessage": "Fix shape inference error for newly version Tensorflow in ctc_label_dense_to_sparse (#3955)\n\n",
+      "commitDate": "2016/10/5 上午2:21",
+      "commitName": "6b18a908b8ee6e9b58c834a3f7b1944e002764a3",
+      "commitAuthor": "Hengkai Guo",
+      "commitDateOld": "2016/10/4 上午12:42",
+      "commitNameOld": "240fd5b68e033ee31167581fcd061dc027282fcf",
+      "commitAuthorOld": "Roberto de Moura Estevão Filho",
+      "daysBetweenCommits": 1.07,
+      "commitsBetweenForRepo": 3,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    def range_less_than(previous_state, current_input):\n        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c tf.fill(max_num_labels_tns, current_input)\n",
+      "path": "keras/backend/tensorflow_backend.py",
+      "functionStartLine": 1791,
+      "functionName": "range_less_than",
+      "functionAnnotation": "",
+      "diff": "@@ -1,2 +1,2 @@\n     def range_less_than(previous_state, current_input):\n-        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c current_input\n+        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c tf.fill(max_num_labels_tns, current_input)\n",
+      "extendedDetails": {}
+    },
+    "e8190a8d8d4a59359f93bc9b366d04b9c72cc2ed": {
+      "type": "Yintroduced",
+      "commitMessage": "Added support for CTC in both Theano and Tensorflow along with image OCR example. (#3436)\n\n* Added CTC to Theano and Tensorflow backend along with image OCR example\r\n\r\n* Fixed python style issues, made data files remote, and made code more idiomatic to Keras\r\n\r\n* Fixed a couple more style issues brought up in the original PR\r\n\r\n* Reverted wrappers.py\r\n\r\n* Fixed potential training-on-validation issue and removed unused imports\r\n\r\n* Fixed PEP8 issue\r\n\r\n* Remaining PEP8 issues fixed\r\n",
+      "commitDate": "2016/8/17 上午4:25",
+      "commitName": "e8190a8d8d4a59359f93bc9b366d04b9c72cc2ed",
+      "commitAuthor": "Mike Henry",
+      "diff": "@@ -0,0 +1,2 @@\n+    def range_less_than(previous_state, current_input):\n+        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c current_input\n",
+      "actualSource": "    def range_less_than(previous_state, current_input):\n        return tf.expand_dims(tf.range(label_shape[1]), 0) \u003c current_input\n",
+      "path": "keras/backend/tensorflow_backend.py",
+      "functionStartLine": 1603,
+      "functionName": "range_less_than",
+      "functionAnnotation": ""
+    }
+  }
+}

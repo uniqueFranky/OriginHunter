@@ -1,0 +1,10 @@
+{
+  "statementVersions": [
+    {
+      "commit": "2d3f5e219af9d1ba916f1dc21a6169a41a254632",
+      "startLine": 5,
+      "endLine": 6,
+      "methodCode": "void apply() {\n    extractReshuffledDiffElements(diffElements);\n    Map<Removed, RemovedGroup> removedGroups = combineRemovedElementsToRemovedGroups();\n    do {\n        boolean isLeftOverDiffElement = applyLeftOverDiffElements();\n        boolean isLeftOverOriginalElement = applyLeftOverOriginalElements();\n        if (!isLeftOverDiffElement && !isLeftOverOriginalElement) {\n            DifferenceElement diffElement = diffElements.get(diffIndex);\n            if (diffElement instanceof Added) {\n                applyAddedDiffElement((Added) diffElement);\n            } else {\n                TextElement originalElement = originalElements.get(originalIndex);\n                boolean originalElementIsChild = originalElement instanceof ChildTextElement;\n                boolean originalElementIsToken = originalElement instanceof TokenTextElement;\n                if (diffElement instanceof Kept) {\n                    applyKeptDiffElement((Kept) diffElement, originalElement, originalElementIsChild, originalElementIsToken);\n                } else if (diffElement instanceof Removed) {\n                    Removed removed = (Removed) diffElement;\n                    applyRemovedDiffElement(removedGroups.get(removed), removed, originalElement, originalElementIsChild, originalElementIsToken);\n                } else {\n                    throw new UnsupportedOperationException(\"\" + diffElement + \" vs \" + originalElement);\n                }\n            }\n        }\n    } while (diffIndex < diffElements.size() || originalIndex < originalElements.size());\n}"
+    }
+  ]
+}

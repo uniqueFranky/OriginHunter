@@ -1,0 +1,46 @@
+{
+  "statementVersions": [
+    {
+      "commit": "38fc9b864e6a279eccb84a15c14002dce61df4fa",
+      "startLine": 3,
+      "endLine": 5,
+      "methodCode": "@Override\npublic FullTextQueryImpl setTimeout(long timeout, TimeUnit timeUnit) {\n    super.setTimeout((int) timeUnit.toSeconds(timeout));\n    hSearchQuery.getTimeoutManager().setTimeout(timeout, timeUnit);\n    hSearchQuery.getTimeoutManager().raiseExceptionOnTimeout();\n    return this;\n}"
+    },
+    {
+      "commit": "2f45e686199bf9f20f354e1c953018eb0ebb934a",
+      "startLine": 3,
+      "endLine": 5,
+      "methodCode": "@Override\npublic FullTextQuery setTimeout(long timeout, TimeUnit timeUnit) {\n    super.setTimeout((int) timeUnit.toSeconds(timeout));\n    hSearchQuery.getTimeoutManager().setTimeout(timeout, timeUnit);\n    hSearchQuery.getTimeoutManager().raiseExceptionOnTimeout();\n    return this;\n}"
+    },
+    {
+      "commit": "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "public FullTextQuery setTimeout(long timeout, TimeUnit timeUnit) {\n    super.setTimeout((int) timeUnit.toSeconds(timeout));\n    hSearchQuery.getTimeoutManager().setTimeout(timeout, timeUnit);\n    hSearchQuery.getTimeoutManager().raiseExceptionOnTimeout();\n    return this;\n}"
+    },
+    {
+      "commit": "46186ad2bdda3c84dd58a641ed93e1b1203bdc89",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "public FullTextQuery setTimeout(long timeout, TimeUnit timeUnit) {\n    super.setTimeout((int) timeUnit.toSeconds(timeout));\n    hSearchQuery.getTimeoutManager().setTimeout(timeout, timeUnit);\n    hSearchQuery.getTimeoutManager().raiseExceptionOnTimeout();\n    return this;\n}"
+    },
+    {
+      "commit": "dc3a4d26f215331ac43e3bf779a25b8476e42c59",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "public FullTextQuery setTimeout(long timeout, TimeUnit timeUnit) {\n    super.setTimeout((int) timeUnit.toSeconds(timeout));\n    hSearchQuery.getTimeoutManager().setTimeout(timeout, timeUnit);\n    hSearchQuery.getTimeoutManager().raiseExceptionOnTimeout();\n    return this;\n}"
+    },
+    {
+      "commit": "e6fd51e42f176e3661a251a4acd57925ac3a657f",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "public FullTextQuery setTimeout(long timeout, TimeUnit timeUnit) {\n    super.setTimeout((int) timeUnit.toSeconds(timeout));\n    hSearchQuery.getTimeoutManager().setTimeout(timeout, timeUnit);\n    hSearchQuery.getTimeoutManager().raiseExceptionOnTimeout();\n    return this;\n}"
+    },
+    {
+      "commit": "6454e7ddc7b5c19ffabe140d41faaec1af5fec0c",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "public FullTextQuery setTimeout(long timeout, TimeUnit timeUnit) {\n    super.setTimeout((int) timeUnit.toSeconds(timeout));\n    timeoutManager.setTimeout(timeout, timeUnit);\n    timeoutManager.raiseExceptionOnTimeout();\n    return this;\n}"
+    }
+  ]
+}

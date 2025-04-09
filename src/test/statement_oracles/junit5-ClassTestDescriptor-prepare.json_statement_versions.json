@@ -1,0 +1,250 @@
+{
+  "statementVersions": [
+    {
+      "commit": "137f831bba9d0f45085d64fad47947cbc91a30e9",
+      "startLine": 8,
+      "endLine": 13,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWithAnnotation(context.getExtensionRegistry(), this.testClass);\n    registerExtensionsFromFields(registry, this.testClass, null);\n    this.testInstanceFactory = resolveTestInstanceFactory(registry);\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    Lifecycle lifecycle = getTestInstanceLifecycle(this.testClass, context.getConfigurationParameters());\n    ThrowableCollector throwableCollector = new OpenTest4JAwareThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, lifecycle, context.getConfigurationParameters(), throwableCollector);\n    this.beforeAllMethods = findBeforeAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "4c55c3a6f31ab205ff426cbb1f5a4589a95f2776",
+      "startLine": 8,
+      "endLine": 13,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWithAnnotation(context.getExtensionRegistry(), this.testClass);\n    registerExtensionsFromFields(registry, this.testClass, null);\n    this.testInstanceFactory = resolveTestInstanceFactory(registry);\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    Lifecycle lifecycle = getTestInstanceLifecycle(this.testClass, context.getConfigurationParameters());\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, lifecycle, context.getConfigurationParameters(), throwableCollector);\n    this.beforeAllMethods = findBeforeAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "920f6ea401ff38d1d66b594ddddfedb98bc8b68c",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWithAnnotation(context.getExtensionRegistry(), this.testClass);\n    registerExtensionsFromFields(registry, this.testClass, null);\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    Lifecycle lifecycle = getTestInstanceLifecycle(this.testClass, context.getConfigurationParameters());\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, lifecycle, context.getConfigurationParameters(), throwableCollector);\n    this.beforeAllMethods = findBeforeAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "479491f2f417a553238f28ab196a23b9c2b9099e",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerExtensionsFromFields(this.testClass, registry, null);\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    Lifecycle lifecycle = getTestInstanceLifecycle(this.testClass, context.getConfigurationParameters());\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, lifecycle, context.getConfigurationParameters(), throwableCollector);\n    this.beforeAllMethods = findBeforeAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "27ae8cf548cf70e4c671705d2e03777f3bf19d1a",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerExtensionsFromFields(this.testClass, registry, null);\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    Lifecycle lifecycle = getTestInstanceLifecycle(this.testClass, context.getConfigurationParameters());\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, lifecycle, context.getConfigurationParameters(), throwableCollector);\n    this.beforeAllMethods = findBeforeAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "65d54b1a0e9d73d0e4cb64cc219b7d6cb13be314",
+      "startLine": 4,
+      "endLine": 11,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    Lifecycle lifecycle = getTestInstanceLifecycle(this.testClass, context.getConfigurationParameters());\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, lifecycle, context.getConfigurationParameters(), throwableCollector);\n    this.beforeAllMethods = findBeforeAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "788ec1aa3ff5103aeb622c252a15036dd7fa70d4",
+      "startLine": 3,
+      "endLine": 13,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    Lifecycle lifecycle = getTestInstanceLifecycle(testClass, context.getConfigurationParameters());\n    this.beforeAllMethods = findBeforeAllMethods(testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.beforeEachMethods = findBeforeEachMethods(testClass);\n    this.afterEachMethods = findAfterEachMethods(testClass);\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, context.getConfigurationParameters(), throwableCollector);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "5d7d85d0b0fb8b7e9e811b2dd28c955a891d4c55",
+      "startLine": 3,
+      "endLine": 13,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    Lifecycle lifecycle = getTestInstanceLifecycle(testClass, context.getConfigurationParameters());\n    this.beforeAllMethods = findBeforeAllMethods(testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.beforeEachMethods = findBeforeEachMethods(testClass);\n    this.afterEachMethods = findAfterEachMethods(testClass);\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, throwableCollector);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "f750c85946939119d05966c65fc81ce68444b2b9",
+      "startLine": 3,
+      "endLine": 13,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    Lifecycle lifecycle = getTestInstanceLifecycle(testClass, context.getConfigurationParameters());\n    this.beforeAllMethods = findBeforeAllMethods(testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(testClass, lifecycle == Lifecycle.PER_METHOD);\n    this.beforeEachMethods = findBeforeEachMethods(testClass);\n    this.afterEachMethods = findAfterEachMethods(testClass);\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, throwableCollector);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext, lifecycle)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "6229d4cad76364862667f8f609f880fd9eed43eb",
+      "startLine": 3,
+      "endLine": 12,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    this.beforeAllMethods = findBeforeAllMethods(testClass, this.lifecycle == Lifecycle.PER_METHOD);\n    this.afterAllMethods = findAfterAllMethods(testClass, this.lifecycle == Lifecycle.PER_METHOD);\n    this.beforeEachMethods = findBeforeEachMethods(testClass);\n    this.afterEachMethods = findAfterEachMethods(testClass);\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, throwableCollector);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "17360a5a086050e41718aa11d7e7c19c02c79d72",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ThrowableCollector throwableCollector = new ThrowableCollector();\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this, throwableCollector);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(throwableCollector).build();\n}"
+    },
+    {
+      "commit": "83b3eb665aa35a87cfd8484e0d06cc3b3d0478c7",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext)).withExtensionRegistry(registry).withExtensionContext(extensionContext).withThrowableCollector(new ThrowableCollector()).build();\n}"
+    },
+    {
+      "commit": "323dac88536a9768ea92183598e695b39da62a1a",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ClassBasedContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, containerExtensionContext)).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).withThrowableCollector(new ThrowableCollector()).build();\n}"
+    },
+    {
+      "commit": "902d36a3e915aed15063764f108ace96a41140b4",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ClassBasedContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    TestInstanceProvider testInstanceProvider = testInstanceProvider(context, registry, containerExtensionContext);\n    return context.extend().withTestInstanceProvider(testInstanceProvider).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).withThrowableCollector(new ThrowableCollector()).build();\n}"
+    },
+    {
+      "commit": "bf1e000a7f68076e2921ac4f020e5f8c24330e84",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ClassBasedContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    TestInstanceProvider testInstanceProvider = testInstanceProvider(context, registry, containerExtensionContext);\n    Object testInstance = (this.lifecycle == Lifecycle.PER_CLASS ? testInstanceProvider.getTestInstance(Optional.empty()) : null);\n    containerExtensionContext.setTestInstance(testInstance);\n    return context.extend().withTestInstanceProvider(testInstanceProvider).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).withThrowableCollector(new ThrowableCollector()).build();\n}"
+    },
+    {
+      "commit": "c95005adbe2f754997a43009a47124f725496530",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, containerExtensionContext)).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).withThrowableCollector(new ThrowableCollector()).build();\n}"
+    },
+    {
+      "commit": "babcc661bd906b38a272f287ac8779669268fc58",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JupiterEngineExecutionContext prepare(JupiterEngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, containerExtensionContext)).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, containerExtensionContext)).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "507e50872c6df8a66c32f45cb2153555f510c4b1",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, containerExtensionContext)).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "65e0bd5483c8923393fa85955ddaf24d68fd8042",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context, registry, containerExtensionContext)).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "dfe33b0e7e22b64b712593ea3b635675edbd6f73",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionRegistry(registry).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "6b575f2ee5f02288a774ff0a85ce3a3e3cb6946f",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(this.testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    context = context.extend().withExtensionRegistry(registry).build();\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "b691e6a02b9436939bf1867156aa8d8cea4e3fbf",
+      "startLine": 3,
+      "endLine": 8,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(testClass, context.getExtensionRegistry());\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    context = context.extend().withExtensionRegistry(registry).build();\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "b2ba6b95138382f25ca757a5ca2a7295bee4c3b8",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    ExtensionRegistry registry = populateNewExtensionRegistryFromExtendWith(testClass, context.getExtensionRegistry());\n    registerBeforeAllMethodAdapters(registry);\n    registerAfterAllMethodAdapters(registry);\n    registerBeforeEachMethodAdapters(registry);\n    registerAfterEachMethodAdapters(registry);\n    context = context.extend().withExtensionRegistry(registry).build();\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "c0a0e14d2c11bb77bfe25aee9594b04e793b04aa",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    ExtensionRegistry newExtensionRegistry = populateNewExtensionRegistryFromExtendWith(testClass, context.getExtensionRegistry());\n    registerBeforeAllMethods(newExtensionRegistry);\n    registerAfterAllMethods(newExtensionRegistry);\n    registerBeforeEachMethods(newExtensionRegistry);\n    registerAfterEachMethods(newExtensionRegistry);\n    context = context.extend().withExtensionRegistry(newExtensionRegistry).build();\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "b4957a135bb9b9eba12c8bcb154c8cfbfb4cc566",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    TestExtensionRegistry newExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry());\n    registerBeforeAllMethods(newExtensionRegistry);\n    registerAfterAllMethods(newExtensionRegistry);\n    registerBeforeEachMethods(newExtensionRegistry);\n    registerAfterEachMethods(newExtensionRegistry);\n    context = context.extend().withTestExtensionRegistry(newExtensionRegistry).build();\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), context.getExecutionListener(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "0027ade00fd483e08714ece1021a7715bb1855da",
+      "startLine": 3,
+      "endLine": 10,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext prepare(JUnit5EngineExecutionContext context) {\n    TestExtensionRegistry newExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry());\n    registerBeforeAllMethods(newExtensionRegistry);\n    registerAfterAllMethods(newExtensionRegistry);\n    registerBeforeEachMethods(newExtensionRegistry);\n    registerAfterEachMethods(newExtensionRegistry);\n    context = context.extend().withTestExtensionRegistry(newExtensionRegistry).build();\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), this);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "b90f9c883f8bb6c0ea212a8b0acae113e17fecfb",
+      "startLine": 3,
+      "endLine": 11,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext beforeAll(JUnit5EngineExecutionContext context) throws Throwable {\n    TestExtensionRegistry newExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry());\n    registerBeforeAllMethods(newExtensionRegistry);\n    registerAfterAllMethods(newExtensionRegistry);\n    registerBeforeEachMethods(newExtensionRegistry);\n    registerAfterEachMethods(newExtensionRegistry);\n    context = context.extend().withTestExtensionRegistry(newExtensionRegistry).build();\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), this);\n    invokeBeforeAllExtensionPoints(newExtensionRegistry, containerExtensionContext);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "c2d9a533b97ee808e5f51ffd94eb4a0524ff8362",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext beforeAll(JUnit5EngineExecutionContext context) throws Throwable {\n    TestExtensionRegistry newExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry());\n    registerBeforeEachMethods(newExtensionRegistry);\n    registerAfterEachMethods(newExtensionRegistry);\n    context = context.extend().withTestExtensionRegistry(newExtensionRegistry).build();\n    ContainerExtensionContext containerExtensionContext = new ClassBasedContainerExtensionContext(context.getExtensionContext(), this);\n    invokeBeforeAllExtensionPoints(newExtensionRegistry, containerExtensionContext);\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(containerExtensionContext).build();\n}"
+    },
+    {
+      "commit": "8db7e41d03b3d1f989c458e040f86f7e30e153d7",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext beforeAll(JUnit5EngineExecutionContext context) {\n    TestExtensionRegistry newExtensionRegistry = populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry());\n    registerBeforeEachMethods(newExtensionRegistry);\n    registerAfterEachMethods(newExtensionRegistry);\n    context = context.extend().withTestExtensionRegistry(newExtensionRegistry).build();\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withExtensionContext(new ClassBasedContainerExtensionContext(context.getExtensionContext(), this)).build();\n}"
+    },
+    {
+      "commit": "e9d19c214a3117efdd9295bdb1b2ddb4f7e67987",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext beforeAll(JUnit5EngineExecutionContext context) {\n    context = context.extend().withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry())).build();\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withBeforeEachCallback(beforeEachCallback(context)).withAfterEachCallback(afterEachCallback(context)).withExtensionContext(new ClassBasedContainerExtensionContext(context.getExtensionContext(), this)).build();\n}"
+    },
+    {
+      "commit": "634890bff8f38128db31c244486d257b8ef729d7",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext beforeAll(JUnit5EngineExecutionContext context) {\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withBeforeEachCallback(beforeEachCallback(context)).withAfterEachCallback(afterEachCallback(context)).withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry())).withExtensionContext(new ClassBasedContainerExtensionContext(context.getExtensionContext(), this)).build();\n}"
+    },
+    {
+      "commit": "3f9c11b9326b7d3051cb2a50568cd91113a0c0da",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5EngineExecutionContext beforeAll(JUnit5EngineExecutionContext context) {\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withBeforeEachCallback(beforeEachCallback(context)).withAfterEachCallback(afterEachCallback(context)).withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry())).build();\n}"
+    },
+    {
+      "commit": "fc5ff8d87c124e43601f64da76668e516758a74a",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5Context beforeAll(JUnit5Context context) {\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withBeforeEachCallback(beforeEachCallback(context)).withAfterEachCallback(afterEachCallback(context)).withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry())).build();\n}"
+    },
+    {
+      "commit": "efb867427dd0722262fea5c869ac37cd64ea0070",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5Context beforeAll(JUnit5Context context) {\n    return context.extend().withTestInstanceProvider(testInstanceProvider(context)).withBeforeEachCallback(beforeEachCallback(context)).withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry())).build();\n}"
+    },
+    {
+      "commit": "67ec62513564b48741925f79132f3fe6427e48b3",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5Context beforeAll(JUnit5Context context) {\n    return context.withTestInstanceProvider(testInstanceProvider(context)).withBeforeEachCallback(beforeEachCallback(context)).withTestExtensionRegistry(populateNewTestExtensionRegistryFromExtendWith(testClass, context.getTestExtensionRegistry()));\n}"
+    },
+    {
+      "commit": "fa681a536942811f712ca91be70f5510ca472020",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5Context beforeAll(JUnit5Context context) {\n    return context.withTestInstanceProvider(testInstanceProvider(context)).withBeforeEachCallback(beforeEachCallback(context));\n}"
+    },
+    {
+      "commit": "6c643a69bab0f405bdcd9db8318f991e1c88ef63",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5Context beforeAll(JUnit5Context context) {\n    return context.withTestInstanceProvider(testInstanceProvider(context));\n}"
+    },
+    {
+      "commit": "470866bc19cac8717ac77b26efc1fe703bed264a",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5Context beforeAll(JUnit5Context context) {\n    return context.withTestInstanceProvider(testInstanceProvider());\n}"
+    },
+    {
+      "commit": "57b31220d25f59bb4aa4903dfee4b8ec2be4525e",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic JUnit5Context beforeAll(JUnit5Context context) {\n    return context.withTestInstanceProvider(testInstanceProvider());\n}"
+    },
+    {
+      "commit": "28ffd5ee9d1e996133445cac2256407f28380e91",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic Context beforeAll(Context context) {\n    return context.with(\"TestInstanceProvider\", testInstanceProvider());\n}"
+    }
+  ]
+}

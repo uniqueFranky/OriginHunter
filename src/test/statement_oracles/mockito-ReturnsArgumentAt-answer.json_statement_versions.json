@@ -1,0 +1,46 @@
+{
+  "statementVersions": [
+    {
+      "commit": "761de40d05b4eddae8328ab1d7e5bdacd882a3be",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "@Override\npublic Object answer(InvocationOnMock invocation) throws Throwable {\n    int argumentPosition = inferWantedArgumentPosition(invocation);\n    validateIndexWithinInvocationRange(invocation, argumentPosition);\n    if (wantedArgIndexIsVarargAndSameTypeAsReturnType(invocation.getMethod(), argumentPosition)) {\n        return ((Invocation) invocation).getRawArguments()[argumentPosition];\n    }\n    return invocation.getArgument(argumentPosition);\n}"
+    },
+    {
+      "commit": "1d285102bb01150f6399604aa900bd3f3365e4e7",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "@Override\npublic Object answer(InvocationOnMock invocation) throws Throwable {\n    int argumentPosition = inferWantedArgumentPosition(invocation);\n    validateIndexWithinInvocationRange(invocation, argumentPosition);\n    if (wantedArgIndexIsVarargAndSameTypeAsReturnType(invocation.getMethod(), argumentPosition)) {\n        return ((Invocation) invocation).getRawArguments()[argumentPosition];\n    } else {\n        return invocation.getArgument(argumentPosition);\n    }\n}"
+    },
+    {
+      "commit": "a4391ac09aa2d8ac38ceaa569667bb9e617756df",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Object answer(InvocationOnMock invocation) throws Throwable {\n    validateIndexWithinInvocationRange(invocation);\n    return invocation.getArgument(actualArgumentPosition(invocation));\n}"
+    },
+    {
+      "commit": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Object answer(InvocationOnMock invocation) throws Throwable {\n    validateIndexWithinInvocationRange(invocation);\n    return invocation.getArguments()[actualArgumentPosition(invocation)];\n}"
+    },
+    {
+      "commit": "5a2415278e865ac0becfcbaf8626d4f0c3b17a70",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Object answer(InvocationOnMock invocation) throws Throwable {\n    validateIndexWithinInvocationRange(invocation);\n    return invocation.getArguments()[actualArgumentPosition(invocation)];\n}"
+    },
+    {
+      "commit": "4b81c5d36e1ab63412c9a55d982cf5c6df238dab",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Object answer(InvocationOnMock invocation) throws Throwable {\n    validateIndexWithinInvocationRange(invocation);\n    return invocation.getArguments()[actualArgumentPosition(invocation)];\n}"
+    },
+    {
+      "commit": "dda1c41ea0fe96abfe62bb1bfd1e1d51d2c5c509",
+      "startLine": 2,
+      "endLine": 2,
+      "methodCode": "public Object answer(InvocationOnMock invocation) throws Throwable {\n    validateIndexWithinInvocationRange(invocation);\n    return invocation.getArguments()[actualArgumentIndex(invocation)];\n}"
+    }
+  ]
+}

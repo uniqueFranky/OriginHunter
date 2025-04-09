@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "bbc84a3d0121b851fa55e1f3d90c7010ff4b4c13",
+      "startLine": 12,
+      "endLine": 15,
+      "methodCode": "@Override\npublic boolean equals(Object obj) {\n    if (this == obj) {\n        return true;\n    }\n    if (obj == null) {\n        return false;\n    }\n    if (getClass() != obj.getClass()) {\n        return false;\n    }\n    Module other = (Module) obj;\n    if (_path == null)\n        return other._path == null;\n    return _path.equals(other._path);\n}"
+    },
+    {
+      "commit": "7af87b4a047fb8cc1d70a25d04a8f7b721c8410b",
+      "startLine": 12,
+      "endLine": 20,
+      "methodCode": "@Override\npublic boolean equals(Object obj) {\n    if (this == obj) {\n        return true;\n    }\n    if (obj == null) {\n        return false;\n    }\n    if (getClass() != obj.getClass()) {\n        return false;\n    }\n    Module other = (Module) obj;\n    if (fileRef == null) {\n        if (other.fileRef != null) {\n            return false;\n        }\n    } else if (!fileRef.equals(other.fileRef)) {\n        return false;\n    }\n    return true;\n}"
+    },
+    {
+      "commit": "e17cee533ae7209f323cc205ce1ae1ff14d267da",
+      "startLine": 12,
+      "endLine": 20,
+      "methodCode": "@Override\npublic boolean equals(Object obj) {\n    if (this == obj) {\n        return true;\n    }\n    if (obj == null) {\n        return false;\n    }\n    if (getClass() != obj.getClass()) {\n        return false;\n    }\n    Module other = (Module) obj;\n    if (name == null) {\n        if (other.name != null) {\n            return false;\n        }\n    } else if (!name.equals(other.name)) {\n        return false;\n    }\n    return true;\n}"
+    },
+    {
+      "commit": "03cd15ea82ea5483e7244582527e97c0228a4c0a",
+      "startLine": 9,
+      "endLine": 15,
+      "methodCode": "@Override\npublic boolean equals(Object obj) {\n    if (this == obj)\n        return true;\n    if (obj == null)\n        return false;\n    if (getClass() != obj.getClass())\n        return false;\n    Module other = (Module) obj;\n    if (name == null) {\n        if (other.name != null)\n            return false;\n    } else if (!name.equals(other.name))\n        return false;\n    return true;\n}"
+    }
+  ]
+}

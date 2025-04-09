@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "ce111925adc1bf72df4e8d518c3af64e33daec2e",
+      "startLine": 4,
+      "endLine": 13,
+      "methodCode": "@SuppressWarnings(\"unchecked\")\n<PreferredType, AlternateType> Object loadPlugin(final Class<PreferredType> preferredPluginType, final Class<AlternateType> alternatePluginType) {\n    try {\n        PreferredType preferredPlugin = initializer.loadImpl(preferredPluginType);\n        if (preferredPlugin != null) {\n            return preferredPlugin;\n        } else if (alternatePluginType != null) {\n            AlternateType alternatePlugin = initializer.loadImpl(alternatePluginType);\n            if (alternatePlugin != null) {\n                return alternatePlugin;\n            }\n        }\n        return plugins.getDefaultPlugin(preferredPluginType);\n    } catch (final Throwable t) {\n        return Proxy.newProxyInstance(preferredPluginType.getClassLoader(), new Class<?>[] { preferredPluginType }, new InvocationHandler() {\n\n            @Override\n            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {\n                throw new IllegalStateException(\"Could not initialize plugin: \" + preferredPluginType + \" (alternate: \" + alternatePluginType + \")\", t);\n            }\n        });\n    }\n}"
+    },
+    {
+      "commit": "b1c419992e2c88dcf57dceaadc2bd648cb3af25a",
+      "startLine": 4,
+      "endLine": 13,
+      "methodCode": "@SuppressWarnings(\"unchecked\")\n<PreferredType, AlternateType> Object loadPlugin(final Class<PreferredType> preferredPluginType, final Class<AlternateType> alternatePluginType) {\n    try {\n        PreferredType preferredPlugin = initializer.loadImpl(preferredPluginType);\n        if (preferredPlugin != null) {\n            return preferredPlugin;\n        } else if (alternatePluginType != null) {\n            AlternateType alternatePlugin = initializer.loadImpl(alternatePluginType);\n            if (alternatePlugin != null) {\n                return alternatePlugin;\n            }\n        }\n        return plugins.getDefaultPlugin(preferredPluginType);\n    } catch (final Throwable t) {\n        return Proxy.newProxyInstance(preferredPluginType.getClassLoader(), new Class<?>[] { preferredPluginType }, new InvocationHandler() {\n\n            @Override\n            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {\n                if (alternatePluginType == null) {\n                    throw new IllegalStateException(\"Could not initialize plugin: \" + preferredPluginType, t);\n                } else {\n                    throw new IllegalStateException(\"Could not initialize plugin: \" + preferredPluginType + \" (alternate \" + alternatePluginType + \")\", t);\n                }\n            }\n        });\n    }\n}"
+    },
+    {
+      "commit": "fc6afc103ebddba5794856f90244b14c4a042a14",
+      "startLine": 4,
+      "endLine": 13,
+      "methodCode": "@SuppressWarnings(\"unchecked\")\n<PreferredType, AlternateType> Object loadPlugin(final Class<PreferredType> preferredPluginType, final Class<AlternateType> alternatePluginType) {\n    try {\n        PreferredType preferredPlugin = loadImpl(preferredPluginType);\n        if (preferredPlugin != null) {\n            return preferredPlugin;\n        } else if (alternatePluginType != null) {\n            AlternateType alternatePlugin = loadImpl(alternatePluginType);\n            if (alternatePlugin != null) {\n                return alternatePlugin;\n            }\n        }\n        return plugins.getDefaultPlugin(preferredPluginType);\n    } catch (final Throwable t) {\n        return Proxy.newProxyInstance(preferredPluginType.getClassLoader(), new Class<?>[] { preferredPluginType }, new InvocationHandler() {\n\n            @Override\n            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {\n                if (alternatePluginType == null) {\n                    throw new IllegalStateException(\"Could not initialize plugin: \" + preferredPluginType, t);\n                } else {\n                    throw new IllegalStateException(\"Could not initialize plugin: \" + preferredPluginType + \" (alternate \" + alternatePluginType + \")\", t);\n                }\n            }\n        });\n    }\n}"
+    },
+    {
+      "commit": "08c0931684159e5f00f388e3de55cec97020e107",
+      "startLine": 4,
+      "endLine": 13,
+      "methodCode": "@SuppressWarnings(\"unchecked\")\n<PreferredType, AlternateType> Object loadPlugin(final Class<PreferredType> preferredPluginType, final Class<AlternateType> alternatePluginType) {\n    try {\n        PreferredType preferredPlugin = loadImpl(preferredPluginType);\n        if (preferredPlugin != null) {\n            return preferredPlugin;\n        } else {\n            AlternateType alternatePlugin = loadImpl(alternatePluginType);\n            if (alternatePlugin != null) {\n                return alternatePlugin;\n            }\n        }\n        return plugins.getDefaultPlugin(preferredPluginType);\n    } catch (final Throwable t) {\n        return Proxy.newProxyInstance(preferredPluginType.getClassLoader(), new Class<?>[] { preferredPluginType }, new InvocationHandler() {\n\n            @Override\n            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {\n                throw new IllegalStateException(\"Could not initialize plugin: \" + preferredPluginType + \" (alternate \" + alternatePluginType + \")\", t);\n            }\n        });\n    }\n}"
+    }
+  ]
+}

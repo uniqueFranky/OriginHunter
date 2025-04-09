@@ -1,0 +1,28 @@
+{
+  "statementVersions": [
+    {
+      "commit": "819fe2083d930b25a21dbaf1897ba9f43616fe9d",
+      "startLine": 3,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void close() throws Exception {\n    super.close();\n    if (checkpointLock != null) {\n        synchronized (checkpointLock) {\n            globalModificationTime = Long.MAX_VALUE;\n            isRunning = false;\n        }\n    }\n    if (LOG.isDebugEnabled()) {\n        LOG.debug(\"Closed File Monitoring Source for path: \" + path + \".\");\n    }\n}"
+    },
+    {
+      "commit": "b410c393c960f55c09fadd4f22732d06f801b938",
+      "startLine": 3,
+      "endLine": 3,
+      "methodCode": "@Override\npublic void close() throws Exception {\n    super.close();\n    synchronized (checkpointLock) {\n        globalModificationTime = Long.MAX_VALUE;\n        isRunning = false;\n    }\n    if (LOG.isDebugEnabled()) {\n        LOG.debug(\"Closed File Monitoring Source for path: \" + path + \".\");\n    }\n}"
+    },
+    {
+      "commit": "bd273a8f435b222eb67840fb39b854ec9ef8602f",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\npublic void close() throws Exception {\n    super.close();\n    synchronized (checkpointLock) {\n        globalModificationTime = Long.MAX_VALUE;\n        isRunning = false;\n    }\n    LOG.info(\"Closed File Monitoring Source.\");\n}"
+    },
+    {
+      "commit": "d353895ba512a5e30fb08a25643fd93f085e8456",
+      "startLine": 3,
+      "endLine": 4,
+      "methodCode": "@Override\npublic void close() throws Exception {\n    super.close();\n    isRunning = false;\n    LOG.info(\"Closed File Monitoring Source.\");\n}"
+    }
+  ]
+}

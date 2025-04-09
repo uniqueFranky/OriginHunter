@@ -1,0 +1,22 @@
+{
+  "statementVersions": [
+    {
+      "commit": "b3dc2cfffa7e016c288eaeb9e82443572a6c081d",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\nprotected TokenStreamComponents createComponents(String fieldName) {\n    Tokenizer tk = tokenizer.create();\n    TokenStream ts = tk;\n    for (TokenFilterFactory filter : filters) {\n        ts = filter.create(ts);\n    }\n    return new TokenStreamComponents(tk, ts);\n}"
+    },
+    {
+      "commit": "bdf7b30992aba220399e67c032f5b3ef61c9e080",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\nprotected TokenStreamComponents createComponents(final String fieldName, final Reader aReader) {\n    Tokenizer tk = tokenizer.create(aReader);\n    TokenStream ts = tk;\n    for (TokenFilterFactory filter : filters) {\n        ts = filter.create(ts);\n    }\n    return new TokenStreamComponents(tk, ts);\n}"
+    },
+    {
+      "commit": "6e432d32793618c49eec5234e14048f0dbd59943",
+      "startLine": 3,
+      "endLine": 7,
+      "methodCode": "@Override\nprotected TokenStreamComponents createComponents(final String fieldName, final Reader aReader) {\n    Tokenizer tk = tokenizer.create(aReader);\n    TokenStream ts = tk;\n    for (TokenFilterFactory filter : filters) {\n        ts = filter.create(ts);\n    }\n    return new TokenStreamComponents(tk, ts);\n}"
+    }
+  ]
+}

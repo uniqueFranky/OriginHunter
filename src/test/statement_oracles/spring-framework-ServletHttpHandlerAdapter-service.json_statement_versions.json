@@ -1,0 +1,268 @@
+{
+  "statementVersions": [
+    {
+      "commit": "5dc49b16ea21ebac20d124d929f872d5aa060254",
+      "startLine": 24,
+      "endLine": 28,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {\n    if (DispatcherType.ASYNC.equals(request.getDispatcherType())) {\n        Throwable ex = (Throwable) request.getAttribute(WRITE_ERROR_ATTRIBUTE_NAME);\n        throw new ServletException(\"Failed to create response content\", ex);\n    }\n    AsyncContext asyncContext = request.startAsync();\n    asyncContext.setTimeout(-1);\n    ServletServerHttpRequest httpRequest;\n    try {\n        httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    } catch (URISyntaxException ex) {\n        if (logger.isDebugEnabled()) {\n            logger.debug(\"Failed to get request  URL: \" + ex.getMessage());\n        }\n        ((HttpServletResponse) response).setStatus(400);\n        asyncContext.complete();\n        return;\n    }\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext, httpRequest);\n    if (httpRequest.getMethod() == HttpMethod.HEAD) {\n        httpResponse = new HttpHeadResponseDecorator(httpResponse);\n    }\n    AtomicBoolean isCompleted = new AtomicBoolean();\n    HandlerResultAsyncListener listener = new HandlerResultAsyncListener(isCompleted, httpRequest);\n    asyncContext.addListener(listener);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext, isCompleted, httpRequest);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "900bc8a2e341277296a463c7b5db4abb944e14d7",
+      "startLine": 24,
+      "endLine": 28,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {\n    if (DispatcherType.ASYNC.equals(request.getDispatcherType())) {\n        Throwable ex = (Throwable) request.getAttribute(WRITE_ERROR_ATTRIBUTE_NAME);\n        throw new ServletException(\"Failed to create response content\", ex);\n    }\n    AsyncContext asyncContext = request.startAsync();\n    asyncContext.setTimeout(-1);\n    ServerHttpRequest httpRequest;\n    try {\n        httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    } catch (URISyntaxException ex) {\n        if (logger.isDebugEnabled()) {\n            logger.debug(\"Failed to get request  URL: \" + ex.getMessage());\n        }\n        ((HttpServletResponse) response).setStatus(400);\n        asyncContext.complete();\n        return;\n    }\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    if (httpRequest.getMethod() == HttpMethod.HEAD) {\n        httpResponse = new HttpHeadResponseDecorator(httpResponse);\n    }\n    AtomicBoolean isCompleted = new AtomicBoolean();\n    HandlerResultAsyncListener listener = new HandlerResultAsyncListener(isCompleted);\n    asyncContext.addListener(listener);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext, isCompleted);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "8d157cb5b54c8fc2af116ef62831ef35a4a95a65",
+      "startLine": 24,
+      "endLine": 28,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {\n    if (DispatcherType.ASYNC.equals(request.getDispatcherType())) {\n        Throwable ex = (Throwable) request.getAttribute(WRITE_ERROR_ATTRIBUTE_NAME);\n        throw new ServletException(\"Write publisher error\", ex);\n    }\n    AsyncContext asyncContext = request.startAsync();\n    asyncContext.setTimeout(-1);\n    ServerHttpRequest httpRequest;\n    try {\n        httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    } catch (URISyntaxException ex) {\n        if (logger.isWarnEnabled()) {\n            logger.warn(\"Invalid URL for incoming request: \" + ex.getMessage());\n        }\n        ((HttpServletResponse) response).setStatus(400);\n        asyncContext.complete();\n        return;\n    }\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    if (httpRequest.getMethod() == HttpMethod.HEAD) {\n        httpResponse = new HttpHeadResponseDecorator(httpResponse);\n    }\n    AtomicBoolean isCompleted = new AtomicBoolean();\n    HandlerResultAsyncListener listener = new HandlerResultAsyncListener(isCompleted);\n    asyncContext.addListener(listener);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext, isCompleted);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "0de36d2883124ef52ea1040a3e0022dcaa57f4e2",
+      "startLine": 14,
+      "endLine": 18,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {\n    if (DispatcherType.ASYNC.equals(request.getDispatcherType())) {\n        Throwable ex = (Throwable) request.getAttribute(WRITE_ERROR_ATTRIBUTE_NAME);\n        throw new ServletException(\"Write publisher error\", ex);\n    }\n    AsyncContext asyncContext = request.startAsync();\n    asyncContext.setTimeout(-1);\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    if (httpRequest.getMethod() == HttpMethod.HEAD) {\n        httpResponse = new HttpHeadResponseDecorator(httpResponse);\n    }\n    AtomicBoolean isCompleted = new AtomicBoolean();\n    HandlerResultAsyncListener listener = new HandlerResultAsyncListener(isCompleted);\n    asyncContext.addListener(listener);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext, isCompleted);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "40127bd9adde6f44963c47edd3ed57c623980c26",
+      "startLine": 14,
+      "endLine": 18,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {\n    if (DispatcherType.ASYNC.equals(request.getDispatcherType())) {\n        Throwable ex = (Throwable) request.getAttribute(WRITE_ERROR_ATTRIBUTE_NAME);\n        throw new ServletException(\"Write publisher error\", ex);\n    }\n    AsyncContext asyncContext = request.startAsync();\n    asyncContext.setTimeout(-1);\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    if (HttpMethod.HEAD.equals(httpRequest.getMethod())) {\n        httpResponse = new HttpHeadResponseDecorator(httpResponse);\n    }\n    AtomicBoolean isCompleted = new AtomicBoolean();\n    HandlerResultAsyncListener listener = new HandlerResultAsyncListener(isCompleted);\n    asyncContext.addListener(listener);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext, isCompleted);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "f05175586e32e660ff190311f0b102c2b3b3a398",
+      "startLine": 15,
+      "endLine": 19,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {\n    if (DispatcherType.ASYNC.equals(request.getDispatcherType())) {\n        Throwable ex = (Throwable) request.getAttribute(WRITE_ERROR_ATTRIBUTE_NAME);\n        Assert.notNull(ex, \"Unexpected async dispatch\");\n        throw new NestedServletException(\"Write publisher error\", ex);\n    }\n    AsyncContext asyncContext = request.startAsync();\n    asyncContext.setTimeout(-1);\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    if (HttpMethod.HEAD.equals(httpRequest.getMethod())) {\n        httpResponse = new HttpHeadResponseDecorator(httpResponse);\n    }\n    AtomicBoolean isCompleted = new AtomicBoolean();\n    HandlerResultAsyncListener listener = new HandlerResultAsyncListener(isCompleted);\n    asyncContext.addListener(listener);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext, isCompleted);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "6ee1af27c61c015461f79f95f1e4f89db911be0c",
+      "startLine": 10,
+      "endLine": 12,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    asyncContext.setTimeout(-1);\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    if (HttpMethod.HEAD.equals(httpRequest.getMethod())) {\n        httpResponse = new HttpHeadResponseDecorator(httpResponse);\n    }\n    asyncContext.addListener(ERROR_LISTENER);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "4f3db9b822bf9769d5f2be5e66f0eca3d7f74370",
+      "startLine": 7,
+      "endLine": 9,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    asyncContext.setTimeout(-1);\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    asyncContext.addListener(ERROR_LISTENER);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "e83fdaa2ddd9f5ace2ae2376b7da2427fc1ecd20",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    asyncContext.addListener(TIMEOUT_HANDLER);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "f716c8e9bc8ada04b4060e21680aca793e315cd0",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    asyncContext.addListener(subscriber);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "c0f2017262f8d3e784007d5e0134e696c1adfcf7",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    asyncContext.addListener(TIMEOUT_LISTENER);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "57d2fcef557882097e7fea4b603c437488546988",
+      "startLine": 6,
+      "endLine": 7,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    this.httpHandler.handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "a2aaa05592fb29d0fa61a69bc61ef35c235423f0",
+      "startLine": 6,
+      "endLine": 7,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    ServerHttpRequest httpRequest = createRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createResponse(((HttpServletResponse) response), asyncContext);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    getHttpHandler().handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "383375c35f12ff4aec67560b77e00f332b54a36c",
+      "startLine": 6,
+      "endLine": 7,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    ServerHttpRequest httpRequest = createServletServerHttpRequest(((HttpServletRequest) request), asyncContext);\n    ServerHttpResponse httpResponse = createServletServerHttpResponse(((HttpServletResponse) response), asyncContext);\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    getHttpHandler().handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "5a2906979816ce1268a8dfe56c5f0a89ad720b99",
+      "startLine": 6,
+      "endLine": 7,
+      "methodCode": "@Override\npublic void service(ServletRequest request, ServletResponse response) throws IOException {\n    AsyncContext asyncContext = request.startAsync();\n    ServerHttpRequest httpRequest = new ServletServerHttpRequest(((HttpServletRequest) request), asyncContext, getDataBufferFactory(), getBufferSize());\n    ServerHttpResponse httpResponse = new ServletServerHttpResponse(((HttpServletResponse) response), asyncContext, getDataBufferFactory(), getBufferSize());\n    HandlerResultSubscriber subscriber = new HandlerResultSubscriber(asyncContext);\n    getHttpHandler().handle(httpRequest, httpResponse).subscribe(subscriber);\n}"
+    },
+    {
+      "commit": "aea3a750189977ca231172db87408f03979bace6",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic void service(ServletRequest servletRequest, ServletResponse servletResponse) throws IOException {\n    AsyncContext asyncContext = servletRequest.startAsync();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(((HttpServletRequest) servletRequest), getDataBufferFactory(), getBufferSize());\n    ServletServerHttpResponse response = new ServletServerHttpResponse(((HttpServletResponse) servletResponse), getDataBufferFactory(), getBufferSize());\n    asyncContext.addListener(new EventHandlingAsyncListener(request, response));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    getHttpHandler().handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "b92d541ba0934052769d0bcf08fec7d8c44d2c2d",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\npublic void service(ServletRequest servletRequest, ServletResponse servletResponse) throws IOException {\n    ServletServerHttpRequest request = new ServletServerHttpRequest(((HttpServletRequest) servletRequest), getDataBufferFactory(), getBufferSize());\n    ServletServerHttpResponse response = new ServletServerHttpResponse(((HttpServletResponse) servletResponse), getDataBufferFactory(), getBufferSize());\n    AsyncContext asyncContext = servletRequest.startAsync();\n    asyncContext.addListener(new EventHandlingAsyncListener(request, response));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    getHttpHandler().handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "25e7cd577d6855bd56c463ad0ce4ae20bf33d541",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext asyncContext = servletRequest.startAsync();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, this.dataBufferFactory, this.bufferSize);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, this.bufferSize);\n    asyncContext.addListener(new EventHandlingAsyncListener(request, response));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "c1e5e3a87e4f0f8296a9da7907066b9ba5733e0d",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext asyncContext = servletRequest.startAsync();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, this.dataBufferFactory, this.bufferSize);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, this.bufferSize);\n    asyncContext.addListener(new ErrorHandlingAsyncListener(request, response));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "7e9437738272a31e1d764972291de42936194ab1",
+      "startLine": 6,
+      "endLine": 8,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext asyncContext = servletRequest.startAsync();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, this.dataBufferFactory, this.bufferSize);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, this.bufferSize);\n    asyncContext.addListener(new HandlerAsyncEvent(request, response));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "5d1b5426982332cbbd5671b00fbc4ded5d69a656",
+      "startLine": 6,
+      "endLine": 7,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext asyncContext = servletRequest.startAsync();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, this.dataBufferFactory, this.bufferSize);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, this.bufferSize);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "56e50d6d6811d4f921f7e79f4ae8ce0823bd6d25",
+      "startLine": 6,
+      "endLine": 7,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext asyncContext = servletRequest.startAsync();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, this.dataBufferFactory, this.bufferSize);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, this.bufferSize);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "f82f17d7f762bb0fd10cd813c334ac9a0b62355e",
+      "startLine": 8,
+      "endLine": 9,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext asyncContext = servletRequest.startAsync();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, this.dataBufferFactory, this.bufferSize);\n    request.registerListener();\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, this.bufferSize);\n    response.registerListener();\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "e64907eed8b4accdda53c6be0145087017eae820",
+      "startLine": 13,
+      "endLine": 14,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext asyncContext = servletRequest.startAsync();\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(servletRequest.getInputStream(), this.dataBufferFactory, this.bufferSize);\n    requestBody.registerListener();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    ResponseBodyProcessor responseBody = new ResponseBodyProcessor(servletResponse.getOutputStream(), this.bufferSize);\n    responseBody.registerListener();\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, publisher -> Mono.from(subscriber -> {\n        publisher.subscribe(responseBody);\n        responseBody.subscribe(subscriber);\n    }));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(asyncContext);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "b0de99bc8cb0a2e20c49e7f627139204bfc13a13",
+      "startLine": 14,
+      "endLine": 15,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(synchronizer, this.dataBufferFactory, this.bufferSize);\n    requestBody.registerListener();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    ResponseBodyProcessor responseBody = new ResponseBodyProcessor(synchronizer, this.bufferSize);\n    responseBody.registerListener();\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, publisher -> Mono.from(subscriber -> {\n        publisher.subscribe(responseBody);\n        responseBody.subscribe(subscriber);\n    }));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "52325a21ffb76d30d8f9253934fec621f4e3f121",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(synchronizer, this.dataBufferFactory, this.bufferSize);\n    requestBody.registerListener();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    ResponseBodySubscriber responseBody = new ResponseBodySubscriber(synchronizer, this.bufferSize);\n    responseBody.registerListener();\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, this.dataBufferFactory, publisher -> Mono.from(subscriber -> publisher.subscribe(responseBody)));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "d36286c7d1b5ffd13d847e3b97f4da2d8df66d74",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(synchronizer, dataBufferFactory, bufferSize);\n    requestBody.registerListener();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    ResponseBodySubscriber responseBody = new ResponseBodySubscriber(synchronizer, bufferSize);\n    responseBody.registerListener();\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, dataBufferFactory, publisher -> Mono.from(subscriber -> publisher.subscribe(responseBody)));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "35e511b03fd00c96f00f48eafcfd0ae16e888e16",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(synchronizer, allocator, bufferSize);\n    requestBody.registerListener();\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    ResponseBodySubscriber responseBody = new ResponseBodySubscriber(synchronizer, bufferSize);\n    responseBody.registerListener();\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, allocator, publisher -> Mono.from(subscriber -> publisher.subscribe(responseBody)));\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "7f786ce4d7a8b51a02133d7db404d9f038d5a927",
+      "startLine": 7,
+      "endLine": 8,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    ServletServerHttpRequest request = new ServletServerHttpRequest(synchronizer, this.allocator, this.bufferSize);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(synchronizer, this.bufferSize, this.allocator);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "361707c448f41612b018f2e50452dfb185fbbd5e",
+      "startLine": 7,
+      "endLine": 8,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    ServletServerHttpRequest request = new ServletServerHttpRequest(synchronizer, this.allocator, this.bufferSize);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(synchronizer, this.bufferSize);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "51a90465d40168ed27e9ea93220b7e6f35bc203b",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(synchronizer, allocator, BUFFER_SIZE);\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    servletRequest.getInputStream().setReadListener(requestBody);\n    ResponseBodySubscriber responseBodySubscriber = new ResponseBodySubscriber(synchronizer);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, publisher -> Mono.from(subscriber -> publisher.subscribe(responseBodySubscriber)));\n    servletResponse.getOutputStream().setWriteListener(responseBodySubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, response);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "225179bc6f0b4c705a869a03b81df5f41345b6f7",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(synchronizer, allocator, BUFFER_SIZE);\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    servletRequest.getInputStream().setReadListener(requestBody);\n    ResponseBodySubscriber responseBodySubscriber = new ResponseBodySubscriber(synchronizer, allocator);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, publisher -> Mono.from(subscriber -> publisher.subscribe(responseBodySubscriber)));\n    servletResponse.getOutputStream().setWriteListener(responseBodySubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, response);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "8ef7e2ff77f913773e30b1463d4657368db700e5",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(synchronizer, BUFFER_SIZE);\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    servletRequest.getInputStream().setReadListener(requestBody);\n    ResponseBodySubscriber responseBodySubscriber = new ResponseBodySubscriber(synchronizer);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, publisher -> Mono.from(subscriber -> publisher.subscribe(responseBodySubscriber)));\n    servletResponse.getOutputStream().setWriteListener(responseBodySubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, response);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "0aade73c88d5bbde5e6f7383560eeae017045bae",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {\n    AsyncContext context = servletRequest.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    RequestBodyPublisher requestBody = new RequestBodyPublisher(synchronizer, BUFFER_SIZE);\n    ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest, requestBody);\n    servletRequest.getInputStream().setReadListener(requestBody);\n    ResponseBodySubscriber responseBodySubscriber = new ResponseBodySubscriber(synchronizer);\n    ServletServerHttpResponse response = new ServletServerHttpResponse(servletResponse, publisher -> subscriber -> publisher.subscribe(responseBodySubscriber));\n    servletResponse.getOutputStream().setWriteListener(responseBodySubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, response);\n    this.handler.handle(request, response).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "da98becf72fbeef836dba366431be2a652e5e001",
+      "startLine": 9,
+      "endLine": 10,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    ServletAsyncContextSynchronizer synchronizer = new ServletAsyncContextSynchronizer(context);\n    ServletServerHttpRequest httpRequest = new ServletServerHttpRequest(request, synchronizer);\n    request.getInputStream().setReadListener(httpRequest.getReadListener());\n    ServletServerHttpResponse httpResponse = new ServletServerHttpResponse(response, synchronizer);\n    response.getOutputStream().setWriteListener(httpResponse.getWriteListener());\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, httpResponse);\n    this.handler.handle(httpRequest, httpResponse).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "df80ffbf2814c8f0a95bce9095921d53f2786a11",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    AsyncContextSynchronizer synchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(synchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    Servlet31ServerHttpRequest httpRequest = new Servlet31ServerHttpRequest(request, requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(synchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    Servlet31ServerHttpResponse httpResponse = new Servlet31ServerHttpResponse(response, responseSubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, httpResponse);\n    this.handler.handle(httpRequest, httpResponse).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "e9e4bcdc599634ae8879815a33a8b4e41b909f61",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    AsyncContextSynchronizer synchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(synchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    Servlet31ServerHttpRequest httpRequest = new Servlet31ServerHttpRequest(request, requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(synchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    Servlet31ServerHttpResponse httpResponse = new Servlet31ServerHttpResponse(response, responseSubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, httpResponse);\n    this.handler.handle(httpRequest, httpResponse).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "81867fa4237643ca3eae24a8f085bc4b5f9443b3",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    AsyncContextSynchronizer synchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(synchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    ServletServerHttpRequest httpRequest = new ServletServerHttpRequest(request, requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(synchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    ServletServerHttpResponse httpResponse = new ServletServerHttpResponse(response, responseSubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, httpResponse);\n    this.handler.handle(httpRequest, httpResponse).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "c0dff3d2bb2277429f4e387d18deb75b0797a375",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    AsyncContextSynchronizer synchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(synchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    ServletServerHttpRequest httpRequest = new ServletServerHttpRequest(request, requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(synchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    ServletServerHttpResponse httpResponse = new ServletServerHttpResponse(response, responseSubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(synchronizer, httpResponse);\n    this.handler.handle(httpRequest, httpResponse).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "202825554c022e4262fe3bd20a34faf01ab9d620",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    AsyncContextSynchronizer contextSynchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(contextSynchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    ServletServerHttpRequest httpRequest = new ServletServerHttpRequest(request, requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(contextSynchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    ServletServerHttpResponse httpResponse = new ServletServerHttpResponse(response, responseSubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(contextSynchronizer, httpResponse);\n    this.handler.handle(httpRequest, httpResponse).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "f020a1add19b3761f2fd8e01fe5e96ce1b8d45c7",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    AsyncContextSynchronizer contextSynchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(contextSynchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    ServletServerHttpRequest httpRequest = new ServletServerHttpRequest(request, requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(contextSynchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    ServletServerHttpResponse httpResponse = new ServletServerHttpResponse(response, responseSubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(contextSynchronizer);\n    this.handler.handle(httpRequest, httpResponse).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "2cb32a0fd69c528d55d3d53ae98bf886dcb4a5f9",
+      "startLine": 11,
+      "endLine": 12,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    AsyncContextSynchronizer contextSynchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(contextSynchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    ServletServerHttpRequest httpRequest = new ServletServerHttpRequest(request, requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(contextSynchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    ServletServerHttpResponse httpResponse = new ServletServerHttpResponse(response, responseSubscriber);\n    HandlerResultSubscriber resultSubscriber = new HandlerResultSubscriber(contextSynchronizer);\n    this.handler.handle(httpRequest, httpResponse).subscribe(resultSubscriber);\n}"
+    },
+    {
+      "commit": "74a29ac146280a399d88680d187c8dbeb2b85328",
+      "startLine": 10,
+      "endLine": 10,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    final AsyncContextSynchronizer contextSynchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(contextSynchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(contextSynchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    Publisher<byte[]> responsePublisher = this.handler.handle(requestPublisher);\n    responsePublisher.subscribe(responseSubscriber);\n}"
+    },
+    {
+      "commit": "f518d76a771def7289ac4f85ddc66812f428a16f",
+      "startLine": 10,
+      "endLine": 10,
+      "methodCode": "@Override\nprotected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n    AsyncContext context = request.startAsync();\n    final AsyncContextSynchronizer contextSynchronizer = new AsyncContextSynchronizer(context);\n    RequestBodyPublisher requestPublisher = new RequestBodyPublisher(contextSynchronizer, BUFFER_SIZE);\n    request.getInputStream().setReadListener(requestPublisher);\n    ResponseBodySubscriber responseSubscriber = new ResponseBodySubscriber(contextSynchronizer);\n    response.getOutputStream().setWriteListener(responseSubscriber);\n    Publisher<byte[]> responsePublisher = this.handler.handle(requestPublisher);\n    responsePublisher.subscribe(responseSubscriber);\n}"
+    }
+  ]
+}

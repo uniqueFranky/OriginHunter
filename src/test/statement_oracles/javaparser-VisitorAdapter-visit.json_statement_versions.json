@@ -1,0 +1,190 @@
+{
+  "statementVersions": [
+    {
+      "commit": "13dacb72ff79db384dd5a93b769d36957911ebc7",
+      "startLine": 8,
+      "endLine": 12,
+      "methodCode": "@Override\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getReceiverParameter().ifPresent(l -> l.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "27a1a23d96cf8a1d4b34cdd28f10730d517673e2",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "@Override\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getReceiverParameter().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "255d26470311d9624b12bac2301d589fa2eefb99",
+      "startLine": 5,
+      "endLine": 12,
+      "methodCode": "@Override\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getReceiverParameter().ifPresent(l -> l.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "c9f2a4fe27453e09a268730cd0ab76a42016475f",
+      "startLine": 5,
+      "endLine": 11,
+      "methodCode": "@Override\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "a0950452a16fa9ed5e16ec8bd0750617f1dae35d",
+      "startLine": 8,
+      "endLine": 14,
+      "methodCode": "@Override\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "826d969210baf896f9a9ce785de9e64b58960604",
+      "startLine": 7,
+      "endLine": 13,
+      "methodCode": "@Override\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "2769f2497af191da82e8718bfd0db65d64813e61",
+      "startLine": 6,
+      "endLine": 12,
+      "methodCode": "@Override\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "d72a0255a3242f49bf70c228533df9ea979f2b03",
+      "startLine": 5,
+      "endLine": 11,
+      "methodCode": "@Override\n@Generated(\"com.github.javaparser.generator.core.visitor.VoidVisitorAdapterGenerator\")\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "6084184a80dcf7651411157cc0f40fa4b7e750eb",
+      "startLine": 4,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "f70eef166e4afd92471079a75ba5828049fca500",
+      "startLine": 4,
+      "endLine": 10,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    n.getBody().ifPresent(l -> l.accept(this, arg));\n    n.getName().accept(this, arg);\n    n.getParameters().forEach(p -> p.accept(this, arg));\n    n.getThrownExceptions().forEach(p -> p.accept(this, arg));\n    n.getType().accept(this, arg);\n    n.getTypeParameters().forEach(p -> p.accept(this, arg));\n    n.getAnnotations().forEach(p -> p.accept(this, arg));\n    n.getComment().ifPresent(l -> l.accept(this, arg));\n}"
+    },
+    {
+      "commit": "a8f6c6d62fcbdc3506f19f11a7b89307cbf4c515",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrownExceptions() != null) {\n        for (final ReferenceType name : n.getThrownExceptions()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody().isPresent()) {\n        n.getBody().get().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "d7828ee5f27be2f10dda026372898126aeae24b7",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    n.getName().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrownExceptions() != null) {\n        for (final ReferenceType<?> name : n.getThrownExceptions()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody().isPresent()) {\n        n.getBody().get().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "e394062ae2f12c47b357c59884113862c82a21fb",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getElementType().accept(this, arg);\n    n.getName().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrownExceptions() != null) {\n        for (final ReferenceType<?> name : n.getThrownExceptions()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody().isPresent()) {\n        n.getBody().get().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "69c6a76c1b3b7936f35e64f61702a91b2a7b0a57",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getElementType().accept(this, arg);\n    n.getName().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrownTypes() != null) {\n        for (final ReferenceType<?> name : n.getThrownTypes()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody().isPresent()) {\n        n.getBody().get().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "008b82d149685d6702a060fbecafc8fc2e10b459",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getElementType().accept(this, arg);\n    n.getName().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType<?> name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody().isPresent()) {\n        n.getBody().get().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "02b3c5e03c44a9373c3a9d323c3425bdffade688",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getElementType().accept(this, arg);\n    n.getName().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "9f1113b029cf7fcb6f468a85a7eae0e894415a4d",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getElementType().accept(this, arg);\n    n.getNameExpr().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "515a9392928c14a60dc9dfa42a98198a4d877534",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getElementType().accept(this, arg);\n    n.getNameExpr().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    n.getBody().ifPresent(b -> b.accept(this, arg));\n}"
+    },
+    {
+      "commit": "95245a501059ef998be5052adb5930d744533731",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getElementType().accept(this, arg);\n    n.getNameExpr().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "ea6d17cb087d5b7b0b0a8a2ad4dad35fce4ae144",
+      "startLine": 3,
+      "endLine": 16,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    n.getNameExpr().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "bb5ff94cff01665ddf58e3ca9a1369492340fe4b",
+      "startLine": 3,
+      "endLine": 19,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    visitAnnotations(n, arg);\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    n.getNameExpr().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "ef5f06ebff5e0beeb05f611a5f107452afb51457",
+      "startLine": 3,
+      "endLine": 23,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (final AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    n.getNameExpr().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "55af70e70d0124b8319f3e1d1809fafbebc68e7d",
+      "startLine": 3,
+      "endLine": 22,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (final AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final ReferenceType name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "df6c84c0a13f505da7fd0f64626fb5d18fd49619",
+      "startLine": 3,
+      "endLine": 22,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (final AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final NameExpr name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "c992b2206b0882195e8cc68ae9d55c43ec015111",
+      "startLine": 3,
+      "endLine": 22,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (final AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final NameExpr name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "0bf897c19251e2d4ada7611e47176fbbef1750ad",
+      "startLine": 3,
+      "endLine": 22,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (final AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final NameExpr name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "40dc8d37c07dc624780d215bd1ff3e00878fe9c5",
+      "startLine": 3,
+      "endLine": 22,
+      "methodCode": "@Override\npublic void visit(final MethodDeclaration n, final A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (final AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (final TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (final Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (final NameExpr name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "5202f0f5f664b45b792d4910882cec2580e9045c",
+      "startLine": 3,
+      "endLine": 22,
+      "methodCode": "@Override\npublic void visit(MethodDeclaration n, A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (NameExpr name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "d3db3f06220a1d0091a5cda602f13dcdc8db3040",
+      "startLine": 2,
+      "endLine": 21,
+      "methodCode": "public void visit(MethodDeclaration n, A arg) {\n    visitComment(n.getComment(), arg);\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (NameExpr name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "43e6f7bfbcd77b61232cc9f3e166795e47bad04b",
+      "startLine": 2,
+      "endLine": 20,
+      "methodCode": "public void visit(MethodDeclaration n, A arg) {\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (NameExpr name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    },
+    {
+      "commit": "2d4decafdf373c4d1cabd9c6f8a97707c72069ff",
+      "startLine": 2,
+      "endLine": 20,
+      "methodCode": "public void visit(MethodDeclaration n, A arg) {\n    if (n.getJavaDoc() != null) {\n        n.getJavaDoc().accept(this, arg);\n    }\n    if (n.getAnnotations() != null) {\n        for (AnnotationExpr a : n.getAnnotations()) {\n            a.accept(this, arg);\n        }\n    }\n    if (n.getTypeParameters() != null) {\n        for (TypeParameter t : n.getTypeParameters()) {\n            t.accept(this, arg);\n        }\n    }\n    n.getType().accept(this, arg);\n    if (n.getParameters() != null) {\n        for (Parameter p : n.getParameters()) {\n            p.accept(this, arg);\n        }\n    }\n    if (n.getThrows() != null) {\n        for (NameExpr name : n.getThrows()) {\n            name.accept(this, arg);\n        }\n    }\n    if (n.getBody() != null) {\n        n.getBody().accept(this, arg);\n    }\n}"
+    }
+  ]
+}

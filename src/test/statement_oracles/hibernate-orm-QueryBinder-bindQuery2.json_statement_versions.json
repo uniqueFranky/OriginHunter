@@ -1,0 +1,82 @@
+{
+  "statementVersions": [
+    {
+      "commit": "9caca0ce37d5a2763d476c6fa2471addcca710ca",
+      "startLine": 8,
+      "endLine": 14,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, MetadataBuildingContext context) {\n    if (queryAnn == null) {\n        return;\n    }\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinitionBuilder().setName(queryAnn.name()).setQuery(queryAnn.query()).setCacheable(queryAnn.cacheable()).setCacheRegion(BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion()).setTimeout(queryAnn.timeout() < 0 ? null : queryAnn.timeout()).setFetchSize(queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize()).setFlushMode(flushMode).setCacheMode(getCacheMode(queryAnn.cacheMode())).setReadOnly(queryAnn.readOnly()).setComment(BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment()).setParameterTypes(null).createNamedQueryDefinition();\n    context.getMetadataCollector().addNamedQuery(query);\n    if (LOG.isDebugEnabled()) {\n        LOG.debugf(\"Binding named query: %s => %s\", query.getName(), query.getQueryString());\n    }\n}"
+    },
+    {
+      "commit": "3edb72db4844c10aa8490472c4b1af05d75076ab",
+      "startLine": 7,
+      "endLine": 13,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinitionBuilder().setName(queryAnn.name()).setQuery(queryAnn.query()).setCacheable(queryAnn.cacheable()).setCacheRegion(BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion()).setTimeout(queryAnn.timeout() < 0 ? null : queryAnn.timeout()).setFetchSize(queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize()).setFlushMode(flushMode).setCacheMode(getCacheMode(queryAnn.cacheMode())).setReadOnly(queryAnn.readOnly()).setComment(BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment()).setParameterTypes(null).createNamedQueryDefinition();\n    mappings.addQuery(query.getName(), query);\n    if (LOG.isDebugEnabled()) {\n        LOG.debugf(\"Binding named query: %s => %s\", query.getName(), query.getQueryString());\n    }\n}"
+    },
+    {
+      "commit": "129c0f13482b99e2705f0e234b6bc0572a95c271",
+      "startLine": 7,
+      "endLine": 13,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.name(), queryAnn.query(), queryAnn.cacheable(), BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(query.getName(), query);\n    if (LOG.isDebugEnabled()) {\n        LOG.debugf(\"Binding named query: %s => %s\", query.getName(), query.getQueryString());\n    }\n}"
+    },
+    {
+      "commit": "814b51493375bb781713a992353b6babba12dd31",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name()))\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.name(), queryAnn.query(), queryAnn.cacheable(), BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(query.getName(), query);\n    LOG.debugf(\"Binding named query: %s => %s\", query.getName(), query.getQueryString());\n}"
+    },
+    {
+      "commit": "ad17f89c4c29f0327c843cf5265e156d65743ab1",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name()))\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    LOG.debugf(\"Binding named query: %s => %s\", queryAnn.name(), queryAnn.query());\n}"
+    },
+    {
+      "commit": "8c806d361d63764e8523006944dde52aff70532c",
+      "startLine": 6,
+      "endLine": 10,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name()))\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    LOG.bindingNamedQuery(queryAnn.name(), queryAnn.query());\n}"
+    },
+    {
+      "commit": "a9b1425f3f07021dae556e710b2bdfdc3812661b",
+      "startLine": 7,
+      "endLine": 11,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    LOG.bindingNamedQuery(queryAnn.name(), queryAnn.query());\n}"
+    },
+    {
+      "commit": "34c2839dccef33a8f3abb4eaf3192c1e1d9e1814",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    if (log.isInfoEnabled())\n        log.info(\"Binding named query: \" + queryAnn.name() + \" => \" + queryAnn.query());\n}"
+    },
+    {
+      "commit": "7419fc298dab9afe82fbdbb8b64854fa37f60817",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isEmptyAnnotationValue(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isEmptyAnnotationValue(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isEmptyAnnotationValue(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    if (log.isInfoEnabled())\n        log.info(\"Binding named query: \" + queryAnn.name() + \" => \" + queryAnn.query());\n}"
+    },
+    {
+      "commit": "f0f82e4f1ba7416ef010d5d71914a2bbde7fc22f",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, Mappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isDefault(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isDefault(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isDefault(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    if (log.isInfoEnabled())\n        log.info(\"Binding named query: \" + queryAnn.name() + \" => \" + queryAnn.query());\n}"
+    },
+    {
+      "commit": "1ca2bc19a5f667e10f9a2c2b10320b9c40921563",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, ExtendedMappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isDefault(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isDefault(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isDefault(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    if (log.isInfoEnabled())\n        log.info(\"Binding named query: \" + queryAnn.name() + \" => \" + queryAnn.query());\n}"
+    },
+    {
+      "commit": "9d7a03a5f7f03bc803d897baa590861154b39f5e",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, ExtendedMappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isDefault(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isDefault(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isDefault(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    if (log.isInfoEnabled())\n        log.info(\"Binding named query: \" + queryAnn.name() + \" => \" + queryAnn.query());\n}"
+    },
+    {
+      "commit": "7337743c93574823424ed6c399cfcf6bd75614f8",
+      "startLine": 7,
+      "endLine": 12,
+      "methodCode": "public static void bindQuery(org.hibernate.annotations.NamedQuery queryAnn, ExtendedMappings mappings) {\n    if (queryAnn == null)\n        return;\n    if (BinderHelper.isDefault(queryAnn.name())) {\n        throw new AnnotationException(\"A named query must have a name when used in class or package level\");\n    }\n    FlushMode flushMode;\n    flushMode = getFlushMode(queryAnn.flushMode());\n    NamedQueryDefinition query = new NamedQueryDefinition(queryAnn.query(), queryAnn.cacheable(), BinderHelper.isDefault(queryAnn.cacheRegion()) ? null : queryAnn.cacheRegion(), queryAnn.timeout() < 0 ? null : queryAnn.timeout(), queryAnn.fetchSize() < 0 ? null : queryAnn.fetchSize(), flushMode, getCacheMode(queryAnn.cacheMode()), queryAnn.readOnly(), BinderHelper.isDefault(queryAnn.comment()) ? null : queryAnn.comment(), null);\n    mappings.addQuery(queryAnn.name(), query);\n    if (log.isInfoEnabled())\n        log.info(\"Binding named query: \" + queryAnn.name() + \" => \" + queryAnn.query());\n}"
+    }
+  ]
+}

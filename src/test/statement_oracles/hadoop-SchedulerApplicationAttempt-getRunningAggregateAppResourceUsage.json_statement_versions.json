@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "3aeaafecb823ef6c175ea5d0d9cb726faacaf32d",
+      "startLine": 4,
+      "endLine": 13,
+      "methodCode": "private AggregateAppResourceUsage getRunningAggregateAppResourceUsage() {\n    long currentTimeMillis = System.currentTimeMillis();\n    if ((currentTimeMillis - lastMemoryAggregateAllocationUpdateTime) > MEM_AGGREGATE_ALLOCATION_CACHE_MSECS) {\n        Map<String, Long> resourceSecondsMap = new HashMap<>();\n        for (RMContainer rmContainer : this.liveContainers.values()) {\n            long usedMillis = currentTimeMillis - rmContainer.getCreationTime();\n            Resource resource = rmContainer.getContainer().getResource();\n            for (ResourceInformation entry : resource.getResources()) {\n                long value = RMServerUtils.getOrDefault(resourceSecondsMap, entry.getName(), 0L);\n                value += entry.getValue() * usedMillis / DateUtils.MILLIS_PER_SECOND;\n                resourceSecondsMap.put(entry.getName(), value);\n            }\n        }\n        lastMemoryAggregateAllocationUpdateTime = currentTimeMillis;\n        lastResourceSecondsMap = resourceSecondsMap;\n    }\n    return new AggregateAppResourceUsage(lastResourceSecondsMap);\n}"
+    },
+    {
+      "commit": "dae65f3bef8ffa34d02a37041f1dfdfeeee91845",
+      "startLine": 4,
+      "endLine": 13,
+      "methodCode": "private AggregateAppResourceUsage getRunningAggregateAppResourceUsage() {\n    long currentTimeMillis = System.currentTimeMillis();\n    if ((currentTimeMillis - lastMemoryAggregateAllocationUpdateTime) > MEM_AGGREGATE_ALLOCATION_CACHE_MSECS) {\n        Map<String, Long> resourceSecondsMap = new HashMap<>();\n        for (RMContainer rmContainer : this.liveContainers.values()) {\n            long usedMillis = currentTimeMillis - rmContainer.getCreationTime();\n            Resource resource = rmContainer.getContainer().getResource();\n            for (Map.Entry<String, ResourceInformation> entry : resource.getResources().entrySet()) {\n                long value = RMServerUtils.getOrDefault(resourceSecondsMap, entry.getKey(), 0L);\n                value += entry.getValue().getValue() * usedMillis / DateUtils.MILLIS_PER_SECOND;\n                resourceSecondsMap.put(entry.getKey(), value);\n            }\n        }\n        lastMemoryAggregateAllocationUpdateTime = currentTimeMillis;\n        lastResourceSecondsMap = resourceSecondsMap;\n    }\n    return new AggregateAppResourceUsage(lastResourceSecondsMap);\n}"
+    },
+    {
+      "commit": "b8a30f2f170ffbd590e7366c3c944ab4919e40df",
+      "startLine": 4,
+      "endLine": 11,
+      "methodCode": "private AggregateAppResourceUsage getRunningAggregateAppResourceUsage() {\n    long currentTimeMillis = System.currentTimeMillis();\n    if ((currentTimeMillis - lastMemoryAggregateAllocationUpdateTime) > MEM_AGGREGATE_ALLOCATION_CACHE_MSECS) {\n        long memorySeconds = 0;\n        long vcoreSeconds = 0;\n        for (RMContainer rmContainer : this.liveContainers.values()) {\n            long usedMillis = currentTimeMillis - rmContainer.getCreationTime();\n            Resource resource = rmContainer.getContainer().getResource();\n            memorySeconds += resource.getMemorySize() * usedMillis / DateUtils.MILLIS_PER_SECOND;\n            vcoreSeconds += resource.getVirtualCores() * usedMillis / DateUtils.MILLIS_PER_SECOND;\n        }\n        lastMemoryAggregateAllocationUpdateTime = currentTimeMillis;\n        lastMemorySeconds = memorySeconds;\n        lastVcoreSeconds = vcoreSeconds;\n    }\n    return new AggregateAppResourceUsage(lastMemorySeconds, lastVcoreSeconds);\n}"
+    },
+    {
+      "commit": "42f90ab885d9693fcc1e52f9637f7de4111110ae",
+      "startLine": 4,
+      "endLine": 11,
+      "methodCode": "synchronized AggregateAppResourceUsage getRunningAggregateAppResourceUsage() {\n    long currentTimeMillis = System.currentTimeMillis();\n    if ((currentTimeMillis - lastMemoryAggregateAllocationUpdateTime) > MEM_AGGREGATE_ALLOCATION_CACHE_MSECS) {\n        long memorySeconds = 0;\n        long vcoreSeconds = 0;\n        for (RMContainer rmContainer : this.liveContainers.values()) {\n            long usedMillis = currentTimeMillis - rmContainer.getCreationTime();\n            Resource resource = rmContainer.getContainer().getResource();\n            memorySeconds += resource.getMemorySize() * usedMillis / DateUtils.MILLIS_PER_SECOND;\n            vcoreSeconds += resource.getVirtualCores() * usedMillis / DateUtils.MILLIS_PER_SECOND;\n        }\n        lastMemoryAggregateAllocationUpdateTime = currentTimeMillis;\n        lastMemorySeconds = memorySeconds;\n        lastVcoreSeconds = vcoreSeconds;\n    }\n    return new AggregateAppResourceUsage(lastMemorySeconds, lastVcoreSeconds);\n}"
+    },
+    {
+      "commit": "83be3ad44484bf8a24cb90de4b9c26ab59d226a8",
+      "startLine": 4,
+      "endLine": 11,
+      "methodCode": "synchronized AggregateAppResourceUsage getRunningAggregateAppResourceUsage() {\n    long currentTimeMillis = System.currentTimeMillis();\n    if ((currentTimeMillis - lastMemoryAggregateAllocationUpdateTime) > MEM_AGGREGATE_ALLOCATION_CACHE_MSECS) {\n        long memorySeconds = 0;\n        long vcoreSeconds = 0;\n        for (RMContainer rmContainer : this.liveContainers.values()) {\n            long usedMillis = currentTimeMillis - rmContainer.getCreationTime();\n            Resource resource = rmContainer.getContainer().getResource();\n            memorySeconds += resource.getMemory() * usedMillis / DateUtils.MILLIS_PER_SECOND;\n            vcoreSeconds += resource.getVirtualCores() * usedMillis / DateUtils.MILLIS_PER_SECOND;\n        }\n        lastMemoryAggregateAllocationUpdateTime = currentTimeMillis;\n        lastMemorySeconds = memorySeconds;\n        lastVcoreSeconds = vcoreSeconds;\n    }\n    return new AggregateAppResourceUsage(lastMemorySeconds, lastVcoreSeconds);\n}"
+    }
+  ]
+}

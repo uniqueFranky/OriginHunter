@@ -1,0 +1,34 @@
+{
+  "statementVersions": [
+    {
+      "commit": "4bc732153e83b9490d6d94c2e27ea2f6ac9dc10c",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "public static Object notifyVerificationStarted(List<VerificationStartedListener> listeners, MockingDetails originalMockingDetails) {\n    if (listeners.isEmpty()) {\n        return originalMockingDetails.getMock();\n    }\n    VerificationStartedEvent event = new Event(originalMockingDetails);\n    for (VerificationStartedListener listener : listeners) {\n        listener.onVerificationStarted(event);\n    }\n    return event.getMock();\n}"
+    },
+    {
+      "commit": "bf9524388ba5fc8f3350399a65c0ccd31442f730",
+      "startLine": 5,
+      "endLine": 9,
+      "methodCode": "public static Object notifyVerificationStarted(List<VerificationStartedListener> listeners, MockitoMock originalMock) {\n    if (listeners.isEmpty()) {\n        return originalMock.getMock();\n    }\n    VerificationStartedEvent event = new Event(originalMock);\n    for (VerificationStartedListener listener : listeners) {\n        listener.onVerificationStarted(event);\n    }\n    return event.getMock();\n}"
+    },
+    {
+      "commit": "83f3ba42f486ca9648e73ea7fafbe1641911c575",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "public static Object notifyVerificationStarted(List<VerificationStartedListener> listeners, Object mock) {\n    if (listeners.isEmpty()) {\n        return mock;\n    }\n    VerificationStartedEvent event = new Event();\n    event.setMock(mock);\n    for (VerificationStartedListener listener : listeners) {\n        listener.onVerificationStarted(event);\n    }\n    return event.getMock();\n}"
+    },
+    {
+      "commit": "183ab9d97658ddb3342c60fc6611bcad5aa6d69d",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "public static Object notifyVerificationStarted(List<VerificationStartedListener> listeners, Object mock) {\n    if (listeners.isEmpty()) {\n        return mock;\n    }\n    VerificationStartedEvent event = new DefaultVerificationStartedEvent();\n    event.setMock(mock);\n    for (VerificationStartedListener listener : listeners) {\n        listener.onVerificationStarted(event);\n    }\n    return event.getMock();\n}"
+    },
+    {
+      "commit": "1f9b4f3de3af9f29e2123e74c5f6c036bb94d2aa",
+      "startLine": 5,
+      "endLine": 10,
+      "methodCode": "public static Object notifyVerificationStarted(List<VerificationStartedListener> listeners, Object mock) {\n    if (listeners.isEmpty()) {\n        return mock;\n    }\n    VerificationStartedEvent event = new DefaultVerificationStartedEvent();\n    event.setMock(mock);\n    for (VerificationStartedListener listener : listeners) {\n        listener.onVerificationStarted(event);\n    }\n    return event.getMock();\n}"
+    }
+  ]
+}

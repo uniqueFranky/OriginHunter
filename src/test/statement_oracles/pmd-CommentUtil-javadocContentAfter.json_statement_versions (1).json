@@ -1,0 +1,52 @@
+{
+  "statementVersions": [
+    {
+      "commit": "7221903f73dff36842abe6a024d2090021117fe1",
+      "startLine": 6,
+      "endLine": 19,
+      "methodCode": "@Deprecated\npublic static String javadocContentAfter(String text, int position) {\n    if (text == null || position > text.length()) {\n        return null;\n    }\n    int endPos = text.indexOf('\\n', position);\n    if (endPos < 0) {\n        endPos = text.length();\n    }\n    if (StringUtils.isNotBlank(text.substring(position, endPos))) {\n        return text.substring(position, endPos).trim();\n    }\n    if (text.indexOf('@', endPos) >= 0) {\n        return null;\n    }\n    int nextEndPos = text.indexOf('\\n', endPos + 1);\n    if (StringUtils.isNotBlank(text.substring(endPos, nextEndPos))) {\n        return text.substring(endPos, nextEndPos).trim();\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "b5cb2bbb854e22783baf7227b2c3bf739e072461",
+      "startLine": 5,
+      "endLine": 18,
+      "methodCode": "public static String javadocContentAfter(String text, int position) {\n    if (text == null || position > text.length()) {\n        return null;\n    }\n    int endPos = text.indexOf('\\n', position);\n    if (endPos < 0) {\n        endPos = text.length();\n    }\n    if (StringUtils.isNotBlank(text.substring(position, endPos))) {\n        return text.substring(position, endPos).trim();\n    }\n    if (text.indexOf('@', endPos) >= 0) {\n        return null;\n    }\n    int nextEndPos = text.indexOf('\\n', endPos + 1);\n    if (StringUtils.isNotBlank(text.substring(endPos, nextEndPos))) {\n        return text.substring(endPos, nextEndPos).trim();\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "94ed1e8a863df684eca95ebb4a5df56c0c9824da",
+      "startLine": 2,
+      "endLine": 15,
+      "methodCode": "public static String javadocContentAfter(String text, int position) {\n    int endPos = text.indexOf('\\n', position);\n    if (endPos < 0) {\n        return null;\n    }\n    if (StringUtils.isNotBlank(text.substring(position, endPos))) {\n        return text.substring(position, endPos).trim();\n    }\n    if (text.indexOf('@', endPos) >= 0) {\n        return null;\n    }\n    int nextEndPos = text.indexOf('\\n', endPos + 1);\n    if (StringUtils.isNotBlank(text.substring(endPos, nextEndPos))) {\n        return text.substring(endPos, nextEndPos).trim();\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "10ae0fb999e53a911c1847ebfdb2e563fcd80861",
+      "startLine": 2,
+      "endLine": 15,
+      "methodCode": "public static String javadocContentAfter(String text, int position) {\n    int endPos = text.indexOf('\\n', position);\n    if (endPos < 0) {\n        return null;\n    }\n    if (StringUtil.isNotEmpty(text.substring(position, endPos))) {\n        return text.substring(position, endPos).trim();\n    }\n    if (text.indexOf('@', endPos) >= 0) {\n        return null;\n    }\n    int nextEndPos = text.indexOf('\\n', endPos + 1);\n    if (StringUtil.isNotEmpty(text.substring(endPos, nextEndPos))) {\n        return text.substring(endPos, nextEndPos).trim();\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "ad88b4784d78bf1698fac72cad3825144caf6863",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "public static String javadocContentAfter(String text, int position) {\n    int endPos = text.indexOf('\\n', position);\n    if (endPos < 0)\n        return null;\n    if (StringUtil.isNotEmpty(text.substring(position, endPos))) {\n        return text.substring(position, endPos).trim();\n    }\n    if (text.indexOf('@', endPos) >= 0)\n        return null;\n    int nextEndPos = text.indexOf('\\n', endPos + 1);\n    if (StringUtil.isNotEmpty(text.substring(endPos, nextEndPos))) {\n        return text.substring(endPos, nextEndPos).trim();\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "public static String javadocContentAfter(String text, int position) {\n    int endPos = text.indexOf('\\n', position);\n    if (endPos < 0)\n        return null;\n    if (StringUtil.isNotEmpty(text.substring(position, endPos))) {\n        return text.substring(position, endPos).trim();\n    }\n    if (text.indexOf('@', endPos) >= 0)\n        return null;\n    int nextEndPos = text.indexOf('\\n', endPos + 1);\n    if (StringUtil.isNotEmpty(text.substring(endPos, nextEndPos))) {\n        return text.substring(endPos, nextEndPos).trim();\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "0484b2430584968b5e7735df6530e620770123d4",
+      "startLine": 2,
+      "endLine": 13,
+      "methodCode": "public static String javadocContentAfter(String text, int position) {\n    int endPos = text.indexOf('\\n', position);\n    if (endPos < 0)\n        return null;\n    if (StringUtil.isNotEmpty(text.substring(position, endPos))) {\n        return text.substring(position, endPos).trim();\n    }\n    if (text.indexOf('@', endPos) >= 0)\n        return null;\n    int nextEndPos = text.indexOf('\\n', endPos + 1);\n    if (StringUtil.isNotEmpty(text.substring(endPos, nextEndPos))) {\n        return text.substring(endPos, nextEndPos).trim();\n    }\n    return null;\n}"
+    },
+    {
+      "commit": "4ffa5c453f41ca0b8ae9f317570453064ed48f3d",
+      "startLine": 2,
+      "endLine": 11,
+      "methodCode": "public static String javadocContentAfter(String text, int position) {\n    int endPos = text.indexOf('\\n', position);\n    if (StringUtil.isNotEmpty(text.substring(position, endPos))) {\n        return text.substring(position, endPos).trim();\n    }\n    if (text.indexOf('@', endPos) >= 0)\n        return null;\n    int nextEndPos = text.indexOf('\\n', endPos + 1);\n    if (StringUtil.isNotEmpty(text.substring(endPos, nextEndPos))) {\n        return text.substring(endPos, nextEndPos).trim();\n    }\n    return null;\n}"
+    }
+  ]
+}

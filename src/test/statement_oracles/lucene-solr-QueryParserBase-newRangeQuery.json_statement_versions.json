@@ -1,0 +1,94 @@
+{
+  "statementVersions": [
+    {
+      "commit": "e92a38af90d12e51390b4307ccbe0c24ac7b6b4e",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean startInclusive, boolean endInclusive) {\n    final BytesRef start;\n    final BytesRef end;\n    if (part1 == null) {\n        start = null;\n    } else {\n        start = getAnalyzer().normalize(field, part1);\n    }\n    if (part2 == null) {\n        end = null;\n    } else {\n        end = getAnalyzer().normalize(field, part2);\n    }\n    final TermRangeQuery query = new TermRangeQuery(field, start, end, startInclusive, endInclusive);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "d2d444d2ed3d21f6b15e24571aaf241201c6401f",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean startInclusive, boolean endInclusive) {\n    final BytesRef start;\n    final BytesRef end;\n    if (part1 == null) {\n        start = null;\n    } else {\n        start = analyzeRangeTerms ? analyzeMultitermTerm(field, part1) : new BytesRef(part1);\n    }\n    if (part2 == null) {\n        end = null;\n    } else {\n        end = analyzeRangeTerms ? analyzeMultitermTerm(field, part2) : new BytesRef(part2);\n    }\n    final TermRangeQuery query = new TermRangeQuery(field, start, end, startInclusive, endInclusive);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "e8e4245d9b36123446546ff15967ac95429ea2b0",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean startInclusive, boolean endInclusive) {\n    final BytesRef start;\n    final BytesRef end;\n    if (part1 == null) {\n        start = null;\n    } else {\n        start = analyzeRangeTerms ? analyzeMultitermTerm(field, part1) : new BytesRef(part1);\n    }\n    if (part2 == null) {\n        end = null;\n    } else {\n        end = analyzeRangeTerms ? analyzeMultitermTerm(field, part2) : new BytesRef(part2);\n    }\n    final TermRangeQuery query = new TermRangeQuery(field, start, end, startInclusive, endInclusive);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "098371446aaab89b978cba936e9012055c67ef64",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean startInclusive, boolean endInclusive) {\n    final BytesRef start;\n    final BytesRef end;\n    if (part1 == null) {\n        start = null;\n    } else {\n        start = analyzeRangeTerms ? analyzeMultitermTerm(field, part1) : new BytesRef(part1);\n    }\n    if (part2 == null) {\n        end = null;\n    } else {\n        end = analyzeRangeTerms ? analyzeMultitermTerm(field, part2) : new BytesRef(part2);\n    }\n    final TermRangeQuery query = new TermRangeQuery(field, start, end, startInclusive, endInclusive);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "5f30bedccc3f8a2ed14df05e3207ef9ed56965b2",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean startInclusive, boolean endInclusive) {\n    final BytesRef start;\n    final BytesRef end;\n    if (part1 == null) {\n        start = null;\n    } else {\n        start = analyzeRangeTerms ? analyzeRangePart(field, part1) : new BytesRef(part1);\n    }\n    if (part2 == null) {\n        end = null;\n    } else {\n        end = analyzeRangeTerms ? analyzeRangePart(field, part2) : new BytesRef(part2);\n    }\n    final TermRangeQuery query = new TermRangeQuery(field, start, end, startInclusive, endInclusive);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "308e0bd4a9d24ab613fb2b3e7a5e094452447917",
+      "startLine": 2,
+      "endLine": 16,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean startInclusive, boolean endInclusive) {\n    final BytesRef start;\n    final BytesRef end;\n    if (part1 == null) {\n        start = null;\n    } else {\n        start = analyzeRangeTerms ? analyzeRangePart(field, part1) : new BytesRef(part1);\n    }\n    if (part2 == null) {\n        end = null;\n    } else {\n        end = analyzeRangeTerms ? analyzeRangePart(field, part2) : new BytesRef(part2);\n    }\n    final TermRangeQuery query = new TermRangeQuery(field, start, end, startInclusive, endInclusive);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "c8c9ee2cb20c1497a28ae1adb80dcc57a1fa5ac9",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean startInclusive, boolean endInclusive) {\n    final TermRangeQuery query = new TermRangeQuery(field, part1, part2, startInclusive, endInclusive, rangeCollator);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean inclusive) {\n    final TermRangeQuery query = new TermRangeQuery(field, part1, part2, inclusive, inclusive, rangeCollator);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean inclusive) {\n    final TermRangeQuery query = new TermRangeQuery(field, part1, part2, inclusive, inclusive, rangeCollator);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "be66120dffb677ea4ce263282d6fd35956b84e78",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean inclusive) {\n    final TermRangeQuery query = new TermRangeQuery(field, part1, part2, inclusive, inclusive, rangeCollator);\n    query.setRewriteMethod(multiTermRewriteMethod);\n    return query;\n}"
+    },
+    {
+      "commit": "fed4bba63d724da192988fc7717a25da6832ff8b",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean inclusive) {\n    final TermRangeQuery query = new TermRangeQuery(field, part1, part2, inclusive, inclusive, rangeCollator);\n    query.setConstantScoreRewrite(constantScoreRewrite);\n    return query;\n}"
+    },
+    {
+      "commit": "9d8c8823854df8aa798c0d1b0c6bf22f82f72d5b",
+      "startLine": 2,
+      "endLine": 9,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean inclusive) {\n    RangeQuery query;\n    if (constantScoreRewrite) {\n        query = new ConstantScoreRangeQuery(field, part1, part2, inclusive, inclusive, rangeCollator);\n    } else {\n        query = new RangeQuery(field, part1, part2, inclusive, inclusive, rangeCollator);\n    }\n    query.setConstantScoreRewrite(constantScoreRewrite);\n    return query;\n}"
+    },
+    {
+      "commit": "abe6ea0828bdc521f77bb07da3845186669d48d5",
+      "startLine": 2,
+      "endLine": 4,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean inclusive) {\n    RangeQuery query = new RangeQuery(field, part1, part2, inclusive, inclusive, rangeCollator);\n    query.setConstantScoreRewrite(constantScoreRewrite);\n    return query;\n}"
+    },
+    {
+      "commit": "a8c0a8a8107dc946335e18b6b21cae82d8fd777f",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean inclusive) {\n    if (useOldRangeQuery) {\n        return new RangeQuery(new Term(field, part1), new Term(field, part2), inclusive, rangeCollator);\n    } else {\n        return new ConstantScoreRangeQuery(field, part1, part2, inclusive, inclusive, rangeCollator);\n    }\n}"
+    },
+    {
+      "commit": "1bbfaa54451f5654abd9c5976c865dae47d83cb4",
+      "startLine": 2,
+      "endLine": 6,
+      "methodCode": "protected Query newRangeQuery(String field, String part1, String part2, boolean inclusive) {\n    if (useOldRangeQuery) {\n        return new RangeQuery(new Term(field, part1), new Term(field, part2), inclusive);\n    } else {\n        return new ConstantScoreRangeQuery(field, part1, part2, inclusive, inclusive);\n    }\n}"
+    }
+  ]
+}
