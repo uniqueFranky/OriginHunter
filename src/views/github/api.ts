@@ -1,5 +1,6 @@
 import { CommitComment, IssueComment, ReviewComment, Post } from './utils';
 import { setTimeout } from 'timers';
+import { Comment } from './utils';
 
 function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -150,6 +151,23 @@ export async function getIssueTitleAndBody(issue: number, token: string, repo: s
     return [];
 }
 
+export async function getCommitsRelatedToPR(pr: number, token: string, repo: string, owner: string): Promise<string[]> {
+    try {
+        const octokit = await getOctokit(token);
+        const response = await octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/commits', {
+            owner: owner,
+            repo: repo,
+            pull_number: pr,
+            headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+            }
+        });
+        return response.data.map(commit => commit.sha);
+    } catch (err) {
+        console.log(err);
+    }
+    return [];
+}
 
 export async function summarizeConversation(prompt: {role: string; content: string}, posts: Post[], nameLLM: string, keyLLM: string): Promise<string> {
     if(nameLLM === 'deepseek-coder-v3') {
@@ -214,4 +232,48 @@ export async function multipleChat(messages: {sender: string; text: string}[], n
         console.log('no supported LLM');
     }
     return "";
+}
+
+export async function getPosts(commit: string, token: string, repo: string, owner: string): Promise<Post[]> {
+  const posts = [];
+  console.log('getting prs');
+  let prs = await getPRsRelatedToCommit(commit, token, repo, owner);
+  for(let pr of prs) {
+      let issueComments = await getIssueComments(pr, token, repo, owner);
+      let reviewComments = await getReviewComments(pr, token, repo, owner);
+      let comments: Comment[] = [];
+      comments.push(...issueComments);
+      comments.push(...reviewComments);
+      let tb = await getPRTitleAndBody(pr, token, repo, owner);
+      posts.push(new Post('Pull Request', pr, tb[0], tb[1], comments));
+  }
+  console.log(prs);
+
+  console.log('getting commits');
+  const commits = [];
+  for(let pr of prs) {
+    const cmts = await getCommitsRelatedToPR(pr, token, repo, owner);
+    commits.push(...cmts);
+  }
+
+  console.log('getting commit comments');
+  for(let commit of commits) {
+      let commitComments = await getCommitComments(commit, token, repo, owner);
+      posts.push(new Post('CommitComment', -1, `commit SHA: ${commit}`, '', commitComments));
+  }
+
+  console.log('getting issues');
+  for(let pr of prs) {
+      let iss = await getIssuesRelatedToPR(pr, token, repo, owner);
+      console.log(iss);
+      for(let issue of iss) {
+          if(posts.find((p, i) => p.id === issue)) {
+            continue;
+          }
+          let issueComments = await getIssueComments(issue, token, repo, owner);
+          let tb = await getIssueTitleAndBody(issue, token, repo, owner);
+          posts.push(new Post('Issue', issue, tb[0], tb[1], issueComments));
+      }
+  }
+  return posts;
 }

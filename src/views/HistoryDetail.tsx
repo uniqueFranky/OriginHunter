@@ -24,59 +24,35 @@ let posts: Post[] = [];
 let vscode: any = undefined;
 
 const init = async (props: HistoryDetailProps): Promise<[{sender: string; text: string}[], {sender: string; text: string}[]]> => {
-    posts = [];
-    console.log('getting prs');
-    let prs = await github.getPRsRelatedToCommit(props.history.commit.hash, props.githubToken, props.repoName, props.repoOwner);
-    for(let pr of prs) {
-        let issueComments = await github.getIssueComments(pr, props.githubToken, props.repoName, props.repoOwner);
-        let reviewComments = await github.getReviewComments(pr, props.githubToken, props.repoName, props.repoOwner);
-        let comments: Comment[] = [];
-        comments.push(...issueComments);
-        comments.push(...reviewComments);
-        let tb = await github.getPRTitleAndBody(pr, props.githubToken, props.repoName, props.repoOwner);
-        posts.push(new Post('Pull Request', pr, tb[0], tb[1], comments));
-    }
-    console.log(prs);
-
-    console.log('getting issues');
-    for(let pr of prs) {
-        let iss = await github.getIssuesRelatedToPR(pr, props.githubToken, props.repoName, props.repoOwner);
-        console.log(iss);
-        for(let issue of iss) {
-            if(posts.find((p, i) => p.id === issue)) {
-              continue;
-            }
-            let issueComments = await github.getIssueComments(issue, props.githubToken, props.repoName, props.repoOwner);
-            let tb = await github.getIssueTitleAndBody(issue, props.githubToken, props.repoName, props.repoOwner);
-            posts.push(new Post('Issue', issue, tb[0], tb[1], issueComments));
-        }
-    }
+    
+    posts = await github.getPosts(props.githubToken, props.repoName, props.repoOwner, props.history.commit.hash);
     console.log(posts);
-    const prompt = {
-      role: 'user',
-      content: `
-      You are provided with two versions of the same function, one from an earlier commit and the other from a later commit. Additionally, you have access to the related Issue and Pull Request discussions, which may include other code changes not directly related to the provided function.
-      Your task is to focus on analyzing the discussions and extracting the following information specifically related to the provided function. If other code changes are mentioned in the discussion and are closely tied to the function, include them in your analysis; if the relationship is weak or unclear, do not include those changes in your output. Pay particular attention to the motivation behind the code changes.
-      1. Reason for the change: What is the core motivation for modifying the provided function? Why was this change necessary or requested? This is the most important aspect of the analysis. Look for any issues, bugs, or performance concerns that the function change is intended to address.
-      2. Developer suggestions or feedback: What suggestions, concerns, or feedback were provided by the developers regarding the function? Were alternative approaches considered or discussed for implementing the change?
-      3. Technical decisions: What technical decisions were made in the discussions related to the function? This could include decisions about the function’s logic, design, or performance considerations.
-      4. Challenges or issues addressed by the function change: Were any challenges specific to the function mentioned during the discussion? How were these challenges resolved or mitigated in the code change?
-      5. Outcome and conclusions: What were the key takeaways regarding the function change from the discussion? Were there any conclusions on how the function should be modified, or were there any unresolved issues?
-      Remember to focus your analysis only on the function provided and its related context. If the discussion includes other code changes, include them only if they are directly relevant to the function or if they significantly affect its behavior or purpose.
+    return [[], []];
+  //   const prompt = {
+  //     role: 'user',
+  //     content: `
+  //     You are provided with two versions of the same function, one from an earlier commit and the other from a later commit. Additionally, you have access to the related Issue and Pull Request discussions, which may include other code changes not directly related to the provided function.
+  //     Your task is to focus on analyzing the discussions and extracting the following information specifically related to the provided function. If other code changes are mentioned in the discussion and are closely tied to the function, include them in your analysis; if the relationship is weak or unclear, do not include those changes in your output. Pay particular attention to the motivation behind the code changes.
+  //     1. Reason for the change: What is the core motivation for modifying the provided function? Why was this change necessary or requested? This is the most important aspect of the analysis. Look for any issues, bugs, or performance concerns that the function change is intended to address.
+  //     2. Developer suggestions or feedback: What suggestions, concerns, or feedback were provided by the developers regarding the function? Were alternative approaches considered or discussed for implementing the change?
+  //     3. Technical decisions: What technical decisions were made in the discussions related to the function? This could include decisions about the function’s logic, design, or performance considerations.
+  //     4. Challenges or issues addressed by the function change: Were any challenges specific to the function mentioned during the discussion? How were these challenges resolved or mitigated in the code change?
+  //     5. Outcome and conclusions: What were the key takeaways regarding the function change from the discussion? Were there any conclusions on how the function should be modified, or were there any unresolved issues?
+  //     Remember to focus your analysis only on the function provided and its related context. If the discussion includes other code changes, include them only if they are directly relevant to the function or if they significantly affect its behavior or purpose.
 
-      Function in the earlier version:
-      ${props.previous? props.previous.code : 'None, the function is newly introduced'}
+  //     Function in the earlier version:
+  //     ${props.previous? props.previous.code : 'None, the function is newly introduced'}
 
-      Function in the later version:
-      ${props.history!.code}
+  //     Function in the later version:
+  //     ${props.history!.code}
 
-      Conversations in Issues and Pull Requests:
-      ${JSON.stringify(posts, null, '\t')};
-      `
-  };
-  console.log('waiting for summarization');
-  const res = await github.summarizeConversation(prompt, posts, props.nameLLM, props.keyLLM);
-  return [[{'sender': 'User', 'text': 'Help me summarize the changes.'}, {'sender': 'AI Agent', 'text': res}], [{'sender': 'User', 'text': prompt.content}, {'sender': 'AI Agent', 'text': res}]];
+  //     Conversations in Issues and Pull Requests:
+  //     ${JSON.stringify(posts, null, '\t')};
+  //     `
+  // };
+  // console.log('waiting for summarization');
+  // const res = await github.summarizeConversation(prompt, posts, props.nameLLM, props.keyLLM);
+  // return [[{'sender': 'User', 'text': 'Help me summarize the changes.'}, {'sender': 'AI Agent', 'text': res}], [{'sender': 'User', 'text': prompt.content}, {'sender': 'AI Agent', 'text': res}]];
 };
 
 const HistoryDetail: React.FC<HistoryDetailProps> = ({ history, previous, githubToken, repoName, repoOwner, nameLLM, keyLLM }) => {

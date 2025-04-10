@@ -4,9 +4,6 @@ import HistoryList from './HistoryList';
 import { MethodHistory } from './Models';
 import HistoryDetail from './HistoryDetail';
 import LoadingScreen from './LoadingScreen';
-import { Button } from '@mui/material';
-
-let hist: MethodHistory[] = [];
 
 // App 组件
 const App: React.FC = () => {
@@ -21,28 +18,11 @@ const App: React.FC = () => {
   const [nameLLM, setNameLLM] = useState<string>();
   const [keyLLM, setKeyLLM] = useState<string>();
 
-  const saveAsData = () => {
-    const commits = hist.map(h => h.commit.hash);
-    const filePath = hist[0].container;
-    const expectedResult = new Map<string, string>();
-    commits.forEach(commit => expectedResult.set(commit, 'YType'));
-    const data = {
-      'repositoryName': repoName,
-      'filePath': filePath,
-      'functionName': '',
-      'functionStartLine': 0,
-      'startCommitName': '',
-      'expectedResult': Object.fromEntries(expectedResult)
-    };
-    console.log(JSON.stringify(data, null, 2));
-  };
-
   useEffect(() => {
     const handler = (event: MessageEvent) => {
         let message = event.data;
         if(message.type === 'setCodeHistory') {
           setCodeHistory(message.codeHistory.map((obj: { commit: Object; code: string; container: string}) => new MethodHistory(obj.commit, obj.code, obj.container)));
-          hist = message.codeHistory.map((obj: { commit: Object; code: string; container: string}) => new MethodHistory(obj.commit, obj.code, obj.container));
           setWaitingForHistory(false);
         } else if(message.type === 'setWaiting' && !waitingForHistory) {
           setWaitingForHistory(true);
@@ -81,9 +61,6 @@ const App: React.FC = () => {
             }} 
           />
         </div>
-        <Button variant="contained" color="primary" onClick={saveAsData} sx={{ marginLeft: '8px' }}>
-                    save
-        </Button>
 
         <div style={{ flex: 1, padding: '20px', borderLeft: '1px solid #ddd', overflowY: 'auto' }}>
           {currentHistory && <HistoryDetail history={currentHistory} previous={currentPrevious} 
