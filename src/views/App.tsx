@@ -30,9 +30,11 @@ const App: React.FC = () => {
           setGithubToken(message.token);
           setRepoOwner(message.repoOwner);
           setRepoName(message.repoName);
+          console.log('github settings completed');
         } else if(message.type === 'setLLM') {
           setNameLLM(message.name);
           setKeyLLM(message.key);
+          console.log('llm settings completed');
         } else {
           console.log(message);
         }

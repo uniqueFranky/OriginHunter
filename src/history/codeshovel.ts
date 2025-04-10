@@ -43,7 +43,7 @@ async function findModifiedInOtherFile(methods: Method[], target: Method): Promi
         const similarityB = jaroWinklerDistance(target.body, b.body);
         return similarityB - similarityA;// 降序排序（从高到低）
     });
-    const candidateNum = 5;
+    const candidateNum = 3;
     for(let i = 0; i < candidateNum && i < methods.length; i++) {
         if(await chat.isSameEvolution(target, methods[i])) {
             return methods[i];

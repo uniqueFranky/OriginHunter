@@ -83,6 +83,8 @@ export async function getCommitComments(commit: string, token: string, repo: str
               'X-GitHub-Api-Version': '2022-11-28'
             }
         });
+        console.log('commit comments');
+        console.log(response.data);
         return response.data.map(comment => new CommitComment(comment.user!.login, comment.body, comment.commit_id, comment.path));
     } catch(err) {
         console.log(err);
@@ -259,7 +261,9 @@ export async function getPosts(commit: string, token: string, repo: string, owne
   console.log('getting commit comments');
   for(let commit of commits) {
       let commitComments = await getCommitComments(commit, token, repo, owner);
-      posts.push(new Post('CommitComment', -1, `commit SHA: ${commit}`, '', commitComments));
+      if(commitComments.length > 0) {
+        posts.push(new Post('CommitComment', -1, `commit SHA: ${commit}`, '', commitComments));
+      }
   }
 
   console.log('getting issues');

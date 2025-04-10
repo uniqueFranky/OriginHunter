@@ -11,6 +11,7 @@ import { doBlockTest } from './test/block';
 import { doStatementTest } from './test/statement';
 import * as fs from 'fs/promises';
 import path from 'path';
+import { getOrStartServer } from './mcp/server';
 
 var historyPanel: vscode.WebviewPanel | null;
 var scriptUri: vscode.Uri;
@@ -56,6 +57,9 @@ export function activate(context: vscode.ExtensionContext) {
     // test statement command
     const statementTestDisposable = vscode.commands.registerCommand('OriginHunter.testStatement', doStatementTest);
     context.subscriptions.push(statementTestDisposable);
+
+    // start MCP server
+    getOrStartServer(3456);
 }
 
 async function testBlock() {
@@ -186,4 +190,6 @@ function testGitAPI() {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+    getOrStartServer(3456).close();
+}
