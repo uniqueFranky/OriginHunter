@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const [repoName, setRepoName] = useState<string>();
   const [nameLLM, setNameLLM] = useState<string>();
   const [keyLLM, setKeyLLM] = useState<string>();
+  const [mcpPort, setMcpPort] = useState<number>();
 
   useEffect(() => {
     const handler = (event: MessageEvent) => {
@@ -35,7 +36,10 @@ const App: React.FC = () => {
           setNameLLM(message.name);
           setKeyLLM(message.key);
           console.log('llm settings completed');
-        } else {
+        } else if(message.type === 'setMcp') {
+          setMcpPort(message.port);
+          console.log('mcp settings completed');
+        }else {
           console.log(message);
         }
       };
@@ -67,7 +71,7 @@ const App: React.FC = () => {
         <div style={{ flex: 1, padding: '20px', borderLeft: '1px solid #ddd', overflowY: 'auto' }}>
           {currentHistory && <HistoryDetail history={currentHistory} previous={currentPrevious} 
           githubToken={githubToken ?? ''} repoName={repoName ?? ''} repoOwner={repoOwner ?? ''}
-          nameLLM={nameLLM ?? ''} keyLLM={keyLLM ?? ''}/>}
+          nameLLM={nameLLM ?? ''} keyLLM={keyLLM ?? ''} mcpPort={mcpPort ?? 3456}/>}
         </div>
       </div>
       }

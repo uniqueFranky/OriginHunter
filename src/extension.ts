@@ -18,6 +18,8 @@ var scriptUri: vscode.Uri;
 var vsCodeContext: vscode.ExtensionContext;
 var currentMethodHistories: MethodLevelHistory[];
 
+const defaultMcpPort = 3456;
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -59,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(statementTestDisposable);
 
     // start MCP server
-    getOrStartServer(3456);
+    getOrStartServer(vscode.workspace.getConfiguration('originhunter').get<number>('mcpPort') || defaultMcpPort);
 }
 
 async function testBlock() {
@@ -131,6 +133,8 @@ function createWebviewPanelIfNotExists() {
             throw new Error('No API Key was found.');
         }
         historyPanel.webview.postMessage({'type': 'setLLM', 'name': modelName, 'key': apiKey});
+        
+        historyPanel.webview.postMessage({'type': 'setMcp', 'port': vscode.workspace.getConfiguration('originhunter').get<number>('mcpPort') || defaultMcpPort});
 
         historyPanel.webview.onDidReceiveMessage((message) => {
             if(message.type === 'saveData') {

@@ -1,7 +1,8 @@
-import { queryInConversations, toolPrefabs } from "./tools";
+import { getFileContentInCommit, queryInConversations, toolPrefabs } from "./tools";
 import { SiliconFlowMessage, ToolInvocation } from "./utils";
 import { Post } from "../github/utils";
 import { MethodHistory } from "../Models";
+import { getFileContent } from "../../git/gitAPI";
 
 function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -14,13 +15,15 @@ export class SiliconFlowChatWrapper {
     posts: Post[];
     previousMethod?: MethodHistory;
     currentMethod?: MethodHistory;
+    mcpPort: number;
     setChatMessages: (messages: SiliconFlowMessage[]) => void;
 
-    constructor(nameLLM: string, keyLLM: string, setChatMessages: (messages: SiliconFlowMessage[]) => void) {
+    constructor(nameLLM: string, keyLLM: string, mcpPort: number, setChatMessages: (messages: SiliconFlowMessage[]) => void) {
         this.nameLLM = nameLLM;
         this.keyLLM = keyLLM;
         this.messages = [];
         this.posts = [];
+        this.mcpPort = mcpPort;
         this.setChatMessages = setChatMessages;
     }
 
@@ -111,6 +114,15 @@ export class SiliconFlowChatWrapper {
 ${JSON.stringify(retrieved)}`);
             ret.setToolCallId(toolInvocation.id);
             return ret;
+        } else if(toolInvocation.function.name === 'get_file_content_in_commit') {
+            const file_path = toolInvocation.function.arguments.file_path;
+            const commit = toolInvocation.function.arguments.commit;
+            const content = await getFileContentInCommit(this.mcpPort, file_path, commit);
+            const ret = new SiliconFlowMessage('tool', `Here is the content of the file ${file_path} in the commit ${commit}:
+${content}`);
+            ret.setToolCallId(toolInvocation.id);
+            return ret;
+
         } else {
             throw new Error('Unknown tool invocation: ' + toolInvocation.function.name);
         }

@@ -83,8 +83,6 @@ export async function getCommitComments(commit: string, token: string, repo: str
               'X-GitHub-Api-Version': '2022-11-28'
             }
         });
-        console.log('commit comments');
-        console.log(response.data);
         return response.data.map(comment => new CommitComment(comment.user!.login, comment.body, comment.commit_id, comment.path));
     } catch(err) {
         console.log(err);

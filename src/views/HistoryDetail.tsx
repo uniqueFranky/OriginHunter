@@ -18,23 +18,24 @@ interface HistoryDetailProps {
   repoOwner: string;
   nameLLM: string;
   keyLLM: string;
+  mcpPort: number;
 }
 
 declare function acquireVsCodeApi(): any;
 
 let posts: Post[] = [];
 let vscode: any = undefined;
-let chatWrapper: SiliconFlowChatWrapper = new SiliconFlowChatWrapper('', '', (messages: SiliconFlowMessage[]) => {}); 
+let chatWrapper: SiliconFlowChatWrapper = new SiliconFlowChatWrapper('', '', 3456, (messages: SiliconFlowMessage[]) => {}); 
 
 
-const HistoryDetail: React.FC<HistoryDetailProps> = ({ history, previous, githubToken, repoName, repoOwner, nameLLM, keyLLM }) => {
+const HistoryDetail: React.FC<HistoryDetailProps> = ({ history, previous, githubToken, repoName, repoOwner, nameLLM, keyLLM, mcpPort }) => {
   const [inputMessage, setInputMessage] = useState('');
   const [tabIndex, setTabIndex] = useState(0);
   const [messages, setMessages] = useState<SiliconFlowMessage[]>([]);
 
   const init = async (props: HistoryDetailProps) => {
     posts = await github.getPosts(props.history.commit.hash, props.githubToken, props.repoName, props.repoOwner);
-    chatWrapper = new SiliconFlowChatWrapper(props.nameLLM, props.keyLLM, (newChatMessages: SiliconFlowMessage[]) => {
+    chatWrapper = new SiliconFlowChatWrapper(props.nameLLM, props.keyLLM, mcpPort, (newChatMessages: SiliconFlowMessage[]) => {
       setMessages(newChatMessages);
       console.log('set messages');
       console.log(newChatMessages);
@@ -42,37 +43,45 @@ const HistoryDetail: React.FC<HistoryDetailProps> = ({ history, previous, github
     chatWrapper.setPosts(posts);
     chatWrapper.setPreviousMethod(props.previous);
     chatWrapper.setCurrentMethod(props.history);
-    chatWrapper.addMessage('system', 'You are a helpful assistant. You can help the user to understand the code changes and summarize the conversations in GitHub issues and pull requests. You will be provided with a few tools to get the detailed information from the code and the conversations.');
+    chatWrapper.addMessage('system', `
+You are a helpful assistant designed to assist the user in understanding code changes and summarizing discussions from GitHub issues and pull requests. You have access to various tools for retrieving detailed information from the code, git repository, and conversations. 
+
+You can call these tools multiple times as needed to gather information. Always prioritize citing specific conversations over generating your own content. If you cannot answer a question, use the tools to gather the necessary details.
+`);
     const userMessage = `
 <instruction>
-You are provided with two versions of the same function, one from an earlier commit and the other from a later commit. Additionally, you have access to the related Issue and Pull Request discussions, which may include other code changes not directly related to the provided function.
-Your task is to focus on analyzing the discussions and extracting the following information specifically related to the provided function. If other code changes are mentioned in the discussion and are closely tied to the function, include them in your analysis; if the relationship is weak or unclear, do not include those changes in your output. Pay particular attention to the motivation behind the code changes.
-1. Reason for the change: What is the core motivation for modifying the provided function? Why was this change necessary or requested? This is the most important aspect of the analysis. Look for any issues, bugs, or performance concerns that the function change is intended to address.
-2. Developer suggestions or feedback: What suggestions, concerns, or feedback were provided by the developers regarding the function? Were alternative approaches considered or discussed for implementing the change?
-3. Technical decisions: What technical decisions were made in the discussions related to the function? This could include decisions about the function’s logic, design, or performance considerations.
-4. Challenges or issues addressed by the function change: Were any challenges specific to the function mentioned during the discussion? How were these challenges resolved or mitigated in the code change?
-5. Outcome and conclusions: What were the key takeaways regarding the function change from the discussion? Were there any conclusions on how the function should be modified, or were there any unresolved issues?
+You have two versions of the same function: one from an earlier commit and one from a later commit. Additionally, you have access to discussions from the related Issue and Pull Request, which may include other changes not directly tied to the provided function.
+Your task is to analyze the discussions and extract the following insights specifically related to the provided function. If other changes are mentioned and are closely tied to the function, include them in your analysis; if their relationship is weak or unclear, exclude them.
+
+1. **Reason for the Change**: Why was this function modified? What problem or improvement is being addressed? Look for mentions of bugs, performance issues, or feature requests.
+2. **Developer Feedback**: What feedback or suggestions did developers share regarding the function? Were any alternative approaches discussed or considered?
+3. **Technical Decisions**: What decisions were made about the function’s design, logic, or performance in the discussions? Highlight any key trade-offs.
+4. **Challenges or Issues Addressed**: Were any specific challenges with the function discussed? How were these challenges resolved or mitigated in the change?
+5. **Outcome and Conclusions**: What are the key takeaways from the discussion? Were there any final conclusions about modifying the function, or any unresolved issues?
+
 <instruction>
 
 <reminder>
-Start by calling "query_in_conversations" tool.
+Start by calling the "query_in_conversations" tool, and use other tools if needed. You can make multiple calls as necessary.
 </reminder>
 
 <task>
-  Function in the earlier version (from commit ${props.previous ? props.previous.commit.hash : "none"}):
-  <function>
-  ${props.previous? props.previous.code : 'None, the function is newly introduced'}
-  </function>
+**Function in earlier commit** (Commit: ${props.previous ? props.previous.commit.hash : "None (new function)"}, File: ${props.previous? props.previous.container : 'No file (newly introduced)'}):
+<function>
+${props.previous ? props.previous.code : 'No function (newly introduced)'}
+</function>
 
-  Function in the later version (from commit ${props.history.commit.hash}):
-  <function>
-  ${props.history!.code}
-  </function>
-</task>`;
+**Function in later commit** (Commit: ${props.history.commit.hash}, File: ${props.history.container}):
+<function>
+${props.history!.code}
+</function>
+</task>
+    `;
+    
     await chatWrapper.fireWithUserMessage(userMessage);
 };
   const initChat = () => {
-    init({history, previous, githubToken, repoName, repoOwner, nameLLM, keyLLM});
+    init({history, previous, githubToken, repoName, repoOwner, nameLLM, keyLLM, mcpPort});
   };
 
   const sendMessage = async () => {
@@ -166,7 +175,7 @@ Start by calling "query_in_conversations" tool.
                     textAlign: 'left',
                   }}
                 >
-                  <strong>{msg.role}:</strong> {msg.content}
+                  <strong>{msg.role}:</strong> {msg.tool_calls ? msg.reasoning_content! : msg.content}
                 </Typography>
               )}
             </Box>

@@ -2,6 +2,7 @@ import { json } from "stream/consumers";
 import { Comment, Post } from "../github/utils";
 import { ToolInvocation } from "./utils";
 import { Query } from "tree-sitter";
+import axios from "axios";
 
 export const toolPrefabs = [
   {
@@ -22,6 +23,28 @@ export const toolPrefabs = [
           },
         },
         required: ['query', 'top_k'],
+        strict: true,
+      },
+    },
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'get_file_content_in_commit',
+      description: 'Retrieves the content of a file in a specific commit.',
+      parameters: {
+        type: 'object',
+        properties: {
+          file_path: {
+            type: 'string',
+            description: 'The relative path of the file in the repository.',
+          },
+          commit: {
+            type: 'string',
+            description: 'The commit hash to retrieve the file content from.',
+          },
+        },
+        required: ['file_path', 'commit'],
         strict: true,
       },
     },
@@ -47,4 +70,12 @@ export async function queryInConversations(comments: Comment[], query: string, t
   const ret = data['results'].map((result: {index: number, relevance_score: number}) => comments[result['index']]);
   console.log(ret.length);
   return ret;
+}
+
+export async function getFileContentInCommit(mcpPort: number, filePath: string, commit: string) {
+  const response = await axios.post(`http://localhost:${mcpPort}/file`, {
+      file_path: filePath,
+      commit: commit
+  });
+  return response.data;
 }
