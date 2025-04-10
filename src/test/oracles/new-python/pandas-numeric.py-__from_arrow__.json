@@ -1,0 +1,23 @@
+{
+  "repositoryName": "pandas",
+  "filePath": "pandas/core/arrays/numeric.py",
+  "functionName": "__from_arrow__",
+  "functionStartLine": 65,
+  "startCommitName": "bc24e84c9feeecdd04481505a9327bdb04143410",
+  "expectedResult": {
+    "e4097caaeca93deb4982f79905aab1ef3a4ec503": "Ybodychange",
+    "efccff865544ea434f67b77af2486406af4d1003": "Ybodychange",
+    "64eed4c30d73fe6e5e43f3d6e1e16e05bd1a38f3": "Ybodychange",
+    "41e423fd09df5817dcfa11f3aea111a5b1a2f98a": "Ybodychange",
+    "e55c46e2740b5c3995343a852584dca0ff5d9f00": "Ybodychange",
+    "71312683b41b5177faf7ecd63555059504853cbd": "Ybodychange",
+    "1fb626d0252e8c68e2ad9f7b863c709c67498b1d": "Ybodychange",
+    "f6e71888740b1855a015ea5e10d62302ec46d5e7": "Yparameterchange",
+    "0d5a64442d2a0895dde2e58e9f5ea1f7f9f14321": "Yparameterchange",
+    "643d62cb31172506286d180a883ff6722c1daf98": "Ymultichange(Ymovefromfile,Yreturntypechange,Ybodychange)",
+    "9767da6a2215d8902706acd64cd1e2ee5d6b9e67": "Ybodychange",
+    "85e4d6ff784a846a06ce47e3b0ae33461a8fd060": "Ymultichange(Yparameterchange,Yreturntypechange,Ybodychange)",
+    "2198f51911dd5a5a0cc1c12c3f083b86c96bd33b": "Ybodychange",
+    "fe1803d9cdfbfe3023a39be94649b44854a4e596": "Yintroduced"
+  }
+}

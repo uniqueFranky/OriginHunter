@@ -1,0 +1,12 @@
+{
+  "repositoryName": "pandas",
+  "filePath": "pandas/core/methods/selectn.py",
+  "functionName": "compute",
+  "functionStartLine": 103,
+  "startCommitName": "bc24e84c9feeecdd04481505a9327bdb04143410",
+  "expectedResult": {
+    "17a4cac3a086f0643fd5fe3f9d64549fd6e0725c": "Ybodychange",
+    "97828e4a4ecdf857a2c6c87f2c1d194ef60f2be1": "Ybodychange",
+    "2070bb8daa1d3395f10d5e4748eea30fd8b98b35": "Yintroduced"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "repositoryName": "pandas",
+  "filePath": "pandas/core/computation/common.py",
+  "functionName": "result_type_many",
+  "functionStartLine": 19,
+  "startCommitName": "bc24e84c9feeecdd04481505a9327bdb04143410",
+  "expectedResult": {
+    "b9a4335b8a85276182e6fd7e6eae360eda6cc6ad": "Ybodychange",
+    "f287794e1e2400f620ae59aeeea84228376d6f80": "Ybodychange",
+    "d3bfcdc0594a4900176cd08238ab97c8145c9fe3": "Yrename",
+    "005a09e971a8afb26acdd408a025f71a9951f52b": "Yfilerename",
+    "8eea09c849af1446403932cf3da921b048fc479e": "Ybodychange",
+    "bd7d0c708647ca7964f991f86abde876819575ce": "Yintroduced"
+  }
+}

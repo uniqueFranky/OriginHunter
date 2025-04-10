@@ -1,0 +1,12 @@
+{
+  "repositoryName": "pandas",
+  "filePath": "pandas/core/arrays/masked.py",
+  "functionName": "_pad_or_backfill",
+  "functionStartLine": 188,
+  "startCommitName": "bc24e84c9feeecdd04481505a9327bdb04143410",
+  "expectedResult": {
+    "9e87dc76302ea3fe860aa0befade87ec1c50496d": "Ymultichange(Yparameterchange,Ybodychange)",
+    "6e29e3af35e269dbc09a09eb74df450c8f64c21c": "Ymultichange(Yrename,Yparameterchange)",
+    "0a9efad0a61941b960eb5f80e0223f30a23376e4": "Yintroduced"
+  }
+}
